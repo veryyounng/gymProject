@@ -123,7 +123,7 @@
          success : function (data){
             console.log(data);
             if(data){
-               alert("메일 발송 성공");
+               alert("메일 발송 성공했습니다.");
                location.href="/";
             } else {
                alert("메일 발송 실패");

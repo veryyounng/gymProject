@@ -10,4 +10,6 @@ public interface UserDAO {
 //   id 중복 체크
    public int idchk(String userid) throws Exception;
    
+   public void id();
+   
 }

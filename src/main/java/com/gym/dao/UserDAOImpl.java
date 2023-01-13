@@ -25,5 +25,11 @@ public class UserDAOImpl implements UserDAO {
    public int idchk(String userid) throws Exception {
       return sql.selectOne(namespace + ".idchk", userid);
    }
+   
+   @Override
+	public void id() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

@@ -1,0 +1,77 @@
+
+    .container{
+        width: 100%;
+        height: 100%;
+        
+    }
+    .map_title{
+        text-align: center;
+        margin-bottom: 50px;
+        display: block;
+        font-size: 40px;
+        color: #0d0c51;
+        letter-spacing: -1px;
+    }
+    .map_real{
+        border-top: 1px solid gainsboro;
+    }
+    p{
+        margin: 0 0 ;
+    }
+
+
+    .map_txt{
+        border-bottom: 1px solid gainsboro;
+        padding: 3rem 0;
+    }
+    .map_txt > p{
+        color: black;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 70px;
+    }
+    .map_txt > p img{
+        vertical-align: middle;
+    }
+    .map_txt > div > p > span > span{
+        margin-top: 4px;
+        color: #0d0d0d;
+        font-size: 20px;
+    }
+    .map_txt > div > p > span > img {
+        margin: 0 2rem 0 3rem;
+    }
+
+    .map_txt2>p {color:#e60013;font-size:25px;margin:2rem 0;}
+    .map_txt2>ul>li>span {margin-top:10px;color:#0d0d0d;font-size:20px;}
+    .map_txt2>ul>li img {margin-right:2rem;}
+    .map_txt2>ul>li {margin-right:5rem}
+
+    select::-ms-expand{
+        display: none;
+    } 
+    ol,ul{
+        list-style: none;
+    }
+    .clfix::after{
+        content: "";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+    .map_t1{
+        float: left;
+    }
+
+    .map_txt > .map_t1 > img{
+        margin-left: 10px;
+    }
+
+    .map_txt2 > p{
+        margin-left: 10px;
+    }
+
+    .map_txt2{
+        margin-bottom: 50px;
+    }

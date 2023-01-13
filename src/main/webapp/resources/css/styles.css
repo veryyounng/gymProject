@@ -1,0 +1,191 @@
+@charset "UTF-8";
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+@font-face {
+  font-family: "GmarketSansMedium";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+body,
+html {
+  font-family: "Noto Sans KR", sans-serif;
+  margin: 0;
+  padding: 0;
+  margin: 0;
+  padding: 0;
+  color: #000;
+  font-size: 14px;
+  scrollbar-face-color: #4d4d4d;
+  scrollbar-3dlight-color: #f4f4f4;
+  scrollbar-arrow-color: #000;
+  scrollbar-track-color: #efefef;
+  scrollbar-darkshadow-color: #efefef;
+  scrollbar-highlight-color: #f4f4f4;
+  scrollbar-shadow-color: #cccccc;
+}
+
+* {
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+a:hover {
+  color: #0085a1;
+}
+html {
+  width: 100%;
+}
+
+/* 공통 끝 */
+header {
+  width: 100%;
+  height: 80px;
+  background-color: #fff;
+  border-bottom: 1px solid #e4e8eb;
+}
+header .header-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1440px;
+  margin: 0 auto;
+  height: 75px;
+}
+.header-menu > div:first-child {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.header-menu div img {
+  width: 75px;
+}
+.header-menu > div:last-child {
+  width: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dropdown.help {
+  margin-right: 30px;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.0625em;
+  text-transform: uppercase;
+  width: 124px;
+  text-align: center;
+  cursor: pointer;
+}
+.dropbtn {
+  margin: 15px 0;
+}
+.dropdown-content {
+  background-color: rgba(255, 255, 255, 0.6);
+  display: none;
+  position: absolute;
+  font-size: 13px;
+  z-index: 1;
+  width: 124px;
+  color: black !important;
+}
+.dropdown-content a:first-child {
+  margin-top: 10px;
+}
+.dropdown-content a {
+  display: block;
+  margin-bottom: 10px;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.dropdown.company:hover #company {
+  color: red;
+  transition: all 0.3s;
+}
+.dropdown.program:hover #program {
+  color: red;
+  transition: all 0.3s;
+}
+.dropdown.community:hover #community {
+  color: red;
+  transition: all 0.3s;
+}
+.dropdown.help:hover #help {
+  color: red;
+  transition: all 0.3s;
+}
+#loginview {
+  font-weight: 500;
+  font-size: 12px;
+}
+#loginview:hover {
+  color: red;
+  transition: all 0.2s;
+}
+
+/* 헤더끝 */
+/* 메인 */
+section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1440px;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+.h4 {
+  font-weight: 700;
+  padding: 0 0 10px 20px;
+  margin: 0 20px 10px;
+  border-bottom: 1px solid rgb(222, 225, 230);
+}
+.side-bar {
+  width: 200px;
+  border-right: 1px solid rgb(222, 225, 230);
+}
+.side-bar > div {
+  margin-bottom: 30px;
+}
+.side-bar > div li {
+  margin: 0 0 20px 55px;
+}
+.banana {
+  width: 1200px;
+  height: 100%;
+  margin: auto;
+}
+footer {
+  border-top: 1px solid #e4e8eb;
+  width: 100%;
+  background-color: #fafbfc;
+}
+strong {
+  font-weight: 600;
+}
+footer * {
+  color: #000;
+}
+footer *:hover {
+  color: #000000 !important;
+}
+.foot_box {
+  width: 1440px;
+  margin: 0 auto;
+  text-align: center;
+}
+.foot_box > div {
+  margin-bottom: 10px;
+}
+.foot_box > div:first-child {
+  margin-top: 20px;
+}
+.foot_box > div:last-child {
+  margin-bottom: 0;
+}

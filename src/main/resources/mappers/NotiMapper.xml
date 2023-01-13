@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gym.mappers.noti">
+	
+	<!-- 게시물 총 개수 -->
+	<select id="notiCnt" resultType="int">
+		select count(notice_num) from notice
+	</select>
+	
+	<!-- 게시물 목록 보기 , 페이징 -->
+	<select id="notiContents" resultType="com.gym.domain.NoticeVO" parameterType="hashMap">
+		select * from notice
+		order by notice_num desc
+			limit #{displayPost},#{postNum}
+	</select>
+	
+	<!-- 게시물 상세보기 -->
+	<select id="notiDetail" resultType="com.gym.domain.NoticeVO" parameterType="_int">
+		select * from notice
+		where notice_num = #{notice_num};
+	</select>
+	
+	<!-- 조회수 업데이트 -->
+	<update id="notiViewCnt" parameterType="_int">
+		update notice set view_cnt = view_cnt+1 where notice_num=#{notice_num}
+	</update>	
+	
+	<!-- 검색 게시물 갯수  -->
+	<select id="getSearchCnt" resultType="int" parameterType="string">
+		select count(*) from notice where notice_title like ('%${_parameter}%');
+	</select>
+	
+	<!-- 검색 게시물 목록 -->
+	<select id="getSearchList" resultType="com.gym.domain.NoticeVO" parameterType="hashMap">
+		select * from notice where notice_title like ('%${keyword}%')
+		order by notice_num desc
+		limit #{displayPost},#{postNum}
+	</select>
+	
+</mapper>

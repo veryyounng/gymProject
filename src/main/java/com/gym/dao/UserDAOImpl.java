@@ -31,5 +31,10 @@ public class UserDAOImpl implements UserDAO {
 		// TODO Auto-generated method stub
 		
 	}
+   @Override
+	public void pw() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

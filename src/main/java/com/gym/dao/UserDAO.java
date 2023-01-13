@@ -11,5 +11,6 @@ public interface UserDAO {
    public int idchk(String userid) throws Exception;
    
    public void id();
+   public void pw();
    
 }

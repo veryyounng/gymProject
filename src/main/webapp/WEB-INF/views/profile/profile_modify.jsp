@@ -44,18 +44,14 @@
 }
 
 .banana #userid, .banana #username, .banana #usernick, .banana #sample6_address,
-	.banana #sample6_detailAddress, .banana #sample6_extraAddress {
+	.banana #phone, .banana #sample6_detailAddress, .banana #sample6_extraAddress
+	{
 	width: 300px;
 	height: 40px;
 }
 
 .banana #sample6_postcode {
 	width: 195px;
-	height: 40px;
-}
-
-.banana #userphone, .banana #middle_num, .banana #last_num {
-	width: 89.5px;
 	height: 40px;
 }
 </style>
@@ -73,12 +69,22 @@
 				<table>
 					<tr>
 						<th><label for="userid">아이디</label></th>
-						<td><input type="text" name="userid" id="userid" value=""
-							readonly style="color: gray;"></td>
+						<td><input type="text" name="userid" id="userid"
+							value="${loginUser.userid}" readonly style="color: gray;"></td>
 					</tr>
 					<tr>
-						<td></td>
-						<td><span id="idcheck">&nbsp;</span></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<th><label for="email">이메일</label></th>
+						<td><input type="text" name="email" id="email"
+							value="${loginUser.email}" readonly style="color: gray;"></td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -86,7 +92,7 @@
 					<tr>
 						<th><label for="username">이름</label></th>
 						<td><input type="text" name="username" id="username"
-							onfocusout="namecheck()" value=""></td>
+							value="${loginUser.username}" readonly style="color: gray"></td>
 					</tr>
 					<tr>
 						<td></td>
@@ -98,7 +104,7 @@
 					<tr>
 						<th><label for="usernick">닉네임</label></th>
 						<td><input type="text" name="usernick" id="usernick"
-							onfocusout="nickcheck()" value=""></td>
+							onfocusout="nickcheck()" value="${loginUser.usernick}"></td>
 					</tr>
 					<tr>
 						<td></td>
@@ -108,15 +114,9 @@
 						<td>&nbsp;</td>
 					</tr>
 					<tr>
-						<th><label for="userphone">전화번호</label></th>
-						<td><select name="userphone" id="userphone" value="">
-								<option value="010">010</option>
-								<option value="011">011</option>
-								<option value="016">016</option>
-								<option value="017">017</option>
-						</select> - <input type="text" name="middle_num" id="middle_num" value="">
-							- <input type="text" name="last_num" id="last_num" value="">
-						</td>
+						<th><label for="phone">전화번호</label></th>
+						<td><input type="text" name="phone" id="phone"
+							value="${loginUser.phone}"></td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -127,9 +127,9 @@
 					<tr class="zipcode_area">
 						<th>우편번호</th>
 						<td><input type="text" name="zipcode" id="sample6_postcode"
-							readonly onclick="sample6_execDaumPostcode()" value=""> <input
-							type="button" value="우편번호 찾기"
-							onclick="sample6_execDaumPostcode()"></td>
+							readonly onclick="sample6_execDaumPostcode()"
+							value="${loginUser.zipcode}"> <input type="button"
+							value="우편번호 찾기" onclick="sample6_execDaumPostcode()"></td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -137,7 +137,7 @@
 					<tr class="addr_area">
 						<th>주소</th>
 						<td><input type="text" name="addr" id="sample6_address"
-							value="" readonly></td>
+							value="${loginUser.addr}" readonly></td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -146,7 +146,7 @@
 						<th>상세주소</th>
 						<td><input type="text" name="addrdetail"
 							id="sample6_detailAddress" onfocusout="detail_addrcheck()"
-							value=""></td>
+							value="${loginUser.addrdetail}"></td>
 					</tr>
 					<tr>
 						<td></td>
@@ -158,7 +158,7 @@
 					<tr>
 						<th>참고항목</th>
 						<td><input type="text" name="addretc"
-							id="sample6_extraAddress" value="" readonly></td>
+							id="sample6_extraAddress" value="${loginUser.addretc}" readonly></td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -182,51 +182,6 @@
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="${path}/resources/js/header.js"></script>
 <script>
-  function idcheck() {
-    const userid = document.joinForm.userid;
-    const korean = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
-    const number = /[0-9]/;
-
-    if (userid.value == "") {
-      document.getElementById("idcheck").setAttribute('style', 'color:red;');
-      document.getElementById("idcheck").innerHTML = "아이디를 입력해주세요!"
-    }
-    else if (userid.value.length < 4 || userid.value.length > 16) {
-      document.getElementById("idcheck").setAttribute('style', 'color:red;');
-      document.getElementById("idcheck").innerHTML = "아이디는 4자 이상, 16자 이하로 입력해주세요!"
-    }
-    else if (korean.test(userid.value)) {
-      document.getElementById("idcheck").setAttribute('style', 'color:red;');
-      document.getElementById("idcheck").innerHTML = "아이디에는 영어와 숫자만 입력해주세요!"
-    }
-    else if (number.test(userid.value)) {
-      document.getElementById("idcheck").setAttribute('style', 'color:red;');
-      document.getElementById("idcheck").innerHTML = "숫자만 입력할 수는 없습니다!"
-    }
-    else {
-      document.getElementById("idcheck").setAttribute('style', 'color:green;');
-      document.getElementById("idcheck").innerHTML = "입력이 완료됐습니다!"
-    }
-  }
-  
-  function namecheck() {
-    const username = document.joinForm.username;
-    const korean = /^[가-힣]+$/;
-
-    if (username.value == "") {
-      document.getElementById("namecheck").setAttribute('style', 'color: red;');
-      document.getElementById("namecheck").innerHTML = "이름을 입력해주세요!"
-    }
-    else if (!korean.test(username.value)) {
-      document.getElementById("namecheck").setAttribute('style', 'color: red;');
-      document.getElementById("namecheck").innerHTML = "오타가 없는지 확인해주세요!"
-    }
-    else {
-      document.getElementById("namecheck").setAttribute('style', 'color: green;');
-      document.getElementById("namecheck").innerHTML = "입력이 완료됐습니다!"
-    }
-  }
-
   function nickcheck() {
     const usernick = document.joinForm.usernick;
 
@@ -265,40 +220,6 @@
     const special = /[~!@#$%^&*]/;
     const number = /[0-9]/;
 
-    const userid = joinform.userid;
-    if (userid.value == "") {
-      alert("아이디를 입력해주세요!");
-      userid.focus();
-      return false;
-    }
-    if (userid.value.length < 4 || userid.value.length > 16) {
-      alert("아이디는 4자 이상, 16자 이하로 입력하세요!");
-      userid.focus();
-      return false;
-    }
-    if (korean.test(userid.value)) {
-      alert("아이디에는 영어와 숫자만 입력해주세요!");
-      userid.focus();
-      return false;
-    }
-    if (number.test(userid.value)) {
-      alert("숫자만 입력할 수는 없습니다!");
-      userid.focus();
-      return false;
-    }
-
-    const username = joinform.username;
-    if (username.value == "") {
-      alert("이름을 입력하세요!");
-      username.focus();
-      return false;
-    }
-    if (!koreana.test(username.value)) {
-      alert("오타가 없는지 확인해주세요!");
-      username.focus();
-      return false;
-    }
-
     const usernick = joinform.usernick;
     if (usernick.value == "") {
       alert("닉네임을 입력해주세요!");
@@ -317,6 +238,14 @@
       alert("상세주소를 입력해주세요!");
       addrdetail.focus();
       return false;
+    }
+    
+    const middle = joinform.middle_num;
+    const last = joinform.last_num;
+    if (!number.test(middle.value) || !number.test(last.value)) {
+    	alert("전화번호에는 숫자만 입력해주세요!");
+    	middle.focus();
+    	return false;
     }
 
     return true;

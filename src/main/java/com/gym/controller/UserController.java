@@ -62,11 +62,11 @@ public class UserController {
    }
    
    @RequestMapping(value = "/join_complete", method = RequestMethod.POST)
-   public String join_complete(UserVO vo, @RequestParam("userid") String userid, HttpServletResponse response) throws Exception {
+   public String join_complete(UserVO vo, @RequestParam("userid") String userid) throws Exception {
       int result  = service.idchk(userid);
       try {
          if (result != 0) {
-            return "/user/join_form";
+            return "/join_form";
          }
          else {
             service.join(vo);

@@ -3,34 +3,77 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gym.mappers.user">
-   <!-- 회원가입 -->
-   <insert id="join" parameterType="com.gym.domain.UserVO">
-      insert into
-         user(userid
-            , userpw
-            , username
-            , usernick
-            , zipcode
-            , addr
-            , addrdetail
-            , addretc
-            , email
-            , phone)
-         values (#{userid}
-            , #{userpw}
-            , #{username}
-            , #{usernick}
-            , #{zipcode}
-            , #{addr}
-            , #{addrdetail}
-            , #{addretc}
-            , #{email}
-            , #{phone})
-   </insert>
-   
-   <!-- id 중복 체크 -->
-   <select id="idchk" parameterType="string" resultType="_int">
-      select count(*) from user
-         where userid = #{userid}
-   </select>
+	<!-- 회원가입 -->
+	<insert id="join" parameterType="com.gym.domain.UserVO">
+		insert into
+			user(userid
+			, userpw
+			, username
+			, usernick
+			, zipcode
+			, addr
+			, addrdetail
+			, addretc
+			, email
+			, phone)
+		values (#{userid}
+			, #{userpw}
+			, #{username}
+			, #{usernick}
+			, #{zipcode}
+			, #{addr}
+			, #{addrdetail}
+			, #{addretc}
+			, #{email}
+			, #{phone})
+	</insert>
+
+	<!-- id 중복 체크 -->
+	<select id="idchk" parameterType="string" resultType="_int">
+		select count(*) from user
+			where userid = #{userid}
+	</select>
+
+	<!-- 회원정보 불러오기 -->
+	<select id="userlist" parameterType="string" resultType="com.gym.domain.UserVO">
+		select * from user
+			where userid = #{userid}
+	</select>
+	
+	<!-- 회원정보 수정하기 -->
+	<update id="profile_modify" parameterType="com.gym.domain.UserVO">
+		update user set
+			usernick = #{usernick}
+			, phone = #{phone}
+			, zipcode = #{zipcode}
+			, addr = #{addr}
+			, addrdetail = #{addrdetail}
+			, addretc = #{addretc}
+		where userid = #{userid}
+	</update>
+	
+	<!-- 비밀번호 수정 -->
+	<update id="pw_modify" parameterType="com.gym.domain.UserVO">
+		update user set
+			userpw = #{userpw}
+		where userid = #{userid}
+	</update>
+	
+	<!-- 회원탈퇴 -->
+	<delete id="delete_user" parameterType="com.gym.domain.UserVO">
+		delete from user
+			where userid = #{userid} and userpw = #{userpw}
+	</delete>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+

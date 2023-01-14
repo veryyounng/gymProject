@@ -43,15 +43,10 @@
 	font-weight: bold;
 }
 
-.banana #userid, .banana #username, .banana #usernick, .banana #sample6_postcode,
-	.banana #sample6_address, .banana #sample6_detailAddress, .banana #sample6_extraAddress
-	{
+.banana #userid, .banana #email, .banana #username, .banana #usernick,
+	.banana #phone, .banana #sample6_postcode, .banana #sample6_address,
+	.banana #sample6_detailAddress, .banana #sample6_extraAddress {
 	width: 300px;
-	height: 40px;
-}
-
-.banana #first_num, .banana #middle_num, .banana #last_num {
-	width: 89.5px;
 	height: 40px;
 }
 
@@ -80,8 +75,20 @@
 				<table>
 					<tr>
 						<th><label for="userid">아이디</label></th>
-						<td><input type="text" name="userid" id="userid" value=""
-							readonly></td>
+						<td><input type="text" name="userid" id="userid"
+							value="${loginUser.userid}" readonly></td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+					<tr>
+						<th><label for="email">이메일</label></th>
+						<td><input type="text" name="email" id="email"
+							value="${loginUser.email}" readonly></td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -91,8 +98,8 @@
 					</tr>
 					<tr>
 						<th><label for="username">이름</label></th>
-						<td><input type="text" name="username" id="username" value=""
-							readonly></td>
+						<td><input type="text" name="username" id="username"
+							value="${loginUser.username}" readonly></td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -102,8 +109,8 @@
 					</tr>
 					<tr>
 						<th><label for="usernick">닉네임</label></th>
-						<td><input type="text" name="usernick" id="usernick" value=""
-							readonly></td>
+						<td><input type="text" name="usernick" id="usernick"
+							value="${loginUser.usernick}" readonly></td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -112,11 +119,9 @@
 						<td>&nbsp;</td>
 					</tr>
 					<tr>
-						<th><label for="userphone">전화번호</label></th>
-						<td><input type="text" name="first_num" id="first_num"
-							value="" readonly> - <input type="text" name="middle_num"
-							id="middle_num" value="" readonly> - <input type="text"
-							name="last_num" id="last_num" value="" readonly></td>
+						<th><label for="phone">전화번호</label></th>
+						<td><input type="text" name="phone" id="phone"
+							value="${loginUser.phone}" readonly></td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -127,7 +132,7 @@
 					<tr class="zipcode_area">
 						<th>우편번호</th>
 						<td><input type="text" name="zipcode" id="sample6_postcode"
-							value="" readonly></td>
+							value="${loginUser.zipcode}" readonly></td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -135,7 +140,7 @@
 					<tr class="addr_area">
 						<th>주소</th>
 						<td><input type="text" name="addr" id="sample6_address"
-							value="" readonly></td>
+							value="${loginUser.addr}" readonly></td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -143,7 +148,8 @@
 					<tr>
 						<th>상세주소</th>
 						<td><input type="text" name="addrdetail"
-							id="sample6_detailAddress" value="" readonly></td>
+							id="sample6_detailAddress" value="${loginUser.addrdetail}"
+							readonly></td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -151,7 +157,7 @@
 					<tr>
 						<th>참고항목</th>
 						<td><input type="text" name="addretc"
-							id="sample6_extraAddress" value="" readonly></td>
+							id="sample6_extraAddress" value="${loginUser.addretc}" readonly></td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>

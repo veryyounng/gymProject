@@ -453,6 +453,14 @@
       addrdetail.focus();
       return false;
     }
+    
+    const middle = joinform.middle_num;
+    const last = joinform.last_num;
+    if (!number.test(middle.value) || !number.test(last.value)) {
+    	alert("전화번호에는 숫자만 입력해주세요!");
+    	middle.focus();
+    	return false;
+    }
 
     return true;
   }

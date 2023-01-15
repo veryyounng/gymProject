@@ -31,25 +31,4 @@
 	<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
 	
-	<!-- 문의하기 메일 발송 bean 설정 -->
-    <bean id="ContactmailSender" 
-		class="org.springframework.mail.javamail.JavaMailSenderImpl">
-        <property name="host" value="smtp.gmail.com" /> <!-- gmail을 사용 -->
-        <property name="port" value="587" />
-        <property name="username" value="gymproject02@gmail.com" />
-        <property name="password" value="vllbtjvtuwltemou" />
-        <property name="javaMailProperties">
-            <props>
-                <prop key="mail.transport.protocol">smtp</prop>
-                <prop key="mail.smtp.auth">true</prop>
-                <prop key="mail.smtp.starttls.enable">true</prop>
-                <prop key="mail.debug">true</prop>
-            </props>
-        </property>
-    </bean>
-	
-	<context:component-scan base-package="com.gym.domain" />
-	<context:component-scan base-package="com.gym.dao" />
-	<context:component-scan base-package="com.gym.service" />
-	
 </beans>

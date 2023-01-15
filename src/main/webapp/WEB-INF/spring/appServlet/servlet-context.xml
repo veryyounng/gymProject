@@ -21,5 +21,33 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.gym.controller" />
+	<context:component-scan base-package="com.gym.*" />
+	
+	
+	
+	<!-- Json null 값 공백으로 치환 -->
+	<beans:bean id="objectMapper" class="com.gym.common.util.CustomJSONObjectMapper" />
+	<beans:bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+		<beans:property name="order" value="0"/>    
+	</beans:bean>   
+	
+	<beans:bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+	    <beans:property name="messageConverters">
+	     <beans:list>    
+	         <beans:bean class="org.springframework.http.converter.StringHttpMessageConverter">
+	             <beans:property name="supportedMediaTypes">
+	                 <beans:list>
+	                     <beans:value>text/html;charset=UTF-8</beans:value>
+	                     <beans:value>application/json;charset=UTF-8</beans:value>
+	                 </beans:list>
+	             </beans:property>
+	         </beans:bean>           
+	         <beans:bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+	         	<beans:property name="objectMapper" ref="objectMapper"></beans:property>  
+	         </beans:bean>
+	     </beans:list>
+	    </beans:property>                    
+	</beans:bean>
+	
+	
 </beans:beans>

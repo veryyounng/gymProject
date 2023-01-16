@@ -119,8 +119,8 @@
             </table>
 
             <div class="etcbtn">
-                <a href="./id_find.html"> 아이디 찾기 | </a>
-                <a href="./pw_find.html"> 비밀번호 찾기 | </a>
+                <a href="/id/id_find"> 아이디 찾기 | </a>
+                <a href="/pw/pw_find"> 비밀번호 찾기 | </a>
                 <a href=""> 회원가입  </a>
             </div>
 </body>

@@ -28,6 +28,11 @@
 	top: -40px;
 }
 
+section {
+	min-height: 0px;
+	height: 100%;
+}
+
 .banana {
 	border: 1px solid black;
 	height: 100%;

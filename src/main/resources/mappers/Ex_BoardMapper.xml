@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gym.mappers.Ex_Board">
+	
+	<!-- 게시물 목록 -->
+	<select id= "ex_list" resultType="com.gym.ex_board.vo.Ex_BoardVO">
+		select
+			ex_num, ex_title, ex_writer, ex_date, ex_content, view_cnt
+		from ex_board
+		order by ex_date desc
+	</select>
+	
+</mapper>

@@ -7,15 +7,18 @@
 
 <head>
 <meta charset="UTF-8">
+<!-- ckeditor CDN -->
 <script src="//cdn.ckeditor.com/4.20.1/standard/ckeditor.js"></script>
 
 <!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+ integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
 <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+ integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
-<title>board</title>
+<title>운동지식공유 게시판</title>
 
 <script>
 
@@ -46,7 +49,7 @@ body {
 	<article>
 		<div class="container" role="main">
 
-			<h2>board Form</h2>
+			<h2>운동지식공유 게시판</h2>
 			<form name="form" id="form" role="form" method="post" action="${pageContext.request.contextPath}/board/saveBoard">
 
 				<div class="mb-3">
@@ -79,6 +82,7 @@ body {
 	</article>
 	
 <script>
+	//ckeditor setting
     window.onload = function(){
        ck = CKEDITOR.replace("content");
     };

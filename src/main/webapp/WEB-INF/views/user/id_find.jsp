@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>아이디 찾기</title>
+<link rel="stylesheet" href="${path}/resources/css/styles.css" />
+<link rel="stylesheet" href="${path}/resources/css/notistyle.css" />
 </head>
 <style>
     .container{
@@ -23,7 +25,7 @@
         /* display: flex; */
         text-align: center;
         font-size: 30px;
-        padding-top: 20px;
+        //padding-top: 20px;
         font-weight: bold;
     }
     #idfindtable{
@@ -106,6 +108,7 @@
     
 </style>
 <body>
+<%@ include file="../include/header.jsp" %>
 	<div class="container">
         <div class="find_id">
             아이디 찾기
@@ -161,5 +164,6 @@
   	}
 	})
     </script>
+<%@ include file = "../include/footer.jsp" %>
 </body>
 </html>

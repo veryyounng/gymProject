@@ -14,7 +14,7 @@ import com.gym.service.UserService;
 @Controller
 @RequestMapping("/profile/*")
 public class ProfileController {
-
+ 
 	@Autowired
 	private UserService userservice;
 	

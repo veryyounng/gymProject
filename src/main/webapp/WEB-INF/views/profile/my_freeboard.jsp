@@ -155,7 +155,7 @@ ul.tabs li.current {
 		<!-- 사이드바 끝 -->
 
 		<!-- 개발코드 시작 -->
-		<div class="banana">
+		<div class="banana"> 
 			<div class="profile">
 				<div class="profile_pic">
 					<img src="${path}/resources/img/profile_pic.png" alt="프로필">

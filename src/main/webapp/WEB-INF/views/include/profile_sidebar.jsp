@@ -12,7 +12,7 @@
         </ul>
       </div>
 
-      <div class="reservation">
+      <div class="reservation"> 
         <h4 class="h4">예약</h4>
         <ul>
           <li><a href="reservarion_now.html">예약 현황</a></li>
@@ -28,12 +28,5 @@
         </ul>
       </div>
 
-      <div class="myreply">
-        <h4 class="h4">내 댓글</h4>
-        <ul>
-          <li><a href="my_freereply.html">자유 게시판</a></li>
-          <li><a href="my_exercisereply.html">운동지식 공유</a></li>
-        </ul>
-      </div>
     </div>
     <!-- 사이드바 끝 -->

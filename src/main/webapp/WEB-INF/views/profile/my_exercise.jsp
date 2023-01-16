@@ -163,7 +163,7 @@ ul.tabs li.current {
 				<div class="profile_intro">
 					<span style="font-size: 25px; margin-bottom: 10px;">닉네임 님</span> <span
 						style="font-size: 15px;">운동지식 공유 게시글 수: 개 / 댓글 수: 개</span>
-				</div>
+				</div> 
 			</div>
 			<div class="boardcontents">
 				<div id="contents">

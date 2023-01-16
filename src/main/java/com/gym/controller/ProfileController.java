@@ -18,7 +18,7 @@ public class ProfileController {
 	@Autowired
 	private UserService userservice;
 	
-	@RequestMapping(value = {"/profile_pw_modify", "/profile_delete_user", "/my_freeboard"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"/profile_pw_modify", "/profile_delete_user", "/my_freeboard", "/my_exercise"}, method = RequestMethod.GET)
 	public void replace() {}
 	
 //	개인 정보 보기

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -17,7 +18,7 @@ public class ProfileController {
 	@Autowired
 	private UserService userservice;
 	
-	@RequestMapping(value = {"/profile_pw_modify", "/profile_delete_user"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"/profile_pw_modify", "/profile_delete_user", "/my_freeboard"}, method = RequestMethod.GET)
 	public void replace() {}
 	
 //	개인 정보 보기

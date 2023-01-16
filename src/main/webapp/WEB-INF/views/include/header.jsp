@@ -31,9 +31,9 @@
 						<a href="/board/notice?num=1">공지사항</a> <a href="/free/freelist">자유게시판</a> <a href="/ex_board/ex_list?num=1">운동지식공유</a>
 					</div>
 				</div>
-				<div class="dropdown help">
-					<div class="dropbtn" id="help" onmouseover="helphover()"
-						onmouseout="helphoverout()">고객센터</div>
+				<div class="dropdown help" onmouseover="helphover()"
+						onmouseout="helphoverout()">
+					<div class="dropbtn" id="help">고객센터</div>
 					<div class="dropdown-content">
 						<a href="/faq/faq_index">자주하는질문</a> <a href="/contactus/email_index">문의하기</a> <a href="/map/map_index">오시는길</a>
 					</div>

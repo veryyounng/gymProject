@@ -39,7 +39,7 @@
 					</div>
 				</div>
 
-				<a id="loginview" href="#">로그인/회원가입</a>
+				<a id="loginview" href="/login/login_index">로그인/회원가입</a>
 			</div>
 		</div>
 	</header>

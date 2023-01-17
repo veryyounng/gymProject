@@ -11,8 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>운동지식공유 게시판</title>
     
-    <link rel="stylesheet" href="${path}/resources/css/free_styles.css">
-    <link rel="stylesheet" href="${path}/resources/css/free_list.css">
+    <link rel="stylesheet" href="${path}/resources/css/ex_styles.css">
+    <link rel="stylesheet" href="${path}/resources/css/ex_list.css">
     
     <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons"/>
 	<link rel="stylesheet" 
@@ -61,27 +61,34 @@
                 <div id="contents">
                     <form name="form1" method="post" id="form1">
                         <input type="hidden" name="table_name" value="notice_list">
-                        <ul class="ul_news_title">
-                            <div class="boardnum">
+                        <ul class="ul_news_title" >
+                            <div class="boardnum" style="width: 5%;">
                                 <span class="board_num">번호</span>
                             </div>
                             <div class="title" style="width: 60%;">
                                 <span>제목</span></a>
                             </div>
                             <div class="writer_id" style="width: 10%;"><span class="">작성자</span></div>
-                            <div class="data" style="width: 15%;"><span class="date">작성일</span></div>
-                            <div class="view"><span class="view" style="width: 10%;">조회수</span></div>
+                            <div class="data" style="width: 15%;"><span class="">작성일</span></div>
+                            <div class="view" style="width: 10%;"><span class="view" style="width: 10%;">조회수</span></div>
                         </ul>
             	<c:forEach  items = "${ex_list}" var="ex_list">
                 	<ul class="ul_news">
-                    	<div class="boardnum">
+                    	<div class="boardnum" style="width: 5%;">
                         	<span class="board_num">${ex_list.ex_num}</span>
                         </div>
                         
                         <div class="title" style="width: 60%;"><span>${ex_list.ex_title}</span></div>
+                        
                         <div class="writer_id" style="width: 10%;"><span class="">${ex_list.ex_writer}</span></div>
-						<div class="data" style="width: 15%;"><span class="date">${ex_list.ex_date}</span></div>
-                        <div class="view"><span class="view" style="width: 10%;">${ex_list.view_cnt}</span></div>
+						
+						<div class="data" style="width: 15%;">
+							
+								<span>${ex_list.ex_date}</span>
+							
+						</div>
+
+                        <div class="view" style="width: 10%;"><span>${ex_list.view_cnt}</span></div>
                         
                     </ul> 
                 </c:forEach>
@@ -95,9 +102,6 @@
                     </ul>
                 </div>
             </div>
-        </div>
-        </div>
-
         </div>
         <!-- 개발코드 끝 -->
     </section>

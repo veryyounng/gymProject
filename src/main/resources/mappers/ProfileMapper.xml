@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gym.mappers.profile">
+
+	<!-- 마이페이지 내가 올린 게시글 -->
+	<select id="getFreeList" resultType="com.gym.domain.FreeBoardVO">
+		select * from f_board where b_writer = #{b_writer}
+	</select>
+	
+	<!-- 마이페이지 내가 올린 게시글 자세히보기(조회) -->
+	<select id="getFreeDetail" resultType="com.gym.domain.FreeBoardVO">
+		select * from f_board where b_num = #{b_num}
+	</select>
+	
+</mapper>

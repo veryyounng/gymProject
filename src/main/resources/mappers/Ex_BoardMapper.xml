@@ -12,4 +12,11 @@
 		order by ex_date desc
 	</select>
 	
+	<!-- 게시물 작성 -->
+	<insert id = "ex_write" parameterType="com.gym.ex_board.vo.Ex_BoardVO">
+		insert into ex_board (ex_title, ex_writer, ex_content)
+		values (#{ex_title}, #{ex_writer}, #{ex_content});
+	</insert>
+	
+	
 </mapper>

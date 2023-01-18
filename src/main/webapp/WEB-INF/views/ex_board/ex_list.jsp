@@ -95,7 +95,7 @@
                        
                     </form>
                 </div>
-                <div id="write_notice"><button>글쓰기</button></div>
+                <div id="write_notice"><button><a href="/ex_board/ex_write">글쓰기</a></button></div>
                 <div class="btns">
                     <ul class="pagination">
                         <li class='active'><a href='#'>1</a></li>

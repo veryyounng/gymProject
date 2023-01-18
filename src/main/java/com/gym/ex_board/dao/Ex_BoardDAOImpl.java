@@ -22,4 +22,13 @@ public class Ex_BoardDAOImpl implements Ex_BoardDAO {
 	public List<Ex_BoardVO> getList() throws Exception {
 		return sql.selectList(namespace + ".ex_list");
 	}
+
+	// 게시물 작성
+	@Override
+	public void write(Ex_BoardVO evo) throws Exception {
+		sql.insert(namespace + ".ex_write", evo);
+	}
+	
+	
+	
 }

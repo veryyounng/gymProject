@@ -20,7 +20,7 @@ public class ExBoardController {
 	Ex_BoardService service;
 	
 	@RequestMapping(value="/ex_test", method=RequestMethod.GET)
-	public void Ex_Test() {
+	public void Ex_Test() throws Exception {
 		
 	}
 	   
@@ -32,4 +32,19 @@ public class ExBoardController {
 		
 		model.addAttribute("ex_list", list);
 	}
+
+	//게시물 작성 GET
+	@RequestMapping(value="/ex_write", method=RequestMethod.GET)
+	public void Ex_Write() throws Exception {
+		
+	}
+	
+	//게시물 작성 POST
+	@RequestMapping(value = "/ex_write", method = RequestMethod.POST)
+	public String PostEx_Write(Ex_BoardVO evo) throws Exception {
+		service.write(evo);
+		
+		return "redirect:/ex_board/ex_list";
+	}
+	
 }

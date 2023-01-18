@@ -30,12 +30,7 @@ public class ContactUsController {
    private JavaMailSender mailSender;
    
    @RequestMapping(value="/email_index", method=RequestMethod.GET)
-   public void ContactUs() {
-      
-   }
-   
-   @RequestMapping(value="/email_test", method=RequestMethod.GET)
-   public void ContactTest() {
+   public void ContactUs() throws Exception {
       
    }
    

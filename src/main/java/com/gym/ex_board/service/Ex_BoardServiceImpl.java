@@ -21,4 +21,9 @@ public class Ex_BoardServiceImpl implements Ex_BoardService {
 		
 	}
 
+	@Override
+	public void write(Ex_BoardVO evo) throws Exception {
+		dao.write(evo);
+	}
+
 }

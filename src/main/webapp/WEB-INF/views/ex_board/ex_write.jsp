@@ -49,7 +49,7 @@ body {
 	<article>
 		<div class="container" role="main">
 
-			<h2>운동지식공유 게시판</h2>
+			<h2>운동지식공유 게시판 글쓰기</h2>
 			<form name="form" id="form" role="form" method="post" action="${pageContext.request.contextPath}/ex_board/ex_write">
 
 				<div class="mb-3">

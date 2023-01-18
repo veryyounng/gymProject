@@ -54,28 +54,28 @@ body {
 
 				<div class="mb-3">
 					<label for="title">제목</label>
-					<input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력해 주세요">
+					<input type="text" name="ex_title" value="${ex_view.ex_title}" readonly>
 				</div>
 
 				
 
 				<div class="mb-3">
 					<label for="reg_id">작성자</label>
-					<input type="text" class="form-control" name="reg_id" id="reg_id" placeholder="이름을 입력해 주세요">
+					<input type="text" name="ex_writer" value="${ex_view.ex_writer}" readonly>
 				</div>
 
 				
 
 				<div class="mb-3">
 					<label for="content">내용</label>
-					<textarea class="form-control" rows="5" name="content" id="content" placeholder="내용을 입력해 주세요" ></textarea>
+					<textarea rows="5" name="ex_content" readonly>${ex_view.ex_content}</textarea>
 				</div>
-
 
 			</form>
 			<div >
-				<!-- <button type="button" class="btn btn-sm btn-primary" id="btnSave">작성완료</button> -->
-				<!-- <button type="button" class="btn btn-sm btn-primary" id="btnList">목록</button> -->
+<!-- 				<button type="button" class="btn btn-sm btn-primary" id="btnSave"
+				 onclick="document.getElementById('form').submit();">작성완료</button> -->
+				<!-- <button type="button" class="btn btn-sm btn-primary" id="btnList" >목록</button> -->
 			</div>
 		</div>
 
@@ -84,10 +84,13 @@ body {
 <script>
 	//ckeditor setting
     window.onload = function(){
-       ck = CKEDITOR.replace("content");
+       ck = CKEDITOR.replace("ex_content");
     };
+    
+   
 </script>
 
 </body>
 
 </html>
+

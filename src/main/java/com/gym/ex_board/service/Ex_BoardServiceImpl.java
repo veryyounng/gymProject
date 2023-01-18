@@ -14,16 +14,22 @@ public class Ex_BoardServiceImpl implements Ex_BoardService {
 	@Autowired
 	private Ex_BoardDAO dao;
 
+	//게시물 리스트
 	@Override
 	public List<Ex_BoardVO> getList() throws Exception {
-		
 		return dao.getList();
-		
 	}
 
+	//게시물 작성
 	@Override
 	public void write(Ex_BoardVO evo) throws Exception {
 		dao.write(evo);
+	}
+	
+	//게시물 조회
+	@Override
+	public Ex_BoardVO view(int ex_num) throws Exception {
+		return dao.view(ex_num);
 	}
 
 }

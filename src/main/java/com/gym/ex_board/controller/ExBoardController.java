@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gym.ex_board.service.Ex_BoardService;
 import com.gym.ex_board.vo.Ex_BoardVO;
@@ -24,6 +25,7 @@ public class ExBoardController {
 		
 	}
 	   
+	//게시물 리스트
 	@RequestMapping(value="/ex_list", method=RequestMethod.GET)
 	public void getList(Model model) throws Exception {
 		
@@ -46,5 +48,17 @@ public class ExBoardController {
 		
 		return "redirect:/ex_board/ex_list";
 	}
+	
+	//게시물 보기 GET
+	@RequestMapping(value = "/ex_view", method = RequestMethod.GET)
+	public void getView(@RequestParam("ex_num") int ex_num, Model model)
+		throws Exception {
+		
+		Ex_BoardVO evo = service.view(ex_num);
+		
+		model.addAttribute("ex_view", evo);
+		
+	}
+	
 	
 }

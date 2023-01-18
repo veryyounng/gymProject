@@ -12,4 +12,7 @@ public interface Ex_BoardDAO {
 	//게시물 작성
 	public void write(Ex_BoardVO evo) throws Exception;
 	
+	//게시물 조회
+	public Ex_BoardVO view(int ex_num) throws Exception;
+	
 }

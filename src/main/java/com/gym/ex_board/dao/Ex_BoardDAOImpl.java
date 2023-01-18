@@ -28,6 +28,11 @@ public class Ex_BoardDAOImpl implements Ex_BoardDAO {
 	public void write(Ex_BoardVO evo) throws Exception {
 		sql.insert(namespace + ".ex_write", evo);
 	}
+
+	@Override
+	public Ex_BoardVO view(int ex_num) throws Exception {
+		return sql.selectOne(namespace + ".ex_view", ex_num);
+	}
 	
 	
 	

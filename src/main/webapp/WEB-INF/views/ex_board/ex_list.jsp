@@ -78,7 +78,11 @@
                         	<span class="board_num">${ex_list.ex_num}</span>
                         </div>
                         
-                        <div class="title" style="width: 60%;"><span>${ex_list.ex_title}</span></div>
+                        <div class="title" style="width: 60%;">
+                        	<span>
+                        		<a href = "${path}/ex_board/ex_view?ex_num=${ex_list.ex_num}">${ex_list.ex_title}</a>
+                        	</span>
+                        </div>
                         
                         <div class="writer_id" style="width: 10%;"><span class="">${ex_list.ex_writer}</span></div>
 						

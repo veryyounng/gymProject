@@ -70,6 +70,7 @@ public class ProfileController {
 //	이럴 경우 Mapping의 value는 "/join"이지만 목적지는 "/index"가 된다.
 //	이럴 경우 타입을 String으로 선언해준 후
 //	return에 "/index"를 써줘서 메인화면으로 이동할 수 있게 해준다.
+//	마이페이지 게시글목록
 	@RequestMapping(value = "/my_exercise", method = RequestMethod.GET)
 	public void my_exercise(Model model) throws Exception {
 		List<FreeBoardVO> list = null;
@@ -78,9 +79,9 @@ public class ProfileController {
 		model.addAttribute("list", list);
 	}
 	
+//	마이페이지 게시글조회 / 마이페이지 수정용 게시글 조회
 //	<a href="${cp}/profile/my_exercise_detail">
-	
-	@RequestMapping(value = "/my_exercise_detail", method = RequestMethod.GET)
+	@RequestMapping(value = {"/my_exercise_detail", "/my_exercise_modify"}, method = RequestMethod.GET)
 	public void my_exercise(@RequestParam("b_num") int b_num, Model model) throws Exception{
 		
 //		데이터베이스에서 정보 수집
@@ -89,4 +90,24 @@ public class ProfileController {
 		model.addAttribute("vo",vo);
 	}
 	
+//	form의 method에 따라 같은 이름의 목적지를 가졌지만 controller의 requestMethod를 참고해서 다른 곳으로 간다.
+//	<form method="get" action="${path}/profile/my_exercise_modify">
+//	<form method="post" action="${path}/profile/my_exercise_modify">
+	
+//	마이페이지 게시글 수정하는 기능
+	@RequestMapping(value = "/my_exercise_modify", method = RequestMethod.POST)
+	public String my_exercise_modify(FreeBoardVO free) throws Exception{
+		profileservice.mymodify(free);
+//		게시글을 수정하는 메소드를 완료한 후 게시글 목록으로 들어가겠다
+		return "redirect:/profile/my_exercise";
+//		게시글을 수정하는 메소드를 완료한 후 애가 수정한 게시글을 확인하겠다.
+//		return "redirect:/profile/my_exercise_detail?B_num="+free.getB_num();
+	}
+	
+//	마이페이지 게시글 삭제
+	@RequestMapping(value = "/my_exercise_delete", method = RequestMethod.POST)
+	public String my_exercise_delete(@RequestParam("b_num") int b_num) throws Exception{
+		profileservice.mydelete(b_num);
+		return "redirect:/profile/my_exercise";
+	}
 }

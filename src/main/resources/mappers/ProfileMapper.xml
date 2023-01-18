@@ -4,14 +4,29 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gym.mappers.profile">
 
-	<!-- 마이페이지 내가 올린 게시글 -->
+	<!-- 마이페이지 게시글목록 -->
 	<select id="getFreeList" resultType="com.gym.domain.FreeBoardVO">
 		select * from f_board where b_writer = #{b_writer}
 	</select>
 	
-	<!-- 마이페이지 내가 올린 게시글 자세히보기(조회) -->
+	<!-- 마이페이지 게시글조회 -->
 	<select id="getFreeDetail" resultType="com.gym.domain.FreeBoardVO">
 		select * from f_board where b_num = #{b_num}
 	</select>
+	
+	<!-- 게시글 수정하기 -->
+	<update id="my_exercise_modify" parameterType="com.gym.domain.FreeBoardVO">
+		update from f_board set
+			b_title = #{b_title}
+			, b_contents = #{b_contents}
+		where b_num = #{b_num}
+	</update>
+	
+	<!-- 게시글 삭제하기 -->
+	<delete id="my_exercise_delete" parameterType="int">
+		delete
+		from f_board
+		where b_num =#{b_num}
+	</delete>
 	
 </mapper>

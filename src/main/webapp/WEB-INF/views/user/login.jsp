@@ -113,7 +113,7 @@
 		<div class="logo">
 			<img src="${path}/resources/img/부자.jpg" alt="" class="logo_img">
 		</div>
-		<form action="loginForm" method="post">
+		<form method="post" action="${path}/user/login">
 			<table id="logintable">
 				<tr>
 					<td id="result" colspan="2"></td>
@@ -130,15 +130,15 @@
 						onkeyup="pwcheck()" placeholder="비밀번호를 입력하세요."></td>
 				</tr>
 				<tr>
-					<th colspan="2" id="login_button"><input type="submit"
-						value="로그인" id="loginbutton"></th>
+					<th colspan="2" id="login_button"><a href="/login/login"><input type="submit"
+						value="로그인" id="loginbutton"></a></th>
 				</tr>
 			</table>
 		</form>
 
 		<div class="etcbtn">
-			<a href="/id/id_find"> 아이디 찾기 | </a> <a href="/pw/pw_find"> 비밀번호
-				찾기 | </a> <a href=""> 회원가입 </a>
+			<a href="${path}/user/id_find"> 아이디 찾기 | </a> <a href="${path}/user/pw_find"> 비밀번호
+				찾기 | </a> <a href="${path}/user/join"> 회원가입 </a>
 		</div>
 
 	</div>

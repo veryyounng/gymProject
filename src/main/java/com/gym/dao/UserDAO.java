@@ -1,5 +1,7 @@
 package com.gym.dao;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.gym.domain.UserVO;
 
 public interface UserDAO {
@@ -21,5 +23,7 @@ public interface UserDAO {
 	
 //	회원 탈퇴
 	public int delete_user(UserVO vo) throws Exception;
-
+	
+//	로그인
+	public UserVO login(UserVO vo) throws Exception;
 }

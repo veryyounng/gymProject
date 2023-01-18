@@ -1,5 +1,7 @@
 package com.gym.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.gym.domain.UserVO;
 
 public interface UserService {
@@ -21,4 +23,7 @@ public interface UserService {
 	
 //	회원 탈퇴
 	public int delete_user(UserVO vo) throws Exception;
+
+//	로그인
+	boolean login(UserVO vo, HttpServletRequest req) throws Exception;
 }

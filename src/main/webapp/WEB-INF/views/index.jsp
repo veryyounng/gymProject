@@ -111,5 +111,5 @@
 	<%@ include file="./include/footer.jsp"%>
 </body>
 
-<script src="resources/js/index.js"></script>
+<script src="${path}/resources/js/index.js"></script>
 </html>

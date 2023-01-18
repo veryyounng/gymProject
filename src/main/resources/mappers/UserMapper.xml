@@ -3,6 +3,13 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gym.mappers.user">
+
+	<!-- 로그인 -->
+	<select id="login" resultType="com.gym.domain.UserVO">
+		select * from user
+		where userid = #{userid} and userpw = #{userpw}
+	</select>
+	
 	<!-- 회원가입 -->
 	<insert id="join" parameterType="com.gym.domain.UserVO">
 		insert into

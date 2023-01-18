@@ -38,8 +38,15 @@
 						<a href="/faq/faq_index">자주하는질문</a> <a href="/contactus/email_index">문의하기</a> <a href="/map/map_index">오시는길</a>
 					</div>
 				</div>
-
-				<a id="loginview" href="/login/login_index">로그인/회원가입</a>
+				<c:choose>
+					<c:when test="${loginUser == null}">
+						<a id="loginview" href="${path}/user/login">로그인/회원가입</a>
+					</c:when>
+					<c:otherwise>
+						<a href="${path}/profile/profile_check">마이페이지</a>
+						<a href="${path}/user/logout">로그아웃</a>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</header>

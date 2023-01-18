@@ -1,5 +1,7 @@
 package com.gym.dao;
 
+import java.util.HashMap;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -49,6 +51,14 @@ public class UserDAOImpl implements UserDAO {
 	public int delete_user(UserVO vo) throws Exception {
 		return sql.delete(namespace + ".delete_user", vo);
 	}
+
+//	로그인
+	@Override
+	public UserVO login(UserVO vo) throws Exception {
+		return sql.selectOne(namespace + ".login", vo);
+	}
+
+
 }
 
 

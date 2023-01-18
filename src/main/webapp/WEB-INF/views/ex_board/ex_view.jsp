@@ -54,21 +54,21 @@ body {
 
 				<div class="mb-3">
 					<label for="title">제목</label>
-					<input type="text" name="ex_title" value="${ex_view.ex_title}" readonly>
+					<input type="text" class="form-control" name="ex_title" id="ex_title" value="${ex_view.ex_title}" >
 				</div>
 
 				
 
 				<div class="mb-3">
 					<label for="reg_id">작성자</label>
-					<input type="text" name="ex_writer" value="${ex_view.ex_writer}" readonly>
+					<input type="text" class="form-control" name="ex_writer" id="ex_writer" value="${ex_view.ex_writer}" >
 				</div>
 
 				
 
 				<div class="mb-3">
 					<label for="content">내용</label>
-					<textarea rows="5" name="ex_content" readonly>${ex_view.ex_content}</textarea>
+					<textarea rows="5" class="form-control" name="ex_content" id="ex_content" >${ex_view.ex_content}</textarea>
 				</div>
 
 			</form>
@@ -87,6 +87,9 @@ body {
        ck = CKEDITOR.replace("ex_content");
     };
     
+    $("#ex_title").attr("disabled",true);
+    $("#ex_writer").attr("disabled",true);
+    $("#ex_content").attr("disabled",true);
    
 </script>
 

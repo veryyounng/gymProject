@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +33,11 @@ public class UserController {
    @RequestMapping(value = {"/login", "/join", "/id_find", "/pw_find"}, method = RequestMethod.GET)
    public void replace() {}
    
+   @RequestMapping(value = "/login", method = RequestMethod.GET)
+   public void login() {
+	   
+   }
+   
    @PostMapping("/login")
 	public String login(UserVO vo, HttpServletRequest req) throws Exception{
 		if(service.login(vo, req)) {
@@ -40,7 +46,7 @@ public class UserController {
 		else {
 			
 		}
-		return "/index";
+		return "redirect:/";
 	}
    
    @RequestMapping(value = "/join_email", method = RequestMethod.POST)

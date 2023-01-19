@@ -33,4 +33,6 @@ public class NewsDAOImpl implements NewsDAO {
 		return sql.selectList(namespace+".getExNews");
 	}
 
+	
+	
 }

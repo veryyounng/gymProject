@@ -55,7 +55,8 @@ function ett() {
   e_t.style.display = "table";
   n_t.style.display = "none";
   f_t.style.display = "none";
-}
+}  
+
 function more() {
   if (notice.classList.contains('focus_board')) {
     location.href = "/board/notice?num=1";

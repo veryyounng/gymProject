@@ -84,7 +84,9 @@ function loading(){
 					</div>
 				</div>
 			</div>
-
+  
+  
+  
 			<div class="go">
 				<div class="rsvn_go" onclick="location.href='/reservation/search'"></div>
 				<div class="shop_go" onclick= 'loading();'"></div>

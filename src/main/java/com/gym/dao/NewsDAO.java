@@ -17,4 +17,5 @@ public interface NewsDAO {
 	//운동게시판 목록
 	
 	public List<Ex_BoardVO> getExNews() throws Exception;
+	
 }

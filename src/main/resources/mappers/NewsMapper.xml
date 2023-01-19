@@ -23,6 +23,7 @@
 		select * from ex_board
 		order by ex_num desc
 			limit 0,10
+			
 	</select>
 
 

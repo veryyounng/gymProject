@@ -25,6 +25,7 @@ public class HomeController {
 		
 		model.addAttribute("fnews", service.getFreeNews());
 		model.addAttribute("nnews", service.getNotiNews());
+		model.addAttribute("enews", service.getExNews());
 		
 		return "index";
 	}

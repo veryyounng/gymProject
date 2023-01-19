@@ -73,10 +73,13 @@ function loading(){
 						</c:forEach>
 						</table>
 						<table id="ex_table" style="display: none;">
-							<tr>
-								<td>운동지식공유 제목</td>
-								<td>등록일</td>
+						<c:forEach items="${enews}" var="list">
+							<tr onclick="location.href='/ex_board/ex_list?ex_num=${list.ex_num}'">
+								<td>${list.ex_num}</td>
+								<td><fmt:formatDate 
+								value="${list.ex_date}" pattern="yyyy-MM-dd"/></td>
 							</tr>
+						</c:forEach>
 						</table>
 					</div>
 				</div>

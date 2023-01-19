@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.gym.domain.FreeBoardVO;
 import com.gym.domain.NoticeVO;
+import com.gym.ex_board.vo.Ex_BoardVO;
 
 @Repository
 public class NewsDAOImpl implements NewsDAO {
@@ -25,6 +26,11 @@ public class NewsDAOImpl implements NewsDAO {
 	@Override
 	public List<FreeBoardVO> getFreeNews() throws Exception {
 		return sql.selectList(namespace+".getFreeNews");
+	}
+
+	@Override
+	public List<Ex_BoardVO> getExNews() throws Exception {
+		return sql.selectList(namespace+".getExNews");
 	}
 
 }

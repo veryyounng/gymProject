@@ -19,6 +19,11 @@
 	</select>
 
 <!-- 운동지식 게시판 목록 -->
+	<select id="getExNews" resultType="com.gym.ex_board.vo.Ex_BoardVO">
+		select * from ex_board
+		order by ex_num desc
+			limit 0,10
+	</select>
 
 
 </mapper>

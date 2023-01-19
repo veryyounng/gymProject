@@ -60,8 +60,8 @@ function more() {
   if (notice.classList.contains('focus_board')) {
     location.href = "/board/notice?num=1";
   } else if (freeb.classList.contains('focus_board')) {
-    location.href = "/free/freeboard";
+    location.href = "/free/freelist?num=1";
   } else if (ex_board.classList.contains('focus_board')) {
-    location.href = "../notidetail.html";
+    location.href = "/ex_board/ex_list?num=1";
   }
 }

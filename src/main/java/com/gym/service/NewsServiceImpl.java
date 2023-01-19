@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.gym.dao.NewsDAO;
 import com.gym.domain.FreeBoardVO;
 import com.gym.domain.NoticeVO;
+import com.gym.ex_board.vo.Ex_BoardVO;
 
 @Service
 public class NewsServiceImpl implements NewsService {
@@ -25,6 +26,12 @@ public class NewsServiceImpl implements NewsService {
 	@Override
 	public List<FreeBoardVO> getFreeNews() throws Exception {
 		return ndao.getFreeNews();
+	}
+
+
+	@Override
+	public List<Ex_BoardVO> getExNews() throws Exception {
+		return ndao.getExNews();
 	}
 
 }

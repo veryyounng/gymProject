@@ -4,14 +4,12 @@
 	font-size: 18px;
 	color: black;
 }
-
 .container {
 	margin: 0 auto;
 	width: 500px;
 	min-height: 570px;
 	height:100%;
 }
-
 .logo {
 	display: flex;
 	align-items: center;
@@ -34,13 +32,11 @@
 	height: 106px;
 	background-size: contain;
 }
-
 #logintable {
 	/* text-align: center; */
 	margin: 0 auto;
 	margin-top:20px;
 }
-
 #idline {
 	margin-left: 10px;
 }
@@ -51,13 +47,11 @@
 	width: 100px;
 	height: 50px;
 }
-
 #idline,
 #pwline {
 	text-align: center;
 	margin-top: 50px;
 }
-
 #useridtext,
 #userpwtext {
 	padding-left: 10px;
@@ -71,7 +65,6 @@
 #userpwtext {
 	margin-top: 5px;
 }
-
 #loginbutton {
 	margin-top: 30px;
 	border : 1px solid gray;
@@ -82,14 +75,12 @@
 	text-align: center;
 	cursor:pointer;
 }
-
 #loginbutton:hover {
 	background-color: gray;
 	color: white;
 	border: none;
 	transition : all .3s;
 }
-
 .etcbtn {
 	margin-top: 50px;
 	text-align: center;

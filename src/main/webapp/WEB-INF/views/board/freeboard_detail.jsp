@@ -38,7 +38,8 @@
         <div class="cnt_date_writer">
 
           <div class="writer">작성자: ${freedetail.b_writer}</div>
-          <div class="view_date"> 작성일 : ${freedetail.b_date}</div>
+          <div class="view_date"> 작성일 : <fmt:formatDate
+									value="${freedetail.b_date}" pattern="yy-MM-dd HH:mm" /></div>
           <div class="view_cnt">조회수: ${freedetail.view_cnt}</div>
         </div>
       </div>

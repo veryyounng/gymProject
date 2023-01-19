@@ -23,8 +23,8 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) throws Exception {
 		
-		
-		model.addAttribute("news", service.getNotiNews());
+		model.addAttribute("fnews", service.getFreeNews());
+		model.addAttribute("nnews", service.getNotiNews());
 		
 		return "index";
 	}

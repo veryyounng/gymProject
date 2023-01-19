@@ -12,7 +12,11 @@
 	</select>
 
 <!-- 자유게시판 목록 -->
-
+	<select id="getFreeNews" resultType="com.gym.domain.FreeBoardVO">
+		select * from f_board
+		order by b_num desc
+			limit 0,10
+	</select>
 
 <!-- 운동지식 게시판 목록 -->
 

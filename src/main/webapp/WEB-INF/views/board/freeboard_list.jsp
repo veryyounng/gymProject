@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -80,7 +81,8 @@
                             <div class="title" style="width: 60%;">
                                 <a href="/free/freedetail?b_num=${freelist.b_num}"><span>${freelist.b_title}</span></a></div>
                             <div class="writer_id" style="width: 10%;"><span class="">${freelist.b_writer}</span></div>
-                            <div class="data" style="width: 15%;"><span class="date">${freelist.b_date}</span></div>
+                            <div class="data" style="width: 15%;"><span class="date"><fmt:formatDate
+									value="${freelist.b_date}" pattern="yy-MM-dd HH:mm" /></span></div>
                             <div class="view"><span class="view" style="width: 10%;">${freelist.view_cnt}</span></div>
                         </ul> 
                 </c:forEach>

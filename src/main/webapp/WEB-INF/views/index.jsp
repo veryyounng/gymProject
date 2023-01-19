@@ -55,7 +55,7 @@ function loading(){
 				<div id="noti_subbox">
 					<div class="focus_boardcontents">
 						<table id="notice_table">
- 						<c:forEach items="${news}" var= "list" >
+ 						<c:forEach items="${nnews}" var= "list" >
 							<tr onclick="location.href='/board/notidetail?notice_num=${list.notice_num}'">
 									<td>${list.notice_title}</td>
 									<td><fmt:formatDate
@@ -64,10 +64,13 @@ function loading(){
  						</c:forEach>
 						</table>
 						<table id="free_table" style="display: none;">
-							<tr>
-								<td>자유게시판 제목</td>
-								<td>등록일</td>
+						<c:forEach items="${fnews}" var="list">
+							<tr onclick="location.href='/free/freedetail?b_num=${list.b_num}'">
+								<td>${list.b_title}</td>
+								<td><fmt:formatDate
+									value="${list.b_date}" pattern="yyyy-MM-dd" /></td>
 							</tr>
+						</c:forEach>
 						</table>
 						<table id="ex_table" style="display: none;">
 							<tr>

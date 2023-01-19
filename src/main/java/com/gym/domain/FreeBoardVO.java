@@ -1,6 +1,5 @@
 package com.gym.domain;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import lombok.Data;
@@ -25,10 +24,5 @@ public class FreeBoardVO {
    private int b_like;
    private int view_cnt;
 
-   public String getB_date(){
-      SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm");
-      String date= sdf.format(b_date);
-      return date;
-   } 
    
 }

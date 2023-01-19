@@ -34,5 +34,4 @@ public class NewsDAOImpl implements NewsDAO {
 	}
 
 	
-	
 }

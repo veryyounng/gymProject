@@ -18,4 +18,5 @@ public interface NewsDAO {
 	
 	public List<Ex_BoardVO> getExNews() throws Exception;
 	
+	
 }

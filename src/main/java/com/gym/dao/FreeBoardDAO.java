@@ -15,4 +15,7 @@ public interface FreeBoardDAO {
    //게시물 내용 보기
    public FreeBoardVO getFreeDetail(int b_num) throws Exception;
 
+   //게시물 조회수
+   public void FreeViewCnt(int b_num) throws Exception;
+   
 }

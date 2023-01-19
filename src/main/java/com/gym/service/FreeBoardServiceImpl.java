@@ -15,21 +15,26 @@ public class FreeBoardServiceImpl implements FreeBoardService {
  private FreeBoardDAO dao;
 
  //게시판 총 갯수 세기
-@Override
-public int getFreeCnt() throws Exception {
+ @Override
+ public int getFreeCnt() throws Exception {
    return dao.getFreeCnt();
-}
+ }
 
-//게시판 목록 불러오기
-@Override
-public List<FreeBoardVO> getFreelist(int displayPost, int postNum) throws Exception {
+ //게시판 목록 불러오기
+ @Override
+ public List<FreeBoardVO> getFreelist(int displayPost, int postNum) throws Exception {
    return dao.getFreelist(displayPost,postNum);
-}
+ }
 
-//게시판 본문 보기
-@Override
-public FreeBoardVO getFreeDetail(int b_num) throws Exception {
+ //게시판 본문 보기
+ @Override
+ public FreeBoardVO getFreeDetail(int b_num) throws Exception {
    return dao.getFreeDetail(b_num);
+ }
+
+ @Override
+ public void FreeViewCnt(int b_num) throws Exception {
+	 dao.FreeViewCnt(b_num);
 }
 
 

@@ -38,7 +38,13 @@ public class FreeBoardDAOImpl implements FreeBoardDAO {
    public FreeBoardVO getFreeDetail(int b_num) throws Exception {
       return sql.selectOne(namespace + ".freeDetail", b_num);
    }
+
+   //게시글 조회수
+   @Override
+   public void FreeViewCnt(int b_num) throws Exception {
+	  sql.selectOne(namespace + ".freeViewCnt", b_num);
+}
    
-   //게시글 조회수 세는 중 
+    
 
 }

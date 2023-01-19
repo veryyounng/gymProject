@@ -26,4 +26,9 @@
          b_num = #{b_num}
    </select>
    
+   <!-- 게시물 조회수 -->
+   <update id = "freeViewCnt" parameterType = "int">
+   		update f_board set view_cnt = view_cnt+1 where b_num = #{b_num}
+   </update>
+   
 </mapper>

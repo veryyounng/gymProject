@@ -45,11 +45,16 @@ import com.gym.service.FreeBoardService;
       //게시물 본문 보기
       @RequestMapping (value="/freedetail", method = RequestMethod.GET)
       public String getFreeDetail (@RequestParam("b_num") int b_num, Model model) throws Exception{
-       
-       FreeBoardVO vo = service.getFreeDetail(b_num);
-       model.addAttribute("freedetail", vo);
-       
-       return "/board/freeboard_detail";
+    	  
+    	  service.FreeViewCnt(b_num);
+    	  //db에 거치면 viewCnt가 +1이 됨-> 메소드 종료시 , 밑줄이 실행됨
+    	  
+    	  
+    	  FreeBoardVO vo = service.getFreeDetail(b_num);
+    	  model.addAttribute("freedetail", vo);
+    	  
+      
+    	  return "/board/freeboard_detail";
       }
       
      

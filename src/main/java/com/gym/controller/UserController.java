@@ -33,15 +33,11 @@ public class UserController {
    @RequestMapping(value = {"/login", "/join", "/id_find", "/pw_find"}, method = RequestMethod.GET)
    public void replace() {}
    
-   @RequestMapping(value = "/login", method = RequestMethod.GET)
-   public void login() {
-	   
-   }
    
    @PostMapping("/login")
 	public String login(UserVO vo, HttpServletRequest req) throws Exception{
 		if(service.login(vo, req)) {
-
+			
 		}
 		else {
 			

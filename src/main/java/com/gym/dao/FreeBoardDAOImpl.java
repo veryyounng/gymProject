@@ -1,5 +1,6 @@
 package com.gym.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -12,12 +13,12 @@ import com.gym.domain.FreeBoardVO;
 @Repository
 public class FreeBoardDAOImpl implements FreeBoardDAO {
 
-   @Inject
+	@Inject
     private SqlSession sql;
     
     private static String namespace = "com.gym.mappers.free";
 
-    //게시글 총 갯수 세기
+   //게시글 총 갯수 세기
    @Override
    public int getFreeCnt() throws Exception {
       return sql.selectOne(namespace + ".freeCnt");
@@ -25,8 +26,11 @@ public class FreeBoardDAOImpl implements FreeBoardDAO {
 
    //게시글 목록 보기
    @Override
-   public List<FreeBoardVO> getFreelist() throws Exception {
-      return sql.selectList(namespace + ".freeList");
+   public List<FreeBoardVO> getFreelist(int displayPost, int postNum) throws Exception {
+	   HashMap<String, Integer> data = new HashMap<String, Integer>();
+	   data.put("displayPost", displayPost);
+	   data.put("postNum", postNum);
+      return sql.selectList(namespace + ".freeList",data);
    }
 
    //게시글 내용 보기

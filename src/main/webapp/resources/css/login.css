@@ -1,0 +1,97 @@
+@charset "UTF-8";
+* a {
+	text-decoration: none;
+	font-size: 18px;
+	color: black;
+}
+
+.container {
+	margin: 0 auto;
+	width: 500px;
+	min-height: 570px;
+	height:100%;
+}
+
+.logo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 120px;
+	width: 400px;
+	height: 130px;
+}
+.logo_medal {
+	background : url("../img/파비콘.png") no-repeat;
+	width : 106px;
+	height: 106px;
+	background-size : contain;
+}
+.logo_img {
+	background: url("../img/logo_text.png") no-repeat;
+	width: 220px;
+	height: 106px;
+	background-size: contain;
+}
+
+#logintable {
+	/* text-align: center; */
+	margin: 0 auto;
+	margin-top:20px;
+}
+
+#idline {
+	margin-left: 10px;
+}
+#useridfixed,
+#userpwfixed {
+	font-size: 15px;
+	text-align: center;
+	width: 100px;
+	height: 50px;
+}
+
+#idline,
+#pwline {
+	text-align: center;
+	margin-top: 50px;
+}
+
+#useridtext,
+#userpwtext {
+	padding-left: 10px;
+	width: 200px;
+	height: 39px;
+	margin-left: 10px;
+	font-size: 12px;
+	border-radius: 8px;
+	border:1px solid gray;
+}
+#userpwtext {
+	margin-top: 5px;
+}
+
+#loginbutton {
+	margin-top: 30px;
+	border : 1px solid gray;
+	width: 100px;
+	height: 40px;
+	font-size: 16px;
+	border-radius : 5px;
+	text-align: center;
+	cursor:pointer;
+}
+
+#loginbutton:hover {
+	background-color: gray;
+	color: white;
+	border: none;
+	transition : all .3s;
+}
+
+.etcbtn {
+	margin-top: 50px;
+	text-align: center;
+	color: gray;
+}

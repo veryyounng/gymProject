@@ -39,10 +39,10 @@ section {
   padding: 30px 0 10px 0;
   text-align: left;
   margin: 0;
+  margin-left: 7px;
   font-size: 36px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
-  border-bottom: 2px solid #333333;
 }
 
 .noti_header_box {
@@ -75,6 +75,7 @@ section {
 .noti_header {
   height: 50px;
   margin-left: 10px;
+  border-top: 2px solid #333333;
   border-bottom: 2px solid #333333;
 }
 

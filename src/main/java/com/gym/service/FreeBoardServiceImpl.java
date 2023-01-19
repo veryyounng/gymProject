@@ -22,8 +22,8 @@ public int getFreeCnt() throws Exception {
 
 //게시판 목록 불러오기
 @Override
-public List<FreeBoardVO> getFreelist() throws Exception {
-   return dao.getFreelist();
+public List<FreeBoardVO> getFreelist(int displayPost, int postNum) throws Exception {
+   return dao.getFreelist(displayPost,postNum);
 }
 
 //게시판 본문 보기

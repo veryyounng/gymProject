@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gym.domain.FreeBoardVO;
+import com.gym.domain.NoticeVO;
+import com.gym.domain.Page;
 import com.gym.service.FreeBoardService;
 
    @Controller 
@@ -22,23 +24,34 @@ import com.gym.service.FreeBoardService;
       @Autowired
       private FreeBoardService service;
       
-      //게시물 목록
+      //게시물 목록, 갯수 세기
       @RequestMapping (value="/freelist", method=RequestMethod.GET)
-      public String getFreelist (Model model) throws Exception{
+      public String getFreelist (Model model, @RequestParam("num")int num) throws Exception{
          
-         model.addAttribute("freelist", service.getFreelist());
-         
+    	Page page = new Page();
+    	
+    	page.setNum(num);
+    	page.setCount(service.getFreeCnt());
+    	
+    	List<FreeBoardVO> list = service.getFreelist(page.getDisplayPost(), page.getPostNum());
+    	
+        model.addAttribute("freelist", list);
+        model.addAttribute("page",page);
+        model.addAttribute("select", num);
+        
          return "/board/freeboard_list";
       }
       
       //게시물 본문 보기
       @RequestMapping (value="/freedetail", method = RequestMethod.GET)
       public String getFreeDetail (@RequestParam("b_num") int b_num, Model model) throws Exception{
-         
+       
        FreeBoardVO vo = service.getFreeDetail(b_num);
        model.addAttribute("freedetail", vo);
        
        return "/board/freeboard_detail";
       }
+      
+     
       
 }

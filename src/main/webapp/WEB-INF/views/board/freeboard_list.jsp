@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>자유 게시판</title>
-    <%-- <link rel="stylesheet" href="${path}/resources/css/styles.css"> --%>
+    <link rel="stylesheet" href="${path}/resources/css/reset.css">
     <link rel="stylesheet" href="${path}/resources/css/free_styles.css">
     <link rel="stylesheet" href="${path}/resources/css/free_list.css">
     
@@ -49,7 +49,7 @@
                 </div>
                 <div class="noti_header">
                     <div class="noti_header_box">
-                        <div class="mgt_10">총 <strong>1</strong>건의 게시물이 있습니다.</div>
+                        <div class="mgt_10">총 <strong>${page.count}</strong>건의 게시물이 있습니다.</div>
                     </div>
                     <div class="noti_header_box txt_right">
                         <form name="s_form" id="search">
@@ -73,7 +73,7 @@
                             <div class="data" style="width: 15%;"><span class="date">작성일</span></div>
                             <div class="view"><span class="view" style="width: 10%;">조회수</span></div>
                         </ul>
-            <c:forEach  items = "${freelist}" var="freelist">
+            	<c:forEach items="${freelist}" var="freelist">
                         <ul class="ul_news">
                             <div class="boardnum">
                                 <span class="board_num">${freelist.b_num}</span>
@@ -92,7 +92,22 @@
                 <div id="write_notice"><button>글쓰기</button></div>
                 <div class="btns">
                     <ul class="pagination">
-                        <li class='active'><a href='#'>1</a></li>
+                    	<c:if test="${page.prev}">
+                        	<li>[<a href='/free/freelist?num=${page.startPageNum-1}'>이전</a>]</li>
+                        </c:if>
+                        <c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
+                        	<li>
+                        		<c:if test="${select != num}">
+                        			<a href="/free/freelist?num=${num}">${num}</a>
+                        		</c:if>
+                        		<c:if test="${select == num}">
+                        			<b style="font-weight:700; color:red; text-decoration:underline;">${num}</b>
+                        		</c:if>
+                        	</li>
+                        </c:forEach>
+                        <c:if test="${page.next}">
+                        	<li>[<a href="/free/freelist?num=${page.endPageNum+1}">다음</a>]</li>
+                       	</c:if>
                     </ul>
                 </div>
             </div>

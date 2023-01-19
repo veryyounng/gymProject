@@ -139,3 +139,6 @@ html {
   color: #eee;
   cursor: pointer;
 }
+div.btns ul.pagination li {
+	margin-right : 10px;
+}

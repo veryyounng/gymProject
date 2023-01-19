@@ -43,7 +43,6 @@ public class NotiController {
 		model.addAttribute("view", service.getDetail(notice_num));
 	}
 	
-	
 	@RequestMapping(value="/search_notice", method=RequestMethod.GET)
 	public void getsearchList(String keyword, Model model, int num) throws Exception{
 			

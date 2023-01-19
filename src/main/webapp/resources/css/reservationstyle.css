@@ -1,0 +1,234 @@
+@charset "UTF-8";
+.banana {
+  height: 1500px;
+}
+.title_box h2 {
+  padding: 30px 0 10px 0;
+  text-align: left;
+  margin: 0;
+  font-size: 36px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  border-bottom: 2px solid #333333;
+}
+table.type1 {
+  border-collapse: collapse;
+  text-align: center;
+  width: 900px;
+  margin: 0 auto;
+  margin-top: 60px;
+}
+table.type1 th {
+  border: none;
+  padding-bottom: 20px;
+  font-size: 20px;
+}
+table.type1 td {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+table.type1 tr:first-child {
+  font-weight: bold;
+  color: black;
+  border-bottom: 2px solid black;
+}
+table.type1 tr:first-child td {
+  background-color: #fff;
+  border-top: 2px solid black;
+}
+table.type1 tr:last-child td {
+  border-bottom: 2px solid black;
+}
+
+table.type1 td:nth-child(5) {
+  border-left: 2px solid black;
+}
+table.type1 tr:nth-child(2) td:nth-child(1) {
+  border-bottom: 2px solid black;
+  vertical-align: middle !important;
+}
+table.type1 tr:nth-child(2) td:nth-child(2) {
+  border-right: 2px solid black;
+}
+table.type1 tr:nth-child(3) td {
+  border-bottom: 2px solid black;
+}
+table.type1 tr td:first-child {
+  border-left: none !important;
+  border-right: 2px solid black;
+}
+
+table.type1 tr > td:last-child {
+  border-right: none;
+}
+
+table.type1 tr:nth-child(2),
+table.type1 tr:nth-child(3) {
+  font-size: 16px;
+  background-color: #f0ffff;
+}
+table.type1 tr:nth-child(3) td:nth-child(1),
+table.type1 tr:nth-child(3) td:nth-child(5) {
+  border: none;
+  border-bottom: 2px solid black;
+}
+table.type1 tr:nth-child(3) td:nth-child(4) {
+  border-left: 2px solid black;
+}
+form {
+  margin: 0 auto;
+  width: 900px;
+  padding-top: 20px;
+  position: relative;
+}
+
+table.type2 {
+  margin: 0 auto;
+}
+table.type2 {
+  width: 500px;
+  height: 100%;
+}
+table.type2 tr {
+  padding: 10px;
+}
+
+.th {
+  border-top: 1px solid #ccc;
+  margin-top: 60px;
+  padding: 60px 0 0;
+  font-size: 20px;
+  text-align: center;
+}
+
+table.type2 tr td {
+  border-bottom: 1px solid #ccc;
+  vertical-align: middle !important;
+  height: 50px;
+  font-size: 25px;
+}
+
+table.type2 tr:last-child td {
+  border: none;
+  text-align: end;
+}
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+  border: none;
+  width: 60%;
+  height: 80%;
+  font-size: 18px;
+}
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus {
+  outline: none;
+  border: 1px solid #369;
+}
+select.box {
+  width: 60%;
+  height: 40px;
+  box-sizing: border-box;
+  border: 1px solid #d9d6d6;
+  color: #383838;
+  background-color: #ffffff;
+  font-family: "Montserrat", "Pretendard", sans-serif;
+  font-size: 14px;
+}
+select.box: {
+  border: 1px solid #369;
+}
+option {
+  font-size: 16px;
+}
+
+.info .box#domain-list option {
+  font-size: 14px;
+  background-color: #ffffff;
+}
+table.type2 input[type="submit"],
+table.type2 input[type="reset"] {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
+  width: 60px;
+  height: 30px;
+  cursor: pointer;
+}
+table.type2 input[type="submit"]:hover,
+table.type2 input[type="reset"]:hover {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  transition: all 0.6s;
+}
+table.type3 {
+  margin: 0 auto;
+  width: 900px;
+  height: 100%;
+  text-align: center;
+  margin-top: 100px;
+  position: relative;
+}
+.board_body {
+  position: relative;
+}
+table.type3 tr {
+  height: 50px;
+}
+table.type3 td {
+  vertical-align: middle;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  width: 225px !important;
+}
+table.type3 tr:first-child {
+  background-color: #f0ffff;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+table.type3 tr,
+table.type3 td {
+  border-left: none;
+  border-right: none;
+}
+
+table.type3 tr:nth-child(n + 2):hover {
+  background-color: #ccc;
+}
+table.type3 input[type="submit"] {
+  background-color: #fff;
+  border: 1px solid #000;
+  color: #000;
+  width: 50px;
+  height: 25px;
+  font-weight: 500;
+  cursor: pointer;
+}
+table.type3 input[type="submit"]:hover {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  transition: all 0.6s;
+}
+div.type4 {
+  border-bottom: 1px solid black;
+  width: 900px;
+  height: 300px;
+  margin: 60px auto;
+  margin-top: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+}
+.checkRS {
+  position: absolute;
+  top: 827px;
+  right: 551px;
+  color: blue;
+  border: none !important;
+  background-color : #ffffff; 
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gym.mapper.news">
+
+<!-- 공지사항 목록 -->
+	<select id="getNotiNews" resultType="com.gym.domain.NoticeVO">
+		select * from notice
+		order by notice_num desc
+			limit 0,10
+	</select>
+
+<!-- 자유게시판 목록 -->
+
+
+<!-- 운동지식 게시판 목록 -->
+
+
+</mapper>

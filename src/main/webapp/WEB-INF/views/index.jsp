@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +23,14 @@
 
 <link rel="stylesheet" href="${path}/resources/css/styles.css">
 <link rel="stylesheet" href="${path}/resources/css/index.css">
+<script>
+function loading(){
+	alert("준비중 입니다.");
+}
+</script>
+
 </head>
+
 <body>
 	<%@ include file="./include/header.jsp"%>
 	<!-- 본문 시작 -->
@@ -43,16 +51,17 @@
 						onclick="boardnotice();ntt();">공지사항</div>
 					<div id="free_board" onclick="boardfreeb();ftt();">자유게시판</div>
 					<div id="ex_board" onclick="boardexboard();ett();">운동지식공유</div>
-
 				</div>
 				<div id="noti_subbox">
 					<div class="focus_boardcontents">
 						<table id="notice_table">
-							<tr>
-								<td>공지사항 제목</td>
-								<td>등록일</td>
+ 						<c:forEach items="${news}" var= "list" >
+							<tr onclick="location.href='/board/notidetail?notice_num=${list.notice_num}'">
+									<td>${list.notice_title}</td>
+									<td><fmt:formatDate
+									value="${list.notice_date}" pattern="yyyy-MM-dd" /></td>
 							</tr>
-
+ 						</c:forEach>
 						</table>
 						<table id="free_table" style="display: none;">
 							<tr>
@@ -71,8 +80,8 @@
 			</div>
 
 			<div class="go">
-				<div class="rsvn_go"></div>
-				<div class="shop_go"></div>
+				<div class="rsvn_go" onclick="location.href='/reservation/search'"></div>
+				<div class="shop_go" onclick= 'loading();'"></div>
 			</div>
 
 		</div>
@@ -111,5 +120,5 @@
 	<%@ include file="./include/footer.jsp"%>
 </body>
 
-<script src="${path}/resources/js/index.js"></script>
+<script src="resources/js/index.js"></script>
 </html>

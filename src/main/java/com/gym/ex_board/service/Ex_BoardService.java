@@ -15,4 +15,10 @@ public interface Ex_BoardService {
 	//게시물 조회
 	public Ex_BoardVO view(int ex_num) throws Exception;
 	
+	//게시물 수정
+	public void Ex_Modify(Ex_BoardVO evo) throws Exception;
+	
+	//게시물 삭제
+	public void Ex_delete(int ex_num) throws Exception;
+	
 }

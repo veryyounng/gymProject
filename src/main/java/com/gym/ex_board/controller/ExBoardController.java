@@ -37,13 +37,13 @@ public class ExBoardController {
 
 	//게시물 작성 GET
 	@RequestMapping(value="/ex_write", method=RequestMethod.GET)
-	public void Ex_Write() throws Exception {
+	public void getEx_Write() throws Exception {
 		
 	}
 	
 	//게시물 작성 POST
 	@RequestMapping(value = "/ex_write", method = RequestMethod.POST)
-	public String PostEx_Write(Ex_BoardVO evo) throws Exception {
+	public String postEx_Write(Ex_BoardVO evo) throws Exception {
 		service.write(evo);
 		
 		return "redirect:/ex_board/ex_list";
@@ -58,6 +58,38 @@ public class ExBoardController {
 		
 		model.addAttribute("ex_view", evo);
 		
+	}
+	
+	//게시물 수정 GET
+	@RequestMapping(value = "/ex_modify", method = RequestMethod.GET)
+	public void getEx_Modify(@RequestParam("ex_num") int ex_num, Model model)
+		throws Exception {
+		
+		Ex_BoardVO evo = service.view(ex_num);
+		
+		model.addAttribute("ex_view", evo);
+		
+	}
+	
+	//게시물 수정 POST
+	@RequestMapping(value = "/ex_modify", method = RequestMethod.POST)
+	public String postEx_Modify(Ex_BoardVO evo) throws Exception {
+		
+		System.out.println("서비스 전단계");
+		service.Ex_Modify(evo);
+		
+		System.out.println("리다이렉트 전");
+		return "redirect:/ex_board/ex_view?ex_num=" + evo.getEx_num();
+		
+	}
+	
+	//게시물 삭제
+	@RequestMapping(value = "/ex_delete", method = RequestMethod.GET)
+	public String ex_delete(int ex_num) throws Exception {
+		
+		service.Ex_delete(ex_num);
+		
+		return "redirect:/ex_board/ex_list";
 	}
 	
 	

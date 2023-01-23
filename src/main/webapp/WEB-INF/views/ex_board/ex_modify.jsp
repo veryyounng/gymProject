@@ -34,32 +34,32 @@ body {
 	<article>
 		<div class="container" role="main">
 
-			<h2>운동지식공유 게시판 글쓰기</h2>
-			<form name="form" id="form" role="form" method="post" action="${pageContext.request.contextPath}/ex_board/ex_write">
+			<h2>운동지식공유 게시판 수정하기</h2>
+			<form name="form" id="form" role="form" method="post" action="${pageContext.request.contextPath}/ex_board/ex_modify">
+
+				<div class="mb-3">
+					<input type="hidden" class="form-control" name="ex_num" value="${ex_view.ex_num }">
+				</div>
 
 				<div class="mb-3">
 					<label for="title">제목</label>
-					<input type="text" class="form-control" name="ex_title" id="ex_title" placeholder="제목을 입력해 주세요">
+					<input type="text" class="form-control" name="ex_title" value="${ex_view.ex_title }">
 				</div>
-
-				
 
 				<div class="mb-3">
 					<label for="reg_id">작성자</label>
-					<input type="text" class="form-control" name="ex_writer" id="ex_writer" placeholder="이름을 입력해 주세요">
+					<input type="text" class="form-control" name="ex_writer" value="${ex_view.ex_writer }">
 				</div>
-
-				
 
 				<div class="mb-3">
 					<label for="content">내용</label>
-					<textarea class="form-control" rows="5" name="ex_content" id="ex_content" placeholder="내용을 입력해 주세요" ></textarea>
+					<textarea class="form-control" rows="5" name="ex_content">${ex_view.ex_content }</textarea>
 				</div>
 
 			</form>
 			<div >
 				<button type="button" class="btn btn-sm btn-primary" id="btnSave"
-				 onclick="document.getElementById('form').submit();">작성완료</button>
+				 onclick="document.getElementById('form').submit();">수정완료</button>
 				<!-- <button type="button" class="btn btn-sm btn-primary" id="btnList" >목록</button> -->
 			</div>
 		</div>
@@ -71,7 +71,6 @@ body {
     window.onload = function(){
        ck = CKEDITOR.replace("ex_content");
     };
-    
    
 </script>
 

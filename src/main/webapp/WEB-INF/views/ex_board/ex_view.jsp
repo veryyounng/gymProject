@@ -20,21 +20,6 @@
 
 <title>운동지식공유 게시판</title>
 
-<script>
-
-	$(document).on('click', '#btnSave', function(e){
-		e.preventDefault();
-		$("#form").submit();
-	});
-
-
-	$(document).on('click', '#btnList', function(e){
-		e.preventDefault();
-		location.href="${pageContext.request.contextPath}/board/getBoardList";
-	});
-
-</script>
-
 <style>
 
 body {
@@ -50,33 +35,29 @@ body {
 		<div class="container" role="main">
 
 			<h2>운동지식공유 게시판 게시물 보기</h2>
-			<form name="form" id="form" role="form" method="post" action="${pageContext.request.contextPath}/ex_board/ex_write">
-
+			<br>
 				<div class="mb-3">
 					<label for="title">제목</label>
 					<input type="text" class="form-control" name="ex_title" id="ex_title" value="${ex_view.ex_title}" >
 				</div>
-
-				
 
 				<div class="mb-3">
 					<label for="reg_id">작성자</label>
 					<input type="text" class="form-control" name="ex_writer" id="ex_writer" value="${ex_view.ex_writer}" >
 				</div>
 
-				
-
 				<div class="mb-3">
 					<label for="content">내용</label>
 					<textarea rows="5" class="form-control" name="ex_content" id="ex_content" >${ex_view.ex_content}</textarea>
 				</div>
-
-			</form>
-			<div >
-<!-- 				<button type="button" class="btn btn-sm btn-primary" id="btnSave"
-				 onclick="document.getElementById('form').submit();">작성완료</button> -->
-				<!-- <button type="button" class="btn btn-sm btn-primary" id="btnList" >목록</button> -->
+		
+				<div class="mb-3">
+					<a href="/ex_board/ex_modify?ex_num=${ex_view.ex_num}">게시물 수정</a>
+					<a href="/ex_board/ex_delete?ex_num=${ex_view.ex_num}">게시물 삭제</a>
+				</div>
+				
 			</div>
+				
 		</div>
 
 	</article>
@@ -87,6 +68,7 @@ body {
        ck = CKEDITOR.replace("ex_content");
     };
     
+    //읽기 전용으로 만들기
     $("#ex_title").attr("disabled",true);
     $("#ex_writer").attr("disabled",true);
     $("#ex_content").attr("disabled",true);

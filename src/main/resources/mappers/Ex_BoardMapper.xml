@@ -26,4 +26,20 @@
 		where ex_num = #{ex_num}
 	</select>	
 	
+	<!-- 게시물 수정 -->
+	<update id="ex_modify" parameterType="com.gym.ex_board.vo.Ex_BoardVO">
+		update ex_board
+			set
+				ex_title = #{ex_title},
+    	    	ex_content = #{ex_content}
+		where ex_num = #{ex_num};
+	</update>
+	
+	<!-- 게시물 삭제 -->
+	<delete id="ex_delete" parameterType="_int">
+		delete 
+			from ex_board
+		where ex_num = #{ex_num};
+	</delete>	
+	
 </mapper>

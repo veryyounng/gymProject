@@ -29,11 +29,24 @@ public class Ex_BoardDAOImpl implements Ex_BoardDAO {
 		sql.insert(namespace + ".ex_write", evo);
 	}
 
+	// 게시물 조회
 	@Override
 	public Ex_BoardVO view(int ex_num) throws Exception {
 		return sql.selectOne(namespace + ".ex_view", ex_num);
 	}
-	
-	
+
+	// 게시물 수정
+	@Override
+	public void Ex_Modify(Ex_BoardVO evo) throws Exception {
+		sql.update(namespace + ".ex_modify", evo);
+	}
+
+	// 게시물 삭제
+	@Override
+	public void Ex_delete(int ex_num) throws Exception {
+		sql.delete(namespace + ".ex_delete", ex_num);
+	}
+
+
 	
 }

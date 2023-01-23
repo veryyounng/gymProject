@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head> 
@@ -87,9 +87,8 @@
                         <div class="writer_id" style="width: 10%;"><span class="">${ex_list.ex_writer}</span></div>
 						
 						<div class="data" style="width: 15%;">
-							
-								<span>${ex_list.ex_date}</span>
-							
+							<span class="date"><fmt:formatDate
+									value="${ex_list.ex_date}" pattern="yyyy-MM-dd" /></span>
 						</div>
 
                         <div class="view" style="width: 10%;"><span>${ex_list.view_cnt}</span></div>

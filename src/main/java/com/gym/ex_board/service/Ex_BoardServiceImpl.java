@@ -32,4 +32,16 @@ public class Ex_BoardServiceImpl implements Ex_BoardService {
 		return dao.view(ex_num);
 	}
 
+	//게시물 수정
+	@Override
+	public void Ex_Modify(Ex_BoardVO evo) throws Exception {
+		dao.Ex_Modify(evo);
+	}
+
+	@Override
+	public void Ex_delete(int ex_num) throws Exception {
+		dao.Ex_delete(ex_num);
+	}
+	
+
 }

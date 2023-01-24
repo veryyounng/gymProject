@@ -44,7 +44,7 @@
 					</c:when>
 					<c:otherwise>
 						<a href="${path}/profile/profile_check">마이페이지 | </a>
-						<a href="${path}/user/logout">로그아웃</a>
+						<a href="${path}/user/logout"> 로그아웃</a>
 					</c:otherwise>
 				</c:choose>
 			</div>

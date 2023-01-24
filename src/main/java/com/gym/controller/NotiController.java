@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -59,5 +60,19 @@ public class NotiController {
 		model.addAttribute("keyword",keyword);
 		
 	}
+	
+	@RequestMapping(value="/notiwrite", method=RequestMethod.GET)
+	public void getNotiWrite() throws Exception {
+		
+	}
+	
+	@RequestMapping(value="/notiwrite", method=RequestMethod.POST)
+	public String postWrite(NoticeVO nvo) throws Exception{
+		service.postWrite(nvo);
+		return "redirect:/board/notidetail?notice_num=" + nvo.getNotice_num();
+		
+		
+	}
+
 	
 }

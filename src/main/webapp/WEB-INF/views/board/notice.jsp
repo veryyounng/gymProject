@@ -12,6 +12,8 @@
 <link rel="stylesheet" href="${path}/resources/css/styles.css" />
 <link rel="stylesheet" href="${path}/resources/css/notistyle.css" />
 </head>
+
+
 <body>
 	<%@ include file="../include/header.jsp"%>
 	<!-- 개발코드 시작 -->
@@ -49,9 +51,9 @@
 						</div>
 					</ul>
 				</c:forEach>
-				<c:if test="${loginUser.userid == 'master'}">
+				<c:if test="${loginUser.userid == 'admin'}">
 					<div id="write_notice">
-						<button>글쓰기</button>
+						<button onclick="location.href='/board/notiwrite'">글쓰기</button>
 					</div>
 				</c:if>
 				<div class="btns">

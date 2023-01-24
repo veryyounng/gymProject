@@ -24,5 +24,7 @@ public interface NoticeService {
 	//검색 게시물 목록 
 	public List<NoticeVO> getSearchList(int displayPost, int postNum, String keyword) throws Exception;
 	
+	//게시물 작성
+	public void postWrite(NoticeVO nvo) throws Exception;
 	
 }

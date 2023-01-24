@@ -58,5 +58,10 @@ public class NoticeDAOImpl implements NoticeDAO {
 		
 	}
 
+	@Override
+	public void postWrite(NoticeVO nvo) throws Exception {
+		sql.insert(namespace+".notiWrite", nvo);
+	}
+
 
 }

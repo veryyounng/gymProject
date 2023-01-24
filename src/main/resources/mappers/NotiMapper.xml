@@ -39,4 +39,12 @@
 		limit #{displayPost},#{postNum}
 	</select>
 	
+	<!-- 게시물 작성 -->
+	<insert id="notiWrite">
+		insert into
+  		notice(notice_title, notice_contents)
+   		values(#{notice_title}, #{notice_contents})
+	</insert>
+	
+	
 </mapper>

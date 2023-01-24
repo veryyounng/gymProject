@@ -130,8 +130,4 @@ ul.pagination li {
   margin-top: 10px;
   margin-right: 25px;
 }
-#write_notice > button {
-  background-color: #333333;
-  color: #eee;
-  cursor: pointer;
-}
+

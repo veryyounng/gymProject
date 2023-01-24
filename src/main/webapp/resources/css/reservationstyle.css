@@ -77,8 +77,7 @@ table.type1 tr:nth-child(3) td:nth-child(4) {
 }
 form {
   margin: 0 auto;
-  width: 900px;
-  padding-top: 20px;
+  width: 200px;
   position: relative;
 }
 
@@ -136,7 +135,7 @@ select.box {
   font-family: "Montserrat", "Pretendard", sans-serif;
   font-size: 14px;
 }
-select.box: {
+select.box {
   border: 1px solid #369;
 }
 option {

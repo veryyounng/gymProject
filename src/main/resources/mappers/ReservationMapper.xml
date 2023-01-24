@@ -6,4 +6,13 @@
 	<select id="getList" resultType="com.gym.domain.ReservationVO" parameterType="string">
 		select * from admin_reservation where rv_date = #{rv_date}
 	</select>
+	<insert id="addRV">
+		insert into reservation(rv_num,userid) values (#{rv_num},#{userid})
+	</insert>
+	<update id="plusRV">
+		update admin_reservation set rv_headCnt = rv_headCnt + 1 where rv_num = #{rv_num}
+	</update>
+	<select id="findOverlap" resultType="int">
+		select count(*) from reservation where rv_num = #{rv_num} and userid=#{userid}
+	</select>
 </mapper>

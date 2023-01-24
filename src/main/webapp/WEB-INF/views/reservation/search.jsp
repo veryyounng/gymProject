@@ -21,17 +21,34 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
 <script>
-
-
-// 	if(${loginUser == null}){
-// 		alert("로그인 후 이용하세요");
-// 		location.href = "/user/login";
-// 	}
-
+	if(${loginUser == null}){
+		alert("로그인 후 이용하세요");
+		location.href = "/user/login";
+	}
 </script>
 
 </head>
 <body>
+
+	<c:choose>
+	
+	<c:when test="${reser == 'T'}">
+		<script type="text/javascript">
+			alert("예약이 완료되었습니다.");
+		</script>
+	</c:when>
+	<c:when test="${reser == 'NO'}">
+		<script type="text/javascript">
+			alert("이미 예약된 일정입니다.");
+		</script>
+	</c:when>
+	<c:when test="${reser == 'F'}">
+		<script type="text/javascript">
+			alert("예약에 실패했습니다. 다시 시도해주세요.");
+		</script>
+	</c:when>
+	</c:choose>
+		
 	<%@ include file="../include/header.jsp"%>
 	<section>
 
@@ -115,20 +132,20 @@
 					<table class="type2">
 						<tr>
 							<td>이름</td>
-							<td><input type="text" value="${session.userid}" name="username"
-								id="username" readonly></td>
+							<td><input type="text" value="${loginUser.username}" name="username"
+								id="username" readonly>
+								<input type="hidden" value="${loginUser.userid}" name="loginUserid" id="loginUserid"/></td>
 						</tr>
 						<tr>
 							<td>이메일</td>
-							<td><input type="email" value="${session.email}" name="email"
+							<td><input type="email" value="${loginUser.email}" name="email"
 								id="email" readonly></td>
 						</tr>
 						<tr>
 							<td>전화번호</td>
-							<td><input type="tel" value="${session.userphone}" name="phone"
+							<td><input type="tel" value="${loginUser.phone}" name="phone"
 								id="phone" readonly></td>
 						</tr>
-<!-- 						<form action="" name="searchList" id="searchList"> -->
 						<tr>
 							<td>예약일</td>
 							<td><input class="form-control" id="rv_date"
@@ -140,7 +157,6 @@
 							<td><input type="submit" id="reserBTN" onclick="searchTime();" value="검색"></td>
 						</tr>
 					</table>
-<!-- 				</form> -->
 				<!-- 검색 list(가능) 시작 -->
 				<table class="type3">
 					<span class="checkRS">※ 예약 취소 및 확인은 마이페이지에서 가능합니다.</span>
@@ -169,6 +185,7 @@ var fp = flatpickr(document.getElementById("rv_date"), {
 
 $('#reserBTN').on('click', function(){
    	var date = $("#rv_date").val();
+   	var userid = $("#loginUserid").val();
 	$.ajax({
         url: "result",
         type: "POST",
@@ -181,8 +198,20 @@ $('#reserBTN').on('click', function(){
         		$('.type4').html('검색된 결과가 없습니다.');
         		$('.type4').css('display','flex');
         	} else {
-	        	for(var i = 0; i < resultData.length; i++){
-	        	$('.type3').append("<tr class='ResultData'><form action='' name='searchResult' id='searchResult'><td>"+resultData[i].rv_title+"</td><td>"+resultData[i].rv_time+"</td><td>n/20</td><input type='hidden' id='rv_num' value="+resultData[i].rv_num+"/><td><input type='submit' value='예약'></td></form></tr>");
+        		let str = "";
+	        	for(var i = 0; i < resultData.length; i++) {     		
+	        		str = "";
+	        		str += "<tr class='ResultData'>";
+	        		str += "<td>"+resultData[i].rv_title+"</td>";
+	        		str += "<td>"+resultData[i].rv_time+"</td>";
+	        		str += "<td>"+resultData[i].rv_headCnt+" / "+resultData[i].rv_limit+"</td>";
+	        		str += "<td>";
+	        		str += "<form action='/reservation/user_rv' method='post' name='searchResult' id='searchResult'>";
+	        		str += "<input type='hidden' name='userid' id='userid' value='"+userid+"'>";
+	        		str += "<input type='hidden' name='rv_num' id='rv_num' value='"+resultData[i].rv_num+"'>";
+	        		str += (resultData[i].rv_headCnt < resultData[i].rv_limit ? "<input type='submit' value='예약'/></form></td>" : "<span style='color:red;'>예약불가</span></form></td>");
+	        		str += "</tr>";
+	        		$('.type3').append(str);
 	        	}
         	}
         },

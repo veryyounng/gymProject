@@ -1,5 +1,5 @@
 package com.gym.controller;
- 
+
 import java.util.List;
 
 import javax.inject.Inject;

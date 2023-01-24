@@ -94,7 +94,7 @@
                     <ul class="pagination">
                     	<c:if test="${page.prev}">
                         	<li>[<a href='/free/freelist?num=${page.startPageNum-1}'>이전</a>]</li>
-                        </c:if>
+                        </c:if> 
                         <c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
                         	<li>
                         		<c:if test="${select != num}">

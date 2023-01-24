@@ -49,7 +49,7 @@ import com.gym.service.FreeBoardService;
     	  service.FreeViewCnt(b_num);
     	  //db에 거치면 viewCnt가 +1이 됨-> 메소드 종료시 , 밑줄이 실행됨
     	  
-    	  
+    	 
     	  FreeBoardVO vo = service.getFreeDetail(b_num);
     	  model.addAttribute("freedetail", vo);
     	  

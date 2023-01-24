@@ -90,7 +90,7 @@
                     </form>
                 </div>
                 <div id="write_notice"><a href="/free/freewrite"><button>글쓰기</button></a></div>
-                <div class="btns">
+                <div class="btns"> 
                     <ul class="pagination">
                     	<c:if test="${page.prev}">
                         	<li>[<a href='/free/freelist?num=${page.startPageNum-1}'>이전</a>]</li>

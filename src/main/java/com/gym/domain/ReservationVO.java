@@ -8,4 +8,6 @@ public class ReservationVO {
 	private String rv_date;
 	private String rv_time;
 	private String rv_title;
+	private int rv_limit;
+	private int rv_headCnt;
 }

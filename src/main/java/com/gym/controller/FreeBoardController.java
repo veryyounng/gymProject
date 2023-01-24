@@ -15,7 +15,7 @@ import com.gym.domain.FreeBoardVO;
 import com.gym.domain.NoticeVO;
 import com.gym.domain.Page;
 import com.gym.service.FreeBoardService;
-
+ 
    @Controller 
    @RequestMapping("/free/*")
    

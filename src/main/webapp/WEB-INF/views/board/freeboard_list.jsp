@@ -86,7 +86,7 @@
                             <div class="view"><span class="view" style="width: 10%;">${freelist.view_cnt}</span></div>
                         </ul> 
                 </c:forEach>
-                       
+                        
                     </form>
                 </div>
                 <div id="write_notice"><a href="/free/freewrite"><button>글쓰기</button></a></div>

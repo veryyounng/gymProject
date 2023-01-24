@@ -41,7 +41,7 @@ import com.gym.service.FreeBoardService;
         
          return "/board/freeboard_list";
       }
-      
+       
       //게시물 본문 보기
       @RequestMapping (value="/freedetail", method = RequestMethod.GET)
       public String getFreeDetail (@RequestParam("b_num") int b_num, Model model) throws Exception{

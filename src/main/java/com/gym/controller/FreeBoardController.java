@@ -27,7 +27,7 @@ import com.gym.service.FreeBoardService;
       //게시물 목록, 갯수 세기
       @RequestMapping (value="/freelist", method=RequestMethod.GET)
       public String getFreelist (Model model, @RequestParam("num")int num) throws Exception{
-         
+        
     	Page page = new Page();
     	
     	page.setNum(num);
@@ -57,6 +57,12 @@ import com.gym.service.FreeBoardService;
     	  return "/board/freeboard_detail";
       }
       
+      //게시물 글쓰기
+      @RequestMapping(value="/freewrite", method=RequestMethod.GET)
+      public String getFreeWrite() throws Exception{
+    	  
+    	  return "/board/freeboard_write";
+      }
      
       
 }

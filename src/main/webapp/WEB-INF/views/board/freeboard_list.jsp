@@ -89,7 +89,7 @@
                        
                     </form>
                 </div>
-                <div id="write_notice"><button>글쓰기</button></div>
+                <div id="write_notice"><a href="/free/freewrite"><button>글쓰기</button></a></div>
                 <div class="btns">
                     <ul class="pagination">
                     	<c:if test="${page.prev}">

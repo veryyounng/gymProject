@@ -105,25 +105,25 @@
                     <ul class="pagination">
                     
                     	<c:if test="${ex_page.prev}">
-                    		<span><a href = "/ex_board/ex_list?num=${ex_page.startPageNum - 1}">&nbsp;&lt;&nbsp;</a></span>
+                    		<span>[ <a href = "/ex_board/ex_listpage?num=${ex_page.startPageNum - 1}">이전</a> ]</span>
                     	</c:if>
                     
                     	<c:forEach begin="${ex_page.startPageNum}" end="${ex_page.endPageNum}" var = "num">
                     		<span>
                     		
                     			<c:if test = "${select != num}">
-                    				<a href = "/ex_board/ex_list?num=${num}">&nbsp;${num}&nbsp;</a>
+                    				<a href = "/ex_board/ex_listpage?num=${num}">${num}</a>
                     			</c:if>
                     			
 		             			<c:if test = "${select == num}">
-                    				<b>&nbsp;${num}&nbsp;</b>
+                    				<b>${num}</b>
                     			</c:if>
                     			
                     		</span>
                     	</c:forEach>
                     	
                     	<c:if test="${ex_page.next}">
-                    		<span><a href = "/ex_board/ex_list?num=${ex_page.endPageNum + 1}">&nbsp;&gt;&nbsp;</a></span>
+                    		<span>[ <a href = "/ex_board/ex_listpage?num=${ex_page.endPageNum + 1}">다음</a> ]</span>
                     	</c:if>
                     
                     	<%-- <c:forEach begin = "1" end = "${pageNum}" var="num">

@@ -21,4 +21,11 @@ public interface Ex_BoardService {
 	//게시물 삭제
 	public void Ex_delete(int ex_num) throws Exception;
 	
+	//게시물 총 갯수 
+	public int ex_count() throws Exception;
+	
+	//게시물 목록 + 페이징
+	public List<Ex_BoardVO> ex_listPage(int displayPost, int postNum) throws Exception;
+	
+	
 }

@@ -21,8 +21,8 @@ public class ReservationController {
 	@Autowired
 	private ReservationService service;
 	
-	@GetMapping("/search")
-	public void getSearch() {}
+	@GetMapping({"/search","/makeschedule"})
+	public void getMap() {}
 	
 	@PostMapping("/reservation/result")
 	public @ResponseBody List<ReservationVO> postSearch(@RequestParam("rv_date") String rv_date) throws Exception {
@@ -47,4 +47,5 @@ public class ReservationController {
 		}
 		return "redirect:/reservation/search";
 	}
+	
 }

@@ -15,7 +15,7 @@ import com.gym.domain.Page;
 import com.gym.service.NoticeService;
 
 @Controller
-@RequestMapping("/board/*")
+@RequestMapping("/board/*") 
 public class NotiController {
 	
 	@Inject

@@ -28,6 +28,6 @@ public interface NoticeDAO {
 	public void postWrite(NoticeVO nvo) throws Exception;
 	
 	//최신글 불러오기 
-	public int getMaxNum() throws Exception;
+	public int getMaxNum() throws Exception; 
 
 }

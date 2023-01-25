@@ -29,4 +29,4 @@ public interface NoticeService {
 	
 	//게시물 최신 번호 받아오기 
 	public int getMaxNum() throws Exception;
-}
+} 

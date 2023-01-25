@@ -67,6 +67,6 @@ public class NoticeDAOImpl implements NoticeDAO {
 	public int getMaxNum() throws Exception {
 		return sql.selectOne(namespace + ".getMaxNum");
 	}
-
+ 
 
 }

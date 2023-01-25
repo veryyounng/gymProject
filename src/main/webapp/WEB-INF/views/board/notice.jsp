@@ -76,7 +76,7 @@
 								</c:if>
 								<c:if test="${select == num}"> 
 									<b id="page_select">${num}</b>
-								</c:if>
+								</c:if> 
 							</li>
 						</c:forEach>
 						<c:if test="${page.next}">

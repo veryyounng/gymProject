@@ -58,7 +58,7 @@ href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wg
 a {
   text-decoration : none !important;
 }
-</style>
+</style> 
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>

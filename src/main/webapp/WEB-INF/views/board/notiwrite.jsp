@@ -99,9 +99,18 @@ a {
     
     function check(){
     	let title = $("#notice_title");
+    	let iframe_body = $(".cke_wysiwyg_frame.cke_reset").contents().find(".cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders");
+    	let iframe= $(".cke_wysiwyg_frame.cke_reset").contents().find(".cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders p");
+    	let iframe_html = iframe.html();
+    	let noti_content = $.trim(iframe_html);
     	if(title.val() == ""){
     		alert("제목을 입력하세요");
     		title.focus();
+    		return false;
+    	}
+    	if(noti_content == "<br>"){
+    		alert("내용을 입력하세요.");
+    		iframe_body.focus();
     		return false;
     	}
     	

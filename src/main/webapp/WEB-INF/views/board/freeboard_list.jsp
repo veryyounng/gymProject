@@ -22,6 +22,7 @@
         function getIndex() {
             location.href = './views/index.jsp';
         }
+
     </script>
     <style>
         section {
@@ -40,7 +41,6 @@
 <body>
 <%@ include file="../include/header.jsp" %>
     <section>
-
         <!-- 개발코드 시작 -->
         <div class="banana">
             <div class="board_body">
@@ -89,7 +89,7 @@
                         
                     </form>
                 </div>
-                <div id="write_notice"><a href="/free/freewrite"><button>글쓰기</button></a></div>
+                <div id="write_notice"><a href="/free/freewrite"><button onclick="idcheck()">글쓰기</button></a></div>
                 <div class="btns">
                     <ul class="pagination">
                     	<c:if test="${page.prev}">
@@ -118,6 +118,6 @@
         <!-- 개발코드 끝 -->
     </section>
    <%@ include file = "../include/footer.jsp" %>
-   
+
 </body>
 </html>

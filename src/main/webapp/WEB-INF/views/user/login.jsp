@@ -11,8 +11,16 @@
 <link rel="stylesheet" href="${path}/resources/css/login.css" />
 <link rel="stylesheet" href="${path}/resources/css/reset.css" />
 <link rel="stylesheet" href="${path}/resources/css/styles.css" />
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"/>
 
 </head>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+    	$('#useridtext').focus();
+   	});
+</script>
+
 <body>
 	<%@ include file="../include/header.jsp"%>
 	

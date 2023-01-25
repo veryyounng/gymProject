@@ -51,10 +51,10 @@
          </div>
       		<div class="btns">
         		<a class="btn_back" onclick="history.back();">뒤로가기</a>
-         <c:if test="${freedetail.b_writer == loginUser.userid}">
-        	<a class="btn_modi" href="/free/freemodify?b_num=${freedetail.b_num}">수정</a>
-       		 <a class="btn_delete" href="/free/freedelete?b_num=${freedetail.b_num}">삭제</a>
-      	</c:if>
+         	<c:if test="${freedetail.b_writer == loginUser.userid}">
+        		<a class="btn_modi" href="/free/freemodify?b_num=${freedetail.b_num}">수정</a>
+       		 	<a class="btn_delete" href="/free/freedelete?b_num=${freedetail.b_num}">삭제</a>
+      		</c:if>
       		</div>
     </div>
   </div>

@@ -28,8 +28,6 @@ href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wg
 <title>자유 게시판</title>
  
 <style>
-
-
 #cke_1_contents{
 	height: 600px !important;
 	resize: none !important;
@@ -40,6 +38,12 @@ href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wg
 
 <body>
 <%@ include file="../include/header.jsp" %>
+	<c:if test="${loginUser == null }">
+		<script>
+			alert("로그인 후 이용하세요!");
+			location.replace('${cp}/user/login');
+		</script>
+	</c:if>
 	<article>
 		<div class="container" role="main">
 
@@ -65,7 +69,7 @@ href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wg
 			</form>
 			<div style="margin-bottom: 50px">
 				<button type="button" class="btn btn-sm btn-primary" id="btnSave"
-				 onclick="document.getElementById('form').submit();">작성완료</button>
+				 onclick="check();">작성완료</button>
 				<!-- <button type="button" class="btn btn-sm btn-primary" id="btnList" >목록</button> -->
 			</div>
 		</div>
@@ -79,10 +83,18 @@ href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wg
        ck = CKEDITOR.replace("b_content");
     };
     
+    function check(){
+    	let title = $("#b_title");
+    	if(title.val() == ""){
+    		alert("제목을 입력하세요.");
+    		title.focus();
+    		return false;
+    	}
+    	
+    	$("#form").submit();
+    }
    
 </script>
-
 </body>
-
 </html>
 

@@ -39,4 +39,16 @@
 		limit #{displayPost},#{postNum}
 	</select>
 	
+	<!-- 게시물 작성 -->
+	<insert id="notiWrite">
+		insert into
+  		notice(notice_title, notice_contents)
+   		values(#{notice_title}, #{notice_contents})
+	</insert>
+	
+	<!-- 최신글 불러오기 -->
+	<select id="getMaxNum" resultType="_int">
+		select max(notice_num) from notice
+	</select>
+	
 </mapper>

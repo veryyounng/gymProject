@@ -49,6 +49,16 @@ public class NoticeServiceImpl implements NoticeService {
 		return ndao.getSearchList(displayPost, postNum, keyword);
 	}
 
+	@Override
+	public void postWrite(NoticeVO nvo) throws Exception {
+		ndao.postWrite(nvo);
+	}
+
+	@Override
+	public int getMaxNum() throws Exception {
+		return ndao.getMaxNum();
+	} 
+
 	
 
 }

@@ -58,5 +58,15 @@ public class NoticeDAOImpl implements NoticeDAO {
 		
 	}
 
+	@Override
+	public void postWrite(NoticeVO nvo) throws Exception {
+		sql.insert(namespace+".notiWrite", nvo);
+	}
+
+	@Override
+	public int getMaxNum() throws Exception {
+		return sql.selectOne(namespace + ".getMaxNum");
+	}
+ 
 
 }

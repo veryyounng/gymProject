@@ -63,5 +63,10 @@ public class NoticeDAOImpl implements NoticeDAO {
 		sql.insert(namespace+".notiWrite", nvo);
 	}
 
+	@Override
+	public int getMaxNum() throws Exception {
+		return sql.selectOne(namespace + ".getMaxNum");
+	}
+
 
 }

@@ -36,10 +36,14 @@ href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wg
 
       </div>
       <div class="btns">
-        <a class="btn_back" onclick="history.back();">뒤로가기</a>
-      </div>
+        <a class="btn_back" onclick="location.href='/board/notice?keyword=${keyword}&num=${select}'">목록</a>
+				<c:if test="${loginUser.userid == 'admin'}">
+					<div id="btn_modify">
+						<a onclick="location.href='/board/notimodify'">수정</a>
+					</div>
+				</c:if>
+	  </div>
     </div>
-  </div>
   </div>
    <!--  개발코드 끝 --> 
 <%@ include file="../include/footer.jsp" %>

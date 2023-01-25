@@ -54,6 +54,11 @@ public class NoticeServiceImpl implements NoticeService {
 		ndao.postWrite(nvo);
 	}
 
+	@Override
+	public int getMaxNum() throws Exception {
+		return ndao.getMaxNum();
+	}
+
 	
 
 }

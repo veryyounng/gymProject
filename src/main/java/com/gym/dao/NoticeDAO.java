@@ -26,5 +26,8 @@ public interface NoticeDAO {
 	
 	//게시물 작성
 	public void postWrite(NoticeVO nvo) throws Exception;
+	
+	//최신글 불러오기 
+	public int getMaxNum() throws Exception;
 
 }

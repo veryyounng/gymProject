@@ -6,7 +6,6 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,29 +21,16 @@ public class NotiController {
 	@Inject
 	private NoticeService service;
 	
-	@RequestMapping(value="/notice", method=RequestMethod.GET)
-	public void getNotice(Model model, @RequestParam("num") int num) throws Exception{
-		
-		Page page = new Page();
-		
-		page.setNum(num);
-		page.setCount(service.getCnt());
-		
-		List<NoticeVO> list = service.getContent(page.getDisplayPost(), page.getPostNum());
-		
-		model.addAttribute("contents",list);
-		model.addAttribute("page",page);
-		model.addAttribute("select", num);
-	}
-	
 	@RequestMapping(value="/notidetail", method=RequestMethod.GET)
-	public void getDetail(@RequestParam("notice_num") int notice_num, Model model) throws Exception{
+	public void getDetail(String keyword, int num, int notice_num, Model model) throws Exception{
 	
 		service.notiViewCnt(notice_num);
 		model.addAttribute("view", service.getDetail(notice_num));
+		model.addAttribute("keyword",keyword);
+		model.addAttribute("select", num);
 	}
 	
-	@RequestMapping(value="/search_notice", method=RequestMethod.GET)
+	@RequestMapping(value="/notice", method=RequestMethod.GET)
 	public void getsearchList(String keyword, Model model, int num) throws Exception{
 			
 		Page page = new Page();
@@ -69,8 +55,7 @@ public class NotiController {
 	@RequestMapping(value="/notiwrite", method=RequestMethod.POST)
 	public String postWrite(NoticeVO nvo) throws Exception{
 		service.postWrite(nvo);
-		return "redirect:/board/notidetail?notice_num=" + nvo.getNotice_num();
-		
+		return "redirect:/board/notidetail?num=1&keyword=&notice_num=" + service.getMaxNum();
 		
 	}
 

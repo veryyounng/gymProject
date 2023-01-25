@@ -57,6 +57,11 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public int getMaxNum() throws Exception {
 		return ndao.getMaxNum();
+	}
+
+	@Override
+	public void notiDelete(int notice_num) throws Exception {
+		ndao.notiDelete(notice_num);
 	} 
 
 	

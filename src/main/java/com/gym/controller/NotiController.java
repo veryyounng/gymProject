@@ -58,6 +58,13 @@ public class NotiController {
 		return "redirect:/board/notidetail?num=1&keyword=&notice_num=" + service.getMaxNum();
 		
 	}
+	
+	@RequestMapping(value="/notidelete", method=RequestMethod.GET)
+	public String getDelete(int notice_num) throws Exception {
+		service.notiDelete(notice_num);
+		return "redirect:/board/notice?num=1";
+		
+	}
 
 	
 }

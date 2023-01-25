@@ -67,6 +67,11 @@ public class NoticeDAOImpl implements NoticeDAO {
 	public int getMaxNum() throws Exception {
 		return sql.selectOne(namespace + ".getMaxNum");
 	}
+
+	@Override
+	public void notiDelete(int notice_num) throws Exception {
+		sql.delete(namespace + ".notiDelete", notice_num);
+	}
  
 
 }

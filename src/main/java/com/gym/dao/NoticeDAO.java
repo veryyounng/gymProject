@@ -30,6 +30,7 @@ public interface NoticeDAO {
 	//최신글 불러오기 
 	public int getMaxNum() throws Exception; 
 	
-	//
+	//게시물 삭제
+	public void notiDelete(int notice_num) throws Exception;
 
 }

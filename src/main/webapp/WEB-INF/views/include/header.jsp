@@ -22,13 +22,16 @@
 					<div class="dropbtn" id="program">프로그램</div>
 					<div class="dropdown-content">
 						<a href="/program/programid">프로그램 소개</a> <a href="/reservation/search">예약</a>
+						<c:if test="${loginUser.userid == 'admin'}">
+						<a href="/reservation/makeschedule">예약일정 생성</a>
+						</c:if>
 					</div>
 				</div>
 				<div class="dropdown community" onmouseover="communityhover()"
 					onmouseout="communityhoverout()">
 					<div class="dropbtn" id="community">커뮤니티</div>
 					<div class="dropdown-content">
-						<a href="/board/notice?num=1">공지사항</a> <a href="/free/freelist?num=1">자유게시판</a> <a href="/ex_board/ex_list?num=1">운동지식공유</a>
+						<a href="/board/notice?num=1&keyword=">공지사항</a> <a href="/free/freelist?num=1">자유게시판</a> <a href="/ex_board/ex_list?num=1">운동지식공유</a>
 					</div>
 				</div>
 				<div class="dropdown help" onmouseover="helphover()"

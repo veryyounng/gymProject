@@ -38,10 +38,25 @@ public class Ex_BoardServiceImpl implements Ex_BoardService {
 		dao.Ex_Modify(evo);
 	}
 
+	//게시물 삭제
 	@Override
 	public void Ex_delete(int ex_num) throws Exception {
 		dao.Ex_delete(ex_num);
 	}
+
+	//게시물 총 갯수
+	@Override
+	public int ex_count() throws Exception {
+		return dao.ex_count();
+	}
+
+	//게시물 리스트 + 페이징
+	@Override
+	public List<Ex_BoardVO> ex_listPage(int displayPost, int postNum) throws Exception {
+		return dao.ex_listPage(displayPost, postNum);
+	}
 	
+
+
 
 }

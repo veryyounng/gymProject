@@ -1,6 +1,5 @@
 package com.gym.ex_board.vo;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import lombok.Data;
@@ -29,10 +28,4 @@ public class Ex_BoardVO {
 	private int view_cnt;
 	private String userid;
 	
-//	public String getEx_date() {
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		String date= sdf.format(ex_date);
-//		return date;
-//	}
-
 }

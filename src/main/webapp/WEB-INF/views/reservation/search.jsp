@@ -31,7 +31,6 @@
 <body>
 
 	<c:choose>
-	
 	<c:when test="${reser == 'T'}">
 		<script type="text/javascript">
 			alert("예약이 완료되었습니다.");
@@ -48,7 +47,7 @@
 		</script>
 	</c:when>
 	</c:choose>
-		
+	</script>	
 	<%@ include file="../include/header.jsp"%>
 	<section>
 
@@ -209,7 +208,7 @@ $('#reserBTN').on('click', function(){
 	        		str += "<form action='/reservation/user_rv' method='post' name='searchResult' id='searchResult'>";
 	        		str += "<input type='hidden' name='userid' id='userid' value='"+userid+"'>";
 	        		str += "<input type='hidden' name='rv_num' id='rv_num' value='"+resultData[i].rv_num+"'>";
-	        		str += (resultData[i].rv_headCnt < resultData[i].rv_limit ? "<input type='submit' value='예약'/></form></td>" : "<span style='color:red;'>예약불가</span></form></td>");
+	        		str += (resultData[i].rv_headCnt < resultData[i].rv_limit ? "<input type='submit' onclick='return reservationCheck();' value='예약'/></form></td>" : "<span style='color:red;'>예약불가</span></form></td>");
 	        		str += "</tr>";
 	        		$('.type3').append(str);
 	        	}
@@ -229,6 +228,12 @@ function searchTime() {
 		
 	$('.type4').css('display','none');
 } 
-
+function reservationCheck(){
+	if(confirm("예약하시겠습니까?") == true){
+		return true;
+	} else {
+		return false;
+	}
+}
 </script>
 </html>

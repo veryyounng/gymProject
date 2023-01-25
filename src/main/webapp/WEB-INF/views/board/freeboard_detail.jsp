@@ -36,7 +36,7 @@
          <div id="title_box2">
         <div class="view_title"> ${freedetail.b_title}</div>
         <div class="cnt_date_writer">
-
+ 
           <div class="writer">작성자: ${freedetail.b_writer}</div>
           <div class="view_date"> 작성일 : <fmt:formatDate
 									value="${freedetail.b_date}" pattern="yy-MM-dd HH:mm" /></div>

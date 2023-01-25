@@ -29,11 +29,6 @@ href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wg
  
 <style>
 
-body {
-  padding-top: 70px;
-  padding-bottom: 30px;
-}
-
 #cke_1_contents{
 	height: 600px !important;
 	resize: none !important;
@@ -55,7 +50,7 @@ body {
 					<label for="title">제목</label>
 					<input type="text" class="form-control" name="b_title" value= "${freedetail.b_title}">
 				</div>
-
+ 
 				<div class="mb-3">
 					<label for="reg_id">작성자</label>
 					<input type="text" class="form-control" name="b_writer" value= "${freedetail.b_writer}">

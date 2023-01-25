@@ -48,7 +48,7 @@ body {
 
 				<div class="mb-3">
 					<label for="reg_id">작성자</label>
-					<input type="text" class="form-control" name="ex_writer" value="${ex_view.ex_writer }">
+					<input type="text" class="form-control" name="ex_writer" value="${ex_view.ex_writer }" readonly >
 				</div>
 
 				<div class="mb-3">

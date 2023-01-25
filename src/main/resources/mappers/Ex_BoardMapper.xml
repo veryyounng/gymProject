@@ -10,6 +10,7 @@
 			ex_num, ex_title, ex_writer, ex_date, ex_content, view_cnt
 		from ex_board
 		order by ex_date desc
+		limit 0, 10
 	</select>
 	
 	<!-- 게시물 작성 -->
@@ -41,5 +42,21 @@
 			from ex_board
 		where ex_num = #{ex_num};
 	</delete>	
+	
+	<!-- 게시물 총 갯수 -->
+	<select id="ex_count" resultType="_int">
+		select count(ex_num) from ex_board
+	</select>
+	
+	<!-- 게시물 리스트 + 페이징 -->
+	<select id="ex_listpage" parameterType="hashMap" resultType="com.gym.ex_board.vo.Ex_BoardVO">
+		select
+			ex_num, ex_title, ex_writer, ex_date, ex_content, view_cnt
+		from ex_board
+		order by ex_date desc
+		limit #{displayPost}, #{postNum}
+	</select>
+	
+	
 	
 </mapper>

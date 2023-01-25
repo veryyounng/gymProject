@@ -1,5 +1,6 @@
 package com.gym.ex_board.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -45,6 +46,24 @@ public class Ex_BoardDAOImpl implements Ex_BoardDAO {
 	@Override
 	public void Ex_delete(int ex_num) throws Exception {
 		sql.delete(namespace + ".ex_delete", ex_num);
+	}
+
+	// 게시물 총 갯수
+	@Override
+	public int ex_count() throws Exception {
+		return sql.selectOne(namespace + ".ex_count");
+	}
+
+	//게시물 리스트 + 페이징
+	@Override
+	public List<Ex_BoardVO> ex_listPage(int displayPost, int postNum) throws Exception {
+		
+		HashMap<String , Integer> data = new HashMap<String, Integer>();
+		
+		data.put("displayPost", displayPost);
+		data.put("postNum", postNum);
+		
+		return sql.selectList(namespace + ".ex_listpage", data);
 	}
 
 

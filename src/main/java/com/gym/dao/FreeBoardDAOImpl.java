@@ -44,6 +44,24 @@ public class FreeBoardDAOImpl implements FreeBoardDAO {
    public void FreeViewCnt(int b_num) throws Exception {
 	  sql.selectOne(namespace + ".freeViewCnt", b_num);
 }
+
+   //게시물 글쓰기
+   @Override
+   public void Freewrite(FreeBoardVO vo) throws Exception {
+	   sql.insert(namespace + ".freeWrite", vo);
+	
+}
+   //게시물 수정하기
+   @Override
+   public void FreeModify(FreeBoardVO vo) throws Exception {
+	   sql.update(namespace + ".freeModify", vo);
+	
+}
+   //게시물 삭제
+   @Override
+   public void FreeDelete(int b_num) throws Exception {
+	   sql.delete(namespace + ".freeDelete", b_num);
+}
    
     
 

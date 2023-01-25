@@ -31,4 +31,27 @@
    		update f_board set view_cnt = view_cnt+1 where b_num = #{b_num}
    </update>
    
+   <!-- 게시물 작성 -->
+   <insert id="freeWrite">
+   		insert into 
+   			f_board(b_title, b_writer, b_content)
+   				values(#{b_title}, #{b_writer}, #{b_content})
+   </insert>
+   
+   <!--게시물 수정  -->
+   <update id="freeModify">
+   		update f_board 
+   			set
+   				b_title = #{b_title},
+   				b_writer = #{b_writer},
+   				b_content = #{b_content}
+   			where b_num = #{b_num}
+   </update>
+   
+   <delete id="freeDelete">
+   	delete
+   		from f_board
+   	where b_num = #{b_num}
+   </delete>
+   
 </mapper>

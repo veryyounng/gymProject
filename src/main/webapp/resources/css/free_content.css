@@ -1,11 +1,10 @@
-@charset "UTF-8";
 .banana {
   width: 1440px;
   height: 700px;
   margin: 0 auto;
   margin-top: 50px;
 }
- 
+
 .board_body {
   width: 1000px;
   height: 600px;
@@ -15,18 +14,16 @@
 .title_box h2 {
   padding: 30px 0 10px 0;
   text-align: left;
-  margin-bottom : 0;
+  margin: 0;
   font-size: 36px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   border-bottom: 1px solid #dddddd;
-  
 }
 
 #title_box2 {
   height: 60px;
   border-bottom: 1px solid #dddddd;
-  margin: 0;
 }
 .view_title {
   color: black;
@@ -40,7 +37,6 @@
   font-weight: 700;
   display: inline-block;
   vertical-align: top;
-  
 }
 .cnt_date_writer{
   float: right;
@@ -70,7 +66,7 @@
   width: 1000px;
   border-bottom: 1px solid #dddddd;
 }
-.btns .btn_back {
+.btns .btn_back, .btn_modi, .btn_delete {
   border: 1px solid #dddddd;
   width: 80px;
   height: 40px;
@@ -78,10 +74,18 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  vertical-align: top;
 }
-.btns .btn_back:hover {
+
+.btns a:hover {
   color: #000;
   background-color: rgb(242, 242, 242);
+}
+.btn_back{
+  margin-right: 20px;
+}
+.btn_modi{
+  margin-right: 20px;
 }
 .btns {
   margin-top: 30px;

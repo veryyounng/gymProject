@@ -17,4 +17,13 @@ public interface FreeBoardService {
 
    //게시물 조회수 누적
    public void FreeViewCnt (int b_num) throws Exception;
+   
+   //게시물 글쓰기
+   public void FreeWrite (FreeBoardVO vo) throws Exception;
+   
+   //게시물 수정
+   public void FreeModify (FreeBoardVO vo) throws Exception;
+   
+   //게시물 삭제
+   public void FreeDelete (int b_num) throws Exception;
 }

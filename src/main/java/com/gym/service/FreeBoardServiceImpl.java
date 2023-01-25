@@ -31,11 +31,32 @@ public class FreeBoardServiceImpl implements FreeBoardService {
  public FreeBoardVO getFreeDetail(int b_num) throws Exception {
    return dao.getFreeDetail(b_num);
  }
-
+ 
+//게시물 조회수
  @Override
  public void FreeViewCnt(int b_num) throws Exception {
 	 dao.FreeViewCnt(b_num);
 }
+
+ //게시물 글 작성
+@Override
+public void FreeWrite(FreeBoardVO vo) throws Exception {
+	dao.Freewrite(vo);
+	
+}
+
+//게시물 수정
+@Override
+public void FreeModify(FreeBoardVO vo) throws Exception {
+	dao.FreeModify(vo);
+	
+}
+//게시물 삭제
+@Override
+public void FreeDelete(int b_num) throws Exception {
+	dao.FreeDelete(b_num);
+}
+
 
 
 }

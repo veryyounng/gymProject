@@ -29,6 +29,10 @@ href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wg
  
 <style>
 
+body {
+  padding-top: 70px;
+  padding-bottom: 30px;
+}
 
 #cke_1_contents{
 	height: 600px !important;
@@ -43,29 +47,29 @@ href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wg
 	<article>
 		<div class="container" role="main">
 
-			<h2 style="margin-top: 100px">자유 게시판 글쓰기</h2>
-			<form name="form" id="form" role="form" method="post" action="${path}/free/freewrite"
+			<h2 style="margin-top: 100px">자유 게시판 수정</h2>
+			<form name="form" id="form" role="form" method="post" action=""
 			style= "margin-top: 20px">
 
 				<div class="mb-3">
 					<label for="title">제목</label>
-					<input type="text" class="form-control" name="b_title" id="b_title" placeholder="제목을 입력해 주세요">
+					<input type="text" class="form-control" name="b_title" value= "${freedetail.b_title}">
 				</div>
 
 				<div class="mb-3">
 					<label for="reg_id">작성자</label>
-					<input type="text" class="form-control" name="b_writer" id="b_writer" value="${loginUser.userid}" readonly>
+					<input type="text" class="form-control" name="b_writer" value= "${freedetail.b_writer}">
 				</div>
 
 				<div class="mb-3">
 					<label for="content">내용</label>
-					<textarea class="form-control3" rows="5" name="b_content" id="b_content" placeholder="내용을 입력해 주세요" ></textarea>
+					<textarea class="form-control3" rows="5" name="b_content">${freedetail.b_content}</textarea>
 				</div>
 
 			</form>
 			<div style="margin-bottom: 50px">
 				<button type="button" class="btn btn-sm btn-primary" id="btnSave"
-				 onclick="document.getElementById('form').submit();">작성완료</button>
+				 onclick="document.getElementById('form').submit();">수정 완료</button>
 				<!-- <button type="button" class="btn btn-sm btn-primary" id="btnList" >목록</button> -->
 			</div>
 		</div>
@@ -85,4 +89,3 @@ href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wg
 </body>
 
 </html>
-

@@ -47,16 +47,18 @@
             첨부파일 : <a class="btn_link"><strong>adfdf.zip </strong></a><strong></strong>
             </div>-->
          <div class="view_content">
-
            ${freedetail.b_content}<br>
-        
          </div>
-      <div class="btns">
-        <a class="btn_back" onclick="history.back();">뒤로가기</a>
-      </div>
+      		<div class="btns">
+        		<a class="btn_back" onclick="history.back();">뒤로가기</a>
+         <c:if test="${freedetail.b_writer == loginUser.userid}">
+        	<a class="btn_modi" href="/free/freemodify?b_num=${freedetail.b_num}">수정</a>
+       		 <a class="btn_delete" href="/free/freedelete?b_num=${freedetail.b_num}">삭제</a>
+      	</c:if>
+      		</div>
     </div>
   </div>
-  </div>
+
   <%@ include file = "../include/footer.jsp" %>
 </body>
 </html>

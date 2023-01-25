@@ -51,4 +51,11 @@
 		select max(notice_num) from notice
 	</select>
 	
+	<!-- 게시물 삭제 -->
+	<delete id="notiDelete" parameterType="_int">
+		delete 
+			from notice
+		where notice_num = #{notice_num};
+	</delete>
+	
 </mapper>

@@ -29,5 +29,7 @@ public interface NoticeDAO {
 	
 	//최신글 불러오기 
 	public int getMaxNum() throws Exception; 
+	
+	//
 
 }

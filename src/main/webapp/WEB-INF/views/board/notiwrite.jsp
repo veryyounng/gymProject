@@ -84,7 +84,7 @@ a {
 			</form>
 			<div style="text-align: right;">
 				<button type="button" class="btn btn-sm btn-primary" id="btnSave" 
-				 onclick="document.getElementById('form').submit();">작성완료</button>
+				 onclick="check();">작성완료</button>
 				<!-- <button type="button" class="btn btn-sm btn-primary" id="btnList" >목록</button> -->
 			</div>
 	</article>
@@ -96,6 +96,17 @@ a {
     window.onload = function(){
        ck = CKEDITOR.replace("notice_contents");
     };
+    
+    function check(){
+    	let title = $("#notice_title");
+    	if(title.val() == ""){
+    		alert("제목을 입력하세요");
+    		title.focus();
+    		return false;
+    	}
+    	
+    	$("#form").submit();
+    }
 </script>
 <%@ include file="../include/footer.jsp" %>
 </body>

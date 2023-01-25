@@ -69,10 +69,44 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  margin: 0 10px;
 }
 .btns .btn_back:hover {
   color: #000;
   background-color: rgb(242, 242, 242);
+}
+
+.btns .btn_modify {
+  border: 1px solid #dddddd;
+  width: 80px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+.btns .btn_modify:hover {
+  color: #000;
+  background-color: rgb(242, 242, 242);
+}
+
+.btns .btn_delete {
+  border: 1px solid #dddddd;
+  width: 80px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+.btns .btn_delete:hover {
+  color: #000;
+  background-color: rgb(242, 242, 242);
+	
 }
 .btns {
   margin: 50px 0;
@@ -81,3 +115,4 @@
   justify-content: center;
   align-items: center;
 }
+

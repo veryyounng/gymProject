@@ -38,9 +38,8 @@ href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wg
       <div class="btns">
         <a class="btn_back" onclick="location.href='/board/notice?keyword=${keyword}&num=${select}'">목록</a>
 				<c:if test="${loginUser.userid == 'admin'}">
-					<div id="btn_modify">
-						<a onclick="location.href='/board/notimodify'">수정</a>
-					</div>
+					<a class="btn_modify" onclick="location.href='/board/notimodify'">수정</a>
+					<a class="btn_delete" onclick="location.href='/board/notidelete'">삭제</a>
 				</c:if> 
 	  </div>
     </div>

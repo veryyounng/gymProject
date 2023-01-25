@@ -34,6 +34,11 @@ public class ReservationServiceImpl implements ReservationService {
 		return dao.findOverlap(userid, rv_num);
 	}
 
+	@Override
+	public int insertReservation(ReservationVO vo) {
+		return dao.insertReservation(vo);
+	}
+
 
 	
 }

@@ -42,5 +42,10 @@ public class ReservationDAOImpl implements ReservationDAO {
 		data.put("rv_num", rv_num);
 		return sql.selectOne(namespace+".findOverlap",data);
 	}
+
+	@Override
+	public int insertReservation(ReservationVO vo) {
+		return sql.insert(namespace+".insertReservation",vo);
+	}
 	
 }

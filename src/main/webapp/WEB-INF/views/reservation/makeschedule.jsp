@@ -19,7 +19,20 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-
+<style>
+#reserBTN {
+	width:64px;
+}
+#rv_title,
+#rv_time {
+	width: 60%;
+	height: 80%;
+	font-size:16px;
+}
+.banana{
+	height:980px;
+}
+</style>
 <script>
 	if(${loginUser == null}){
 		alert("로그인 후 이용하세요");
@@ -29,6 +42,16 @@
 
 </head>
 <body>
+	<c:if test="${ms == 'T'}">
+		<script>
+			alert("예약일정 생성이 완료되었습니다.");
+		</script>
+	</c:if>
+	<c:if test="${ms == 'F'}">
+		<script>
+			alert("예약일정 생성에 실패하였습니다.");
+		</script>
+	</c:if>
 	<c:if test="${loginUser.userid != 'admin'}">
 		<script>
 			alert("잘못된 접근입니다.");
@@ -114,49 +137,55 @@
 						<td>-</td>
 					</tr>
 				</table>
-				<div class="th">&lt; 일정생성 &gt;</div>
+				<div class="th" style="margin-bottom : 50px;">&lt; 일정생성 &gt;</div>
+				<form style="display:inline;" name="makeForm" method="post">
 					<table class="type2">
 						<tr>
-							<td>이름</td>
-							<td><input type="text" value="${loginUser.username}" name="username"
-								id="username" readonly>
-								<input type="hidden" value="${loginUser.userid}" name="loginUserid" id="loginUserid"/></td>
+							<td>강좌명</td>
+<!-- 							<td><input type="text" value="" name="rv_title" -->
+<!-- 								id="rv_title"></td> -->
+							<td>
+			                    <select id="rv_title" name="rv_title">
+			                       <option value="줌바">줌바</option>
+			                       <option value="요가">요가</option>
+			                       <option value="다이어트댄스">다이어트댄스</option>
+			                       <option value="필라테스">필라테스</option>
+			                       <option value="에어로빅">에어로빅</option>
+			                       <option value="스피닝">스피닝</option>
+                  				</select>
+                  			</td>
 						</tr>
 						<tr>
-							<td>이메일</td>
-							<td><input type="email" value="${loginUser.email}" name="email"
-								id="email" readonly></td>
+							<td>정원</td>
+							<td><input type="text" value="" name="rv_limit"
+								id="rv_limit" placeholder="숫자만 입력하세요"></td>
 						</tr>
 						<tr>
-							<td>전화번호</td>
-							<td><input type="tel" value="${loginUser.phone}" name="phone"
-								id="phone" readonly></td>
+							<td>시간</td>
+							<td>
+								<select id="rv_time" name="rv_time">
+			                       <option value="09:10 ~ 10:00">09:10 ~ 10:00</option>
+			                       <option value="10:10 ~ 11:00">10:10 ~ 11:00</option>
+			                       <option value="11:10 ~ 12:00">11:10 ~ 12:00</option>
+			                       <option value="19:00 ~ 19:50">19:00 ~ 19:50</option>
+			                       <option value="20:00 ~ 20:50">20:00 ~ 20:50</option>
+			                       <option value="21:00 ~ 21:50">21:00 ~ 21:50</option>
+                  				</select>
+                  			</td>
 						</tr>
 						<tr>
-							<td>예약일</td>
-							<td><input class="form-control" id="rv_date"
+							<td>날짜</td>
+							<td><input class="form-control" id="rv_date" name="rv_date"
 								pattern="\d{4}-\d{2}-\d{2}" placeholder="달력 보기"
-								th:field="*{rv_date}" type="text" value="" /></td>
+								th:field="*{rv_date}" type="text"/></td>
 						</tr>
 						<tr>
 							<td></td>
-							<td><input type="submit" id="reserBTN" onclick="searchTime();" value="검색"></td>
+							<td><input type="submit" id="reserBTN" value="예약생성"></td>
 						</tr>
 					</table>
-				<!-- 검색 list(가능) 시작 -->
-				<table class="type3">
-					<span class="checkRS">※ 예약 취소 및 확인은 마이페이지에서 가능합니다.</span>
-					<tr class="reser_type">
-						<td>과목명</td>
-						<td>수업시간</td>
-						<td>정원</td>
-						<td>예약하기</td>
-					</tr>
-				</table>
+				</form>
 				<!-- 검색 list(가능) 끝 -->
-				<div class="type4">날짜 선택과 검색버튼을 눌러주세요.</div>
-				<!-- 검색 list(불가능) 시작 -->
-			</div>
 			<!-- 개발코드 끝 -->
 	</section>
 	<%@ include file="../include/footer.jsp"%>
@@ -168,53 +197,5 @@ var fp = flatpickr(document.getElementById("rv_date"), {
 	"locale" : "ko",
 	"minDate" : "today"
 });
-
-$('#reserBTN').on('click', function(){
-   	var date = $("#rv_date").val();
-   	var userid = $("#loginUserid").val();
-	$.ajax({
-        url: "result",
-        type: "POST",
-        data:{"rv_date" : date},
-        success: function(resultData){
-        	console.log("ajax 성공");
-        	console.log(resultData.length);
-        	$('.ResultData').remove();
-        	if(resultData.length === 0 ) {
-        		$('.type4').html('검색된 결과가 없습니다.');
-        		$('.type4').css('display','flex');
-        	} else {
-        		let str = "";
-	        	for(var i = 0; i < resultData.length; i++) {     		
-	        		str = "";
-	        		str += "<tr class='ResultData'>";
-	        		str += "<td>"+resultData[i].rv_title+"</td>";
-	        		str += "<td>"+resultData[i].rv_time+"</td>";
-	        		str += "<td>"+resultData[i].rv_headCnt+" / "+resultData[i].rv_limit+"</td>";
-	        		str += "<td>";
-	        		str += "<form action='/reservation/user_rv' method='post' name='searchResult' id='searchResult'>";
-	        		str += "<input type='hidden' name='userid' id='userid' value='"+userid+"'>";
-	        		str += "<input type='hidden' name='rv_num' id='rv_num' value='"+resultData[i].rv_num+"'>";
-	        		str += (resultData[i].rv_headCnt < resultData[i].rv_limit ? "<input type='submit' value='예약'/></form></td>" : "<span style='color:red;'>예약불가</span></form></td>");
-	        		str += "</tr>";
-	        		$('.type3').append(str);
-	        	}
-        	}
-        },
-        error: function(request, error){
-        	console.log("ajax 실패");
-        	console.log("code:"+request.status+"\n"+"message"+request.responseText+"\n"+"error:"+error);
-        }
-    });
-});
-function searchTime() {
-	if($("#rv_date").val()==""){
-		alert("예약일을 선택해 주세요");
-		location.href="/reservation/search";
-	}
-		
-	$('.type4').css('display','none');
-} 
-
 </script>
 </html>

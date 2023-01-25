@@ -17,4 +17,7 @@ public interface ReservationDAO {
 	
 	// 이미 예약되어있는지 확인
 	public int findOverlap(String userid, int rv_num);
+	
+	// 예약일정 만들기
+	public int insertReservation(ReservationVO vo);
 }

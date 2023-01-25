@@ -24,7 +24,7 @@ public class ReservationController {
 	@GetMapping({"/search","/makeschedule"})
 	public void getMap() {}
 	
-	@PostMapping("/reservation/result")
+	@PostMapping("/result")
 	public @ResponseBody List<ReservationVO> postSearch(@RequestParam("rv_date") String rv_date) throws Exception {
 		List<ReservationVO> list = null;
 		list = service.getList(rv_date);
@@ -32,7 +32,7 @@ public class ReservationController {
 		return list;
 	}
 	
-	@PostMapping("reservation/user_rv")
+	@PostMapping("/user_rv")
 	public String postUser_rv(String userid, int rv_num, RedirectAttributes ra) {
 		if(service.findOverlap(userid,rv_num) >= 1) {
 			ra.addFlashAttribute("reser","NO");
@@ -46,6 +46,16 @@ public class ReservationController {
 			}
 		}
 		return "redirect:/reservation/search";
+	}
+	
+	@PostMapping("/makeschedule")
+	public String postMakeSchedule(ReservationVO vo,RedirectAttributes ra) {
+		if(service.insertReservation(vo) == 1) {
+			ra.addFlashAttribute("ms", "T");
+		} else {
+			ra.addFlashAttribute("ms","F");
+		}
+		return "redirect:/reservation/makeschedule";
 	}
 	
 }

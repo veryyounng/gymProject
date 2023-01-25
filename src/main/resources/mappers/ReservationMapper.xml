@@ -15,4 +15,8 @@
 	<select id="findOverlap" resultType="int">
 		select count(*) from reservation where rv_num = #{rv_num} and userid=#{userid}
 	</select>
+	<insert id="insertReservation">
+		insert into admin_reservation(rv_date,rv_time,rv_title,rv_limit) 
+		values (#{rv_date},#{rv_time},#{rv_title},#{rv_limit})
+	</insert>
 </mapper>

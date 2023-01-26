@@ -3,6 +3,7 @@ package com.gym.dao;
 import java.util.List;
 
 import com.gym.domain.FreeBoardVO;
+import com.gym.domain.ReplyVO;
 
 public interface FreeBoardDAO {
    
@@ -16,17 +17,20 @@ public interface FreeBoardDAO {
    public FreeBoardVO getFreeDetail(int b_num) throws Exception;
 
    //게시물 조회수
-   public void FreeViewCnt(int b_num) throws Exception;
+   public void freeViewCnt(int b_num) throws Exception;
    
    //게시물 글쓰기
-   public void Freewrite(FreeBoardVO vo) throws Exception; 
+   public void freewrite(FreeBoardVO vo) throws Exception; 
    
    //게시물 수정
-   public void FreeModify(FreeBoardVO vo) throws Exception;
+   public void freeModify(FreeBoardVO vo) throws Exception;
    
    //게시물 삭제
-   public void FreeDelete(int b_num) throws Exception;
+   public void freeDelete(int b_num) throws Exception;
    
    //게시물 내용 검색
    public int getSearchCnt(String keyword, String searchType) throws Exception;
+   
+   //댓글작성
+   public void freeReplyWrite(ReplyVO vo) throws Exception;
 }

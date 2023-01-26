@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.gym.dao.FreeBoardDAO;
 import com.gym.domain.FreeBoardVO;
+import com.gym.domain.ReplyVO;
 
 @Service
 public class FreeBoardServiceImpl implements FreeBoardService {
@@ -34,32 +35,38 @@ public class FreeBoardServiceImpl implements FreeBoardService {
  
 //게시물 조회수
  @Override
- public void FreeViewCnt(int b_num) throws Exception {
-	 dao.FreeViewCnt(b_num);
+ public void freeViewCnt(int b_num) throws Exception {
+	 dao.freeViewCnt(b_num);
 }
 
  //게시물 글 작성
 @Override
-public void FreeWrite(FreeBoardVO vo) throws Exception {
-	dao.Freewrite(vo);
+public void freeWrite(FreeBoardVO vo) throws Exception {
+	dao.freewrite(vo);
 	
 }
 
 //게시물 수정
 @Override
-public void FreeModify(FreeBoardVO vo) throws Exception {
-	dao.FreeModify(vo);
+public void freeModify(FreeBoardVO vo) throws Exception {
+	dao.freeModify(vo);
 	
 }
 //게시물 삭제
 @Override
-public void FreeDelete(int b_num) throws Exception {
-	dao.FreeDelete(b_num);
+public void freeDelete(int b_num) throws Exception {
+	dao.freeDelete(b_num);
 }
 //게시물 내용 검색
 @Override
 public int getSearchCnt(String keyword,String searchType) throws Exception {
 	return dao.getSearchCnt(keyword,searchType);
+}
+
+//댓글 작성
+@Override
+public void freeReplyWrite(ReplyVO vo) throws Exception {
+	dao.freeReplyWrite(vo);
 }
 
 

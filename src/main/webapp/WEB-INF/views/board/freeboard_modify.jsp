@@ -50,12 +50,9 @@ href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wg
 				<div class="mb-3">
 					<label for="title">제목</label>
 					<input type="text" class="form-control" name="b_title" value= "${freedetail.b_title}">
+					<input type="hidden" class="form-control" name="b_writer" value= "${freedetail.b_writer}" readonly>
 				</div>
  
-				<div class="mb-3">
-					<label for="reg_id">작성자</label>
-					<input type="text" class="form-control" name="b_writer" value= "${freedetail.b_writer}">
-				</div>
 
 				<div class="mb-3">
 					<label for="content">내용</label>

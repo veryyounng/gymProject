@@ -81,4 +81,10 @@
    				or b_content like ('%${keyword}%')
    		</if>
    </select>
+   
+   <insert id="freeReplyWrite">
+   	insert into f_comment(b_num, c_writer, c_contents, c_date)
+   		values(#{b_num}, #{c_writer}, #{c_contents}, now())
+   </insert>
+   
 </mapper>

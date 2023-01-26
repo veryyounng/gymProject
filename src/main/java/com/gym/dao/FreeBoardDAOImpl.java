@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.gym.domain.FreeBoardVO;
+import com.gym.domain.ReplyVO;
 
 @Repository
 public class FreeBoardDAOImpl implements FreeBoardDAO {
@@ -43,25 +44,25 @@ public class FreeBoardDAOImpl implements FreeBoardDAO {
 
    //게시글 조회수
    @Override
-   public void FreeViewCnt(int b_num) throws Exception {
+   public void freeViewCnt(int b_num) throws Exception {
 	  sql.selectOne(namespace + ".freeViewCnt", b_num);
 }
 
    //게시물 글쓰기
    @Override
-   public void Freewrite(FreeBoardVO vo) throws Exception {
+   public void freewrite(FreeBoardVO vo) throws Exception {
 	   sql.insert(namespace + ".freeWrite", vo);
 	
 }
    //게시물 수정하기
    @Override
-   public void FreeModify(FreeBoardVO vo) throws Exception {
+   public void freeModify(FreeBoardVO vo) throws Exception {
 	   sql.update(namespace + ".freeModify", vo);
 	
 }
    //게시물 삭제
    @Override
-   public void FreeDelete(int b_num) throws Exception {
+   public void freeDelete(int b_num) throws Exception {
 	   sql.delete(namespace + ".freeDelete", b_num);
 }
    //게시물 내용 검색해서 숫자 세기
@@ -71,6 +72,11 @@ public class FreeBoardDAOImpl implements FreeBoardDAO {
 	   data.put("keyword", keyword);
 	   data.put("searchType", searchType);
 	   return sql.selectOne(namespace+".freeSearchCnt",data);
+}
+   //댓글 작성
+   @Override
+   public void freeReplyWrite(ReplyVO vo) throws Exception {
+	   sql.insert(namespace + ".freeReplyWrite", vo);
 }
    
     

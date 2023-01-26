@@ -22,7 +22,21 @@
         function getIndex() {
             location.href = './views/index.jsp';
         }
-
+		
+    	function sendit(){
+    		/*
+    			if("") ---> if(false)
+    		*/
+    		if(!s_form.find("option:selected").val()){
+    			alert("검색 기준을 선택하세요!");
+    			return false;
+    		}
+    		if(!$("input[name='key']").val()){
+    			alert("키워드를 입력하세요!");
+    			return false;
+    		}
+    		s_form.submit();
+    	}
     </script>
     <style>
         section {
@@ -35,6 +49,12 @@
         .ul_news {
            margin: 0px;
         }
+        select{
+			width:15%;
+			text-align: center;
+			padding:0 20px;
+			display: inline;
+	}
     </style>
 </head>
 
@@ -53,8 +73,13 @@
                     </div>
                     <div class="noti_header_box txt_right">
                         <form name="s_form" id="search">
+                        	<select name="type">
+								<option value="T" ${pageMaker.cri.type == "T" ? "selected" : ""}>제목</option>
+								<option value="C" ${pageMaker.cri.type == "C" ? "selected" : ""}>내용</option>
+								<option value="TC" ${pageMaker.cri.type == "TC" ? "selected" : ""}>제목 + 내용</option>
+							</select>
                             <input name="key" value="" maxlength=50 type="text" placeholder="검색어 입력">
-                            <button class="btn_primary" onclick="">검색</button>
+                            <button class="btn_primary" onclick="return sendit();">검색</button>
                         </form>
                     </div>
                 </div>

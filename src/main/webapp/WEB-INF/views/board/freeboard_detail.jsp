@@ -23,6 +23,14 @@
        function getIndex() {
             location.href = './index.html';
        }
+       
+       function delete_check(){
+    	   if(confirm("정말로 삭제하시겠습니까?")){
+    		   return true;
+    	   } else {
+    		   return false;
+    	   }
+       }
      </script>
      
 </head>
@@ -53,7 +61,7 @@
         		<a class="btn_back" onclick="history.back();">뒤로가기</a>
          	<c:if test="${freedetail.b_writer == loginUser.userid}">
         		<a class="btn_modi" href="/free/freemodify?b_num=${freedetail.b_num}">수정</a>
-       		 	<a class="btn_delete" href="/free/freedelete?b_num=${freedetail.b_num}">삭제</a>
+       		 	<a class="btn_delete" href="/free/freedelete?b_num=${freedetail.b_num}" onclick="return delete_check();">삭제</a>
       		</c:if>
       		</div>
     </div>

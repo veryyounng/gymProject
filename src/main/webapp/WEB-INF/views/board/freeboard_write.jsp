@@ -32,7 +32,9 @@ href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wg
 	height: 600px !important;
 	resize: none !important;
 }
-
+a {
+	text-decoration:none !important;
+}
 </style>
 </head>
 
@@ -54,11 +56,7 @@ href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wg
 				<div class="mb-3">
 					<label for="title">제목</label>
 					<input type="text" class="form-control" name="b_title" id="b_title" placeholder="제목을 입력해 주세요">
-				</div>
-
-				<div class="mb-3">
-					<label for="reg_id">작성자</label>
-					<input type="text" class="form-control" name="b_writer" id="b_writer" value="${loginUser.userid}" readonly>
+					<input type="hidden" class="form-control" name="b_writer" id="b_writer" value="${loginUser.userid}">
 				</div>
 
 				<div class="mb-3">
@@ -91,7 +89,11 @@ href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wg
     		return false;
     	}
     	
-    	$("#form").submit();
+    	if(confirm("게시물을 등록하시겠습니까?")){
+    		$("#form").submit();
+    	}else{
+    		return false;
+    	}
     }
    
 </script>

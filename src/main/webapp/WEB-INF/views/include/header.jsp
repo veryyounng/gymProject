@@ -7,7 +7,7 @@
 		if(confirm("로그아웃하시겠습니까?") == true){
 			return true;
 		} else {
-			return false;
+			return false; 
 		}
 	}
 </script>

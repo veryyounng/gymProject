@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="${path}/resources/css/reset.css" />
 <link rel="stylesheet" href="${path}/resources/css/styles.css" />
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<link rel="shortcut icon" href="${path}/resources/img/파비콘.png" type="image/x-icon">
 
 </head>
 
@@ -38,6 +39,11 @@
 </script>
 
 <body>
+	<c:if test="${loginfail == 'F'}">
+	<script>
+		alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+	</script>
+	</c:if>
 	<%@ include file="../include/header.jsp"%>
 	
 	<div class="container">

@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="${path}/resources/css/reset.css">
     <link rel="stylesheet" href="${path}/resources/css/free_styles.css">
     <link rel="stylesheet" href="${path}/resources/css/free_list.css">
+    <link rel="shortcut icon" href="${path}/resources/img/파비콘.png" type="image/x-icon">
     
     <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons"/>
    <link rel="stylesheet" 
@@ -72,13 +73,14 @@
                         <div class="mgt_10">총 <strong>${page.count}</strong>건의 게시물이 있습니다.</div>
                     </div>
                     <div class="noti_header_box txt_right">
-                        <form name="s_form" id="search">
-                        	<select name="type">
-								<option value="T" ${pageMaker.cri.type == "T" ? "selected" : ""}>제목</option>
-								<option value="C" ${pageMaker.cri.type == "C" ? "selected" : ""}>내용</option>
-								<option value="TC" ${pageMaker.cri.type == "TC" ? "selected" : ""}>제목 + 내용</option>
+                        <form name="s_form" id="search" action="/free/freelist" method="get">
+                        	<select name="searchType">
+								<option value="T">제목</option>
+								<option value="C">내용</option>
+								<option value="TC">제목 + 내용</option>
 							</select>
-                            <input name="key" value="" maxlength=50 type="text" placeholder="검색어 입력">
+                            <input name="keyword" value="" maxlength=50 type="text" placeholder="검색어 입력">
+                            <input type="hidden" value="${select}" name="num"/>
                             <button class="btn_primary" onclick="return sendit();">검색</button>
                         </form>
                     </div>

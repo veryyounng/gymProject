@@ -24,6 +24,7 @@
 href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet" href="${path}/resources/css/styles.css" />
 <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons"/>
+<link rel="shortcut icon" href="${path}/resources/img/파비콘.png" type="image/x-icon">
 
 <title>자유 게시판</title>
  

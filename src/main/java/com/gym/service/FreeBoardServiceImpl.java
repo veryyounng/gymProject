@@ -22,8 +22,8 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 
  //게시판 목록 불러오기
  @Override
- public List<FreeBoardVO> getFreelist(int displayPost, int postNum) throws Exception {
-   return dao.getFreelist(displayPost,postNum);
+ public List<FreeBoardVO> getFreelist(String keyword, String searchType, int displayPost, int postNum) throws Exception {
+   return dao.getFreelist(keyword,searchType,displayPost,postNum);
  }
 
  //게시판 본문 보기
@@ -55,6 +55,11 @@ public void FreeModify(FreeBoardVO vo) throws Exception {
 @Override
 public void FreeDelete(int b_num) throws Exception {
 	dao.FreeDelete(b_num);
+}
+//게시물 내용 검색
+@Override
+public int getSearchCnt(String keyword,String searchType) throws Exception {
+	return dao.getSearchCnt(keyword,searchType);
 }
 
 

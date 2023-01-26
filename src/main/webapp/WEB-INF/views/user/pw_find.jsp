@@ -9,6 +9,7 @@
 <title>비밀번호 찾기</title>
 <link rel="stylesheet" href="${path}/resources/css/styles.css" />
 <link rel="stylesheet" href="${path}/resources/css/notistyle.css" />
+<link rel="shortcut icon" href="${path}/resources/img/파비콘.png" type="image/x-icon">
 </head>
 <style>
     .container{

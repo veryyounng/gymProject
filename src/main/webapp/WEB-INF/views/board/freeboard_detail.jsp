@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="${path}/resources/css/free_styles.css">
     <link rel="stylesheet" href="${path}/resources/css/index.css">
     <link rel="stylesheet" href="${path}/resources/css/free_content.css">
+    <link rel="shortcut icon" href="${path}/resources/img/파비콘.png" type="image/x-icon">
     
     <script>
        function getIndex() {
@@ -64,6 +65,28 @@
        		 	<a class="btn_delete" href="/free/freedelete?b_num=${freedetail.b_num}" onclick="return delete_check();">삭제</a>
       		</c:if>
       		</div>
+      		
+      	 <ul class="reply_textbox">
+        <div class="reply_textbox2">
+          <div class="reply_wr">
+            <label class="reply_writer">댓글 작성자: </label> <input type="text" >
+            <span> ·  2023.01.26</span>
+          </div>
+          <div>
+            <textarea rows="5" cols="50" class="reply_text"></textarea>
+          </div>
+          <div>
+            <button type="button" class="reply_btn">댓글 작성</button>
+          </div>
+        </div>
+
+        <li class="reply">
+          <div>
+            <p>1. 작성자닉네임 · 2023.01.26</p>  
+            <p>댓글 내용</p>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 

@@ -94,3 +94,26 @@
   justify-content: center;
   align-items: center;
 }
+* li{
+  list-style: none;
+}
+.reply_textbox{
+  border-top: 1px solid #ddd;
+  padding: 20px;
+}
+.reply{
+  border-bottom: 1px solid #ddd;
+}
+.reply_textbox2{
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 20px;
+  
+}
+.reply_wr{
+  margin-bottom: 20px;
+  
+}
+.reply_text{
+  width: 1000px;
+  margin-bottom: 20px;
+}

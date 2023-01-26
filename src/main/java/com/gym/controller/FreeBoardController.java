@@ -27,32 +27,33 @@ import com.gym.service.FreeBoardService;
       
       //게시물 목록, 갯수 세기
       @RequestMapping (value="/freelist", method=RequestMethod.GET)
-      public String getFreelist (Model model, @RequestParam("num")int num) throws Exception{
+      public String getFreelist (String keyword, Model model,int num,String searchType) throws Exception{
         
     	Page page = new Page();
     	
     	page.setNum(num);
-    	page.setCount(service.getFreeCnt());
+    	page.setCount(service.getSearchCnt(keyword,searchType));
     	
-    	List<FreeBoardVO> list = service.getFreelist(page.getDisplayPost(), page.getPostNum());
+    	List<FreeBoardVO> list = service.getFreelist(keyword,searchType,page.getDisplayPost(), page.getPostNum());
     	
         model.addAttribute("freelist", list);
         model.addAttribute("page",page);
         model.addAttribute("select", num);
+        model.addAttribute("keyword", keyword);
         
          return "/board/freeboard_list";
       }
        
       //게시물 조회
       @RequestMapping (value="/freedetail", method = RequestMethod.GET)
-      public String getFreeDetail (@RequestParam("b_num") int b_num, Model model) throws Exception{
+      public String getFreeDetail (String keyword, int b_num, Model model) throws Exception{
     	   
     	  service.FreeViewCnt(b_num);
     	  //db에 거치면 viewCnt가 +1이 됨-> 메소드 종료시 , 밑줄이 실행됨
     	  
     	  FreeBoardVO vo = service.getFreeDetail(b_num);
     	  model.addAttribute("freedetail", vo);
-    	  
+    	  model.addAttribute("keyword", keyword);
     	  return "/board/freeboard_detail";
       }
       

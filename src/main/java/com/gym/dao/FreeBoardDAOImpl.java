@@ -26,10 +26,12 @@ public class FreeBoardDAOImpl implements FreeBoardDAO {
 
    //게시글 목록 보기
    @Override
-   public List<FreeBoardVO> getFreelist(int displayPost, int postNum) throws Exception {
-	   HashMap<String, Integer> data = new HashMap<String, Integer>();
+   public List<FreeBoardVO> getFreelist(String keyword, String searchType, int displayPost, int postNum) throws Exception {
+	   HashMap<String, Object> data = new HashMap<String, Object>();
 	   data.put("displayPost", displayPost);
 	   data.put("postNum", postNum);
+	   data.put("keyword", keyword);
+	   data.put("searchType", searchType);
       return sql.selectList(namespace + ".freeList",data);
    }
 
@@ -61,6 +63,14 @@ public class FreeBoardDAOImpl implements FreeBoardDAO {
    @Override
    public void FreeDelete(int b_num) throws Exception {
 	   sql.delete(namespace + ".freeDelete", b_num);
+}
+   //게시물 내용 검색해서 숫자 세기
+   @Override
+   public int getSearchCnt(String keyword,String searchType) throws Exception {
+	   HashMap<String, String> data = new HashMap<String, String>();
+	   data.put("keyword", keyword);
+	   data.put("searchType", searchType);
+	   return sql.selectOne(namespace+".freeSearchCnt",data);
 }
    
     

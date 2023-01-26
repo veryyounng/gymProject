@@ -33,14 +33,15 @@ public class UserController {
    
    
    @PostMapping("/login")
-	public String login(UserVO vo, HttpServletRequest req) throws Exception{
+	public String login(UserVO vo, HttpServletRequest req,RedirectAttributes ra) throws Exception{
 		if(service.login(vo, req)) {
-			
+			return "redirect:/";
 		}
 		else {
-			
+			ra.addFlashAttribute("loginfail","F");
+			return "redirect:/user/login";
 		}
-		return "redirect:/";
+		
 	}
    
    @RequestMapping(value = "/join_email", method = RequestMethod.POST)

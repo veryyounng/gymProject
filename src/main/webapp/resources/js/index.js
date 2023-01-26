@@ -58,9 +58,9 @@ function ett() {
 }  
 function more() {
   if (notice.classList.contains('focus_board')) {
-    location.href = "/board/notice?num=1";
+    location.href = "/board/notice?keyword=&num=1";
   } else if (freeb.classList.contains('focus_board')) {
-    location.href = "/free/freelist?num=1";
+    location.href = "/free/freelist?searchType=T&keyword=&num=1";
   } else if (ex_board.classList.contains('focus_board')) {
     location.href = "/ex_board/ex_list?num=1";
   }

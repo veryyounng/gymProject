@@ -10,7 +10,7 @@ public interface FreeBoardDAO {
    public int getFreeCnt() throws Exception;
    
    //게시물 목록 보기
-   public List<FreeBoardVO> getFreelist(int display,int PostpostNum) throws Exception;
+   public List<FreeBoardVO> getFreelist(String keyword, String searchType, int display,int PostpostNum) throws Exception;
    
    //게시물 내용 보기
    public FreeBoardVO getFreeDetail(int b_num) throws Exception;
@@ -26,4 +26,7 @@ public interface FreeBoardDAO {
    
    //게시물 삭제
    public void FreeDelete(int b_num) throws Exception;
+   
+   //게시물 내용 검색
+   public int getSearchCnt(String keyword, String searchType) throws Exception;
 }

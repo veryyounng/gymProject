@@ -13,7 +13,18 @@
    <select id="freeList" resultType="com.gym.domain.FreeBoardVO">
       select 
          b_num, b_title, b_writer, b_date, b_content, view_cnt
-      from f_board order by b_num desc limit #{displayPost}, #{postNum}
+      from f_board 
+      	<if test='searchType.equals("T")'>
+   			where b_title like ('%${keyword}%')
+   		</if>
+   		<if test='searchType.equals("C")'>
+   			where b_content like ('%${keyword}%')
+   		</if>
+   		<if test='searchType.equals("TC")'>
+   			where b_title like ('%${keyword}%') 
+   				or b_content like ('%${keyword}%')
+   		</if>
+      order by b_num desc limit #{displayPost}, #{postNum}
    </select>
    
    <!-- 게시물 내용보기  -->
@@ -48,10 +59,26 @@
    			where b_num = #{b_num}
    </update>
    
+   <!--게시물 삭제  -->
    <delete id="freeDelete">
    	delete
    		from f_board
    	where b_num = #{b_num}
    </delete>
    
+   <!--검색한 게시물 갯수  -->
+   <select id="freeSearchCnt" resultType="_int">
+   	select count(*) from f_board
+   		
+   		<if test='searchType.equals("T")'>
+   			where b_title like ('%${keyword}%')
+   		</if>
+   		<if test='searchType.equals("C")'>
+   			where b_content like ('%${keyword}%')
+   		</if>
+   		<if test='searchType.equals("TC")'>
+   			where b_title like ('%${keyword}%') 
+   				or b_content like ('%${keyword}%')
+   		</if>
+   </select>
 </mapper>

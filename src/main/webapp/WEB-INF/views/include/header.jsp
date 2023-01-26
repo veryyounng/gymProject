@@ -55,8 +55,8 @@
 						<a id="loginview" href="${path}/user/login">로그인/회원가입</a>
 					</c:when>
 					<c:otherwise>
-						<a href="${path}/profile/profile_check" style="margin-right:8px;">마이페이지</a>
-						<a href="${path}/user/logout" onclick="return logout();" style="margin-left:8px;">로그아웃</a>
+						<a href="${path}/profile/profile_check" style="margin-right:15px; font-size:12px;">마이페이지</a>
+						<a href="${path}/user/logout" onclick="return logout();" style="margin-left:7px; font-size:12px;">로그아웃</a>
 					</c:otherwise>
 				</c:choose>
 			</div>

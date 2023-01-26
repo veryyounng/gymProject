@@ -1,6 +1,7 @@
 package com.gym.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gym.domain.UserVO;
 import com.gym.service.MailSendService;
@@ -88,4 +90,11 @@ public class UserController {
       return "redirect:/user/login";
    }
    
+   @GetMapping("/logout")
+   public String logout(HttpServletRequest req, RedirectAttributes ra) {
+	   HttpSession session = req.getSession();
+	   session.invalidate();
+	   ra.addFlashAttribute("logout", "T");
+	   return "redirect:/";
+   }
 }

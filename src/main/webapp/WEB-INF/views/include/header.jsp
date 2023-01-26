@@ -2,6 +2,15 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+<script>
+	function logout(){
+		if(confirm("로그아웃하시겠습니까?") == true){
+			return true;
+		} else {
+			return false;
+		}
+	}
+</script>
     <header>
 		<div class="header-menu">
 			<div onclick="getIndex();">
@@ -46,8 +55,8 @@
 						<a id="loginview" href="${path}/user/login">로그인/회원가입</a>
 					</c:when>
 					<c:otherwise>
-						<a href="${path}/profile/profile_check">마이페이지 | </a>
-						<a href="${path}/user/logout">| 로그아웃</a>
+						<a href="${path}/profile/profile_check" style="margin-right:8px;">마이페이지</a>
+						<a href="${path}/user/logout" onclick="return logout();" style="margin-left:8px;">로그아웃</a>
 					</c:otherwise>
 				</c:choose>
 			</div>

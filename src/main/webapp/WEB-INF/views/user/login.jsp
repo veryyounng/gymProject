@@ -11,14 +11,30 @@
 <link rel="stylesheet" href="${path}/resources/css/login.css" />
 <link rel="stylesheet" href="${path}/resources/css/reset.css" />
 <link rel="stylesheet" href="${path}/resources/css/styles.css" />
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"/>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
 </head>
 
 <script type="text/javascript">
-	$(document).ready(function() {
-    	$('#useridtext').focus();
-   	});
+	
+	
+	
+	function check(){
+		let userid = $("#useridtext");
+		let userpw = $("#userpwtext");
+		if(userid.val() == ""){
+			alert("아이디를 입력하세요.");
+			userid.focus();
+			return false;
+		}
+		if(userpw.val() == ""){
+			alert("비밀번호를 입력하세요.");
+			userpw.focus();
+			return false;
+		}
+			return true;
+	}
+	
 </script>
 
 <body>
@@ -29,7 +45,7 @@
 			<div class="logo_medal"></div>
 			<div class="logo_img"></div>
 		</div>
-		<form method="post" action="${path}/user/login">
+		<form method="post" action="${path}/user/login" name="login_form" id="login_form">
 			<table id="logintable">
 				<tr>
 					<td id="result" colspan="2"></td>
@@ -37,17 +53,17 @@
 				<tr id="idline">
 					<th><label for="userid" id="useridfixed">아이디</label></th>
 					<td><input type="text" name="userid" id="useridtext"
-						placeholder="아이디를 입력하세요."></td>
+						placeholder="아이디를 입력하세요." value= "" autofocus></td>
 				</tr>
 
 				<tr id="pwline">
 					<th><label for="userpw" id="userpwfixed">비밀번호</label></th>
 					<td><input type="password" name="userpw" id="userpwtext"
-						onkeyup="pwcheck()" placeholder="비밀번호를 입력하세요."></td>
+						 placeholder="비밀번호를 입력하세요." value= ""></td>
 				</tr>
 				<tr>
-					<th colspan="2" id="login_button"><a href="/login/login"><input type="submit"
-						value="로그인" id="loginbutton"></a></th>
+					<th colspan="2" id="login_button"><input type="submit"
+						value="로그인" id="loginbutton" onclick="return check();"></th>
 				</tr>
 			</table>
 		</form>

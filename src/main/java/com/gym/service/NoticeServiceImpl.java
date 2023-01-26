@@ -65,7 +65,7 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public void nodiModify(NoticeVO nvo) throws Exception {
+	public void notiModify(NoticeVO nvo) throws Exception {
 		ndao.notiModify(nvo);
 	} 
 

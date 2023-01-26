@@ -69,7 +69,7 @@ a {
 			<div class="title_box">
 			<h2>공지사항 수정</h2>
 			</div>
-			<form name="form" id="form" role="form" method="post" style="margin-top: 30px"; action="${pageContext.request.contextPath}/board/notiwrite">
+			<form name="form" id="form" role="form" method="post" style="margin-top: 30px"; action="">
 
 				<div class="mb-3">
 					<label for="title">제목</label>
@@ -84,7 +84,7 @@ a {
 			</form>
 			<div style="text-align: right;">
 				<button type="button" class="btn btn-sm btn-primary" id="btnSave" 
-				 onclick="check();">작성완료</button>
+				 onclick="check();">수정 완료</button>
 				<!-- <button type="button" class="btn btn-sm btn-primary" id="btnList" >목록</button> -->
 			</div>
 	</article>

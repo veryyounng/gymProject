@@ -74,4 +74,10 @@ public class NotiController {
 	
 	}
 	
+	@RequestMapping(value="/notimodify", method=RequestMethod.POST)
+	public String postModify(NoticeVO nvo) throws Exception{
+		service.notiModify(nvo);
+		return "redirect:/board/notidetail?keyword=&num=1&notice_num=" + nvo.getNotice_num();
+	}
+	
 }

@@ -59,6 +59,13 @@
 	</delete>
 	
 	<!-- 게시물 수정 -->
+	<update id="notiModify">
+	update notice
+   			set
+   				notice_title = #{notice_title},
+   				notice_contents = #{notice_contents}
+   			where notice_num = #{notice_num}
 	
+	</update>
 	
 </mapper>

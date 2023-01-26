@@ -12,6 +12,16 @@
 <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons"/>
 <link rel="stylesheet" 
 href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+<script>
+function delete_check(){
+	   if(confirm("정말로 삭제하시겠습니까?")){
+		   return true;
+	   } else {
+		   return false;
+	   }
+}
+</script>
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>
@@ -39,7 +49,7 @@ href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wg
         <a class="btn_back" onclick="location.href='/board/notice?keyword=${keyword}&num=${select}'">목록</a>
 				<c:if test="${loginUser.userid == 'admin'}">
 					<a class="btn_modify" onclick="location.href='/board/notimodify?notice_num=${view.notice_num}'">수정</a>
-					<a class="btn_delete" onclick="location.href='/board/notidelete?notice_num=${view.notice_num}'">삭제</a>
+					<a class="btn_delete" onclick="location.href='/board/notidelete?notice_num=${view.notice_num}'" onclick="return delete_check();">삭제</a>
 				</c:if> 
 	  </div>
     </div>

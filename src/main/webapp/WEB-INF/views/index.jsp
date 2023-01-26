@@ -56,7 +56,7 @@ function loading(){
 					<div class="focus_boardcontents">
 						<table id="notice_table">
  						<c:forEach items="${nnews}" var= "list" >
-							<tr onclick="location.href='/board/notidetail?notice_num=${list.notice_num}'">
+							<tr onclick="location.href='/board/notidetail?notice_num=${list.notice_num}&keyword=&num=1'">
 									<td>${list.notice_title}</td>
 									<td><fmt:formatDate
 									value="${list.notice_date}" pattern="yyyy-MM-dd" /></td>
@@ -92,7 +92,7 @@ function loading(){
 
 		</div>
 		<div class="swiper">
-			<div class="swiper-wrapper" onclick="location.href=''">
+			<div class="swiper-wrapper" onclick="location.href='/program/programid'">
 				<div class="swiper-slide img1">
 					<div class="pic" id="HY"></div>
 				</div>

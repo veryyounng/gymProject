@@ -158,7 +158,7 @@
 						<tr>
 							<td>정원</td>
 							<td><input type="text" value="" name="rv_limit"
-								id="rv_limit" placeholder="숫자만 입력하세요"></td>
+								id="rv_limit" placeholder="숫자만 입력하세요" value=""></td>
 						</tr>
 						<tr>
 							<td>시간</td>
@@ -181,7 +181,7 @@
 						</tr>
 						<tr>
 							<td></td>
-							<td><input type="submit" id="reserBTN" value="예약생성"></td>
+							<td><input type="submit" onclick="return checkNaN();" id="reserBTN" value="예약생성"></td>
 						</tr>
 					</table>
 				</form>
@@ -197,5 +197,18 @@ var fp = flatpickr(document.getElementById("rv_date"), {
 	"locale" : "ko",
 	"minDate" : "today"
 });
+function checkNaN(){
+	let rv_limit = $("#rv_limit");
+	
+	if(!isNaN(rv_limit.val())) {
+		return true;
+	} else {
+		alert("숫자만 입력해주세요.");
+		rv_limit.val("");
+		console.log(rv_limit.val());
+		rv_limit.focus();
+		return false;
+	}
+}
 </script>
 </html>

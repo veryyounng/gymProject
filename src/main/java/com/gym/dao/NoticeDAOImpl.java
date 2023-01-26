@@ -72,6 +72,11 @@ public class NoticeDAOImpl implements NoticeDAO {
 	public void notiDelete(int notice_num) throws Exception {
 		sql.delete(namespace + ".notiDelete", notice_num);
 	}
+
+	@Override
+	public void notiModify(NoticeVO nvo) throws Exception {
+		sql.update(namespace + ".notiModify", nvo);
+	}
  
 
 }

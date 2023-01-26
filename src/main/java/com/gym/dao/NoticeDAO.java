@@ -33,4 +33,6 @@ public interface NoticeDAO {
 	//게시물 삭제
 	public void notiDelete(int notice_num) throws Exception;
 
+	//게시글 수정 
+	public void notiModify(NoticeVO nvo) throws Exception;
 }

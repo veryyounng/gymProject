@@ -65,6 +65,13 @@ public class NotiController {
 		return "redirect:/board/notice?num=1";
 		
 	}
-
+	
+	@RequestMapping(value="/notimodify",method=RequestMethod.GET)
+	public String getModify(int notice_num, Model model) throws Exception{
+		NoticeVO nvo = service.getDetail(notice_num);
+		model.addAttribute("notidetail",nvo);
+		return "/board/notimodify";
+	
+	}
 	
 }

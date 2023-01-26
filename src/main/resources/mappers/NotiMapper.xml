@@ -58,4 +58,7 @@
 		where notice_num = #{notice_num};
 	</delete>
 	
+	<!-- 게시물 수정 -->
+	
+	
 </mapper>

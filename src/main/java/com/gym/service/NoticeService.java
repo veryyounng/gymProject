@@ -33,4 +33,7 @@ public interface NoticeService {
 	//게시물 삭제
 	public void notiDelete(int notice_num) throws Exception;
 	
+	//게시물 수정
+	public void nodiModify(NoticeVO nvo) throws Exception;
+	
 } 

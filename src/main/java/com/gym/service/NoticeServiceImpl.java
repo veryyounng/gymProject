@@ -62,6 +62,11 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public void notiDelete(int notice_num) throws Exception {
 		ndao.notiDelete(notice_num);
+	}
+
+	@Override
+	public void nodiModify(NoticeVO nvo) throws Exception {
+		ndao.notiModify(nvo);
 	} 
 
 	

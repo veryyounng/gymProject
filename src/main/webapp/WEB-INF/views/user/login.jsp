@@ -18,8 +18,6 @@
 
 <script type="text/javascript">
 	
-	
-	
 	function check(){
 		let userid = $("#useridtext");
 		let userpw = $("#userpwtext");

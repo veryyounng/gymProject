@@ -7,126 +7,31 @@
 <head>
 <meta charset="UTF-8">
 <title>아이디 찾기</title>
+<link rel = "stylesheet" href="${path}/resources/css/id_find.css" >
 <link rel="stylesheet" href="${path}/resources/css/styles.css" />
 <link rel="stylesheet" href="${path}/resources/css/notistyle.css" />
 <link rel="shortcut icon" href="${path}/resources/img/파비콘.png" type="image/x-icon">
 </head>
-<style>
-    .container{
-        width: 600px;
-        height: 400px;
-        border: 1px solid black;
-        margin: 150px auto;
-    }
-    .find_id{
-        width: 500px;
-        height: 50px;
-        border: 1px solid black;
-        margin: 30px auto;
-        /* display: flex; */
-        text-align: center;
-        font-size: 30px;
-        //padding-top: 20px;
-        font-weight: bold;
-    }
-    #idfindtable{
-        margin: 50px auto;   
-    }
 
-    #idname{
-        text-align: center;
-        margin-top: 50px;
-        /* padding-top: 50px; */
-        }
-    #usernamefixed{
-        font-size: 20px;
-        text-align: center;
-        width: 100px;
-        height: 50px;
-        }
-    #usernametext{
-        width: 300px;
-        height: 50px;
-        font-size: 20px;
-        }
-    #emailline{
-        text-align: center;
-        margin-top: 50px;
-        }
-    #useremailfixed{
-        font-size: 20px;
-        text-align: center;
-        width: 100px;
-        height: 50px;
-        }
-    #useremailtext{
-        width: 150px;
-        height: 50px;
-        font-size: 20px;
-    }
-    #submitbutton{
-        margin-top: 30px;
-        width: 100px;
-        height: 60px;
-        font-size: 20px;
-        /* margin: 0 auto; */
-        text-align: center;
-    }
-    #submitbutton:hover{
-        background-color: gray;
-        color: white;
-        border: none;
-        }
-    
-     .select_box {
-  		width: 120px;
-  		height: 50px;
-  		box-sizing: border-box;
-  		margin-left: 5px;
-  		padding: 5px 0 5px 10px;
-  		border-radius: 4px;
-  		border: 1px solid #d9d6d6;
-  		color: #383838;
-  		background-color: #ffffff;
-  		font-family: 'Montserrat', 'Pretendard', sans-serif;
-  		font-size: 16px;
-		}
-
-/* option {
-  font-size: 16px;
-} */
-
-	.text_box{
-    	width: 140px;
-    	height: 50px;
-    	font-size: 16px;
-		}
-		
-	.text_box #domain-list option {
-  		font-size: 14px;
-  		background-color: #ffffff;
-	}
-    
-</style>
 <body>
 <%@ include file="../include/header.jsp" %>
 	<div class="container">
-        <div class="find_id">
-            아이디 찾기
+		<div class="body_findid">
+        <div class="find_img">
+           	<div class="logo_medal"></div>
+           	<div class="logo_img"></div>
         </div>
         <form action="id_find" method="post">
             <table id="idfindtable">
-                <tr>
-                    <td id="result" colspan="2"></td>
-                </tr>
+                
                 <tr id="nameline">
                     <th><label for="username" id="usernamefixed">이름</label></th>
-                    <td><input type="text" name="username" id="usernametext"></td>
+                    <td><input type="text" name="username" id="usernametext" value="" autofocus></td>
                 </tr>
            
                 <tr id="emailline">
                     <th><label for="useremail" id="useremailfixed">이메일 주소</label></th>
-                    <td><input type="e_mail" name="useremail" id="useremailtext"  onkeyup="pwcheck()"> @
+                    <td id="e_mail_box"><input type="e_mail" name="useremail" id="useremailtext"  onkeyup="pwcheck()"> @
                         <input class="text_box" id="domain-txt" type="text"/>
                         <select class="select_box" id="domain-list">
                           <option value="type">직접 입력</option>
@@ -141,11 +46,12 @@
                 </tr>
                 <tr>
                     <th colspan="2" id="submit_button">
-                        <input type="submit" value="확인" id="submitbutton">
+                        <input type="submit" value="아이디 찾기" id="submitbutton">
                     </th>
                 </tr>
             </table>
-        
+            </form>
+        </div>
     </div>
     <script>
        // 도메인 직접 입력 or domain option 선택

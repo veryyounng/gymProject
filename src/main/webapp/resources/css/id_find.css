@@ -1,0 +1,159 @@
+@charset "UTF-8";
+
+.container {
+	margin-top: 100px;
+	height: 550px;
+}
+
+.body_findid {
+	padding-top: 20px;
+	width: 600px;
+	margin: auto;
+	border: 1px solid #e4e8eb;
+	border-radius: 8px;
+	
+}
+
+.find_img {
+	display: flex;
+	/* align-items: center; */
+	justify-content: center;
+	margin: 0 auto;
+	text-align: center;
+	width: 400px;
+	height: 130px;
+}
+
+.logo_medal {
+	background: url("../img/파비콘.png") no-repeat;
+	width: 106px;
+	height: 106px;
+	background-size: contain;
+}
+
+.logo_img {
+	background: url("../img/logo_text.png") no-repeat;
+	width: 220px;
+	height: 106px;
+	background-size: contain;
+}
+
+#idfindtable {
+	margin: 15px auto;
+}
+
+#idname {
+	text-align: center;
+	margin-top: 50px;
+	/* padding-top: 50px; */
+}
+
+#usernamefixed {
+	font-size: 16px;
+	text-align: center;
+	width: 100px;
+	height: 50px;
+}
+
+#usernametext {
+	padding-left: 10px;
+	width: 428px;
+	height: 39px;
+	margin-left: 10px;
+	font-size: 12px;
+	border-radius: 8px;
+	border: 1px solid gray;
+	margin-right: 3px;
+}
+
+#emailline {
+	text-align: center;
+	margin-top: 50px;
+}
+
+#e_mail_box {
+	width: 440px;
+	display: flex;
+	align-items: center;
+	margin-top: 5px;
+}
+
+#useremailfixed {
+	font-size: 16px;
+	text-align: center;
+	width: 100px;
+	height: 50px;
+}
+
+#useremailtext {
+	width: 150px;
+	padding-left: 10px;
+	height: 39px;
+	margin-left: 10px;
+	font-size: 12px;
+	border-radius: 8px;
+	border: 1px solid gray;
+	margin-right: 3px;
+}
+
+#domain-txt {
+	padding-left: 10px;
+	height: 39px;
+	font-size: 12px;
+	border-radius: 8px;
+	border: 1px solid gray;
+	width: 150px;
+	margin-left: 3px;
+}
+
+#domain-list {
+	padding: 1px 2px 1px 10px;
+	height: 39px;
+	font-size: 12px;
+	border-radius: 8px;
+	border: 1px solid gray;
+	width: 112px;
+}
+
+#submitbutton {
+	margin-top: 30px;
+	border: 1px solid gray;
+	width: 113px;
+	height: 40px;
+	font-size: 14px;
+	border-radius: 5px;
+	text-align: center;
+	cursor: pointer;
+}
+
+#submitbutton:hover {
+	background-color: gray;
+	color: white;
+	border: none;
+	transition: all .3s;
+}
+
+.select_box {
+	width: 120px;
+	height: 50px;
+	box-sizing: border-box;
+	margin-left: 5px;
+	padding: 5px 0 5px 10px;
+	border-radius: 4px;
+	border: 1px solid #d9d6d6;
+	color: #383838;
+	background-color: #ffffff;
+	font-family: 'Montserrat', 'Pretendard', sans-serif;
+	font-size: 16px;
+}
+
+.text_box {
+	width: 140px;
+	height: 50px;
+	font-size: 16px;
+}
+
+.text_box #domain-list option {
+	font-size: 14px;
+	background-color: #ffffff;
+}

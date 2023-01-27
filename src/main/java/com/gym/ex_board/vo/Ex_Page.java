@@ -65,4 +65,36 @@ public class Ex_Page {
 		
 	}
 	
+	// 검색 타입과 검색어
+	/*
+	private String searchTypeKey;
+	
+	public void setSearchTypeKey(String searchType, String keyword) {
+		
+		if(searchType.equals("") || keyword.equals("")) {
+			searchTypeKey = "";
+		} else {
+			searchTypeKey = "&searchType=" + searchType + "&keyword=" + keyword;
+		}
+	}
+	
+	public String getSearchTypeKey() {
+		return searchTypeKey;
+	}
+	*/
+	
+	
+	public String getSearchTypeKey() {
+		
+		if(searchType.equals("") || keyword.equals("")) {
+			return "";
+		} else {
+			return "&searchType=" + searchType + "&keyword=" + keyword;
+		}
+		
+	}
+	
+	private String searchType;
+	private String keyword;
+	
 }

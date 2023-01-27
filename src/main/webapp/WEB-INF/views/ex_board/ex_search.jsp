@@ -52,7 +52,7 @@
                     </div>
                     
                     <div class="noti_header_box txt_right">
-                        <div name="s_form" id="search">
+                        <form name="s_form" id="search">
 	                        <select name = "searchType" >
 	                    		<option value = "title" <c:if test="${ex_page.searchType eq 'title'}">selected</c:if> >제목</option>
 	                    		<option value = "content" <c:if test="${ex_page.searchType eq 'content'}">selected</c:if> >내용</option>
@@ -61,7 +61,7 @@
 	                    	</select>
                             <input name="keyword" value="${keyword}" maxlength=50 type="text" placeholder="검색어 입력">
                             <button class="btn_primary" id="searchBtn" type = "button">검색</button>
-                        </div>
+                        </form>
                     </div>
                    
                 </div>
@@ -113,14 +113,14 @@
                     <ul class="pagination">
                     
                     	<c:if test="${ex_page.prev}">
-                    		<span><a href = "/ex_board/ex_list?num=${ex_page.startPageNum - 1}${ex_page.searchTypeKey}">&nbsp;&lt;&nbsp;</a></span>
+                    		<span><a href = "/ex_board/ex_search?num=${ex_page.startPageNum - 1}${ex_page.searchTypeKey}">&nbsp;&lt;&nbsp;</a></span>
                     	</c:if>
                     
                     	<c:forEach begin="${ex_page.startPageNum}" end="${ex_page.endPageNum}" var = "num">
                     		<span>
                     		
                     			<c:if test = "${select != num}">
-                    				<a href = "/ex_board/ex_list?num=${num}${ex_page.searchTypeKey}">&nbsp;${num}&nbsp;</a>
+                    				<a href = "/ex_board/ex_search?num=${num}${ex_page.searchTypeKey}">&nbsp;${num}&nbsp;</a>
                     			</c:if>
                     			
 		             			<c:if test = "${select == num}">
@@ -131,7 +131,7 @@
                     	</c:forEach>
                     	
                     	<c:if test="${ex_page.next}">
-                    		<span><a href = "/ex_board/ex_list?num=${ex_page.endPageNum + 1}${ex_page.searchTypeKey}">&nbsp;&gt;&nbsp;</a></span>
+                    		<span><a href = "/ex_board/ex_search?num=${ex_page.endPageNum + 1}${ex_page.searchTypeKey}">&nbsp;&gt;&nbsp;</a></span>
                     	</c:if>
                     </ul>
                 </div>
@@ -148,7 +148,7 @@
 			let searchType = document.getElementsByName("searchType")[0].value;
 			let keyword = document.getElementsByName("keyword")[0].value;
 			
-			location.href = "/ex_board/ex_list?num=1" + "&searchType=" + searchType + "&keyword=" + keyword;
+			location.href = "/ex_board/ex_search?num=1" + "&searchType=" + searchType + "&keyword=" + keyword;
 			
 		};
 	

@@ -55,8 +55,21 @@ public class Ex_BoardServiceImpl implements Ex_BoardService {
 	public List<Ex_BoardVO> ex_listPage(int displayPost, int postNum) throws Exception {
 		return dao.ex_listPage(displayPost, postNum);
 	}
+
+	//게시물 목록 + 페이징 + 검색
+	@Override
+	public List<Ex_BoardVO> ex_search(int displayPost, int postNum, String searchType, String keyword)
+			throws Exception {
+		return dao.ex_search(displayPost, postNum, searchType, keyword);
+	}
+
+	//게시물 총 갯수 + 검색 적용
+	@Override
+	public int ex_SearchCount(String searchType, String keyword) throws Exception {
+		return dao.ex_SearchCount(searchType, keyword);
+	}
+
 	
-
-
+	
 
 }

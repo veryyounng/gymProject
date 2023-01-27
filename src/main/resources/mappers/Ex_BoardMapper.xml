@@ -57,6 +57,55 @@
 		limit #{displayPost}, #{postNum}
 	</select>
 	
+	<!-- 검색 -->
+	<select id="ex_search" parameterType="hashMap" resultType="com.gym.ex_board.vo.Ex_BoardVO">
+		select
+			ex_num, ex_title, ex_writer, ex_date, ex_content, view_cnt
+		from ex_board
+
+		<if test = 'searchType.equals("title")'>
+			WHERE ex_title LIKE concat('%', #{keyword},'%')
+		</if>
+
+		<if test = 'searchType.equals("content")'>
+			WHERE ex_content LIKE concat('%', #{keyword},'%')
+		</if>
+
+		<if test = 'searchType.equals("title_content")'>
+			WHERE ex_title LIKE concat('%', #{keyword},'%')
+				or ex_content LIKE concat('%', #{keyword},'%')
+		</if>
+
+		<if test = 'searchType.equals("writer")'>
+			WHERE ex_writer LIKE concat('%', #{keyword},'%')
+		</if>
+		
+		order by ex_date desc
+		limit #{displayPost}, #{postNum}
+		
+	</select>
+	
+	<select id = "ex_searchCount" parameterType="hashMap" resultType="_int">
+		select count(ex_num) from ex_board
+		
+		<if test = 'searchType.equals("title")'>
+			WHERE ex_title LIKE concat('%', #{keyword},'%')
+		</if>
+
+		<if test = 'searchType.equals("content")'>
+			WHERE ex_content LIKE concat('%', #{keyword},'%')
+		</if>
+
+		<if test = 'searchType.equals("title_content")'>
+			WHERE ex_title LIKE concat('%', #{keyword},'%')
+				or ex_content LIKE concat('%', #{keyword},'%')
+		</if>
+
+		<if test = 'searchType.equals("writer")'>
+			WHERE ex_writer LIKE concat('%', #{keyword},'%')
+		</if>
+		
+	</select>
 	
 	
 </mapper>

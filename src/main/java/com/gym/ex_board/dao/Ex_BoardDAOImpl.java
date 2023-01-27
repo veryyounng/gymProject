@@ -66,6 +66,32 @@ public class Ex_BoardDAOImpl implements Ex_BoardDAO {
 		return sql.selectList(namespace + ".ex_listpage", data);
 	}
 
+	//게시물 리스트 + 페이징 + 검색
+	@Override
+	public List<Ex_BoardVO> ex_search(int displayPost, int postNum, String searchType, String keyword)
+			throws Exception {
+		HashMap<String , Object> data = new HashMap<String, Object>();
+		
+		data.put("displayPost", displayPost);
+		data.put("postNum", postNum);
+		
+		data.put("searchType", searchType);
+		data.put("keyword", keyword);
+		
+		return sql.selectList(namespace + ".ex_search", data);
+	}
+
+	// 검색적용 총 갯수
+	@Override
+	public int ex_SearchCount(String searchType, String keyword) throws Exception {
+		HashMap<String , Object> data = new HashMap<String, Object>();
+		
+		data.put("searchType", searchType);
+		data.put("keyword", keyword);
+		
+		return sql.selectOne(namespace + ".ex_searchCount", data);
+	}
+
 
 	
 }

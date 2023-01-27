@@ -28,23 +28,30 @@ public class ExBoardController {
 	   
 	//게시물 리스트
 	@RequestMapping(value="/ex_list", method=RequestMethod.GET)
-	public void getList(Model model, @RequestParam("num") int num) throws Exception {
+	public void getlist(Model model, @RequestParam("num") int num,
+			@RequestParam(value = "searchType", required = false, defaultValue = "title") String searchType,
+			@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword) throws Exception {
 		
 		Ex_Page page = new Ex_Page();
 		
 		page.setNum(num);
-		page.setCount(service.ex_count());
+		page.setCount(service.ex_SearchCount(searchType, keyword));
+		
+		//검색 타입 + 검색어
+		//page.setSearchTypeKey(searchType, keyword);
+		page.setSearchType(searchType);
+		page.setKeyword(keyword);
 		
 		List<Ex_BoardVO> list = null;
-		list = service.ex_listPage(page.getDisplayPost(), page.getPostNum());
-
+		list = service.ex_search(page.getDisplayPost(), page.getPostNum(), searchType, keyword);
+		
 		model.addAttribute("ex_list", list);
-		model.addAttribute("pageNum", page.getPageNum());
-
-		// 현재 페이지
+		model.addAttribute("ex_page", page);
 		model.addAttribute("select", num);
 
-		model.addAttribute("ex_page", page);
+		//model.addAttribute("searchType", searchType);
+		//model.addAttribute("keyword", keyword);
+		
 	}
 
 	//게시물 작성 GET
@@ -102,89 +109,29 @@ public class ExBoardController {
 		return "redirect:/ex_board/ex_list";
 	}
 	
-	//게시물 목록 + 페이징 추가
-	@RequestMapping(value="/ex_listpage", method=RequestMethod.GET)
-	public void getListPage(Model model, @RequestParam("num") int num) throws Exception {
+	//게시물 목록 + 페이징 추가 + 검색
+	/*
+	@RequestMapping(value="/ex_search", method=RequestMethod.GET)
+	public void getSearch(Model model, @RequestParam("num") int num,
+			@RequestParam(value = "searchType", required = false, defaultValue = "title") String searchType,
+			@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword) throws Exception {
 		
 		Ex_Page page = new Ex_Page();
 		
 		page.setNum(num);
-		page.setCount(service.ex_count());
+		page.setCount(service.ex_SearchCount(searchType, keyword));
+		
+		page.setSearchType(searchType);
+		page.setKeyword(keyword);
 		
 		List<Ex_BoardVO> list = null;
-		list = service.ex_listPage(page.getDisplayPost(), page.getPostNum());
-
+		list = service.ex_search(page.getDisplayPost(), page.getPostNum(), searchType, keyword);
+		
 		model.addAttribute("ex_list", list);
-		model.addAttribute("pageNum", page.getPageNum());
-
-		// 현재 페이지
-		model.addAttribute("select", num);
-
 		model.addAttribute("ex_page", page);
-		
-		/*
-		// 시작 및 끝 번호
-		model.addAttribute("startPageNum", page.getStartPageNum());
-		model.addAttribute("endPageNum", page.getEndPageNum());
-		
-		// 이전 및 다음
-		model.addAttribute("prev", page.getPrev());
-		model.addAttribute("next", page.getNext());
-		*/
-		
-		
-
-		
-		/*
-		// 게시물 총 갯수
-		int count = service.ex_count();
-		
-		// 한 페이지에 표시될 게시물 갯수
-		int postNum = 10;
-		
-		// 하단 페이징
-		int pageNum = (int)Math.ceil((double)count/postNum);
-
-		// 출력할 게시물
-		int displayPost = (num - 1) * postNum;
-		
-		// 한번에 표시할 페이징 번호의 갯수
-		int pageNum_cnt = 10;
-		
-		// 표시되는 페이지의 마지막 번호
-		int endPageNum = (int)(Math.ceil((double)num / (double)pageNum_cnt) * pageNum_cnt);
-				
-		// 표시되는 페이지의 첫번째 번호
-		int startPageNum = endPageNum - (pageNum_cnt - 1);
-		
-		// 마지막 번호 재 계산
-		int endPageNum_tmp = (int)(Math.ceil((double)count / (double)pageNum_cnt));
-
-		if(endPageNum > endPageNum_tmp) {
-			endPageNum = endPageNum_tmp;
-		}
-
-		boolean prev = startPageNum == 1 ? false : true;
-		boolean next = endPageNum * pageNum_cnt >= count ? false : true;
-		
-		List<Ex_BoardVO> list = null;
-		list = service.ex_listPage(displayPost, postNum);
-		
-		model.addAttribute("ex_list", list);
-		model.addAttribute("pageNum", pageNum);
-		
-		// 시작 및 끝 번호
-		model.addAttribute("startPageNum", startPageNum);
-		model.addAttribute("endPageNum", endPageNum);
-		
-		// 이전 및 다음
-		model.addAttribute("prev", prev);
-		model.addAttribute("next", next);
-		
-		// 현재 페이지
 		model.addAttribute("select", num);
-		*/
+		
 	}
-	
+	*/
 	
 }

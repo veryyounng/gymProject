@@ -27,5 +27,11 @@ public interface Ex_BoardDAO {
 	//게시물 리스트 + 페이징
 	public List<Ex_BoardVO> ex_listPage(int displayPost , int postNum) throws Exception;
 	
+	//게시물 리스트 + 페이징 + 검색
+	public List<Ex_BoardVO> ex_search(
+			int displayPost, int postNum, String serachType, String keyword) throws Exception;
+	
+	// 검색적용 총 갯수
+	public int ex_SearchCount(String searchType, String keyword) throws Exception;
 	
 }

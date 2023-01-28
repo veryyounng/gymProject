@@ -33,6 +33,7 @@ public class ProfileServiceImpl implements ProfileService {
 	public void mymodify(FreeBoardVO free) {
 		pdao.my_exercise_modify(free);
 	}
+	
 //	마이페이지 게시글 삭제
 	@Override
 	public void mydelete(int b_num) {

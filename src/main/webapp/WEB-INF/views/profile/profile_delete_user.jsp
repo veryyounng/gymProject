@@ -22,7 +22,7 @@
 <style>
 .side-bar {
 	position: relative;
-	top: -40px;
+	top: -57px;
 }
 
 .banana {
@@ -68,7 +68,7 @@
 					<tr>
 						<th><label for="userid">아이디</label></th>
 						<td><input type="text" name="userid" id="userid" value=""
-							readonly style="color: gray;"></td>
+							style="color: gray;"></td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>

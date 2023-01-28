@@ -5,7 +5,7 @@
       <div class="mypage">
         <h4 class="h4">마이페이지</h4>
         <ul>
-          <li><p style="color: red; font-weight: bold;">프로필 보기</p></li>
+          <li><a href="profile_check.html">프로필 보기</a></li>
           <li><a href="profile_modify.html">프로필 수정</a></li>
           <li><a href="profile_pw_modify.html">비밀번호 수정</a></li>
           <li><a href="profile_delete_user.html">회원 탈퇴</a></li>

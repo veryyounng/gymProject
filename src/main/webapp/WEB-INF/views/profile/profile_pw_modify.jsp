@@ -22,7 +22,7 @@
 <style>
 .side-bar {
 	position: relative;
-	top: -40px;
+	top: -57px;
 }
 
 .banana {
@@ -57,16 +57,14 @@
 
 		<!-- 개발코드 시작 -->
 		<div class="banana">
-			<form name="joinForm" method="post" action=""
+			<form name="joinForm" method="post"
+				action="${path}/profile/profile_pw_modify"
 				onsubmit="return sendit()">
 				<table>
 					<tr>
 						<th><label for="userpw">현재 비밀번호</label></th>
 						<td><input type="password" name="userpw" id="userpw">
 						</td>
-					</tr>
-					<tr>
-						<td>&nbsp;</td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>

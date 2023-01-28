@@ -22,7 +22,7 @@
 <style>
 .side-bar {
 	position: relative;
-	top: -40px;
+	top: -148px;
 }
 
 .banana {
@@ -43,7 +43,7 @@
 	font-weight: bold;
 }
 
-.banana #userid, .banana #username, .banana #usernick, .banana #sample6_address,
+.banana #userid, .banana #email, .banana #username, .banana #usernick, .banana #sample6_address,
 	.banana #phone, .banana #sample6_detailAddress, .banana #sample6_extraAddress
 	{
 	width: 300px;

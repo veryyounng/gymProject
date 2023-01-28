@@ -22,7 +22,7 @@
 <style>
 .side-bar {
 	position: relative;
-	top: -40px;
+	top: -155px;
 }
 
 .banana {

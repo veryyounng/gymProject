@@ -46,25 +46,25 @@ public class FreeBoardDAOImpl implements FreeBoardDAO {
    @Override
    public void freeViewCnt(int b_num) throws Exception {
 	  sql.selectOne(namespace + ".freeViewCnt", b_num);
-}
+   }
 
    //게시물 글쓰기
    @Override
    public void freewrite(FreeBoardVO vo) throws Exception {
 	   sql.insert(namespace + ".freeWrite", vo);
 	
-}
+   }
    //게시물 수정하기
    @Override
    public void freeModify(FreeBoardVO vo) throws Exception {
 	   sql.update(namespace + ".freeModify", vo);
 	
-}
+   }
    //게시물 삭제
    @Override
    public void freeDelete(int b_num) throws Exception {
 	   sql.delete(namespace + ".freeDelete", b_num);
-}
+   }
    //게시물 내용 검색해서 숫자 세기
    @Override
    public int getSearchCnt(String keyword,String searchType) throws Exception {
@@ -72,13 +72,21 @@ public class FreeBoardDAOImpl implements FreeBoardDAO {
 	   data.put("keyword", keyword);
 	   data.put("searchType", searchType);
 	   return sql.selectOne(namespace+".freeSearchCnt",data);
-}
+   }
    //댓글 작성
    @Override
    public void freeReplyWrite(ReplyVO vo) throws Exception {
 	   sql.insert(namespace + ".freeReplyWrite", vo);
-}
+   }
+
+   @Override
+   public List<ReplyVO> freeReplylist(int b_num) throws Exception {
+	   return sql.selectList(namespace + ".freeReplyList");
+	
+   }
+
+ 
    
     
 
-}
+	}

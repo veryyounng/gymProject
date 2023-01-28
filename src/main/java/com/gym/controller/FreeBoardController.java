@@ -95,11 +95,13 @@ import com.gym.service.FreeBoardService;
     	  
     	  return  "redirect:/free/freelist?searchType=T&keyword=&num=1";
       }
-      //댓글 등록
+      //댓글 작성
       @PostMapping("/replywrite")
       public String freeReplyWrite(ReplyVO vo) throws Exception{
     	  service.freeReplyWrite(vo);
     	  int b_num = vo.getB_num();
     	  return "redirect:/free/freedetail?b_num="+b_num;
       }
+      //댓글 조회
+      
 }

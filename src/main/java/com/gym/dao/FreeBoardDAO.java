@@ -33,4 +33,7 @@ public interface FreeBoardDAO {
    
    //댓글작성
    public void freeReplyWrite(ReplyVO vo) throws Exception;
+   
+   //댓글 조회
+   public List<ReplyVO> freeReplylist(int b_num) throws Exception;
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gym.mappers.Ex_Reply">
+
+	<!-- 댓글 조회 -->
+	<select id="exc_replylist" parameterType="_int" resultType="com.gym.ex_board.vo.Ex_ReplyVO">
+		select
+			exc_num, ex_num, exc_writer, exc_contents, exc_date
+		from exc_comment
+			where ex_num = #{ex_num}
+	</select>	
+	
+	<!-- 댓글 작성 -->
+	<insert id="exc_replywriter" parameterType="com.gym.ex_board.vo.Ex_ReplyVO">
+		insert into exc_comment(ex_num, exc_writer, exc_contents)
+			value(#{ex_num}, #{exc_writer}, #{exc_contents})
+	</insert>
+	
+	<!-- 댓글 수정 -->
+	<update id="exc_replymodify" parameterType="com.gym.ex_board.vo.Ex_ReplyVO">
+		update exc_comment set
+			exc_contents = #{exc_contents}
+		where exc_num = #{exc_num}
+			and ex_num = #{ex_num}
+	</update>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="exc_replydelete" parameterType="com.gym.ex_board.vo.Ex_ReplyVO">
+		delete from exc_comment
+		where exc_num = #{exc_num}
+			and ex_num = #{ex_num}
+	</delete>
+
+</mapper>

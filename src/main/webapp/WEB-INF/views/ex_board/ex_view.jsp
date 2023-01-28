@@ -56,10 +56,29 @@ body {
 					<a href="/ex_board/ex_delete?ex_num=${ex_view.ex_num}">게시물 삭제</a>
 				</div>
 				
-			</div>
+				<ul>
+				    <li>
+				        <div>
+				            <p>첫번째 댓글 작성자</p>
+				            <p>첫번째 댓글</p>
+				        </div>
+				    </li>
+				    <li>
+				        <div>
+				            <p>두번째 댓글 작성자</p>
+				            <p>두번째 댓글</p>
+				        </div>
+				    </li>
+				    <li>
+				        <div>
+				            <p>세번째 댓글 작성자</p>
+				            <p>세번째 댓글</p>
+				        </div>
+				    </li>
+				</ul>
 				
 		</div>
-
+		
 	</article>
 	
 <script>

@@ -89,12 +89,12 @@ import com.gym.service.FreeBoardService;
       }
       
       //게시물 삭제
-      @GetMapping("/freedelete")
+      @PostMapping("/freedelete")
       public String getDelete(@RequestParam("b_num") int b_num) throws Exception{
     	  service.freeDelete(b_num);
-    	  
-    	  return  "redirect:/free/freelist?searchType=T&keyword=&num=1";
+    	  return "redirect:/free/freelist?searchType=T&keyword=&num=1";
       }
+
       //댓글 작성
       @PostMapping("/replywrite")
       public String freeReplyWrite(ReplyVO vo) throws Exception{

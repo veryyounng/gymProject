@@ -6,9 +6,11 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gym.domain.NoticeVO;
 import com.gym.domain.Page;
@@ -59,13 +61,14 @@ public class NotiController {
 		
 	}
 	
-	@RequestMapping(value="/notidelete", method=RequestMethod.GET)
+	@RequestMapping(value="/notidelete", method=RequestMethod.POST)
 	public String getDelete(int notice_num) throws Exception {
 		service.notiDelete(notice_num);
-		return "redirect:/board/notice?num=1";
+		return "redirect:/board/notice?num=1&keyword=";
 		
 	}
-	
+
+
 	@RequestMapping(value="/notimodify",method=RequestMethod.GET)
 	public String getModify(int notice_num, Model model) throws Exception{
 		NoticeVO nvo = service.getDetail(notice_num);

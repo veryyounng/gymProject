@@ -24,6 +24,13 @@
 <link rel="stylesheet" 
 href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
+<script>
+	if(${loginUser == null}){
+		alert("로그인 후 이용하세요");
+		location.href = "/user/login";
+	}
+</script>
+
 <style>
 .board_body {
     width: 1000px;

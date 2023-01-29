@@ -101,11 +101,12 @@
   justify-content: center;
   cursor: pointer;
   margin: 0 10px;
+  background-color: #fff !important; 
 }
 
 .btns .btn_delete:hover {
-  color: #000;
-  background-color: rgb(242, 242, 242);
+  color: #000 !important;
+  background-color: rgb(242, 242, 242) !important;
 	
 }
 .btns {

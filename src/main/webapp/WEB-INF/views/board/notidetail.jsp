@@ -16,13 +16,13 @@
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 <script>
-function delete_check(){
-	   if(confirm("정말로 삭제하시겠습니까?")){
-		   return true;
-	   } else {
-		   return false;
-	   }
-}
+	function delete_check() {
+		if (confirm("정말로 삭제하시겠습니까?")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 </script>
 </head>
 <body>
@@ -33,10 +33,9 @@ function delete_check(){
 			<div class="title_box">
 				<h2>공지사항</h2>
 			</div>
-			<form id=boardform method=post action="${cp}/board/notidelete">
+
 			<div id="title_box2">
-		
-					<div class="view_title">${view.notice_title}</div>
+				<div class="view_title">${view.notice_title}</div>
 			</div>
 			<div class="view_dc">
 
@@ -55,12 +54,14 @@ function delete_check(){
 				<c:if test="${loginUser.userid == 'admin'}">
 					<a class="btn_modify"
 						onclick="location.href='/board/notimodify?notice_num=${view.notice_num}'">수정</a>
-					<input class="btn_delete" type="submit" value="삭제"
-						onclick="return delete_check();">
+					<form id="boardform" method="post" action="${cp}/board/notidelete">
+						<input type="hidden" value="${view.notice_num}" name="notice_num" />
+						<input class="btn_delete" type="submit" value="삭제"
+							onclick="return delete_check();">
+					</form>
 				</c:if>
 			</div>
-				</form>
-			
+
 		</div>
 	</div>
 	<!--  개발코드 끝 -->

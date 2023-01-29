@@ -51,6 +51,9 @@ select {
 	height: 22px;
 	margin-right: 3px;
 }
+.btn_primary{
+	width: 48px;
+}
 </style>
 </head>
 

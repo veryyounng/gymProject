@@ -2,6 +2,8 @@ package com.gym.controller;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,7 +43,7 @@ import com.gym.service.FreeBoardService;
         
          return "/board/freeboard_list";
       }
-       
+      
       //게시물 조회
       @GetMapping ("/freedetail")
       public String getFreeDetail (String keyword, int b_num, Model model) throws Exception{
@@ -52,6 +54,7 @@ import com.gym.service.FreeBoardService;
     	  FreeBoardVO vo = service.getFreeDetail(b_num);
     	  model.addAttribute("freedetail", vo);
     	  model.addAttribute("keyword", keyword);
+    	  
     	  return "/board/freeboard_detail";
       }
       
@@ -90,7 +93,7 @@ import com.gym.service.FreeBoardService;
       
       //게시물 삭제
       @PostMapping("/freedelete")
-      public String getDelete(@RequestParam("b_num") int b_num) throws Exception{
+      public String getDelete(int b_num) throws Exception{
     	  service.freeDelete(b_num);
     	  return "redirect:/free/freelist?searchType=T&keyword=&num=1";
       }
@@ -102,6 +105,5 @@ import com.gym.service.FreeBoardService;
     	  int b_num = vo.getB_num();
     	  return "redirect:/free/freedetail?b_num="+b_num;
       }
-      //댓글 조회
-      
+
 }

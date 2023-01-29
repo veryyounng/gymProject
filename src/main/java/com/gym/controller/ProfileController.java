@@ -2,6 +2,9 @@ package com.gym.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,22 +49,28 @@ public class ProfileController {
 	}
 
 	@RequestMapping(value = "/profile_modify", method = RequestMethod.POST)
-	public String profile_modify(UserVO vo) throws Exception {
+	public String profile_modify(UserVO vo, HttpServletRequest req) throws Exception {
 		userservice.profile_modify(vo);
+		HttpSession session = req.getSession();
+		session.setAttribute("loginUser", vo);
 		return "redirect:/profile/profile_check";
 	}
 
 //	비밀번호 수정
 	@RequestMapping(value = "/profile_pw_modify", method = RequestMethod.POST)
-	public String profile_pw_modify(UserVO vo) throws Exception {
+	public String profile_pw_modify(UserVO vo, HttpServletRequest req) throws Exception {
 		userservice.pw_modify(vo);
+		HttpSession session = req.getSession();
+		session.setAttribute("loginUser", vo);
 		return "redirect:/profile/profile_check";
 	}
 
 //	회원 탈퇴
 	@RequestMapping(value = "/profile/profile_delete_user", method = RequestMethod.POST)
-	public String profile_delete_user(UserVO vo) throws Exception {
+	public String profile_delete_user(UserVO vo, HttpServletRequest req) throws Exception {
 		userservice.delete_user(vo);
+		HttpSession session = req.getSession();
+		session.invalidate();
 		return "redirect:/";
 	}
 

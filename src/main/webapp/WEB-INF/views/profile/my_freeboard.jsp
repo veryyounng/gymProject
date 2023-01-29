@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -160,14 +161,14 @@ ul.tabs li.current {
 		<!-- 사이드바 끝 -->
 
 		<!-- 개발코드 시작 -->
-		<div class="banana"> 
+		<div class="banana">
 			<div class="profile">
 				<div class="profile_pic">
 					<img src="${path}/resources/img/profile_pic.png" alt="프로필">
 				</div>
 				<div class="profile_intro">
-					<span style="font-size: 25px; margin-bottom: 10px;">닉네임 님</span> <span
-						style="font-size: 15px;">자유게시판 게시글 수: 개 / 댓글 수: 개</span>
+					<span style="font-size: 25px; margin-bottom: 10px;">${loginUser.usernick}
+						님</span> <span style="font-size: 15px;">자유게시판 게시글 수: 개 / 댓글 수: 개</span>
 				</div>
 			</div>
 			<div class="boardcontents">
@@ -199,256 +200,36 @@ ul.tabs li.current {
 								<div class="etc"></div>
 							</ul>
 
-							<ul class="ul_news">
-								<div class=boardnum>
-									<span class="board_num">1</span>
-								</div>
-								<div class="title">
-									<span>테스트1</span>
-								</div>
-								<div class="writer_id">
-									<span class="">apple</span>
-								</div>
-								<div class="data">
-									<span class="date">2023.01.05.</span>
-								</div>
-								<div class="view">
-									<span class="view">1</span>
-								</div>
-								<div class="etc">
-									<div id="write_notice">
-										<button class="modify_btn">수정</button>
+
+							<c:forEach items="${freelist}" var="freelist">
+								<ul class="ul_news">
+									<div class="boardnum">
+										<span class="board_num">${freelist.b_num}</span>
 									</div>
-									<div id="write_notice">
-										<button>삭제</button>
+									<div class="title">
+										<a href="/free/freedetail?b_num=${freelist.b_num}"><span>${freelist.b_title}</span></a>
 									</div>
-								</div>
-							</ul>
-							<ul class="ul_news">
-								<div class=boardnum>
-									<span class="board_num">1</span>
-								</div>
-								<div class="title">
-									<span>테스트1</span>
-								</div>
-								<div class="writer_id">
-									<span class="">apple</span>
-								</div>
-								<div class="data">
-									<span class="date">2023.01.05.</span>
-								</div>
-								<div class="view">
-									<span class="view">1</span>
-								</div>
-								<div class="etc">
-									<div id="write_notice">
-										<button class="modify_btn">수정</button>
+									<div class="writer_id">
+										<span class="">${freelist.b_writer}</span>
 									</div>
-									<div id="write_notice">
-										<button>삭제</button>
+									<div class="data">
+										<span class="date"><fmt:formatDate
+												value="${freelist.b_date}" pattern="yy-MM-dd HH:mm" /></span>
 									</div>
-								</div>
-							</ul>
-							<ul class="ul_news">
-								<div class=boardnum>
-									<span class="board_num">1</span>
-								</div>
-								<div class="title">
-									<span>테스트1</span>
-								</div>
-								<div class="writer_id">
-									<span class="">apple</span>
-								</div>
-								<div class="data">
-									<span class="date">2023.01.05.</span>
-								</div>
-								<div class="view">
-									<span class="view">1</span>
-								</div>
-								<div class="etc">
-									<div id="write_notice">
-										<button class="modify_btn">수정</button>
+									<div class="view">
+										<span class="view"
+											style="display: inline-block; width: 40px !important; text-align: right;">${freelist.view_cnt}</span>
 									</div>
-									<div id="write_notice">
-										<button>삭제</button>
+									<div class="etc">
+										<div id="write_notice">
+											<button class="modify_btn">수정</button>
+										</div>
+										<div id="write_notice">
+											<button>삭제</button>
+										</div>
 									</div>
-								</div>
-							</ul>
-							<ul class="ul_news">
-								<div class=boardnum>
-									<span class="board_num">1</span>
-								</div>
-								<div class="title">
-									<span>테스트1</span>
-								</div>
-								<div class="writer_id">
-									<span class="">apple</span>
-								</div>
-								<div class="data">
-									<span class="date">2023.01.05.</span>
-								</div>
-								<div class="view">
-									<span class="view">1</span>
-								</div>
-								<div class="etc">
-									<div id="write_notice">
-										<button class="modify_btn">수정</button>
-									</div>
-									<div id="write_notice">
-										<button>삭제</button>
-									</div>
-								</div>
-							</ul>
-							<ul class="ul_news">
-								<div class=boardnum>
-									<span class="board_num">1</span>
-								</div>
-								<div class="title">
-									<span>테스트1</span>
-								</div>
-								<div class="writer_id">
-									<span class="">apple</span>
-								</div>
-								<div class="data">
-									<span class="date">2023.01.05.</span>
-								</div>
-								<div class="view">
-									<span class="view">1</span>
-								</div>
-								<div class="etc">
-									<div id="write_notice">
-										<button class="modify_btn">수정</button>
-									</div>
-									<div id="write_notice">
-										<button>삭제</button>
-									</div>
-								</div>
-							</ul>
-							<ul class="ul_news">
-								<div class=boardnum>
-									<span class="board_num">1</span>
-								</div>
-								<div class="title">
-									<span>테스트1</span>
-								</div>
-								<div class="writer_id">
-									<span class="">apple</span>
-								</div>
-								<div class="data">
-									<span class="date">2023.01.05.</span>
-								</div>
-								<div class="view">
-									<span class="view">1</span>
-								</div>
-								<div class="etc">
-									<div id="write_notice">
-										<button class="modify_btn">수정</button>
-									</div>
-									<div id="write_notice">
-										<button>삭제</button>
-									</div>
-								</div>
-							</ul>
-							<ul class="ul_news">
-								<div class=boardnum>
-									<span class="board_num">1</span>
-								</div>
-								<div class="title">
-									<span>테스트1</span>
-								</div>
-								<div class="writer_id">
-									<span class="">apple</span>
-								</div>
-								<div class="data">
-									<span class="date">2023.01.05.</span>
-								</div>
-								<div class="view">
-									<span class="view">1</span>
-								</div>
-								<div class="etc">
-									<div id="write_notice">
-										<button class="modify_btn">수정</button>
-									</div>
-									<div id="write_notice">
-										<button>삭제</button>
-									</div>
-								</div>
-							</ul>
-							<ul class="ul_news">
-								<div class=boardnum>
-									<span class="board_num">1</span>
-								</div>
-								<div class="title">
-									<span>테스트1</span>
-								</div>
-								<div class="writer_id">
-									<span class="">apple</span>
-								</div>
-								<div class="data">
-									<span class="date">2023.01.05.</span>
-								</div>
-								<div class="view">
-									<span class="view">1</span>
-								</div>
-								<div class="etc">
-									<div id="write_notice">
-										<button class="modify_btn">수정</button>
-									</div>
-									<div id="write_notice">
-										<button>삭제</button>
-									</div>
-								</div>
-							</ul>
-							<ul class="ul_news">
-								<div class=boardnum>
-									<span class="board_num">1</span>
-								</div>
-								<div class="title">
-									<span>테스트1</span>
-								</div>
-								<div class="writer_id">
-									<span class="">apple</span>
-								</div>
-								<div class="data">
-									<span class="date">2023.01.05.</span>
-								</div>
-								<div class="view">
-									<span class="view">1</span>
-								</div>
-								<div class="etc">
-									<div id="write_notice">
-										<button class="modify_btn">수정</button>
-									</div>
-									<div id="write_notice">
-										<button>삭제</button>
-									</div>
-								</div>
-							</ul>
-							<ul class="ul_news">
-								<div class=boardnum>
-									<span class="board_num">1</span>
-								</div>
-								<div class="title">
-									<span>테스트1</span>
-								</div>
-								<div class="writer_id">
-									<span class="">apple</span>
-								</div>
-								<div class="data">
-									<span class="date">2023.01.05.</span>
-								</div>
-								<div class="view">
-									<span class="view">1</span>
-								</div>
-								<div class="etc">
-									<div id="write_notice">
-										<button class="modify_btn">수정</button>
-									</div>
-									<div id="write_notice">
-										<button>삭제</button>
-									</div>
-								</div>
-							</ul>
+								</ul>
+							</c:forEach>
 						</form>
 					</div>
 					<div id="tab-2" class="tab-content">
@@ -462,9 +243,9 @@ ul.tabs li.current {
 
 							<ul class="ul_news" style="text-align: left; height: 100px;">
 								<div class="reply_contents">
-									<span>테스트1</span>
-									<span class="date" style="font-size: 10px; color: gray;">2023.01.05.</span>
-									<span class="view" style="font-size: 12px;">테스트용 제목 1</span>
+									<span>테스트1</span> <span class="date"
+										style="font-size: 10px; color: gray;">2023.01.05.</span> <span
+										class="view" style="font-size: 12px;">테스트용 제목 1</span>
 								</div>
 								<div class="etc">
 									<div id="write_notice">
@@ -474,9 +255,9 @@ ul.tabs li.current {
 							</ul>
 							<ul class="ul_news" style="text-align: left; height: 100px;">
 								<div class="reply_contents">
-									<span>테스트1</span>
-									<span class="date" style="font-size: 10px; color: gray;">2023.01.05.</span>
-									<span class="view" style="font-size: 12px;">테스트용 제목 1</span>
+									<span>테스트1</span> <span class="date"
+										style="font-size: 10px; color: gray;">2023.01.05.</span> <span
+										class="view" style="font-size: 12px;">테스트용 제목 1</span>
 								</div>
 								<div class="etc">
 									<div id="write_notice">
@@ -486,9 +267,9 @@ ul.tabs li.current {
 							</ul>
 							<ul class="ul_news" style="text-align: left; height: 100px;">
 								<div class="reply_contents">
-									<span>테스트1</span>
-									<span class="date" style="font-size: 10px; color: gray;">2023.01.05.</span>
-									<span class="view" style="font-size: 12px;">테스트용 제목 1</span>
+									<span>테스트1</span> <span class="date"
+										style="font-size: 10px; color: gray;">2023.01.05.</span> <span
+										class="view" style="font-size: 12px;">테스트용 제목 1</span>
 								</div>
 								<div class="etc">
 									<div id="write_notice">
@@ -498,9 +279,9 @@ ul.tabs li.current {
 							</ul>
 							<ul class="ul_news" style="text-align: left; height: 100px;">
 								<div class="reply_contents">
-									<span>테스트1</span>
-									<span class="date" style="font-size: 10px; color: gray;">2023.01.05.</span>
-									<span class="view" style="font-size: 12px;">테스트용 제목 1</span>
+									<span>테스트1</span> <span class="date"
+										style="font-size: 10px; color: gray;">2023.01.05.</span> <span
+										class="view" style="font-size: 12px;">테스트용 제목 1</span>
 								</div>
 								<div class="etc">
 									<div id="write_notice">
@@ -510,9 +291,9 @@ ul.tabs li.current {
 							</ul>
 							<ul class="ul_news" style="text-align: left; height: 100px;">
 								<div class="reply_contents">
-									<span>테스트1</span>
-									<span class="date" style="font-size: 10px; color: gray;">2023.01.05.</span>
-									<span class="view" style="font-size: 12px;">테스트용 제목 1</span>
+									<span>테스트1</span> <span class="date"
+										style="font-size: 10px; color: gray;">2023.01.05.</span> <span
+										class="view" style="font-size: 12px;">테스트용 제목 1</span>
 								</div>
 								<div class="etc">
 									<div id="write_notice">

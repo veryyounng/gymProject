@@ -1,13 +1,13 @@
 .banana {
-  width: 1440px;
-  height: 700px;
+  width: 1000px;
+  height: 1400px;
   margin: 0 auto;
   margin-top: 50px;
 }
 
 .board_body {
   width: 1000px;
-  height: 600px;
+  height: 800px;
   margin: 0 auto;
 }
 
@@ -66,7 +66,7 @@
   width: 1000px;
   border-bottom: 1px solid #dddddd;
 }
-.btns .btn_back, .btn_modi, .btn_delete {
+.btns .btn_back, .btn_modi{
   border: 1px solid #dddddd;
   width: 80px;
   height: 40px;
@@ -81,6 +81,7 @@
   color: #000;
   background-color: rgb(242, 242, 242);
 }
+
 .btn_back{
   margin-right: 20px;
 }
@@ -116,4 +117,36 @@
 .reply_text{
   width: 1000px;
   margin-bottom: 20px;
+}
+.free_reply_div1{
+	margin-bottom:20px;
+}
+.free_reply_div2{
+	display: flex;
+	
+}
+.free_reply_modify{
+	margin-right: 8px;
+	width: 41px;
+	height: 23px;
+	text-align: center;
+	background-color: white;
+	border: 1px solid #ddd;
+	color: black;
+}
+.free_reply_modify:hover{
+	background-color: rgba(212, 252, 91, 0.427);
+	color: black;
+}
+.free_reply_delete{
+	width: 41px;
+	height: 23px;
+	text-align: center;
+	background-color: white;
+	border: 1px solid #ddd;
+	cursor: pointer;
+	
+}
+.free_reply_delete:hover{
+	background-color: rgba(212, 252, 91, 0.427);
 }

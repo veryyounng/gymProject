@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gym.domain.FreeBoardVO;
 import com.gym.domain.Page;
+import com.gym.domain.ReplyPage;
 import com.gym.domain.ReplyVO;
 import com.gym.service.FreeBoardService;
   
@@ -46,14 +47,24 @@ import com.gym.service.FreeBoardService;
       
       //게시물 조회
       @GetMapping ("/freedetail")
-      public String getFreeDetail (String keyword, int b_num, Model model) throws Exception{
-    	   
+      public String getFreeDetail (String keyword, int b_num, Model model,int reply_num) throws Exception{
     	  service.freeViewCnt(b_num);
     	  //db에 거치면 viewCnt가 +1이 됨-> 메소드 종료시 , 밑줄이 실행됨
     	  
     	  FreeBoardVO vo = service.getFreeDetail(b_num);
     	  model.addAttribute("freedetail", vo);
     	  model.addAttribute("keyword", keyword);
+    	  
+    	  //댓글 조회
+    	  ReplyPage page = new ReplyPage();
+      	  page.setNum(reply_num);
+      	  page.setCount(service.getReplyCnt(b_num)); // 이거는 b_num에 대한 reply 갯수
+      	
+    	  List<ReplyVO> reply = null;
+    	  reply = service.freeReplylist(b_num,page.getDisplayPost(), page.getPostNum());
+    	  model.addAttribute("page",page);
+    	  model.addAttribute("reply",reply);
+    	  model.addAttribute("select", reply_num);
     	  
     	  return "/board/freeboard_detail";
       }
@@ -88,7 +99,7 @@ import com.gym.service.FreeBoardService;
       public String postFreeModify(FreeBoardVO vo) throws Exception{
     	  service.freeModify(vo);
     	  int b_num = vo.getB_num();
-    	  return "redirect:/free/freedetail?b_num="+b_num;
+    	  return "redirect:/free/freedetail?reply_num=1&b_num="+b_num;
       }
       
       //게시물 삭제
@@ -103,7 +114,8 @@ import com.gym.service.FreeBoardService;
       public String freeReplyWrite(ReplyVO vo) throws Exception{
     	  service.freeReplyWrite(vo);
     	  int b_num = vo.getB_num();
-    	  return "redirect:/free/freedetail?b_num="+b_num;
+    	  return "redirect:/free/freedetail?reply_num=1&b_num="+b_num;
       }
+
 
 }

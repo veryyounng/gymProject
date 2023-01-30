@@ -113,7 +113,7 @@ select {
 									<span class="board_num" style="width:30px;">${freelist.b_num}</span>
 								</div>
 								<div class="title" style="width: 538px;">
-									<a href="/free/freedetail?b_num=${freelist.b_num}"><span>${freelist.b_title}</span></a>
+									<a href="/free/freedetail?b_num=${freelist.b_num}&reply_num=1"><span>${freelist.b_title}</span></a>
 								</div>
 								<div class="writer_id" style="width: 100px; text-align: left;">
 									<span class="">${freelist.b_writer}</span>

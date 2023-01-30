@@ -71,8 +71,13 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 
 	//댓글 조회
 	@Override
-	public List<ReplyVO> freeReplylist(int b_num) throws Exception {
-		return dao.freeReplylist(b_num);
+	public List<ReplyVO> freeReplylist(int b_num, int displayPost, int postNum) throws Exception {
+		return dao.freeReplylist(b_num, displayPost, postNum);
+	}
+
+	@Override
+	public int getReplyCnt(int b_num) {
+		return dao.getReplyCnt(b_num);
 	}
 
 }

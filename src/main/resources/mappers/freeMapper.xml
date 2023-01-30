@@ -89,11 +89,18 @@
    </insert>
    
    <!--댓글 조회  -->
-   <select id="freeReplyList">
+   <select id="freeReplyList" resultType="com.gym.domain.ReplyVO">
    	select 
    		b_num, c_writer, c_contents, c_date, c_num
    	from f_comment
-   	where b_num = #{b_num}
+   	where b_num = #{b_num} order by c_num desc limit #{displayPost}, #{postNum}
    </select>
    
+   <!-- 댓글 총 갯수 -->
+   <select id="freeReplyCnt" resultType="_int">
+   	select 
+   		count(*)
+   	from f_comment
+   	where b_num = #{b_num}
+   </select>
 </mapper>

@@ -61,6 +61,7 @@ body, html {
 	background-color: #333333;
 	color: #eee;
 	cursor: pointer;
+	width: 48px;
 }
 
 .noti_header {

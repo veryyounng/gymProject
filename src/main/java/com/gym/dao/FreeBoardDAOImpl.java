@@ -33,6 +33,7 @@ public class FreeBoardDAOImpl implements FreeBoardDAO {
 	   data.put("postNum", postNum);
 	   data.put("keyword", keyword);
 	   data.put("searchType", searchType);
+	   
       return sql.selectList(namespace + ".freeList",data);
    }
 
@@ -78,15 +79,24 @@ public class FreeBoardDAOImpl implements FreeBoardDAO {
    public void freeReplyWrite(ReplyVO vo) throws Exception {
 	   sql.insert(namespace + ".freeReplyWrite", vo);
    }
-
+   //댓글 조회
    @Override
-   public List<ReplyVO> freeReplylist(int b_num) throws Exception {
-	   return sql.selectList(namespace + ".freeReplyList");
+   public List<ReplyVO> freeReplylist(int b_num, int displayPost, int postNum) throws Exception {
+	   HashMap<String, Integer> data = new HashMap<String, Integer>();
+	   data.put("b_num", b_num);
+	   data.put("displayPost", displayPost);
+	   data.put("postNum", postNum);
+	   
+	   return sql.selectList(namespace + ".freeReplyList", data);
 	
    }
-
- 
    
-    
+   //댓글 총 갯수
+   @Override
+   public int getReplyCnt(int b_num) {
+	   
+	return sql.selectOne(namespace + ".freeReplyCnt", b_num);
+}
+ 
 
 	}

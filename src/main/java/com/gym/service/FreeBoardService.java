@@ -35,5 +35,8 @@ public interface FreeBoardService {
    public void freeReplyWrite(ReplyVO vo) throws Exception;
    
    //댓글 조회
-   public List<ReplyVO> freeReplylist(int b_num) throws Exception;
+   public List<ReplyVO> freeReplylist(int b_num, int displayPost, int postNum) throws Exception;
+   
+   //댓글 총 갯수
+   public int getReplyCnt(int b_num);
 }

@@ -36,53 +36,35 @@
 
 <body>
 <%@ include file="../include/header.jsp" %>
-	<c:if test="${loginUser == null }">
-		<script>
-			alert("로그인 후 이용하세요!");
-			location.replace('${cp}/user/login');
-		</script>
-	</c:if>
 	<article>
 		<div class="container" role="main">
 
-			<h2>운동지식공유 게시판 수정하기</h2>
-			<form name="form" id="form" role="form" method="post" action="${pageContext.request.contextPath}/ex_board/ex_modify">
-
-				<div class="mb-3">
-					<input type="hidden" class="form-control" name="ex_num" value="${ex_view.ex_num }">
-				</div>
-
-				<div class="mb-3">
-					<label for="title">제목</label>
-					<input type="text" class="form-control" name="ex_title" value="${ex_view.ex_title }">
-				</div>
-
-				<input type="hidden" class="form-control" name="ex_writer" value="${loginUser.userid }" >
-
-				<div class="mb-3">
-					<label for="content">내용</label>
-					<textarea class="form-control" rows="5" name="ex_content">${ex_view.ex_content }</textarea>
-				</div>
-
-			</form>
-			<div >
-				<button type="button" class="btn btn-sm btn-primary" id="btnSave"
-				 onclick="document.getElementById('form').submit();">수정완료</button>
-				<!-- <button type="button" class="btn btn-sm btn-primary" id="btnList" >목록</button> -->
-			</div>
+			<h2>운동지식공유 게시판 댓글 수정</h2>
+			<br>
+	
+	<div>
+		
+		<form method="post" action="/ex_reply/ex_replymodify">
+			<p>
+				<label>댓글 작성자</label> <input type="text" name = "exc_writer" readonly value = "${ex_reply.exc_writer }">
+			</p>
+			<p>
+				<textarea rows="5" cols="50" name = "exc_contents">${ex_reply.exc_contents}</textarea>
+			</p>
+			<p>
+				<input type="hidden" name = "ex_num" value = "${ex_reply.ex_num}">
+				<input type="hidden" name = "exc_num" value = "${ex_reply.exc_num}">
+				<button type = "submit">댓글 수정</button>
+			</p>
+		</form>
+		
+	</div>
+	<!-- 댓글 끝 -->
 		</div>
-
+		
 	</article>
 	
-<%@ include file = "../include/footer.jsp" %>	
-	
-<script>
-	//ckeditor setting
-    window.onload = function(){
-       ck = CKEDITOR.replace("ex_content");
-    };
-   
-</script>
+<%@ include file = "../include/footer.jsp" %>
 
 </body>
 

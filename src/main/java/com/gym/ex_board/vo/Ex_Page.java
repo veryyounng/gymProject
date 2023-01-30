@@ -21,7 +21,7 @@ public class Ex_Page {
 	private int displayPost;
 	
 	// 한번에 표시할 페이징 번호의 갯수
-	private int pageNumCnt = 10;
+	private int pageNumCnt = 5;
 	
 	// 표시되는 페이지의 마지막 번호
 	private int endPageNum;

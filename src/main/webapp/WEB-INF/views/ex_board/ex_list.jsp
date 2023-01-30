@@ -122,11 +122,11 @@
                     			<c:if test = "${select != num}">
                     				<a href = "/ex_board/ex_list?num=${num}${ex_page.searchTypeKey}">&nbsp;${num}&nbsp;</a>
                     			</c:if>
-                    			
+                    		
 		             			<c:if test = "${select == num}">
                     				<b>&nbsp;${num}&nbsp;</b>
                     			</c:if>
-                    			
+                    		
                     		</span>
                     	</c:forEach>
                     	
@@ -139,21 +139,19 @@
         </div>
         <!-- 개발코드 끝 -->
     </section>
-   <%@ include file = "../include/footer.jsp" %>
+	
+	<%@ include file = "../include/footer.jsp" %>
    
 	<script>
 	
-		document.getElementById("searchBtn").onclick = function(){
-			
-			let searchType = document.getElementsByName("searchType")[0].value;
-			let keyword = document.getElementsByName("keyword")[0].value;
-			
-			location.href = "/ex_board/ex_list?num=1" + "&searchType=" + searchType + "&keyword=" + keyword;
-			
-		};
+	//검색하기
+	document.getElementById("searchBtn").onclick = function(){
+		let searchType = document.getElementsByName("searchType")[0].value;
+		let keyword = document.getElementsByName("keyword")[0].value;
+		location.href = "/ex_board/ex_list?num=1" + "&searchType=" + searchType + "&keyword=" + keyword;
+	};
 	
-	</script>   
-   
+	</script>
    
 </body>
 </html>

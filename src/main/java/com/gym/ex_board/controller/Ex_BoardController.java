@@ -11,15 +11,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gym.ex_board.service.Ex_BoardService;
+import com.gym.ex_board.service.Ex_ReplyService;
 import com.gym.ex_board.vo.Ex_BoardVO;
 import com.gym.ex_board.vo.Ex_Page;
+import com.gym.ex_board.vo.Ex_ReplyVO;
 
 @Controller
 @RequestMapping(value="/ex_board")
-public class ExBoardController {
+public class Ex_BoardController {
 
 	@Inject
-	Ex_BoardService service;
+	private Ex_BoardService service;
+	
+	@Inject
+	private Ex_ReplyService ex_replyservice;
 	
 	@RequestMapping(value="/ex_test", method=RequestMethod.GET)
 	public void Ex_Test() throws Exception {
@@ -63,9 +68,11 @@ public class ExBoardController {
 	//게시물 작성 POST
 	@RequestMapping(value = "/ex_write", method = RequestMethod.POST)
 	public String postEx_Write(Ex_BoardVO evo) throws Exception {
+		
 		service.write(evo);
 		
-		return "redirect:/ex_board/ex_list";
+		return "redirect:/ex_board/ex_list?num=1";
+		
 	}
 	
 	//게시물 보기 GET
@@ -76,6 +83,13 @@ public class ExBoardController {
 		Ex_BoardVO evo = service.view(ex_num);
 		
 		model.addAttribute("ex_view", evo);
+		
+		// 댓글 조회
+		List<Ex_ReplyVO> ex_reply = null;
+		ex_reply = ex_replyservice.exc_list(ex_num);
+
+		System.out.println("댓글 조회 시작");
+		model.addAttribute("ex_reply", ex_reply);
 		
 	}
 	
@@ -101,12 +115,13 @@ public class ExBoardController {
 	}
 	
 	//게시물 삭제
-	@RequestMapping(value = "/ex_delete", method = RequestMethod.GET)
+	@RequestMapping(value = "/ex_delete", method = RequestMethod.POST)
 	public String ex_delete(int ex_num) throws Exception {
 		
 		service.Ex_delete(ex_num);
 		
-		return "redirect:/ex_board/ex_list";
+		return "redirect:/ex_board/ex_list?num=1";
+		
 	}
 	
 	//게시물 목록 + 페이징 추가 + 검색

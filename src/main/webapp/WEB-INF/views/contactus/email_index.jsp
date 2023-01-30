@@ -114,7 +114,7 @@
         console.log(message);
 
       let jsonData = {"username" : username, "email" : email, "title" : title, "message" : message };
-    
+
       $.ajax({
          type : "POST",
          url : "/contactus/send",

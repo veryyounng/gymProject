@@ -34,6 +34,7 @@ public class ContactUsController {
       
    }
    
+   /*
    @RequestMapping(value="/send", method = RequestMethod.GET)
    public ModelAndView sendEmail (@RequestParam Map<String, Object> paramMap, ModelMap model, ModelAndView mv)
    throws Exception {
@@ -48,9 +49,9 @@ public class ContactUsController {
          MimeMessage msg = mailSender.createMimeMessage();
          MimeMessageHelper messageHelper = new MimeMessageHelper(msg, true, "UTF-8");
          
+         messageHelper.setFrom(email);
          messageHelper.setSubject(title);
          messageHelper.setText("문의자 : " + username + "\n\n" + "내용\n" + message);
-         messageHelper.setFrom(email);
 
          msg.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(company));
          mailSender.send(msg);
@@ -62,6 +63,7 @@ public class ContactUsController {
       mv.setViewName("/index");
       return mv;
    }
+   */
    
    
    @RequestMapping(value="/send", method = RequestMethod.POST)
@@ -74,14 +76,14 @@ public class ContactUsController {
       String title = cmail.get("title").toString();
       String message = cmail.get("message").toString();
       String company = "gymproject02@gmail.com";
-      
+     
       try {
          MimeMessage msg = mailSender.createMimeMessage();
          MimeMessageHelper messageHelper = new MimeMessageHelper(msg, true, "UTF-8");
          
-         messageHelper.setSubject(cmail.get("title").toString());
-         messageHelper.setText("문의자 : " + username + "\n\n" + "내용\n" + message);
          messageHelper.setFrom(email);
+         messageHelper.setSubject(cmail.get("title").toString());
+         messageHelper.setText("문의자 : " + username + "\n\n" + "문의자 메일 : " + email + "\n\n내용\n" + message);
          
          msg.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(company));
          mailSender.send(msg);
@@ -94,7 +96,7 @@ public class ContactUsController {
       Map <String, Object> result = new HashMap<String, Object>();
       
       result.put("msg", "Success");
-      //sddkhskdhfknk
       return result;
    }
+   
 }

@@ -50,10 +50,14 @@ public class ReservationController {
 	
 	@PostMapping("/makeschedule")
 	public String postMakeSchedule(ReservationVO vo,RedirectAttributes ra) {
-		if(service.insertReservation(vo) == 1) {
-			ra.addFlashAttribute("ms", "T");
+		if(service.selectReservation(vo) != null) {
+			ra.addFlashAttribute("ms","find");			
 		} else {
-			ra.addFlashAttribute("ms","F");
+			if(service.insertReservation(vo) == 1) {
+				ra.addFlashAttribute("ms", "T");
+			} else {
+				ra.addFlashAttribute("ms","F");
+			}
 		}
 		return "redirect:/reservation/makeschedule";
 	}

@@ -52,6 +52,11 @@
 			alert("예약일정 생성에 실패하였습니다.");
 		</script>
 	</c:if>
+	<c:if test="${ms == 'find'}">
+		<script>
+			alert("이미 존재하는 일정입니다.");
+		</script>
+	</c:if>
 	<c:if test="${loginUser.userid != 'admin'}">
 		<script>
 			alert("잘못된 접근입니다.");
@@ -158,7 +163,7 @@
 						<tr>
 							<td>정원</td>
 							<td><input type="text" value="" name="rv_limit"
-								id="rv_limit" placeholder="숫자만 입력하세요" value=""></td>
+								id="rv_limit" placeholder="숫자만 입력하세요" value="" required></td>
 						</tr>
 						<tr>
 							<td>시간</td>
@@ -199,13 +204,22 @@ var fp = flatpickr(document.getElementById("rv_date"), {
 });
 function checkNaN(){
 	let rv_limit = $("#rv_limit");
-	
+	let rv_date = $("#rv_date");
+	if(rv_limit.val().trim() == ""){
+		alert("인원을 입력해주세요.");
+		rv_limit.focus();
+		return false;
+	}
+	if(rv_date.val().trim() == ""){
+		alert("날짜를 선택해주세요.");
+		rv_date.focus();
+		return false;
+	}
 	if(!isNaN(rv_limit.val())) {
 		return true;
 	} else {
 		alert("숫자만 입력해주세요.");
 		rv_limit.val("");
-		console.log(rv_limit.val());
 		rv_limit.focus();
 		return false;
 	}

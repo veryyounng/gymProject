@@ -47,5 +47,10 @@ public class ReservationDAOImpl implements ReservationDAO {
 	public int insertReservation(ReservationVO vo) {
 		return sql.insert(namespace+".insertReservation",vo);
 	}
+
+	@Override
+	public ReservationVO selectReservation(ReservationVO vo) {
+		return sql.selectOne(namespace+".selectReservation",vo);
+	}
 	
 }

@@ -39,6 +39,11 @@ public class ReservationServiceImpl implements ReservationService {
 		return dao.insertReservation(vo);
 	}
 
+	@Override
+	public ReservationVO selectReservation(ReservationVO vo) {
+		return dao.selectReservation(vo);
+	}
+
 
 	
 }

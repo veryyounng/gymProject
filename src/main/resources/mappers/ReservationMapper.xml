@@ -19,4 +19,8 @@
 		insert into admin_reservation(rv_date,rv_time,rv_title,rv_limit) 
 		values (#{rv_date},#{rv_time},#{rv_title},#{rv_limit})
 	</insert>
+	<select id="selectReservation" resultType="com.gym.domain.ReservationVO">
+		select * from admin_reservation 
+		where rv_date = #{rv_date} and rv_time = #{rv_time} and rv_title = #{rv_title}
+	</select>
 </mapper>

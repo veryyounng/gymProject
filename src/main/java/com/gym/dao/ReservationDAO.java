@@ -20,4 +20,7 @@ public interface ReservationDAO {
 	
 	// 예약일정 만들기
 	public int insertReservation(ReservationVO vo);
+
+	// 이미 존재하는 예약이 있는지 확인
+	public ReservationVO selectReservation(ReservationVO vo);
 }

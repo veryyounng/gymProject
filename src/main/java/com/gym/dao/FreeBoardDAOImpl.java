@@ -90,13 +90,15 @@ public class FreeBoardDAOImpl implements FreeBoardDAO {
 	   return sql.selectList(namespace + ".freeReplyList", data);
 	
    }
-   
    //댓글 총 갯수
    @Override
    public int getReplyCnt(int b_num) {
-	   
 	return sql.selectOne(namespace + ".freeReplyCnt", b_num);
 }
- 
+   //댓글 삭제
+   @Override
+   public int replyDelete(int c_num) throws Exception {
+	return sql.delete(namespace + ".freeReplyDelete", c_num);
+   }
 
 	}

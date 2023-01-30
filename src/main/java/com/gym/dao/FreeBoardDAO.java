@@ -38,5 +38,8 @@ public interface FreeBoardDAO {
    public List<ReplyVO> freeReplylist(int b_num, int displayPost, int postNum) throws Exception;
    
    //댓글 총 갯수
-   public int getReplyCnt(int b_num);
+   public int getReplyCnt(int b_num) throws Exception;
+   
+   //댓글 삭제
+   public int replyDelete(int c_num) throws Exception;
 }

@@ -103,4 +103,10 @@
    	from f_comment
    	where b_num = #{b_num}
    </select>
+   
+   <!--댓글 삭제  -->
+   <delete id="freeReplyDelete">
+   		delete from f_comment
+   			where c_num = #{c_num}
+   </delete>
 </mapper>

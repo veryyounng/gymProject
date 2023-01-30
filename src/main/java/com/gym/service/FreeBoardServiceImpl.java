@@ -74,10 +74,15 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 	public List<ReplyVO> freeReplylist(int b_num, int displayPost, int postNum) throws Exception {
 		return dao.freeReplylist(b_num, displayPost, postNum);
 	}
-
+	//댓글 총 갯수
 	@Override
-	public int getReplyCnt(int b_num) {
+	public int getReplyCnt(int b_num) throws Exception {
 		return dao.getReplyCnt(b_num);
+	}
+	//댓글 삭제
+	@Override
+	public int replyDelete(int c_num) throws Exception {
+		return dao.replyDelete(c_num);
 	}
 
 }

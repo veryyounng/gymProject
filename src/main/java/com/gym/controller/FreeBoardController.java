@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -117,5 +118,13 @@ import com.gym.service.FreeBoardService;
     	  return "redirect:/free/freedetail?reply_num=1&b_num="+b_num;
       }
 
-
+      //댓글 삭제
+      @PostMapping("/replyDelete")
+      public String replyDelete(int c_num, int b_num, int select) throws Exception{
+    	  service.replyDelete(c_num);
+    	  int[] number = new int[2];
+    	  number[0] = b_num;
+    	  number[1] = select;
+    	  return "redirect:/free/freedetail?b_num="+number[0]+"&reply_num="+number[1];
+      }
 }

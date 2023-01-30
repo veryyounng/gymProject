@@ -64,6 +64,14 @@
     		   $("#replyform").submit();
     	   }
        }
+       
+       function reply_delete(){
+    	   if(confirm("정말로 삭제하시겠습니까?")){
+    		   return true;
+    	   }else{
+    	   return false;
+    	   }
+       }
      </script>
      
 </head>
@@ -125,9 +133,11 @@
             		<div class="free_reply_div2">
             			<c:if test="${free_reply.c_writer == loginUser.userid}">
         					<a class="free_reply_modify" href="">수정</a>
-            				<form  method="post" action="" id="" name="">
+            				<form  method="post" action="${cp}/free/replyDelete" id="reply_delete_form" name="reply_delete_form">
             					<input type="hidden" value="${free_reply.c_num}" name="c_num">
-            					<input class="free_reply_delete" type="submit" value="삭제" onclick="" id="">
+            					<input type="hidden" value="${select}" name="select">
+            					<input type="hidden" value="${free_reply.b_num}" name="b_num">
+            					<input class="free_reply_delete" type="submit" value="삭제" onclick="return reply_delete();" id="">
         					</form>
       					</c:if>
       				</div>

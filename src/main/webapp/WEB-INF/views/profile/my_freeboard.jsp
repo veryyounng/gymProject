@@ -184,7 +184,7 @@ ul.tabs li.current {
 
 					<div id="tab-1" class="tab-content current" style="height: 510px;">
 						<form name="form1" method="post" id="form1">
-							<input type="hidden" name="table_name" value="notice_list">
+							<input type="hidden" name="b_writer" value="${loginUser.userid}">
 							<ul class="ul_news_title">
 								<div class=boardnum>
 									<span class="board_num">번호</span>
@@ -203,7 +203,7 @@ ul.tabs li.current {
 								</div>
 								<div class="etc"></div>
 							</ul>
-							<c:forEach items="${freelist}" var="freelist">
+							<c:forEach items="${list}" var="freelist">
 								<ul class="ul_news">
 									<div class="boardnum">
 										<span class="board_num">${freelist.b_num}</span>
@@ -216,7 +216,7 @@ ul.tabs li.current {
 									</div>
 									<div class="data">
 										<span class="date"><fmt:formatDate
-												value="${freelist.b_date}" pattern="yy-MM-dd HH:mm" /></span>
+												value="${freelist.b_date}" pattern="yyyy-MM-dd" /></span>
 									</div>
 									<div class="view">
 										<span class="view"

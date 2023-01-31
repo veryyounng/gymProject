@@ -18,8 +18,8 @@ public class ProfileServiceImpl implements ProfileService {
 	
 //	마이페이지(자게) 게시글 목록
 	@Override
-	public List<FreeBoardVO> my_freeboard() throws Exception {
-		return pdao.my_freeboard();
+	public List<FreeBoardVO> my_freeboard(String b_writer) throws Exception {
+		return pdao.my_freeboard(b_writer);
 	}
 	
 //	마이페이지(운지공) 게시글 목록

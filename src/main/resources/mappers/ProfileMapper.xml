@@ -13,7 +13,7 @@
 			, b_date
 			, view_cnt
 		from f_board
-			where b_writer = #{loginUser.userid}
+			where b_writer = #{b_writer}
 		order by b_num desc
 	</select>
 

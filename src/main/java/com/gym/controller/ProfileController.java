@@ -90,10 +90,11 @@ public class ProfileController {
 
 //	마이페이지(자게) 게시글 목록
 	@RequestMapping(value = "/my_freeboard", method = RequestMethod.GET)
-	public void my_freeboard(Model model) throws Exception {
+	public void my_freeboard(Model model, HttpServletRequest req) throws Exception {
 		List<FreeBoardVO> list = null;
-		list = profileservice.my_freeboard();
-		model.addAttribute("freelist", list);
+		String userid = ((UserVO)req.getSession().getAttribute("loginUser")).getUserid();
+		list = profileservice.my_freeboard(userid);
+		model.addAttribute("list", list);
 	}
 	
 //	마이페이지(운지공) 게시글목록

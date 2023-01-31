@@ -14,14 +14,14 @@ import com.gym.ex_board.vo.Ex_BoardVO;
 public class ProfileDAOImpl implements ProfileDAO{
 	
 	@Autowired
-	public SqlSession sql;
+	private SqlSession sql;
 	
 	private static String namespace = "com.gym.mappers.profile";
 	
 //	마이페이지(자게) 게시글 목록
 	@Override
-	public List<FreeBoardVO> my_freeboard() throws Exception {
-		return sql.selectList(namespace + ".getFreeList");
+	public List<FreeBoardVO> my_freeboard(String b_writer) throws Exception {
+		return sql.selectList(namespace + ".getFreeList", b_writer);
 	}
 	
 //	마이페이지(운지공) 게시글 목록

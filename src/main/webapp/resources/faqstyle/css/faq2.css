@@ -1855,8 +1855,7 @@ pre code {
 }
 
 .row {
-	margin-right: -15px;
-	margin-left: -15px
+	margin: 0 -15px 150px;
 }
 
 .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3,

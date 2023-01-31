@@ -34,6 +34,7 @@
 						<c:if test="${loginUser.userid == 'admin'}">
 						<a href="/reservation/makeschedule">예약일정 생성</a>
 						</c:if>
+						<a href="/payment/pay">이용권 구매</a>
 					</div>
 				</div>
 				<div class="dropdown community" onmouseover="communityhover()"

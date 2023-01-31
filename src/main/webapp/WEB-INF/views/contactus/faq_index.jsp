@@ -34,7 +34,11 @@
 
 
 <link rel="stylesheet" href="${path}/resources/css/styles.css">
-
+<style>
+	a{
+		text-decoration : none !important;
+	}
+</style>
 <title>자주하는 질문</title>
 </head>
 <body data-spy="scroll" data-target=".onpage-navigation"

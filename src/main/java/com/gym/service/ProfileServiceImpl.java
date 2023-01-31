@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.gym.dao.ProfileDAO;
 import com.gym.domain.FreeBoardVO;
 import com.gym.domain.UserVO;
+import com.gym.ex_board.vo.Ex_BoardVO;
 
 @Service
 public class ProfileServiceImpl implements ProfileService {
@@ -15,29 +16,34 @@ public class ProfileServiceImpl implements ProfileService {
 	@Autowired
 	private ProfileDAO pdao;
 	
-//	마이페이지 게시글 목록
+//	마이페이지(자게) 게시글 목록
 	@Override
-	public List<FreeBoardVO> my_exercise() throws Exception {
+	public List<FreeBoardVO> my_freeboard() throws Exception {
+		return pdao.my_freeboard();
+	}
+	
+//	마이페이지(운지공) 게시글 목록
+	@Override
+	public List<Ex_BoardVO> my_exercise() throws Exception {
 		return pdao.my_exercise();
 	}
 
-//	마이페이지 게시글 조회
+//	마이페이지(운지공) 게시글 조회
 	@Override
-	public FreeBoardVO my_exercise(int b_num) throws Exception {
-		
-		return pdao.my_exercise(b_num);
+	public Ex_BoardVO my_exercise(int ex_num) throws Exception {
+		return pdao.my_exercise(ex_num);
 	}
 
-//	마이페이지 게시글 수정
+//	마이페이지(운지공) 게시글 수정
 	@Override
-	public void mymodify(FreeBoardVO free) {
-		pdao.my_exercise_modify(free);
+	public void mymodify(Ex_BoardVO ex) throws Exception {
+		pdao.my_exercise_modify(ex);
 	}
 	
-//	마이페이지 게시글 삭제
+//	마이페이지(운지공) 게시글 삭제
 	@Override
-	public void mydelete(int b_num) {
-		pdao.my_exercise_delete(b_num);
+	public void mydelete(int ex_num) throws Exception {
+		pdao.my_exercise_delete(ex_num);
 	}
 	
 }

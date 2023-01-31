@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="path" value="${pageContext.request.contextPath}" />
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -26,12 +26,12 @@
 <style>
 .side-bar {
 	position: relative;
-	top: -177px;
+	top: -232px;
 }
 
 section {
 	min-height: 0px;
-	height: 100%;
+	height: 950px;
 }
 
 .banana {
@@ -122,6 +122,10 @@ section {
 	margin-left: -15px;
 }
 
+ul {
+	list-style: none;
+}
+
 ul.tabs {
 	margin: 0px;
 	padding: 0px;
@@ -178,7 +182,7 @@ ul.tabs li.current {
 						<li class="tab-link" data-tab="tab-2">내가 쓴 댓글</li>
 					</ul>
 
-					<div id="tab-1" class="tab-content current">
+					<div id="tab-1" class="tab-content current" style="height: 510px;">
 						<form name="form1" method="post" id="form1">
 							<input type="hidden" name="table_name" value="notice_list">
 							<ul class="ul_news_title">
@@ -199,15 +203,13 @@ ul.tabs li.current {
 								</div>
 								<div class="etc"></div>
 							</ul>
-
-
 							<c:forEach items="${freelist}" var="freelist">
 								<ul class="ul_news">
 									<div class="boardnum">
 										<span class="board_num">${freelist.b_num}</span>
 									</div>
 									<div class="title">
-										<a href="/free/freedetail?b_num=${freelist.b_num}"><span>${freelist.b_title}</span></a>
+										<a href="/free/freedetail?b_num=${freelist.b_num}&reply_num=1"><span>${freelist.b_title}</span></a>
 									</div>
 									<div class="writer_id">
 										<span class="">${freelist.b_writer}</span>
@@ -232,7 +234,7 @@ ul.tabs li.current {
 							</c:forEach>
 						</form>
 					</div>
-					<div id="tab-2" class="tab-content">
+					<div id="tab-2" class="tab-content" style="height: 600px;">
 						<form name="form1" method="post" id="form1">
 							<input type="hidden" name="table_name" value="notice_list">
 							<ul class="ul_news_title" style="display: block;">
@@ -241,66 +243,21 @@ ul.tabs li.current {
 								</div>
 							</ul>
 
-							<ul class="ul_news" style="text-align: left; height: 100px;">
-								<div class="reply_contents">
-									<span>테스트1</span> <span class="date"
-										style="font-size: 10px; color: gray;">2023.01.05.</span> <span
-										class="view" style="font-size: 12px;">테스트용 제목 1</span>
-								</div>
-								<div class="etc">
-									<div id="write_notice">
-										<button>삭제</button>
+							<c:forEach items="${reply}" var="free_reply">
+								<ul class="ul_news" style="text-align: left; height: 100px;">
+									<div class="reply_contents">
+										<span>${free_reply.c_contents}</span> <span class="date"
+											style="font-size: 10px; color: gray;"><fmt:formatDate
+												value="${free_reply.c_date}" pattern="yyyy.MM.dd HH:mm:ss" /></span>
+										<span class="view" style="font-size: 12px;">${free_reply.b_title}</span>
 									</div>
-								</div>
-							</ul>
-							<ul class="ul_news" style="text-align: left; height: 100px;">
-								<div class="reply_contents">
-									<span>테스트1</span> <span class="date"
-										style="font-size: 10px; color: gray;">2023.01.05.</span> <span
-										class="view" style="font-size: 12px;">테스트용 제목 1</span>
-								</div>
-								<div class="etc">
-									<div id="write_notice">
-										<button>삭제</button>
+									<div class="etc">
+										<div id="write_notice">
+											<button>삭제</button>
+										</div>
 									</div>
-								</div>
-							</ul>
-							<ul class="ul_news" style="text-align: left; height: 100px;">
-								<div class="reply_contents">
-									<span>테스트1</span> <span class="date"
-										style="font-size: 10px; color: gray;">2023.01.05.</span> <span
-										class="view" style="font-size: 12px;">테스트용 제목 1</span>
-								</div>
-								<div class="etc">
-									<div id="write_notice">
-										<button>삭제</button>
-									</div>
-								</div>
-							</ul>
-							<ul class="ul_news" style="text-align: left; height: 100px;">
-								<div class="reply_contents">
-									<span>테스트1</span> <span class="date"
-										style="font-size: 10px; color: gray;">2023.01.05.</span> <span
-										class="view" style="font-size: 12px;">테스트용 제목 1</span>
-								</div>
-								<div class="etc">
-									<div id="write_notice">
-										<button>삭제</button>
-									</div>
-								</div>
-							</ul>
-							<ul class="ul_news" style="text-align: left; height: 100px;">
-								<div class="reply_contents">
-									<span>테스트1</span> <span class="date"
-										style="font-size: 10px; color: gray;">2023.01.05.</span> <span
-										class="view" style="font-size: 12px;">테스트용 제목 1</span>
-								</div>
-								<div class="etc">
-									<div id="write_notice">
-										<button>삭제</button>
-									</div>
-								</div>
-							</ul>
+								</ul>
+							</c:forEach>
 						</form>
 					</div>
 
@@ -312,11 +269,25 @@ ul.tabs li.current {
 				</div>
 				<div class="btns">
 					<ul class="pagination">
-						<li class='active'><a href='#'>1</a></li>
-						<li class='active'><a href='#'>2</a></li>
-						<li class='active'><a href='#'>3</a></li>
-						<li class='active'><a href='#'>4</a></li>
-						<li class='active'><a href='#'>5</a></li>
+						<c:if test="${page.prev}">
+							<li>[<a
+								href='/free/freelist?searchType=T&keyword=&num=${page.startPageNum-1}'>이전</a>]
+							</li>
+						</c:if>
+						<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}"
+							var="num">
+							<li><c:if test="${select != num}">
+									<a href="/free/freelist?searchType=T&keyword=&num=${num}">${num}</a>
+								</c:if> <c:if test="${select == num}">
+									<b
+										style="font-weight: 700; color: red; text-decoration: underline;">${num}</b>
+								</c:if></li>
+						</c:forEach>
+						<c:if test="${page.next}">
+							<li>[<a
+								href="/free/freelist?searchType=T&keyword=&num=${page.endPageNum+1}">다음</a>]
+							</li>
+						</c:if>
 					</ul>
 				</div>
 			</div>

@@ -27,6 +27,12 @@
 </head>
 <body id="page-top">
    <%@ include file="../include/header.jsp"%>
+   	<c:if test="${loginUser == null }">
+		<script>
+			alert("로그인 후 이용하세요!");
+			location.href = '${cp}/user/login';
+		</script>
+	</c:if>
         <!-- Contact-->
         <section class="page-section" id="contact">
             <div class="container px-4 px-lg-5">
@@ -42,15 +48,15 @@
                         <form id="contactForm" data-sb-form-api-token="API_TOKEN">
                             <!-- Name input-->
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="name" type="text" placeholder="이름을 입력하세요.."
-                                 data-sb-validations="required" />
+                                <input class="form-control" id="name" type="text" value = "${loginUser.username}"
+                                 placeholder="이름을 입력하세요.." data-sb-validations="required" readonly />
                                 <label for="name">이름 : </label>
                                 <div class="invalid-feedback" data-sb-feedback="name:required">이름을 입력하세요.</div>
                             </div>
                             <!-- Email address input-->
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="email" type="email" placeholder="ex@example.com"
-                                 data-sb-validations="required,email" />
+                                <input class="form-control" id="email" type="email" value = "${loginUser.email}"
+                                 placeholder="ex@example.com" data-sb-validations="required,email" readonly />
                                 <label for="email">이메일 : </label>
                                 <div class="invalid-feedback" data-sb-feedback="email:required">이메일은 필수입력사항입니다.</div>
                                 <div class="invalid-feedback" data-sb-feedback="email:email">이메일을 입력하세요.</div>

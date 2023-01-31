@@ -25,7 +25,15 @@
 			ex_num, ex_title, ex_writer, ex_date, ex_content, view_cnt
 		from ex_board
 		where ex_num = #{ex_num}
-	</select>	
+	</select>
+	
+	<!-- 게시물 조회수 -->
+	<update id = "ex_view_cnt" parameterType="_int">
+		update ex_board
+			set
+				view_cnt = view_cnt + 1
+		where ex_num = #{ex_num}
+	</update>
 	
 	<!-- 게시물 수정 -->
 	<update id="ex_modify" parameterType="com.gym.ex_board.vo.Ex_BoardVO">
@@ -33,15 +41,15 @@
 			set
 				ex_title = #{ex_title},
     	    	ex_content = #{ex_content}
-		where ex_num = #{ex_num};
+		where ex_num = #{ex_num}
 	</update>
 	
 	<!-- 게시물 삭제 -->
 	<delete id="ex_delete" parameterType="_int">
 		delete 
 			from ex_board
-		where ex_num = #{ex_num};
-	</delete>	
+		where ex_num = #{ex_num}
+	</delete>
 	
 	<!-- 게시물 총 갯수 -->
 	<select id="ex_count" resultType="_int">

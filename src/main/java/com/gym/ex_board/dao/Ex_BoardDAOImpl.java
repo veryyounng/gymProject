@@ -54,6 +54,12 @@ public class Ex_BoardDAOImpl implements Ex_BoardDAO {
 		return sql.selectOne(namespace + ".ex_count");
 	}
 
+	// 게시물 조회수
+	@Override
+	public void ex_view_cnt(int ex_num) throws Exception {
+		sql.update(namespace + ".ex_view_cnt", ex_num);
+	}
+
 	//게시물 리스트 + 페이징
 	@Override
 	public List<Ex_BoardVO> ex_listPage(int displayPost, int postNum) throws Exception {
@@ -91,7 +97,5 @@ public class Ex_BoardDAOImpl implements Ex_BoardDAO {
 		
 		return sql.selectOne(namespace + ".ex_searchCount", data);
 	}
-
-
 	
 }

@@ -29,6 +29,7 @@ public class Ex_BoardServiceImpl implements Ex_BoardService {
 	//게시물 조회
 	@Override
 	public Ex_BoardVO view(int ex_num) throws Exception {
+			dao.ex_view_cnt(ex_num);
 		return dao.view(ex_num);
 	}
 

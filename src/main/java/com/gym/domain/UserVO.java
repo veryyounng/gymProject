@@ -8,6 +8,7 @@ import lombok.Data;
 public class UserVO {
    private String userid;
    private String userpw;
+   private String userpw_re;
    private String username;
    private String usernick;
    private String zipcode;

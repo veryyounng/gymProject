@@ -62,14 +62,14 @@
 	<!-- 비밀번호 수정 -->
 	<update id="pw_modify" parameterType="com.gym.domain.UserVO">
 		update user set
-			userpw = #{userpw}
-		where userid = #{userid}
+			userpw = #{userpw_re}
+		where userid = #{userid} and userpw = #{userpw}
 	</update>
 	
 	<!-- 회원탈퇴 -->
 	<delete id="delete_user" parameterType="com.gym.domain.UserVO">
 		delete from user
-			where userid = #{userid} and userpw = #{userpw}
+			where userid = #{userid} and userpw = #{userpw_re}
 	</delete>
 </mapper>
 

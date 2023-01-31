@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gym.domain.FreeBoardVO;
 import com.gym.domain.UserVO;
@@ -58,11 +59,16 @@ public class ProfileController {
 
 //	비밀번호 수정
 	@RequestMapping(value = "/profile_pw_modify", method = RequestMethod.POST)
-	public String profile_pw_modify(UserVO vo, HttpServletRequest req) throws Exception {
-		userservice.pw_modify(vo);
-		HttpSession session = req.getSession();
-		session.setAttribute("loginUser", vo);
-		return "redirect:/profile/profile_check";
+	public String profile_pw_modify(UserVO vo, String userpw, HttpServletRequest req, RedirectAttributes ra) throws Exception {
+		if (userservice.pw_modify(vo) == 1) {
+			HttpSession session = req.getSession();
+			session.setAttribute("loginUser.userpw", userpw);
+			return "redirect:/profile/profile_check";
+		}
+		else {
+			ra.addFlashAttribute("modifyFail", "F");
+			return "redirect:/profile/profile_pw_modify";
+		}
 	}
 
 //	회원 탈퇴

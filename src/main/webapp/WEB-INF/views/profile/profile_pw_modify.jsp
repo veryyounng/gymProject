@@ -51,6 +51,11 @@
 </head>
 
 <body>
+	<c:if test="${modifyFail == 'F'}">
+		<script>
+		alert("현재 비밀번호가 일치하지 않습니다.");
+	</script>
+	</c:if>
 	<%@ include file="../include/header.jsp"%>
 	<section>
 		<%@ include file="../include/profile_sidebar.jsp"%>
@@ -61,6 +66,10 @@
 				action="${path}/profile/profile_pw_modify"
 				onsubmit="return sendit()">
 				<table>
+					<tr>
+						<td><input type="hidden" name="userid" id="userid"
+							value="${loginUser.userid}"></td>
+					</tr>
 					<tr>
 						<th><label for="userpw">현재 비밀번호</label></th>
 						<td><input type="password" name="userpw" id="userpw">
@@ -115,7 +124,6 @@
       userpw.focus();
       return false;
     }
-
     if (userpw_re.value == "") {
       alert("새로운 비밀번호를 입력해주세요!");
       userpw_re.focus();
@@ -131,7 +139,6 @@
       userpw_re.focus();
       return false;
     }
-
     if (userpw_recheck.value == "") {
       alert("새 비밀번호를 확인해주세요!");
       userpw_recheck.focus();
@@ -147,11 +154,17 @@
       userpw_recheck.focus();
       return false;
     }
-    
     if (userpw_re.value != userpw_recheck.value) {
       alert("새로운 비밀번호가 일치하지 않습니다!");
       userpw_re.focus();
       return false;
+    }
+    if (userpw.value == userpw_re.value) {
+    	alert("새로운 비밀번호가 현재 비밀와 일치합니다!");
+    	userpw_re.focus();
+    	userpw_re.value = null;
+    	userpw_recheck.value = null;
+    	return false;
     }
 
     return true;

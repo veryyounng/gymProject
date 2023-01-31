@@ -1,0 +1,120 @@
+.beefup {
+	
+	border-bottom:1px solid #fff;
+
+
+}
+.beefup.is-open {background-color:#f6f6f6}
+.beefup:first-child {
+  margin-top: 0;
+}
+
+.beefup__head {
+  cursor: pointer;
+  margin-bottom: 0;
+  overflow: hidden;
+  padding-right: 30px;
+  position: relative;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding:15px;
+  color:#1b1b1b !important;
+  font-size:17px;
+  border-bottom:1px solid #ddd;
+  margin-top:0px;
+}
+.beefup__head  a {color:#1b1b1b !important;font-size:2rem}
+.beefup__head2 {
+  cursor: pointer;
+  margin-bottom: 0;
+  overflow: hidden;
+  padding-right: 30px;
+  position: relative;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding:15px;
+  color:#1b1b1b !important;
+  font-size:17px;
+  border-bottom:1px solid #ddd;
+  margin-top:0px;
+}
+.beefup__head2  a {color:#1b1b1b !important;font-size:2rem}
+.left_menu a{
+  color:#111;
+  font-size:18px;
+  font-weight:600;
+  padding:20px;
+  display: block;
+  border-bottom:1px solid #ddd;
+
+}
+.beefup__head::after {
+
+  
+ background:url("/image/main/plus_ic.png") no-repeat;
+content: '';
+  position: absolute;
+  right: 20px;
+  height: 20px;
+
+  top: 15px;
+  background-size:cover;
+  width: 20px;
+}
+.beefup__head2::after {
+
+  
+ background:url("/image/main/plus_ic.png") no-repeat;
+content: '';
+  position: absolute;
+  right: 20px;
+  height: 20px;
+
+  top: 15px;
+  background-size:cover;
+  width: 20px;
+}
+.is-open .beefup__head {
+	border-bottom:1px solid #e60013
+}
+.is-open .beefup__head  a {color:#e60013 !important}
+.beefup__body {
+  background-color:#f6f6f6
+}
+.beefup__body>ul>li {
+	font-size:16px;
+	color:#525252;
+	font-family:'Noto Sans', sans-serif;
+}
+.beefup__body>ul>li>a {
+	color:#676767;
+	line-height:2rem;
+	display:block;
+	font-size:14px;
+	border-bottom:1px solid #ddd;
+	padding:2rem;
+}
+.beefup__body>ul>li>ul>li>a {
+	color:#676767;
+	line-height:1.5rem;
+	display:block;
+	font-size:12px;
+	padding:1.2rem;
+background-color:#fff;
+}
+.beefup__body>ul>li>ul{
+	border-bottom:1px solid #ddd;
+}
+
+.beefup.is-open > .beefup__head::after {
+background:url("/image/main/minus_ic.png") no-repeat;
+content: '';
+ width: 20px;
+height: 20px;
+background-size: cover;
+}
+
+ .is-open h3 {
+	background-color:#e0423f;
+	color:#fff;
+}

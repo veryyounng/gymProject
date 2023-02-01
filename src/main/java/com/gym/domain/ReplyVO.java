@@ -12,4 +12,5 @@ public class ReplyVO {
 	private String c_contents;
 	private Date c_date;
 	private int b_num;
+	private String b_title;
 }

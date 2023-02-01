@@ -96,8 +96,8 @@ section {
 	margin-bottom: 10px;
 }
 
-.banana #contents .ul_news .etc #write_notice button,
-	.banana #contents .ul_news .etc #write_notice input {
+.banana #contents .ul_news .etc #write_notice button, .banana #contents .ul_news .etc #write_notice input
+	{
 	margin-left: -15px;
 }
 
@@ -211,41 +211,74 @@ ul.tabs li.current {
 								</div>
 								<div class="etc"></div>
 							</ul>
-							<c:forEach items="${list}" var="freelist">
-								<ul class="ul_news">
-									<div class="boardnum">
-										<span class="board_num">${freelist.b_num}</span>
-									</div>
-									<div class="title">
-										<a href="/free/freedetail?b_num=${freelist.b_num}&reply_num=1"><span>${freelist.b_title}</span></a>
-									</div>
-									<div class="writer_id">
-										<span class="">${freelist.b_writer}</span>
-									</div>
-									<div class="data">
-										<span class="date"><fmt:formatDate
-												value="${freelist.b_date}" pattern="yyyy-MM-dd" /></span>
-									</div>
-									<div class="view">
-										<span class="view"
-											style="display: inline-block; width: 40px !important; text-align: right;">${freelist.view_cnt}</span>
-									</div>
-									<div class="etc">
-										<div id="write_notice">
-											<button class="modify_btn">수정</button>
-										</div>
-										<form method="post" action="${path}/profile/my_free_delete">
-											<div id="write_notice">
-												<input type="hidden" name="b_num" value="${freelist.b_num}">
-												<input type="submit" value="삭제"
-													onclick="return delete_check();">
-											</div>
-										</form>
-									</div>
-								</ul>
-							</c:forEach>
 						</form>
+						<c:forEach items="${list}" var="freelist">
+							<ul class="ul_news">
+								<div class="boardnum">
+									<span class="board_num">${freelist.b_num}</span>
+								</div>
+								<div class="title">
+									<a href="/free/freedetail?b_num=${freelist.b_num}&reply_num=1"><span>${freelist.b_title}</span></a>
+								</div>
+								<div class="writer_id">
+									<span class="">${freelist.b_writer}</span>
+								</div>
+								<div class="data">
+									<span class="date"><fmt:formatDate
+											value="${freelist.b_date}" pattern="yyyy-MM-dd" /></span>
+								</div>
+								<div class="view">
+									<span class="view"
+										style="display: inline-block; width: 40px !important; text-align: right;">${freelist.view_cnt}</span>
+								</div>
+								<div class="etc">
+									<div id="write_notice">
+										<button class="modify_btn">수정</button>
+									</div>
+									<form method="post" action="${path}/profile/my_free_delete">
+										<div id="write_notice">
+											<input type="hidden" name="b_num" value="${freelist.b_num}">
+											<input type="submit" value="삭제"
+												onclick="return delete_check();">
+										</div>
+									</form>
+								</div>
+							</ul>
+						</c:forEach>
+						<form method="post" action="${path}/profile/my_free_delete_all">
+							<div class="deleteandwrite_btn">
+								<div id="write_notice">
+									<input type="hidden" name="b_writer"
+										value="${loginUser.userid}"> <input type="submit"
+										value="전체 삭제" onclick="return delete_check();">
+								</div>
+							</div>
+						</form>
+						<div class="btns">
+							<ul class="pagination">
+								<c:if test="${page.prev}">
+									<li>[<a
+										href='${path}/profile/my_freeboard?keyword=R&num=${page.startPageNum-1}'>이전</a>]
+									</li>
+								</c:if>
+								<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}"
+									var="num">
+									<li><c:if test="${select != num}">
+											<a href="${path}/profile/my_freeboard?num=${num}">${num}</a>
+										</c:if> <c:if test="${select == num}">
+											<b
+												style="font-weight: 700; color: red; text-decoration: underline;">${num}</b>
+										</c:if></li>
+								</c:forEach>
+								<c:if test="${page.next}">
+									<li>[<a
+										href="${path}/profile/my_freeboard?num=${page.endPageNum+1}">다음</a>]
+									</li>
+								</c:if>
+							</ul>
+						</div>
 					</div>
+
 					<div id="tab-2" class="tab-content" style="height: 600px;">
 						<form name="form1" method="post" id="form1">
 							<input type="hidden" name="table_name" value="notice_list">
@@ -254,56 +287,58 @@ ul.tabs li.current {
 									<span class="reply" style="margin: 0 auto;">댓글</span>
 								</div>
 							</ul>
-
-							<c:forEach items="${reply}" var="free_reply">
-								<ul class="ul_news" style="text-align: left; height: 100px;">
-									<div class="reply_contents">
-										<span>${free_reply.c_contents}</span> <span class="date"
-											style="font-size: 10px; color: gray;"><fmt:formatDate
-												value="${free_reply.c_date}" pattern="yyyy.MM.dd HH:mm:ss" /></span>
-										<span class="view" style="font-size: 12px;">${free_reply.b_title}</span>
-									</div>
-									<div class="etc">
-										<div id="write_notice">
-											<button>삭제</button>
-										</div>
-									</div>
-								</ul>
-							</c:forEach>
 						</form>
-					</div>
-				</div>
-				<form method="post" action="${path}/profile/my_free_delete_all">
-					<div class="deleteandwrite_btn">
-						<div id="write_notice">
-							<input type="hidden" name="b_writer" value="${loginUser.userid}">
-							<input type="submit" value="전체 삭제"
-								onclick="return delete_check();">
+						<c:forEach items="${list}" var="free_reply">
+							<ul class="ul_news" style="text-align: left; height: 100px;">
+								<div class="reply_contents">
+									<span>${free_reply.c_contents}</span> <span class="date"
+										style="font-size: 10px; color: gray;"><fmt:formatDate
+											value="${free_reply.c_date}" pattern="yyyy.MM.dd HH:mm:ss" /></span>
+									<span class="view" style="font-size: 12px;">${free_reply.b_title}</span>
+								</div>
+								<form method="post" action="${path}/profile/my_free_reply_delete">
+									<div id="write_notice">
+										<input type="hidden" name="c_num" value="${free_reply.c_num}">
+										<input type="submit" value="삭제"
+											onclick="return delete_check();">
+									</div>
+								</form>
+							</ul>
+						</c:forEach>
+						<form method="post" action="${path}/profile/my_free_reply_delete_all">
+							<div class="deleteandwrite_btn">
+								<div id="write_notice">
+									<input type="hidden" name="c_writer"
+										value="${loginUser.userid}"> <input type="submit"
+										value="전체 삭제" onclick="return delete_check();">
+								</div>
+							</div>
+						</form>
+						<div class="btns">
+							<ul class="pagination">
+								<c:if test="${page.prev}">
+									<li>[<a
+										href='${path}/profile/my_freeboard?num=${page.startPageNum-1}'>이전</a>]
+									</li>
+								</c:if>
+								<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}"
+									var="num">
+									<li><c:if test="${select != num}">
+											<a href="${path}/profile/my_freeboard?num=${num}">${num}</a>
+										</c:if> <c:if test="${select == num}">
+											<b
+												style="font-weight: 700; color: red; text-decoration: underline;">${num}</b>
+										</c:if></li>
+								</c:forEach>
+								<c:if test="${page.next}">
+									<li>[<a
+										href="${path}/profile/my_freeboard?num=${page.endPageNum+1}">다음</a>]
+									</li>
+								</c:if>
+							</ul>
 						</div>
 					</div>
-				</form>
-				<div class="btns">
-					<ul class="pagination">
-						<c:if test="${page.prev}">
-							<li>[<a
-								href='${path}/profile/my_freeboard?num=${page.startPageNum-1}'>이전</a>]
-							</li>
-						</c:if>
-						<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}"
-							var="num">
-							<li><c:if test="${select != num}">
-									<a href="${path}/profile/my_freeboard?num=${num}">${num}</a>
-								</c:if> <c:if test="${select == num}">
-									<b
-										style="font-weight: 700; color: red; text-decoration: underline;">${num}</b>
-								</c:if></li>
-						</c:forEach>
-						<c:if test="${page.next}">
-							<li>[<a
-								href="${path}/profile/my_freeboard?num=${page.endPageNum+1}">다음</a>]
-							</li>
-						</c:if>
-					</ul>
+
 				</div>
 			</div>
 		</div>

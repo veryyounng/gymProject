@@ -16,6 +16,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gym.domain.FreeBoardVO;
 import com.gym.domain.Page;
+import com.gym.domain.ReplyPage;
+import com.gym.domain.ReplyVO;
 import com.gym.domain.UserVO;
 import com.gym.service.ProfileService;
 import com.gym.service.UserService;
@@ -79,12 +81,12 @@ public class ProfileController {
 	@RequestMapping(value = "/my_freeboard", method = RequestMethod.GET)
 	public void my_free(Model model, HttpServletRequest req, int num) throws Exception {
 		Page page = new Page();
+		String userid = ((UserVO) req.getSession().getAttribute("loginUser")).getUserid();
 
 		page.setNum(num);
-		page.setCount(profileservice.getMyFreeCnt());
+		page.setCount(profileservice.getMyFreeCnt(userid));
 
 		List<FreeBoardVO> list = null;
-		String userid = ((UserVO) req.getSession().getAttribute("loginUser")).getUserid();
 		list = profileservice.getMyFreeList(userid, page.getDisplayPost(), page.getPostNum());
 
 		model.addAttribute("list", list);
@@ -94,9 +96,9 @@ public class ProfileController {
 
 //	마이페이지(자게) 게시글 조회
 
-//	마이페이지(자게) 수정용 게시글 조회
-
 //	마이페이지(자게) 게시글 작성
+
+//	마이페이지(자게) 수정용 게시글 조회
 
 //	마이페이지(자게) 게시글 수정
 
@@ -112,13 +114,52 @@ public class ProfileController {
 	public String my_free_delete_all(HttpServletRequest req) throws Exception {
 		String userid = ((UserVO) req.getSession().getAttribute("loginUser")).getUserid();
 		profileservice.myFreeDeleteAll(userid);
-		return "redirect:/profile/my_freeboard?num=0";
+		return "redirect:/profile/my_freeboard?num=1";
 	}
 
-//	마이페이지(자게) 댓글 조회
+//	마이페이지(자게) 댓글 조회, 개수
+	@RequestMapping(value = "/my_freeboard_reply", method = RequestMethod.GET)
+	public String my_free_rep(Model model, HttpServletRequest req, int num) throws Exception {
+		ReplyPage page = new ReplyPage();
+		String userid = ((UserVO) req.getSession().getAttribute("loginUser")).getUserid();
+
+		page.setNum(num);
+		page.setCount(profileservice.getMyFreeRepCnt(userid));
+
+		List<ReplyVO> list = null;
+		list = profileservice.getMyFreeRepList(userid, page.getDisplayPost(), page.getPostNum());
+
+		model.addAttribute("list", list);
+		model.addAttribute("page", page);
+		model.addAttribute("select", num);
+		
+		return "profile/my_freeboard?num=1";
+	} 
 
 //	마이페이지(자게) 댓글 삭제
+	@RequestMapping(value = "/my_free_reply_delete", method = RequestMethod.POST)
+	public String my_free_reply_delete(int c_num) throws Exception {
+		profileservice.myFreeRepDelete(c_num);
+		return "redirect:/profile/my_freeboard?num=1";
+	}
 
 //	마이페이지(자게) 댓글 일괄 삭제
-
+	@RequestMapping(value = "my_free_reply_delete_all", method = RequestMethod.POST)
+	public String my_free_delete_reply_all(HttpServletRequest req) throws Exception {
+		String userid = ((UserVO) req.getSession().getAttribute("loginUser")).getUserid();
+		profileservice.myFreeRepDeleteAll(userid);
+		return "redirect:/profile/my_freeboard_reply?num=1";
+	}
 }
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

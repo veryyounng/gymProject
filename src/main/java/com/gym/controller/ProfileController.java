@@ -79,19 +79,35 @@ public class ProfileController {
 	
 //	마이페이지(자게) 게시글 목록, 개수
 	@RequestMapping(value = "/my_freeboard", method = RequestMethod.GET)
-	public void my_free(Model model, HttpServletRequest req, int num) throws Exception {
-		Page page = new Page();
-		String userid = ((UserVO) req.getSession().getAttribute("loginUser")).getUserid();
+	public void my_free(Model model, HttpServletRequest req, int num, @RequestParam("freeKey") String freeKey) throws Exception {
+		if (freeKey.equals("B")) {
+			Page page = new Page();
+			String userid = ((UserVO) req.getSession().getAttribute("loginUser")).getUserid();
+			
+			page.setNum(num);
+			page.setCount(profileservice.getMyFreeCnt(userid));
+			
+			List<FreeBoardVO> list = null;
+			list = profileservice.getMyFreeList(userid, page.getDisplayPost(), page.getPostNum());
+			
+			model.addAttribute("list", list);
+			model.addAttribute("page", page);
+			model.addAttribute("select", num);
+		}
+		else if (freeKey.equals("R")) {
+			ReplyPage page = new ReplyPage();
+			String userid = ((UserVO) req.getSession().getAttribute("loginUser")).getUserid();
 
-		page.setNum(num);
-		page.setCount(profileservice.getMyFreeCnt(userid));
+			page.setNum(num);
+			page.setCount(profileservice.getMyFreeRepCnt(userid));
 
-		List<FreeBoardVO> list = null;
-		list = profileservice.getMyFreeList(userid, page.getDisplayPost(), page.getPostNum());
+			List<ReplyVO> replylist = null;
+			replylist = profileservice.getMyFreeRepList(userid, page.getDisplayPost(), page.getPostNum());
 
-		model.addAttribute("list", list);
-		model.addAttribute("page", page);
-		model.addAttribute("select", num);
+			model.addAttribute("replylist", replylist);
+			model.addAttribute("page", page);
+			model.addAttribute("select", num);
+		}
 	}
 
 //	마이페이지(자게) 게시글 조회
@@ -118,23 +134,23 @@ public class ProfileController {
 	}
 
 //	마이페이지(자게) 댓글 조회, 개수
-	@RequestMapping(value = "/my_freeboard_reply", method = RequestMethod.GET)
-	public String my_free_rep(Model model, HttpServletRequest req, int num) throws Exception {
-		ReplyPage page = new ReplyPage();
-		String userid = ((UserVO) req.getSession().getAttribute("loginUser")).getUserid();
-
-		page.setNum(num);
-		page.setCount(profileservice.getMyFreeRepCnt(userid));
-
-		List<ReplyVO> list = null;
-		list = profileservice.getMyFreeRepList(userid, page.getDisplayPost(), page.getPostNum());
-
-		model.addAttribute("list", list);
-		model.addAttribute("page", page);
-		model.addAttribute("select", num);
-		
-		return "profile/my_freeboard?num=1";
-	} 
+//	@RequestMapping(value = "/my_freeboard_reply", method = RequestMethod.GET)
+//	public String my_free_rep(Model model, HttpServletRequest req, int num) throws Exception {
+//		ReplyPage page = new ReplyPage();
+//		String userid = ((UserVO) req.getSession().getAttribute("loginUser")).getUserid();
+//
+//		page.setNum(num);
+//		page.setCount(profileservice.getMyFreeRepCnt(userid));
+//
+//		List<ReplyVO> list = null;
+//		list = profileservice.getMyFreeRepList(userid, page.getDisplayPost(), page.getPostNum());
+//
+//		model.addAttribute("replylist", list);
+//		model.addAttribute("page", page);
+//		model.addAttribute("select", num);
+//		
+//		return "profile/my_freeboard?num=1";
+//	} 
 
 //	마이페이지(자게) 댓글 삭제
 	@RequestMapping(value = "/my_free_reply_delete", method = RequestMethod.POST)

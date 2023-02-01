@@ -185,14 +185,15 @@ ul.tabs li.current {
 			<div class="boardcontents">
 				<div id="contents">
 					<ul class="tabs">
-						<li class="tab-link current" data-tab="tab-1">내가 쓴 글</li>
-						<li class="tab-link" data-tab="tab-2">내가 쓴 댓글</li>
+						<li class="tab-link current" data-tab="tab-1" id="tab1" onclick="return showboard();">내가 쓴 글</li>
+						<li class="tab-link" data-tab="tab-2" id="tab2" onclick="return showreply();">내가 쓴 댓글</li>
 					</ul>
 
 					<div id="tab-1" class="tab-content current" style="height: 510px;">
 						<form name="form1" method="post" id="form1">
 							<input type="hidden" name="b_writer" value="${loginUser.userid}">
 							<input type="hidden" name="num" value="${select}">
+							<input type="hidden" name="freeKey" value="B">
 							<ul class="ul_news_title">
 								<div class=boardnum>
 									<span class="board_num">번호</span>
@@ -282,13 +283,14 @@ ul.tabs li.current {
 					<div id="tab-2" class="tab-content" style="height: 600px;">
 						<form name="form1" method="post" id="form1">
 							<input type="hidden" name="table_name" value="notice_list">
+							<input type="hidden" name="freeKey" value="R">
 							<ul class="ul_news_title" style="display: block;">
 								<div class=reply>
 									<span class="reply" style="margin: 0 auto;">댓글</span>
 								</div>
 							</ul>
 						</form>
-						<c:forEach items="${list}" var="free_reply">
+						<c:forEach items="${replylist}" var="free_reply">
 							<ul class="ul_news" style="text-align: left; height: 100px;">
 								<div class="reply_contents">
 									<span>${free_reply.c_contents}</span> <span class="date"
@@ -361,6 +363,19 @@ ul.tabs li.current {
 			$("#" + tab_id).addClass('current');
 		})
 	})
+	
+	const tab1 = document.getElementById("tab1");
+	const tab2 = document.getElementById("tab2");
+	
+	function showboard() {
+		tab1.style.display: "block";
+		tab2.style.display: "none";
+	}
+	
+	function showreply() {
+		tab1.style.display: "none";
+		tab2.style.display: "block";
+	}
 
 	function delete_check() {
 		if (confirm("정말로 삭제하시겠습니까?")) {

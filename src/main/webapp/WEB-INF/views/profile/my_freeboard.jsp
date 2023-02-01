@@ -96,7 +96,8 @@ section {
 	margin-bottom: 10px;
 }
 
-.banana #contents .ul_news .etc #write_notice button {
+.banana #contents .ul_news .etc #write_notice button,
+	.banana #contents .ul_news .etc #write_notice input {
 	margin-left: -15px;
 }
 
@@ -104,6 +105,12 @@ section {
 	background-color: #eee;
 	border-color: #ddd;
 	color: black;
+}
+
+.banana #contents .ul_news .etc #write_notice input {
+	background-color: #333333;
+	color: #eee;
+	cursor: pointer;
 }
 
 .banana #contents .ul_news .reply_contents {
@@ -185,6 +192,7 @@ ul.tabs li.current {
 					<div id="tab-1" class="tab-content current" style="height: 510px;">
 						<form name="form1" method="post" id="form1">
 							<input type="hidden" name="b_writer" value="${loginUser.userid}">
+							<input type="hidden" name="num" value="${select}">
 							<ul class="ul_news_title">
 								<div class=boardnum>
 									<span class="board_num">번호</span>
@@ -226,9 +234,13 @@ ul.tabs li.current {
 										<div id="write_notice">
 											<button class="modify_btn">수정</button>
 										</div>
-										<div id="write_notice">
-											<button>삭제</button>
-										</div>
+										<form method="post" action="${path}/profile/my_free_delete">
+											<div id="write_notice">
+												<input type="hidden" name="b_num" value="${freelist.b_num}">
+												<input type="submit" value="삭제"
+													onclick="return delete_check();">
+											</div>
+										</form>
 									</div>
 								</ul>
 							</c:forEach>
@@ -260,24 +272,27 @@ ul.tabs li.current {
 							</c:forEach>
 						</form>
 					</div>
-
 				</div>
-				<div class="deleteandwrite_btn">
-					<div id="write_notice">
-						<button>전체 삭제</button>
+				<form method="post" action="${path}/profile/my_free_delete_all">
+					<div class="deleteandwrite_btn">
+						<div id="write_notice">
+							<input type="hidden" name="b_writer" value="${loginUser.userid}">
+							<input type="submit" value="전체 삭제"
+								onclick="return delete_check();">
+						</div>
 					</div>
-				</div>
+				</form>
 				<div class="btns">
 					<ul class="pagination">
 						<c:if test="${page.prev}">
 							<li>[<a
-								href='/free/freelist?searchType=T&keyword=&num=${page.startPageNum-1}'>이전</a>]
+								href='${path}/profile/my_freeboard?num=${page.startPageNum-1}'>이전</a>]
 							</li>
 						</c:if>
 						<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}"
 							var="num">
 							<li><c:if test="${select != num}">
-									<a href="/free/freelist?searchType=T&keyword=&num=${num}">${num}</a>
+									<a href="${path}/profile/my_freeboard?num=${num}">${num}</a>
 								</c:if> <c:if test="${select == num}">
 									<b
 										style="font-weight: 700; color: red; text-decoration: underline;">${num}</b>
@@ -285,7 +300,7 @@ ul.tabs li.current {
 						</c:forEach>
 						<c:if test="${page.next}">
 							<li>[<a
-								href="/free/freelist?searchType=T&keyword=&num=${page.endPageNum+1}">다음</a>]
+								href="${path}/profile/my_freeboard?num=${page.endPageNum+1}">다음</a>]
 							</li>
 						</c:if>
 					</ul>
@@ -311,6 +326,15 @@ ul.tabs li.current {
 			$("#" + tab_id).addClass('current');
 		})
 	})
+
+	function delete_check() {
+		if (confirm("정말로 삭제하시겠습니까?")) {
+			return true;
+
+		} else {
+			return false;
+		}
+	}
 </script>
 
 </html>

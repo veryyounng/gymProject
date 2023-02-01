@@ -3,23 +3,33 @@ package com.gym.dao;
 import java.util.List;
 
 import com.gym.domain.FreeBoardVO;
-import com.gym.domain.UserVO;
-import com.gym.ex_board.vo.Ex_BoardVO;
 
 public interface ProfileDAO {
 
+//	마이페이지(자게) 게시글 총 개수
+	public int getMyFreeCnt() throws Exception;
+
 //	마이페이지(자게) 게시글 조회
-	public List<FreeBoardVO> my_freeboard(String b_writer) throws Exception;
-	
-//	마이페이지(운지공) 게시글 조회
-	public List<Ex_BoardVO> my_exercise() throws Exception;
-	
-//	마이페이지(운지공) 게시글 목록
-	public Ex_BoardVO my_exercise(int ex_num) throws Exception;
-	
-//	마이페이지(운지공) 게시글 수정
-	public void my_exercise_modify(Ex_BoardVO ex) throws Exception;
-	
-//	마이페이지(운지공) 게시글 삭제
-	public void my_exercise_delete(int ex_num) throws Exception;
+	public List<FreeBoardVO> getMyFreeList(String b_writer, int displayPost, int postNum) throws Exception;
+
+//	마이페이지(자게) 게시글 조회
+
+//	마이페이지(자게) 수정용 게시글 조회
+
+//	마이페이지(자게) 게시글 작성
+
+//	마이페이지(자게) 게시글 수정
+
+//	마이페이지(자게) 게시글 삭제
+	public void myFreeDelete(int b_num) throws Exception;
+
+//	마이페이지(자게) 게시글 일괄 삭제
+	public void myFreeDeleteAll(String b_writer) throws Exception;
+
+//	마이페이지(자게) 댓글 조회
+
+//	마이페이지(자게) 댓글 삭제
+
+//	마이페이지(자게) 댓글 일괄 삭제	
+
 }

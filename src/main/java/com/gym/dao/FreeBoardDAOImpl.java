@@ -6,6 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.gym.domain.FreeBoardVO;
@@ -93,12 +94,23 @@ public class FreeBoardDAOImpl implements FreeBoardDAO {
    //댓글 총 갯수
    @Override
    public int getReplyCnt(int b_num) {
-	return sql.selectOne(namespace + ".freeReplyCnt", b_num);
+	   return sql.selectOne(namespace + ".freeReplyCnt", b_num);
 }
    //댓글 삭제
    @Override
    public int replyDelete(int c_num) throws Exception {
-	return sql.delete(namespace + ".freeReplyDelete", c_num);
+	   return sql.delete(namespace + ".freeReplyDelete", c_num);
    }
+
+   //댓글 수정
+   @Override
+   public void replyModify(ReplyVO vo) throws Exception {
+	   sql.update(namespace + ".freeReplyUpdate", vo);
+   }
+
+   @Override
+   public ReplyVO replyDetail(int c_num) {
+	   return sql.selectOne(namespace + ".replyDetail", c_num);
+   	}
 
 	}

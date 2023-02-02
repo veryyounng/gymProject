@@ -1,13 +1,14 @@
 .banana {
   width: 1000px;
-  height: 1400px;
+  min-height: 1400px;
+  height: auto;
   margin: 0 auto;
   margin-top: 50px;
 }
 
 .board_body {
   width: 1000px;
-  height: 800px;
+  height: auto;
   margin: 0 auto;
 }
 

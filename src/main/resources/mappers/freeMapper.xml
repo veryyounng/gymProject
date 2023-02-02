@@ -109,4 +109,14 @@
    		delete from f_comment
    			where c_num = #{c_num}
    </delete>
+   
+   <!-- 댓글 수정 -->
+   <update id="freeReplyUpdate">
+   		update f_comment set c_contents = #{c_contents}
+   		where c_num = #{c_num}
+   </update>
+   
+	<select id="replyDetail" resultType="com.gym.domain.ReplyVO">
+		select * from f_comment where c_num = #{c_num}
+	</select>
 </mapper>

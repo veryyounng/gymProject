@@ -42,4 +42,9 @@ public interface FreeBoardService {
    
    //댓글 삭제 
    public int replyDelete(int c_num) throws Exception;
+   
+   //댓글 수정
+   public void replyModify(ReplyVO vo) throws Exception;
+
+   public ReplyVO replyDetail(int c_num);
 }

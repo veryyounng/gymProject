@@ -2,16 +2,14 @@ package com.gym.controller;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gym.domain.FreeBoardVO;
 import com.gym.domain.Page;
@@ -21,7 +19,6 @@ import com.gym.service.FreeBoardService;
   
    @Controller 
    @RequestMapping("/free/*")
-   
    public class FreeBoardController {
       
       @Autowired
@@ -119,7 +116,7 @@ import com.gym.service.FreeBoardService;
       }
 
       //댓글 삭제
-      @PostMapping("/replyDelete")
+      @PostMapping("/replydelete")
       public String replyDelete(int c_num, int b_num, int select) throws Exception{
     	  service.replyDelete(c_num);
     	  int[] number = new int[2];
@@ -127,4 +124,25 @@ import com.gym.service.FreeBoardService;
     	  number[1] = select;
     	  return "redirect:/free/freedetail?b_num="+number[0]+"&reply_num="+number[1];
       }
+      
+      //댓글 수정 뷰
+      @PostMapping("/result")
+      public @ResponseBody ReplyVO replyModify(@RequestParam("c_num") int c_num) throws Exception{
+//    	  public @ResponseBody ResponseEntity<ReplyVO> replyModify(@RequestParam("c_num") int c_num) throws Exception{
+      	ReplyVO result = service.replyDetail(c_num);
+//	  	return new ResponseEntity<ReplyVO>(result,HttpStatus.OK);
+      	return result;
+      }
+     
+      // 댓글 수정 업데이트
+      @PostMapping("/replyModify")
+      public String replyModify(ReplyVO vo, int reply_num) throws Exception {
+    	  service.replyModify(vo);
+    	  int b_num = vo.getB_num();
+    	  return "redirect:/free/freedetail?reply_num="+reply_num+"&b_num="+b_num;
+    	  
+      }
+      
+      
+      
 }

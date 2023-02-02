@@ -48,7 +48,7 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 	//게시물 수정
 	@Override
 	public void freeModify(FreeBoardVO vo) throws Exception {
-	dao.freeModify(vo);
+		dao.freeModify(vo);
 	}
 	
 	//게시물 삭제
@@ -85,4 +85,16 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 		return dao.replyDelete(c_num);
 	}
 
+	//댓글 수정
+	@Override
+	public void replyModify(ReplyVO vo) throws Exception {
+		dao.replyModify(vo);
+	}
+
+	@Override
+	public ReplyVO replyDetail(int c_num) {
+		return dao.replyDetail(c_num);
+	}
+
+	
 }

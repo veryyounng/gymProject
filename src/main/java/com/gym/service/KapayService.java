@@ -2,6 +2,7 @@ package com.gym.service;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Map;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -26,9 +27,11 @@ public class KapayService {
 	private KakaoPayReadyVO kakaoPayReadyVO;
 	private KakaoPayApprovalVO kakaoPayApprovalVO;
 	
-	public String kakaoPayReady() {
+	public String kakaoPayReady(Map<String, String> chan) {
 		
 		RestTemplate restTemplate = new RestTemplate();
+		
+		String orderid = chan.get("orderid"); 
 		
 		// 서버로 요청할 Header
 		HttpHeaders headers = new HttpHeaders();
@@ -39,7 +42,7 @@ public class KapayService {
 		//서버로 요청할 Body
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
 		params.add("cid", "TC0ONETIME");	//CID값 테스트용
-		params.add("partner_order_id", "1001"); //주문번호
+		params.add("partner_order_id", orderid); //주문번호
 		params.add("partner_user_id", "apple"); //id
 		params.add("item_name", "6개월+6개월 회원권"); //아이템이름
 		params.add("quantity", "1"); //수량

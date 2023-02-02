@@ -14,6 +14,7 @@ public interface ProfileDAO {
 	public List<FreeBoardVO> getMyFreeList(String b_writer, int displayPost, int postNum) throws Exception;
 
 //	마이페이지(자게) 게시글 조회
+	public FreeBoardVO getMyFreeDetail(int b_num) throws Exception;
 
 //	마이페이지(자게) 수정용 게시글 조회
 
@@ -38,5 +39,6 @@ public interface ProfileDAO {
 
 //	마이페이지(자게) 댓글 일괄 삭제	
 	public void myFreeRepDeleteAll(String c_writer) throws Exception;
+
 
 }

@@ -178,22 +178,23 @@ ul.tabs li.current {
 					<img src="${path}/resources/img/profile_pic.png" alt="프로필">
 				</div>
 				<div class="profile_intro">
-					<span style="font-size: 25px; margin-bottom: 10px;">${loginUser.usernick}
-						님</span> <span style="font-size: 15px;">자유게시판 게시글 수: 개 / 댓글 수: 개</span>
+					<span style="font-size: 25px; margin-bottom: 10px;">${loginUser.usernick}님</span>
+					<span style="font-size: 15px;">자유게시판 게시글 수: ${page.count}개 /
+						댓글 수: ${replypage.count}개</span>
 				</div>
 			</div>
 			<div class="boardcontents">
 				<div id="contents">
 					<ul class="tabs">
-						<li class="tab-link current" data-tab="tab-1" id="tab1" onclick="return showboard();">내가 쓴 글</li>
-						<li class="tab-link" data-tab="tab-2" id="tab2" onclick="return showreply();">내가 쓴 댓글</li>
+						<li class="tab-link current" data-tab="tab-1">내가 쓴 글</li>
+						<li class="tab-link" data-tab="tab-2" onclick="location.href='${path}/profile/my_free_reply?num=1'">내가 쓴 댓글</li>
 					</ul>
 
+					<!-- 게시글 탭 시작 -->
 					<div id="tab-1" class="tab-content current" style="height: 510px;">
 						<form name="form1" method="post" id="form1">
 							<input type="hidden" name="b_writer" value="${loginUser.userid}">
 							<input type="hidden" name="num" value="${select}">
-							<input type="hidden" name="freeKey" value="B">
 							<ul class="ul_news_title">
 								<div class=boardnum>
 									<span class="board_num">번호</span>
@@ -219,7 +220,7 @@ ul.tabs li.current {
 									<span class="board_num">${freelist.b_num}</span>
 								</div>
 								<div class="title">
-									<a href="/free/freedetail?b_num=${freelist.b_num}&reply_num=1"><span>${freelist.b_title}</span></a>
+									<a href="/profile/my_free_detail?b_num=${freelist.b_num}&reply_num=1"><span>${freelist.b_title}</span></a>
 								</div>
 								<div class="writer_id">
 									<span class="">${freelist.b_writer}</span>
@@ -233,39 +234,50 @@ ul.tabs li.current {
 										style="display: inline-block; width: 40px !important; text-align: right;">${freelist.view_cnt}</span>
 								</div>
 								<div class="etc">
-									<div id="write_notice">
-										<button class="modify_btn">수정</button>
-									</div>
+								<form method="get" action="${path}/profile/my_free_modify">
+										<div id="write_notice">
+											<input type="hidden" name="b_num" value="${freelist.b_num}">
+											<input type="hidden" name="num" value="${select}">
+											<input type="submit" value="수정">
+										</div>
+									</form>
 									<form method="post" action="${path}/profile/my_free_delete">
 										<div id="write_notice">
 											<input type="hidden" name="b_num" value="${freelist.b_num}">
-											<input type="submit" value="삭제"
-												onclick="return delete_check();">
+											<input type="hidden" name="num" value="${select}">
+											<input type="submit" value="삭제" onclick="return delete_check();">
 										</div>
 									</form>
 								</div>
 							</ul>
 						</c:forEach>
-						<form method="post" action="${path}/profile/my_free_delete_all">
-							<div class="deleteandwrite_btn">
+						<div class="deleteandwrite_btn">
+							<form method="get" action="${path}/profile/my_free_write">
 								<div id="write_notice">
-									<input type="hidden" name="b_writer"
-										value="${loginUser.userid}"> <input type="submit"
-										value="전체 삭제" onclick="return delete_check();">
+									<input type="hidden" name="b_writer" value="${loginUser.userid}">
+									<input type="hidden" name="num" value="${select}">
+									<input type="submit" value="글쓰기">
 								</div>
-							</div>
-						</form>
+							</form>
+							<form method="post" action="${path}/profile/my_free_delete_all">
+								<div id="write_notice">
+									<input type="hidden" name="b_writer" value="${loginUser.userid}">
+									<input type="hidden" name="num" value="${select}">
+									<input type="submit" value="전체 삭제" onclick="return delete_check();">
+								</div>
+							</form>
+						</div>
 						<div class="btns">
 							<ul class="pagination">
 								<c:if test="${page.prev}">
 									<li>[<a
-										href='${path}/profile/my_freeboard?keyword=R&num=${page.startPageNum-1}'>이전</a>]
+										href='${path}/profile/my_free?num=${page.startPageNum-1}'>이전</a>]
 									</li>
 								</c:if>
 								<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}"
 									var="num">
 									<li><c:if test="${select != num}">
-											<a href="${path}/profile/my_freeboard?num=${num}">${num}</a>
+											<a href="${path}/profile/my_free?num=${num}">${num}</a>
 										</c:if> <c:if test="${select == num}">
 											<b
 												style="font-weight: 700; color: red; text-decoration: underline;">${num}</b>
@@ -273,74 +285,16 @@ ul.tabs li.current {
 								</c:forEach>
 								<c:if test="${page.next}">
 									<li>[<a
-										href="${path}/profile/my_freeboard?num=${page.endPageNum+1}">다음</a>]
+										href="${path}/profile/my_free?num=${page.endPageNum+1}">다음</a>]
 									</li>
 								</c:if>
 							</ul>
 						</div>
 					</div>
+					<!-- 게시글 탭 끝 -->
 
-					<div id="tab-2" class="tab-content" style="height: 600px;">
-						<form name="form1" method="post" id="form1">
-							<input type="hidden" name="table_name" value="notice_list">
-							<input type="hidden" name="freeKey" value="R">
-							<ul class="ul_news_title" style="display: block;">
-								<div class=reply>
-									<span class="reply" style="margin: 0 auto;">댓글</span>
-								</div>
-							</ul>
-						</form>
-						<c:forEach items="${replylist}" var="free_reply">
-							<ul class="ul_news" style="text-align: left; height: 100px;">
-								<div class="reply_contents">
-									<span>${free_reply.c_contents}</span> <span class="date"
-										style="font-size: 10px; color: gray;"><fmt:formatDate
-											value="${free_reply.c_date}" pattern="yyyy.MM.dd HH:mm:ss" /></span>
-									<span class="view" style="font-size: 12px;">${free_reply.b_title}</span>
-								</div>
-								<form method="post" action="${path}/profile/my_free_reply_delete">
-									<div id="write_notice">
-										<input type="hidden" name="c_num" value="${free_reply.c_num}">
-										<input type="submit" value="삭제"
-											onclick="return delete_check();">
-									</div>
-								</form>
-							</ul>
-						</c:forEach>
-						<form method="post" action="${path}/profile/my_free_reply_delete_all">
-							<div class="deleteandwrite_btn">
-								<div id="write_notice">
-									<input type="hidden" name="c_writer"
-										value="${loginUser.userid}"> <input type="submit"
-										value="전체 삭제" onclick="return delete_check();">
-								</div>
-							</div>
-						</form>
-						<div class="btns">
-							<ul class="pagination">
-								<c:if test="${page.prev}">
-									<li>[<a
-										href='${path}/profile/my_freeboard?num=${page.startPageNum-1}'>이전</a>]
-									</li>
-								</c:if>
-								<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}"
-									var="num">
-									<li><c:if test="${select != num}">
-											<a href="${path}/profile/my_freeboard?num=${num}">${num}</a>
-										</c:if> <c:if test="${select == num}">
-											<b
-												style="font-weight: 700; color: red; text-decoration: underline;">${num}</b>
-										</c:if></li>
-								</c:forEach>
-								<c:if test="${page.next}">
-									<li>[<a
-										href="${path}/profile/my_freeboard?num=${page.endPageNum+1}">다음</a>]
-									</li>
-								</c:if>
-							</ul>
-						</div>
-					</div>
-
+					<!-- 댓글 탭 시작 -->
+					<!-- 댓글 탭 끝 -->
 				</div>
 			</div>
 		</div>
@@ -351,32 +305,6 @@ ul.tabs li.current {
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="${path}/resources/js/header.js"></script>
 <script>
-	$(document).ready(function() {
-
-		$('ul.tabs li').click(function() {
-			var tab_id = $(this).attr('data-tab');
-
-			$('ul.tabs li').removeClass('current');
-			$('.tab-content').removeClass('current');
-
-			$(this).addClass('current');
-			$("#" + tab_id).addClass('current');
-		})
-	})
-	
-	const tab1 = document.getElementById("tab1");
-	const tab2 = document.getElementById("tab2");
-	
-	function showboard() {
-		tab1.style.display: "block";
-		tab2.style.display: "none";
-	}
-	
-	function showreply() {
-		tab1.style.display: "none";
-		tab2.style.display: "block";
-	}
-
 	function delete_check() {
 		if (confirm("정말로 삭제하시겠습니까?")) {
 			return true;

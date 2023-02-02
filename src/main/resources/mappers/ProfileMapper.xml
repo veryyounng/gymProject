@@ -21,6 +21,10 @@
 	</select>
 
 	<!-- 마이페이지(자게) 게시글 조회 -->
+	<select id="getMyFreeDetail" parameterType="_int" resultType="com.gym.domain.FreeBoardVO">
+		select * from f_board
+		where b_num = #{b_num}
+	</select>
 
 	<!-- 마이페이지(자게) 수정용 게시글 조회 -->
 

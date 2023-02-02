@@ -37,6 +37,10 @@ public class ProfileDAOImpl implements ProfileDAO {
 	}
 
 //	마이페이지(자게) 게시글 조회
+	@Override
+	public FreeBoardVO getMyFreeDetail(int b_num) throws Exception{
+		return sql.selectOne(namespace + ".getMyFreeDetail", b_num);
+	}
 
 //	마이페이지(자게) 수정용 게시글 조회
 

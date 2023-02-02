@@ -23,7 +23,7 @@
       <div class="myboard">
         <h4 class="h4">내 글</h4>
         <ul>
-          <li><a href="${path}/profile/my_freeboard?num=1&freeKey=B">자유 게시판</a></li>
+          <li><a href="${path}/profile/my_free?num=1">자유 게시판</a></li>
           <li><a href="#">운동지식 공유</a></li>
         </ul>
       </div>

@@ -56,7 +56,7 @@
 		from f_board b
 		join f_comment c
 		on b.b_num = c.b_num
-		where c_writer = ${c_writer}
+		where c_writer = #{c_writer}
 		order by c_date desc
 		limit #{displayPost}, #{postNum}
 	</select>

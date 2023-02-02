@@ -215,6 +215,7 @@
       }
    }); // end send eamil
    
+   var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
    // 인증번호 비교 
    $(document).ready(function() {
       $('#emailform').submit(function () {
@@ -222,12 +223,20 @@
          console.log($('#certification_number').val());
          if ($('#certification_number').val() !== code) {
             alert('인증번호가 일치하지 않습니다! 다시 확인해주세요!.');
+            $('#certification_number').focus();
             return false;
          }
-         if ($('#email_id').val() == "" || $('domain-txt').val() == "") {
+         else if ($('#email_id').val() == "" || $('#domain-txt').val() == "") {
         	 alert('이메일을 입력해주세요!');
+        	 $('#email_id').focus();
         	 return false;
          }
+         else if (!exptext.test(email.value)) {
+        	 alert('이메일을 확인해주세요!');
+        	 $('#email_id').focus();
+        	 return false;
+         }
+         
          return true;
       });
    })

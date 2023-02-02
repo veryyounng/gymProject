@@ -67,40 +67,69 @@
 				</c:if>
 
 	<!-- 댓글 시작 -->
-	<c:forEach items = "${ex_reply}" var = "ex_reply">
-		<li>
-			<div>
-				<p>[작성자] : ${ex_reply.exc_writer} [작성시간] <fmt:formatDate value="${ex_reply.exc_date}" pattern = "yyyy-MM-dd HH:mm" /></p>
-				<p>[댓글내용] <br> ${ex_reply.exc_contents}</p>
-				
-				<p>
-					<a href="/ex_reply/ex_replymodify?ex_num=${ex_view.ex_num}&exc_num=${ex_reply.exc_num}">수정</a> / <a href="">삭제</a>
-				</p>
-				
-				<hr />
-				
-			</div>
-		</li>
-	</c:forEach>
-	
 	<div>
-		
-		<form method="post" action="/ex_reply/exc_write">
+		<form method="post" action="/ex_reply/exc_write" name = "ex_replyform">
 			<p>
 				<label>댓글 작성자</label> <input type="text" name = "exc_writer" value = "${loginUser.userid}">
 			</p>
 			<p>
-				<textarea rows="5" cols="50" name = "exc_contents"></textarea>
+				<textarea rows="3" cols="50" name = "exc_contents"></textarea>
 			</p>
 			<p>
 				<input type="hidden" name = "ex_num" value = "${ex_view.ex_num}">
 				<button type = "submit">댓글 작성</button>
 			</p>
 		</form>
-		
 	</div>
-	<!-- 댓글 끝 -->
+	
+	<!-- 댓글 보기 -->
+	<c:forEach items = "${ex_reply}" var = "ex_reply">
+		<li class="reply" id="reply${ex_reply.exc_num}">
+			<div class="free_reply_div1 reply${ex_reply.exc_num}">
+				<p>${ex_reply.exc_writer} · <fmt:formatDate value="${ex_reply.exc_date}" pattern = "yyyy.MM.dd HH:mm:ss" /></p>
+				<p>${ex_reply.exc_contents}</p>
+				<div class="free_reply_div2">
+				
+				<!-- 댓글 수정 삭제 -->
+				<p>
+					<a href="/ex_reply/ex_replymodify?ex_num=${ex_view.ex_num}&exc_num=${ex_reply.exc_num}">수정</a> / 
+							
+					<form method = "post" action="${cp}/ex_reply/ex_replydelete?ex_num=${ex_view.ex_num}&exc_num=${ex_reply.exc_num}"
+					 id = "ex_replydelete" name = "ex_replydelete">
+						<input class="btn_delete" type="submit" value="삭제" id="btn_delete" onclick = "return reply_delete();">
+					</form>
+				</p>
+				<hr />
+			</div>
+		</li>
+	</c:forEach>
+
+	<!-- 댓글 페이징 -->
+		<div class="btns">
+			<ul class="pagination" style="display:flex;">
+				<c:if test="${erpage.prev}">
+					<li style="margin-right:5px;">[<a href='/ex_board/ex_view?ex_num=${ex_view.ex_num}&reply_num=${erpage.startPageNum-1}'>이전</a>]
+					</li>
+				</c:if>
+				<c:forEach begin="${erpage.startPageNum}" end="${erpage.endPageNum}"
+					var="num">
+					<li style="margin-right:5px;"><c:if test="${select != num}">
+							<a href="/ex_board/ex_view?ex_num=${ex_view.ex_num}&reply_num=${num}">${num}</a>
+					</c:if> <c:if test="${select == num}">
+							<b
+								style="font-weight: 700; color: red; text-decoration: underline;">${num}</b>
+						</c:if></li>
+				</c:forEach>
+				<c:if test="${erpage.next}">
+					<li>[<a href="/ex_board/ex_view?ex_num=${ex_view.ex_num}&reply_num=${erpage.endPageNum+1}">다음</a>]
+					</li>
+				</c:if>
+			</ul>
 		</div>
+		
+	<!-- 댓글 끝 -->
+
+	</div>
 		
 	</article>
 	
@@ -117,6 +146,7 @@
     $("#ex_writer").attr("disabled",true);
     $("#ex_content").attr("disabled",true);
    
+    //삭제 체크
     function delete_check(){
     	if(confirm("게시물을 삭제하시겠습니까?")){
     		return true;
@@ -124,9 +154,32 @@
     		return false;
     	}
     }
+
+    //댓글 체크
+    function replyCheck(){
+ 	   let reply_writer = $("#exc_writer").val();
+ 	   let reply_content = $("#exc_contents").val();
+ 	   if(reply_writer == ""){
+ 		   alert("로그인 후 이용하세요!");
+ 		   return false;
+ 	   }
+ 	   if(reply_content == ""){
+ 		   alert("댓글을 입력하세요.");
+ 		   return false;
+ 	   }
+ 	   if(confirm("댓글을 등록하시겠습니까?")){
+ 		   $("#ex_replyform").submit();
+ 	   }
+    }
     
-    
-    
+    //댓글 삭제 체크
+    function reply_delete(){
+ 	   if(confirm("정말로 삭제하시겠습니까?")){
+ 		   return true;
+ 	   } else {
+ 	   return false;
+ 	   }
+    }
     
 </script>
 

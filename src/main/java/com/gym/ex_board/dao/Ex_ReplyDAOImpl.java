@@ -1,5 +1,6 @@
 package com.gym.ex_board.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -19,8 +20,13 @@ public class Ex_ReplyDAOImpl implements Ex_ReplyDAO {
 
 	// 댓글 조회
 	@Override
-	public List<Ex_ReplyVO> exc_list(int ex_num) throws Exception {
-		return sql.selectList(namespace + ".exc_ReplyList", ex_num);
+	public List<Ex_ReplyVO> exc_list(int ex_num, int displayPost, int postNum) throws Exception {
+		HashMap<String, Integer> data = new HashMap<String, Integer>();
+		data.put("ex_num", ex_num);
+		data.put("displayPost", displayPost);
+		data.put("postNum", postNum);
+		
+		return sql.selectList(namespace + ".exc_ReplyList", data);
 	}
 
 	// 댓글 작성
@@ -37,15 +43,22 @@ public class Ex_ReplyDAOImpl implements Ex_ReplyDAO {
 
 	// 댓글 삭제
 	@Override
-	public void exc_delete(Ex_ReplyVO ervo) throws Exception {
-		sql.delete(namespace + ".exc_ReplyDelete", ervo);
+	public void exc_delete(int exc_num) throws Exception {
+		sql.delete(namespace + ".exc_ReplyDelete", exc_num);
 	}
 
+	// 댓글 개수 구하기
+	@Override
+	public int exc_count(int ex_num) throws Exception {
+		return sql.selectOne(namespace + ".exc_count", ex_num);
+	}
+	
 	// 단일 댓글 조회
 	@Override
 	public Ex_ReplyVO exc_replySelect(Ex_ReplyVO ervo) throws Exception {
 		return sql.selectOne(namespace + ".exc_replyselect", ervo);
 	}
+
 	
 	
 	

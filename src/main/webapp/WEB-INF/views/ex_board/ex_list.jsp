@@ -88,7 +88,7 @@
                         
                         <div class="title" style="width: 60%;">
                         	<span>
-                        		<a href = "${path}/ex_board/ex_view?ex_num=${ex_list.ex_num}">${ex_list.ex_title}</a>
+                        		<a href = "${path}/ex_board/ex_view?ex_num=${ex_list.ex_num}&reply_num=1">${ex_list.ex_title}</a>
                         	</span>
                         </div>
                         
@@ -111,11 +111,11 @@
                 
                 <div class="btns">
                     <ul class="pagination">
-                    
+                    	
                     	<c:if test="${ex_page.prev}">
                     		<span><a href = "/ex_board/ex_list?num=${ex_page.startPageNum - 1}${ex_page.searchTypeKey}">&nbsp;&lt;&nbsp;</a></span>
                     	</c:if>
-                    
+                    	
                     	<c:forEach begin="${ex_page.startPageNum}" end="${ex_page.endPageNum}" var = "num">
                     		<span>
                     		
@@ -133,8 +133,10 @@
                     	<c:if test="${ex_page.next}">
                     		<span><a href = "/ex_board/ex_list?num=${ex_page.endPageNum + 1}${ex_page.searchTypeKey}">&nbsp;&gt;&nbsp;</a></span>
                     	</c:if>
+                    	
                     </ul>
                 </div>
+                
             </div>
         </div>
         <!-- 개발코드 끝 -->

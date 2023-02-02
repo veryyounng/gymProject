@@ -14,6 +14,7 @@ import com.gym.ex_board.service.Ex_BoardService;
 import com.gym.ex_board.service.Ex_ReplyService;
 import com.gym.ex_board.vo.Ex_BoardVO;
 import com.gym.ex_board.vo.Ex_Page;
+import com.gym.ex_board.vo.Ex_ReplyPage;
 import com.gym.ex_board.vo.Ex_ReplyVO;
 
 @Controller
@@ -77,7 +78,7 @@ public class Ex_BoardController {
 	
 	//게시물 보기 GET
 	@RequestMapping(value = "/ex_view", method = RequestMethod.GET)
-	public void getView(@RequestParam("ex_num") int ex_num, Model model)
+	public String getView(@RequestParam("ex_num") int ex_num, Model model, int reply_num)
 		throws Exception {
 		
 		Ex_BoardVO evo = service.view(ex_num);
@@ -85,12 +86,17 @@ public class Ex_BoardController {
 		model.addAttribute("ex_view", evo);
 		
 		// 댓글 조회
-		List<Ex_ReplyVO> ex_reply = null;
-		ex_reply = ex_replyservice.exc_list(ex_num);
-
-		System.out.println("댓글 조회 시작");
-		model.addAttribute("ex_reply", ex_reply);
+		Ex_ReplyPage erpage = new Ex_ReplyPage();
+		erpage.setNum(reply_num);
+		erpage.setCount(ex_replyservice.exc_count(ex_num));
 		
+		List<Ex_ReplyVO> ex_reply = null;
+		ex_reply = ex_replyservice.exc_list(ex_num, erpage.getDisplayPost(), erpage.getPostNum());
+		model.addAttribute("erpage",erpage);
+		model.addAttribute("ex_reply", ex_reply);
+		model.addAttribute("select", reply_num);
+		
+		return "/ex_board/ex_view";
 	}
 	
 	//게시물 수정 GET

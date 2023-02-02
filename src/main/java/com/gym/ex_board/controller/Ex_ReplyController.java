@@ -28,7 +28,7 @@ public class Ex_ReplyController {
 	public String exc_write(Ex_ReplyVO ervo) throws Exception {
 		ex_replyservice.exc_write(ervo);
 		
-		return "redirect:/ex_board/ex_view?ex_num=" + ervo.getEx_num();
+		return "redirect:/ex_board/ex_view?reply_num=1&ex_num=" + ervo.getEx_num();
 	}
 	
 	// 댓글 단일 조회(수정용)
@@ -50,11 +50,17 @@ public class Ex_ReplyController {
 	public String post_exc_modify(Ex_ReplyVO ervo) throws Exception {
 		ex_replyservice.exc_modify(ervo);
 		
-		return "redirect:/ex_board/ex_view?ex_num=" + ervo.getEx_num();
+		return "redirect:/ex_board/ex_view?reply_num=1&ex_num=" + ervo.getEx_num();
 	}
 	
 	// 댓글 삭제
-	
-	
+	@RequestMapping(value = "/ex_replydelete", method = RequestMethod.POST)
+	public String exc_delete(Ex_ReplyVO ervo) throws Exception {
+		
+		ex_replyservice.exc_delete(ervo.getExc_num());
+		
+		return "redirect:/ex_board/ex_view?reply_num=1&ex_num=" + ervo.getEx_num();
+		
+	}	
 	
 }

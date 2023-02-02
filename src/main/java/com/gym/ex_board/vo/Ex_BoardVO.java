@@ -18,7 +18,6 @@ public class Ex_BoardVO {
 		    constraint foreign key(ex_writer) references user(userid)
 		);	
 */
-
 	private int ex_num;
 	private String ex_title;
 	private String ex_writer;

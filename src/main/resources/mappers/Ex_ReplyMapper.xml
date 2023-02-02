@@ -10,6 +10,7 @@
 			exc_num, ex_num, exc_writer, exc_contents, exc_date
 		from exc_comment
 			where ex_num = #{ex_num}
+			order by exc_num desc limit #{displayPost}, #{postNum}
 	</select>	
 	
 	<!-- 댓글 작성 -->
@@ -27,11 +28,17 @@
 	</update>
 	
 	<!-- 댓글 삭제 -->
-	<delete id="exc_ReplyDelete" parameterType="com.gym.ex_board.vo.Ex_ReplyVO">
+	<delete id="exc_ReplyDelete" parameterType="_int">
 		delete from exc_comment
 		where exc_num = #{exc_num}
-			and ex_num = #{ex_num}
 	</delete>
+	
+	<!-- 댓글 갯수 구하기 -->
+	<select id="exc_count" parameterType="_int" resultType="_int">
+		select count(exc_num)
+		from exc_comment
+		where ex_num = #{ex_num}
+	</select>
 	
 	<!-- 단일 댓글 조회 -->
 	<select id="exc_replyselect" parameterType="com.gym.ex_board.vo.Ex_ReplyVO" resultType="com.gym.ex_board.vo.Ex_ReplyVO">

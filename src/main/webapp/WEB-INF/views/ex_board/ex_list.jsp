@@ -11,28 +11,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>운동지식공유 게시판</title>
     
-    <link rel="stylesheet" href="${path}/resources/css/ex_styles.css">
-    <link rel="stylesheet" href="${path}/resources/css/ex_list.css">
-    
-    <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons"/>
-	<link rel="stylesheet" 
-   href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet" href="${path}/resources/css/reset.css">
+<link rel="stylesheet" href="${path}/resources/css/free_styles.css">
+<link rel="stylesheet" href="${path}/resources/css/free_list.css">
+<link rel="shortcut icon" href="${path}/resources/img/파비콘.png" type="image/x-icon">
+
+<link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script>
         function getIndex() {
             location.href = './views/index.jsp';
         }
     </script>
     <style>
-        section {
-            height: 1120px;
-            display: block;
-        }
-        .ul_news_title {
-           margin-bottom: 0px;
-        }
-        .ul_news {
-           margin: 0px;
-        }
+	section {
+		height: 1120px;
+		display: block;
+	}
+	
+	.ul_news_title {
+		margin-bottom: 0px;
+	}
+	
+	.ul_news {
+		margin: 0px;
+	}
+	
+	select {
+		width: 29%;
+		display: inline;
+	}
+	#search {
+		margin: 0;
+		display:flex;
+		align-items: center;
+	}
+	#search * {
+		height: 22px;
+		margin-right: 3px;
+	}
+	.btn_primary{
+		width: 48px;
+	}
     </style>
 </head>
 
@@ -109,29 +130,33 @@
                 
                 <div id="write_notice"><button><a href="/ex_board/ex_write">글쓰기</a></button></div>
                 
+                
+                <!-- 페이지 작업 -->
                 <div class="btns">
                     <ul class="pagination">
                     	
                     	<c:if test="${ex_page.prev}">
-                    		<span><a href = "/ex_board/ex_list?num=${ex_page.startPageNum - 1}${ex_page.searchTypeKey}">&nbsp;&lt;&nbsp;</a></span>
+                    		<li>[<a href = "/ex_board/ex_list?num=${ex_page.startPageNum - 1}${ex_page.searchTypeKey}">이전</a>]</li>
                     	</c:if>
                     	
                     	<c:forEach begin="${ex_page.startPageNum}" end="${ex_page.endPageNum}" var = "num">
-                    		<span>
+                    		<li>
                     		
                     			<c:if test = "${select != num}">
                     				<a href = "/ex_board/ex_list?num=${num}${ex_page.searchTypeKey}">&nbsp;${num}&nbsp;</a>
                     			</c:if>
                     		
 		             			<c:if test = "${select == num}">
-                    				<b>&nbsp;${num}&nbsp;</b>
+                    				<b style="font-weight: 700; color: red; text-decoration: underline;">
+                    				&nbsp;${num}&nbsp;
+                    				</b>
                     			</c:if>
                     		
-                    		</span>
+                    		</li>
                     	</c:forEach>
                     	
                     	<c:if test="${ex_page.next}">
-                    		<span><a href = "/ex_board/ex_list?num=${ex_page.endPageNum + 1}${ex_page.searchTypeKey}">&nbsp;&gt;&nbsp;</a></span>
+                    		<li>[<a href = "/ex_board/ex_list?num=${ex_page.endPageNum + 1}${ex_page.searchTypeKey}">다음</a>]</li>
                     	</c:if>
                     	
                     </ul>

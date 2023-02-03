@@ -26,12 +26,12 @@
 <style>
 .side-bar {
 	position: relative;
-	top: -232px;
+	top: -182px;
 }
 
 section {
 	min-height: 0px;
-	height: 950px;
+	height: 850px;
 }
 
 .banana {

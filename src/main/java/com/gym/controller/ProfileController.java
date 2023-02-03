@@ -38,7 +38,7 @@ public class ProfileController {
 	private FreeBoardService freeservice;
 
 	@RequestMapping(value = { "/profile_pw_modify", "/profile_delete_user",
-			"/my_free_write" }, method = RequestMethod.GET)
+			"/my_reserve_now", "/my_reserve_past", "/my_free_write", "/my_exe" }, method = RequestMethod.GET)
 	public void replace() {
 	}
 

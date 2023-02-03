@@ -15,8 +15,8 @@
       <div class="reservation"> 
         <h4 class="h4">예약</h4>
         <ul>
-          <li><a href="#">예약 현황</a></li>
-          <li><a href="#">예약 내역</a></li>
+          <li><a href="${path}/profile/my_reserve_now">예약 현황</a></li>
+          <li><a href="${path}/profile/my_reserve_past">예약 내역</a></li>
         </ul>
       </div>
 
@@ -24,7 +24,7 @@
         <h4 class="h4">내 글</h4>
         <ul>
           <li><a href="${path}/profile/my_free?num=1">자유 게시판</a></li>
-          <li><a href="#">운동지식 공유</a></li>
+          <li><a href="${path}/profile/my_exe?num=1">운동지식 공유</a></li>
         </ul>
       </div>
 

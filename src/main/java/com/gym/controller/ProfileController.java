@@ -19,6 +19,7 @@ import com.gym.domain.FreeBoardVO;
 import com.gym.domain.Page;
 import com.gym.domain.ReplyPage;
 import com.gym.domain.ReplyVO;
+import com.gym.domain.ReservationVO;
 import com.gym.domain.UserVO;
 import com.gym.service.FreeBoardService;
 import com.gym.service.ProfileService;
@@ -38,7 +39,7 @@ public class ProfileController {
 	private FreeBoardService freeservice;
 
 	@RequestMapping(value = { "/profile_pw_modify", "/profile_delete_user",
-			"/my_reserve_now", "/my_reserve_past", "/my_free_write", "/my_exe" }, method = RequestMethod.GET)
+			"/my_reserve_past", "/my_free_write", "/my_exe" }, method = RequestMethod.GET)
 	public void replace() {
 	}
 
@@ -80,10 +81,61 @@ public class ProfileController {
 		session.invalidate();
 		return "redirect:/";
 	}
+	
+	
+	
+//	현재 예약 내역 조회, 개수
+	@RequestMapping(value = "/my_reserve_now", method = RequestMethod.GET)
+	public void my_reserve(int num, Model model, HttpServletRequest req)  throws Exception {
+		String userid = ((UserVO) req.getSession().getAttribute("loginUser")).getUserid();
+		Page page = new Page();
+		
+		page.setNum(num);
+		page.setCount(profileservice.getMyReserveCnt(userid));
+		
+		List<ReservationVO> list = null;
+		list = profileservice.getMyReserve(userid, page.getDisplayPost(), page.getPostNum());
+		
+		model.addAttribute("page", page);
+		model.addAttribute("select", num);
+		model.addAttribute("list", list);
+	}
+	
+//	예약 취소
+	@RequestMapping(value = "/my_reserve_delete", method = RequestMethod.POST)
+	public String my_reserve_delete(int rv_num, int num) throws Exception {
+		profileservice.my_reserve_delete(rv_num);
+		return "redirect:/profile/my_reserve_now?num=" + num;
+	}
+	
+//	과거 예약 내역 조회, 개수
+	@RequestMapping(value = "/my_reserve_past", method = RequestMethod.POST)
+	public String my_reserve_past
+	(int num, String datepick, String date_list, String lecturepick,
+			String lecture_list, Model model, HttpServletRequest req)  throws Exception {
+		String userid = ((UserVO) req.getSession().getAttribute("loginUser")).getUserid();
+		Page page = new Page();
+		
+		page.setNum(num);
+		page.setCount(profileservice.getMyReservePastCnt(userid, datepick, date_list, lecturepick, lecture_list));
+		
+		List<ReservationVO> list = null;
+		list = profileservice.getMyReservePast(userid, datepick, date_list, lecturepick, lecture_list, page.getDisplayPost(), page.getPostNum());
+		
+		model.addAttribute("page", page);
+		model.addAttribute("datepick", datepick);
+		model.addAttribute("lecturepick", lecturepick);
+		model.addAttribute("select", num);
+		model.addAttribute("list", list);
+		
+		return "/profile/my_reserve_past?num=1";
+	}
 
+	
+	
 //	마이페이지(자게) 게시글 목록, 개수
 	@RequestMapping(value = "/my_free", method = RequestMethod.GET)
-	public void my_free(Model model, HttpServletRequest req, int num) throws Exception {
+	public void my_free(int num, Model model, HttpServletRequest req) throws Exception {
 		String userid = ((UserVO) req.getSession().getAttribute("loginUser")).getUserid();
 		Page page = new Page();
 		ReplyPage replypage = new ReplyPage();

@@ -26,12 +26,12 @@
 <style>
 .side-bar {
 	position: relative;
-	top: -40px;
+	top: -146px;
 }
 
 .banana {
 	border: 1px solid black;
-	height: 100%;
+	height: 700px;
 	margin: 0 auto;
 	display: flex;
 	justify-content: space-around;
@@ -71,122 +71,43 @@ table.type3 {
 						<td>예약관리</td>
 					</tr>
 
-					<c:forEach items="${list}" var="reservelist">
+					<c:forEach items="${list}" var="reservelist" varStatus="status">
 						<tr class="reser_result">
-							<c:forEach var="i" begin="1" end="" step="1">
-								<td>${i}</td>
-							</c:forEach>
+							<td>${page.count - status.count + 1}</td>
 							<td>${reservelist.rv_title}</td>
 							<td>${reservelist.rv_date}</td>
 							<td>${reservelist.rv_time}</td>
 							<td>${reservelist.rv_headCnt}/ ${reservelist.rv_limit}</td>
-							<form method="post" action="">
-								<td><input type="hidden" name="rv_num"
-									value="${reservelist.rv_num}"> <input type="submit"
-									value="취소"></td>
+							<form method="post" action="${path}/profile/my_reserve_delete">
+								<td>
+									<input type="hidden" name="rv_num" value="${reservelist.rv_num}">
+									<input type="hidden" name="num" value="${select}">
+									<input type="submit" value="취소">
+								</td>
 							</form>
 						</tr>
 					</c:forEach>
-					<tr class="reser_result">
-						<td>10</td>
-						<td>요가</td>
-						<td>23.02.03.</td>
-						<td>10:00 ~ 12:00</td>
-						<td>12/15</td>
-						<td><input type="submit" value="취소"></td>
-					</tr>
-					<tr class="reser_result">
-						<td>9</td>
-						<td>요가</td>
-						<td>23.02.03.</td>
-						<td>10:00 ~ 12:00</td>
-						<td>12/15</td>
-						<td><input type="submit" value="취소"></td>
-					</tr>
-					<tr class="reser_result">
-						<td>8</td>
-						<td>요가</td>
-						<td>23.02.03.</td>
-						<td>10:00 ~ 12:00</td>
-						<td>12/15</td>
-						<td><input type="submit" value="취소"></td>
-					</tr>
-					<tr class="reser_result">
-						<td>7</td>
-						<td>요가</td>
-						<td>23.02.03.</td>
-						<td>10:00 ~ 12:00</td>
-						<td>12/15</td>
-						<td><input type="submit" value="취소"></td>
-					</tr>
-					<tr class="reser_result">
-						<td>6</td>
-						<td>요가</td>
-						<td>23.02.03.</td>
-						<td>10:00 ~ 12:00</td>
-						<td>12/15</td>
-						<td><input type="submit" value="취소"></td>
-					</tr>
-					<tr class="reser_result">
-						<td>5</td>
-						<td>요가</td>
-						<td>23.02.03.</td>
-						<td>10:00 ~ 12:00</td>
-						<td>12/15</td>
-						<td><input type="submit" value="취소"></td>
-					</tr>
-					<tr class="reser_result">
-						<td>4</td>
-						<td>요가</td>
-						<td>23.02.03.</td>
-						<td>10:00 ~ 12:00</td>
-						<td>12/15</td>
-						<td><input type="submit" value="취소"></td>
-					</tr>
-					<tr class="reser_result">
-						<td>3</td>
-						<td>요가</td>
-						<td>23.02.03.</td>
-						<td>10:00 ~ 12:00</td>
-						<td>12/15</td>
-						<td><input type="submit" value="취소"></td>
-					</tr>
-					<tr class="reser_result">
-						<td>2</td>
-						<td>요가</td>
-						<td>23.02.03.</td>
-						<td>10:00 ~ 12:00</td>
-						<td>12/15</td>
-						<td><input type="submit" value="취소"></td>
-					</tr>
-					<tr class="reser_result">
-						<td>1</td>
-						<td>요가</td>
-						<td>23.02.03.</td>
-						<td>10:00 ~ 12:00</td>
-						<td>12/15</td>
-						<td><input type="submit" value="취소"></td>
-					</tr>
 				</table>
 				<div class="btns">
 					<ul class="pagination">
 						<c:if test="${page.prev}">
 							<li>[<a
-								href='${path}/profile/my_free?num=${page.startPageNum-1}'>이전</a>]
+								href='${path}/profile/my_reserve_now?num=${page.startPageNum-1}'>이전</a>]
 							</li>
 						</c:if>
-						<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}"
-							var="num">
-							<li><c:if test="${select != num}">
-									<a href="${path}/profile/my_free?num=${num}">${num}</a>
-								</c:if> <c:if test="${select == num}">
-									<b
-										style="font-weight: 700; color: red; text-decoration: underline;">${num}</b>
-								</c:if></li>
+						<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
+							<li>
+								<c:if test="${select != num}">
+									<a href="${path}/profile/my_reserve_now?num=${num}">${num}</a>
+								</c:if>
+								<c:if test="${select == num}">
+									<b style="font-weight: 700; color: red; text-decoration: underline;">${num}</b>
+								</c:if>
+							</li>
 						</c:forEach>
 						<c:if test="${page.next}">
 							<li>[<a
-								href="${path}/profile/my_free?num=${page.endPageNum+1}">다음</a>]
+								href="${path}/profile/my_reserve_now?num=${page.endPageNum+1}">다음</a>]
 							</li>
 						</c:if>
 					</ul>

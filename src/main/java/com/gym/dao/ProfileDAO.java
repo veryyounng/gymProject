@@ -4,9 +4,28 @@ import java.util.List;
 
 import com.gym.domain.FreeBoardVO;
 import com.gym.domain.ReplyVO;
+import com.gym.domain.ReservationVO;
 
 public interface ProfileDAO {
 
+//	현재 예약 내역 개수
+	public int getMyReserveCnt(String userid) throws Exception;
+	
+//	현재 예약 목록
+	public List<ReservationVO> getMyReserve(String userid, int displayPost, int postNum) throws Exception;
+
+//	예약 취소
+	public void my_reserve_delete(int rv_num) throws Exception;
+
+//	과거 예약 내역 개수
+	public int getMyReservePastCnt(String userid, String datepick, String date_list,
+			String lecturepick, String lecture_list) throws Exception;
+	
+//	과거 예약 목록
+	public List<ReservationVO> getMyReservePast(String userid, String datepick,
+			String date_list, String lecturepick, String lecture_list, int displayPost,
+			int postNum) throws Exception;
+	
 //	마이페이지(자게) 게시글 총 개수
 	public int getMyFreeCnt(String b_writer) throws Exception;
 
@@ -15,12 +34,6 @@ public interface ProfileDAO {
 
 //	마이페이지(자게) 게시글 조회
 	public FreeBoardVO getMyFreeDetail(int b_num) throws Exception;
-
-//	마이페이지(자게) 수정용 게시글 조회
-
-//	마이페이지(자게) 게시글 작성
-
-//	마이페이지(자게) 게시글 수정
 
 //	마이페이지(자게) 게시글 삭제
 	public void myFreeDelete(int b_num) throws Exception;
@@ -39,6 +52,4 @@ public interface ProfileDAO {
 
 //	마이페이지(자게) 댓글 일괄 삭제	
 	public void myFreeRepDeleteAll(String c_writer) throws Exception;
-
-
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.gym.dao.ProfileDAO;
 import com.gym.domain.FreeBoardVO;
 import com.gym.domain.ReplyVO;
+import com.gym.domain.ReservationVO;
 
 @Service
 public class ProfileServiceImpl implements ProfileService {
@@ -15,6 +16,40 @@ public class ProfileServiceImpl implements ProfileService {
 	@Autowired
 	private ProfileDAO pdao;
 
+//	현재 예약 내역 개수
+	@Override
+	public int getMyReserveCnt(String userid) throws Exception {
+		return pdao.getMyReserveCnt(userid);
+	}
+	
+//	현재 예약 목록
+	@Override
+	public List<ReservationVO> getMyReserve(String userid, int displayPost, int postNum) throws Exception {
+		return pdao.getMyReserve(userid, displayPost, postNum);
+	}
+	
+//	예약 취소
+	@Override
+	public void my_reserve_delete(int rv_num) throws Exception {
+		pdao.my_reserve_delete(rv_num);
+	}
+	
+//	현재 예약 내역 개수
+	@Override
+	public int getMyReservePastCnt(String userid, String datepick, String date_list,
+			String lecturepick, String lecture_list) throws Exception {
+		return pdao.getMyReservePastCnt(userid, datepick, date_list, lecturepick, lecture_list);
+	}
+	
+//	현재 예약 목록
+	@Override
+	public List<ReservationVO> getMyReservePast(String userid, String datepick,
+			String date_list, String lecturepick, String lecture_list, int displayPost,
+			int postNum) throws Exception {
+		return pdao.getMyReservePast(userid, datepick, date_list, lecturepick,
+				lecture_list, displayPost, postNum);
+	}
+	
 //	마이페이지(자게) 게시글 총 개수
 	@Override
 	public int getMyFreeCnt(String b_writer) throws Exception {
@@ -32,12 +67,6 @@ public class ProfileServiceImpl implements ProfileService {
 	public FreeBoardVO getMyFreeDetail(int b_num) throws Exception {
 		return pdao.getMyFreeDetail(b_num);
 	}
-
-//	마이페이지(자게) 수정용 게시글 조회
-
-//	마이페이지(자게) 게시글 작성
-
-//	마이페이지(자게) 게시글 수정
 
 //	마이페이지(자게) 게시글 삭제
 	@Override

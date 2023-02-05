@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.gym.domain.FreeBoardVO;
 import com.gym.domain.ReplyVO;
+import com.gym.domain.ReservationVO;
 
 @Repository
 public class ProfileDAOImpl implements ProfileDAO {
@@ -18,6 +19,67 @@ public class ProfileDAOImpl implements ProfileDAO {
 
 	private static String namespace = "com.gym.mappers.profile";
 
+//	현재 예약 내역 개수
+	@Override
+	public int getMyReserveCnt(String userid) throws Exception {
+		return sql.selectOne(namespace + ".getMyReserveCnt", userid);
+	}
+	
+//	현재 예약 목록
+	@Override
+	public List<ReservationVO> getMyReserve(String userid, int displayPost, int postNum) throws Exception {
+		HashMap<String, Object> data = new HashMap<String, Object>();
+		
+		data.put("userid", userid);
+		data.put("displayPost", displayPost);
+		data.put("postNum", postNum);
+		
+		return sql.selectList(namespace + ".getMyReserve", data);
+	}
+	
+//	예약 취소
+	@Override
+	public void my_reserve_delete(int rv_num) throws Exception {
+		sql.delete(namespace + ".my_reserve_delete", rv_num);
+	}
+	
+//	과거 예약 내역 개수
+	@Override
+	public int getMyReservePastCnt(String userid, String datepick, String date_list,
+			String lecturepick, String lecture_list) throws Exception {
+		
+		HashMap<String, Object> data = new HashMap<String, Object>();
+		
+		data.put("userid", userid);
+		data.put("datepick", datepick);
+		data.put("date_list", date_list);
+		data.put("lecturepick", lecturepick);
+		data.put("lecture_list", lecture_list);
+		
+		return sql.selectOne(namespace + ".getMyReservePastCnt", data);
+	}
+	
+//	과거 예약 목록
+	@Override
+	public List<ReservationVO> getMyReservePast(String userid, String datepick,
+			String date_list, String lecturepick, String lecture_list,
+			int displayPost, int postNum) throws Exception {
+		
+		HashMap<String, Object> data = new HashMap<String, Object>();
+		
+		data.put("userid", userid);
+		data.put("datepick", datepick);
+		data.put("date_list", date_list);
+		data.put("lecturepick", lecturepick);
+		data.put("lecture_list", lecture_list);
+		data.put("displayPost", displayPost);
+		data.put("postNum", postNum);
+		
+		return sql.selectList(namespace + ".getMyReservePast", data);
+	}
+	
+	
+	
 //	마이페이지(자게) 게시글 총 개수
 	@Override
 	public int getMyFreeCnt(String b_writer) throws Exception {
@@ -41,12 +103,6 @@ public class ProfileDAOImpl implements ProfileDAO {
 	public FreeBoardVO getMyFreeDetail(int b_num) throws Exception{
 		return sql.selectOne(namespace + ".getMyFreeDetail", b_num);
 	}
-
-//	마이페이지(자게) 수정용 게시글 조회
-
-//	마이페이지(자게) 게시글 작성
-
-//	마이페이지(자게) 게시글 수정
 
 //	마이페이지(자게) 게시글 삭제
 	@Override

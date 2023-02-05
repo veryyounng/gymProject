@@ -25,12 +25,12 @@
 <style>
 .side-bar {
 	position: relative;
-	top: -155px;
+	top: -195px;
 }
 
 .banana {
 	border: 1px solid black;
-	height: 100%;
+	height: 800px;
 	margin: 0 auto;
 	align-items: center;
 }
@@ -43,6 +43,10 @@
 	width: 90px;
 	text-align: left;
 	font-weight: bold;
+}
+
+.choice_box {
+	margin-top: 50px;
 }
 
 .choice_box form {
@@ -86,16 +90,16 @@ input[type="text"] {
 					<input type="text" name="pastDate" id="pastDate" readonly>
 					&nbsp;&nbsp; ~ &nbsp;&nbsp;
 					<input type="text" name="currentDate" id="currentDate" value = "." readonly> &nbsp;
-					<input class="box" id="datepick" name="datepick" value="all_period" disabled/>
-					<select class="box" id="date-list">
+					<input class="box" id="datepick" name="datepick" value="all_period" style="display: none;" disabled/>
+					<select class="box" id="date_list" name="date_list">
 						<option value="all_period">전체 기간</option>
-						<option value="1_month" id="1_month">1개월</option>
+						<option value="1_month">1개월</option>
 						<option value="3_months">3개월</option>
 						<option value="6_months">6개월</option>
 						<option value="12_months">1년</option>
 					</select> &nbsp; 
 					<input class="box" id="lecturepick" name="lecturepick" value="all_lecture" style="display: none;" disabled/>
-					<select class="box" id="lecture-list">
+					<select class="box" id="lecture_list" name="lecture_list">
 						<option value="all_lecture">모든 강의</option>
 						<option value="zumba">줌바</option>
 						<option value="yoga">요가</option>
@@ -104,7 +108,10 @@ input[type="text"] {
 						<option value="aerobics">에어로빅</option>
 						<option value="spinning">스피닝</option>
 					</select>
-					<input type="submit" value="검색">
+					<form method="post" action="${path}/profile/my_reserve_past">
+						<input type="hidden" name="num" value="${select}">
+						<input type="submit" value="검색">
+					</form>
 				</form>
 			</div>
 			<div class="selectdate">
@@ -116,96 +123,35 @@ input[type="text"] {
 						<td>수업시간</td>
 					</tr>
 
-					<c:forEach items="${list}" var="reservelist">
+					<c:forEach items="${list}" var="reservelist" varStatus="status">
 						<tr class="reser_result">
-							<c:forEach var="i" begin="1" end="" step="1">
-								<td>${i}</td>
-							</c:forEach>
+							<td>${page.count - status.count + 1}</td>
 							<td>${reservelist.rv_title}</td>
 							<td>${reservelist.rv_date}</td>
 							<td>${reservelist.rv_time}</td>
 						</tr>
 					</c:forEach>
-					<tr class="reser_result">
-						<td>10</td>
-						<td>요가</td>
-						<td>23.02.03.</td>
-						<td>10:00 ~ 12:00</td>
-					</tr>
-					<tr class="reser_result">
-						<td>9</td>
-						<td>요가</td>
-						<td>23.02.03.</td>
-						<td>10:00 ~ 12:00</td>
-					</tr>
-					<tr class="reser_result">
-						<td>8</td>
-						<td>요가</td>
-						<td>23.02.03.</td>
-						<td>10:00 ~ 12:00</td>
-					</tr>
-					<tr class="reser_result">
-						<td>7</td>
-						<td>요가</td>
-						<td>23.02.03.</td>
-						<td>10:00 ~ 12:00</td>
-					</tr>
-					<tr class="reser_result">
-						<td>6</td>
-						<td>요가</td>
-						<td>23.02.03.</td>
-						<td>10:00 ~ 12:00</td>
-					</tr>
-					<tr class="reser_result">
-						<td>5</td>
-						<td>요가</td>
-						<td>23.02.03.</td>
-						<td>10:00 ~ 12:00</td>
-					</tr>
-					<tr class="reser_result">
-						<td>4</td>
-						<td>요가</td>
-						<td>23.02.03.</td>
-						<td>10:00 ~ 12:00</td>
-					</tr>
-					<tr class="reser_result">
-						<td>3</td>
-						<td>요가</td>
-						<td>23.02.03.</td>
-						<td>10:00 ~ 12:00</td>
-					</tr>
-					<tr class="reser_result">
-						<td>2</td>
-						<td>요가</td>
-						<td>23.02.03.</td>
-						<td>10:00 ~ 12:00</td>
-					</tr>
-					<tr class="reser_result">
-						<td>1</td>
-						<td>요가</td>
-						<td>23.02.03.</td>
-						<td>10:00 ~ 12:00</td>
-					</tr>
 				</table>
 				<div class="btns">
 					<ul class="pagination">
 						<c:if test="${page.prev}">
 							<li>[<a
-								href='${path}/profile/my_free?num=${page.startPageNum-1}'>이전</a>]
+								href='${path}/profile/my_reserve_past?num=${page.startPageNum-1}'>이전</a>]
 							</li>
 						</c:if>
-						<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}"
-							var="num">
-							<li><c:if test="${select != num}">
-									<a href="${path}/profile/my_free?num=${num}">${num}</a>
-								</c:if> <c:if test="${select == num}">
-									<b
-										style="font-weight: 700; color: red; text-decoration: underline;">${num}</b>
-								</c:if></li>
+						<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
+							<li>
+								<c:if test="${select != num}">
+									<a href="${path}/profile/my_reserve_past?num=${num}">${num}</a>
+								</c:if>
+								<c:if test="${select == num}">
+									<b style="font-weight: 700; color: red; text-decoration: underline;">${num}</b>
+								</c:if>
+							</li>
 						</c:forEach>
 						<c:if test="${page.next}">
 							<li>[<a
-								href="${path}/profile/my_free?num=${page.endPageNum+1}">다음</a>]
+								href="${path}/profile/my_reserve_past?num=${page.endPageNum+1}">다음</a>]
 							</li>
 						</c:if>
 					</ul>
@@ -222,7 +168,7 @@ input[type="text"] {
 	$('#currentDate').val(new Date().toISOString().substring(0, 10));
 	
 	const datepick= document.querySelector('#datepick');
-	const datelist = document.querySelector('#date-list');
+	const datelist = document.querySelector('#date_list');
 	const pd = document.getElementById('pastDate');
 	
 	datelist.addEventListener('change', (event) => {
@@ -254,7 +200,7 @@ input[type="text"] {
 	})
 	
 	const lecturepick= document.querySelector('#lecturepick')
-	const lecturelist = document.querySelector('#lecture-list')
+	const lecturelist = document.querySelector('#lecture_list')
 	lecturelist.addEventListener('change', (event) => {
 		lecturepick.removeAttribute('value');
 		lecturepick.value = event.target.value;

@@ -1,12 +1,14 @@
 package com.gym.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,7 +30,7 @@ public class UserController {
 	@Autowired
 	private MailSendService mailService;
 
-	@RequestMapping(value = { "/login", "/join", "/id_find", "/pw_find" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/login", "/join", "id_find", "/pw_find" }, method = RequestMethod.GET)
 	public void replace() {
 	}
 
@@ -100,4 +102,16 @@ public class UserController {
 		ra.addFlashAttribute("logout", "T");
 		return "redirect:/";
 	}
+	
+//	아이디 찾기
+	@PostMapping("/findedid")
+	public @ResponseBody UserVO postFindId(@RequestParam("username") String username, @RequestParam("email") String email) throws Exception {
+		UserVO result = service.findId(username, email);
+		if(result == null) {
+			return null;
+		}
+		return result;
+	}
+	
+
 }

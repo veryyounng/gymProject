@@ -1,6 +1,7 @@
 package com.gym.service;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.gym.domain.UserVO;
 
@@ -26,4 +27,10 @@ public interface UserService {
 
 //	로그인
 	boolean login(UserVO vo, HttpServletRequest req) throws Exception;
+
+//	아이디 찾기
+	public UserVO findId(String username, String email) throws Exception;
+
+
+
 }

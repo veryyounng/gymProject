@@ -1,6 +1,9 @@
 package com.gym.service;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,20 +69,17 @@ public class UserServiceImpl implements UserService {
 				
 			}else {
 				req.getSession().setAttribute("loginUser", loginUser);
+				
 			}return true;
 		}
-		
 	}
+
+//	아이디 찾기
+	@Override
+	public UserVO findId(String username, String email) throws Exception {
+		return udao.findId(username, email);
+	}
+
+
+	
 }
-
-
-
-
-
-
-
-
-
-
-
-

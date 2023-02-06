@@ -26,4 +26,9 @@ public interface UserDAO {
 	
 //	로그인
 	public UserVO login(UserVO vo) throws Exception;
+
+//	아이디 찾기
+	public UserVO findId(String username, String email) throws Exception;
+
+
 }

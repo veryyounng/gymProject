@@ -58,21 +58,18 @@ public class UserDAOImpl implements UserDAO {
 		return sql.selectOne(namespace + ".login", vo);
 	}
 
+//	아이디 찾기
+	@Override
+	public UserVO findId(String username, String email) throws Exception {
+		HashMap<String, String> vo = new HashMap<String, String>();
+		vo.put("username", username);
+		vo.put("email", email);
+		return sql.selectOne(namespace +".findId", vo);
+	}
 
+
+
+
+
+	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

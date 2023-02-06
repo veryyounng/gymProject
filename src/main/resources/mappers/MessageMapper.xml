@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gym.mappers.message">
+	<insert id="msgSend">
+		insert into message(sender,title,contents,time,receiver) values (#{sender},#{title},#{contents},now(),#{receiver})
+	</insert>
+	
+	<select id="getMailbox" resultType="com.gym.domain.MessageVO">
+		select * from message where receiver = #{userid}
+	</select>
+	
+	<select id="getCount" resultType="int">
+		select count(*) from message where receiver = #{userid}
+	</select>
+	
+	<select id="getSentMsg" resultType="com.gym.domain.MessageVO">
+		select * from message where sender = #{sender}
+	</select>
+	
+	<select id="getSentCount" resultType="int">
+		select count(*) from message where sender = #{sender}
+	</select>
+	
+	<update id="updateReception">
+		update message set reception = 'O' where msg_num = #{msg_num}
+	</update>
+	
+	<select id="getMSG" resultType="com.gym.domain.MessageVO">
+		select * from message where msg_num = #{msg_num}
+	</select>
+	
+	<delete id="msgDelete">
+		delete from message where msg_num = #{msg_num}
+	</delete>
+</mapper>

@@ -5,9 +5,11 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 
 import com.gym.domain.MessageVO;
 
+@Repository
 public class MessageDAOImpl implements MessageDAO {
 	
 	@Inject

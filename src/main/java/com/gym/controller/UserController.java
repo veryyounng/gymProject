@@ -1,11 +1,14 @@
 package com.gym.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gym.domain.UserVO;
@@ -30,7 +34,7 @@ public class UserController {
 	@Autowired
 	private MailSendService mailService;
 
-	@RequestMapping(value = { "/login", "/join", "id_find", "/pw_find" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/login", "/join", "id_find", "/pw_find" , "/changePw"}, method = RequestMethod.GET)
 	public void replace() {
 	}
 
@@ -113,5 +117,17 @@ public class UserController {
 		return result;
 	}
 	
+//	이메일로 인증번호 인증
+	@PostMapping("/findpw")
+	public @ResponseBody String postfindpw(@RequestParam("email") String email, @RequestParam("userid") String userid) throws Exception {
+		if(service.findpw(userid, email) == 1) {
+			String result = mailService.findPwEmail(email);
+			return result;
+		}
+		else {
+			return null;
+		}
+		
+	}
 
 }

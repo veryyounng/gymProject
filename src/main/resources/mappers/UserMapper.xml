@@ -72,16 +72,16 @@
 			where userid = #{userid} and userpw = #{userpw_re}
 	</delete>
 	
-	<!-- 임시 비밀번호로 변경 -->
-	<update id="update_pw">
-		update user set userpw =#{userpw} where userid =#{userid}
-	</update> 
-	
 	<!-- 아이디 찾기 -->
 	<select id="findId" resultType="com.gym.domain.UserVO">
 		select * from user where username =#{username} and email =#{email}
 	</select>
 
+	<!-- 이메일과 아이디 불러오기 -->
+	<select id="findPw" parameterType="string" resultType="_int">
+		select count(*) from user
+			where userid = #{userid} and email =#{email}
+	</select>
 </mapper>
 
 

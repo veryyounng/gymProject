@@ -31,6 +31,9 @@ public interface UserService {
 //	아이디 찾기
 	public UserVO findId(String username, String email) throws Exception;
 
+//	비밀번호 찾을 때 아이디랑 이메일 주소 확인하기
+	public int findpw(String userid, String email) throws Exception;
+
 
 
 }

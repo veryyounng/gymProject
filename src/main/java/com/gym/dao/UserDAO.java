@@ -30,5 +30,6 @@ public interface UserDAO {
 //	아이디 찾기
 	public UserVO findId(String username, String email) throws Exception;
 
-
+//	비밀번호 찾을 때 아이디랑 이메일주소 회원정보에서 비교하기
+	public int findpw(String userid, String email);
 }

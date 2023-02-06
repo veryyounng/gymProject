@@ -67,6 +67,16 @@ public class UserDAOImpl implements UserDAO {
 		return sql.selectOne(namespace +".findId", vo);
 	}
 
+//	비밀번호 찾을 때 회원 정보 찾기
+	@Override
+	public int findpw(String userid, String email) {
+		HashMap<String, String> data = new HashMap<String, String>();
+		data.put("userid", userid);
+		data.put("email", email);
+		return sql.selectOne(namespace + ".findPw", data);
+	}
+
+
 
 
 

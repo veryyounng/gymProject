@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +28,6 @@ public class ReservationController {
 	public @ResponseBody List<ReservationVO> postSearch(@RequestParam("rv_date") String rv_date) throws Exception {
 		List<ReservationVO> list = null;
 		list = service.getList(rv_date);
-		System.out.println(list);
 		return list;
 	}
 	

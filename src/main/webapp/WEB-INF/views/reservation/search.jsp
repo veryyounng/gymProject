@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="${path}/resources/img/파비콘.png"
 	type="image/x-icon">
-<title>우리동네 올림픽 - 예약하기</title>
+<title>예약하기</title>
 <link rel="stylesheet" href="${path}/resources/css/reset.css" />
 <link rel="stylesheet" href="${path}/resources/css/styles.css" />
 <link rel="stylesheet" href="${path}/resources/css/reservationstyle.css">

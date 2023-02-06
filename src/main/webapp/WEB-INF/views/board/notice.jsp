@@ -9,6 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항</title>
+<link rel="shortcut icon" href="${path}/resources/img/파비콘.png" type="image/x-icon">
 <link rel="stylesheet" href="${path}/resources/css/reset.css" />
 <link rel="stylesheet" href="${path}/resources/css/styles.css" />
 <link rel="stylesheet" href="${path}/resources/css/notistyle.css" />

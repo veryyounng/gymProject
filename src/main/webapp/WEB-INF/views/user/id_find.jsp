@@ -4,7 +4,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
-<head>
+<head> 
 <meta charset="UTF-8">
 <title>아이디 찾기</title>
 <link rel = "stylesheet" href="${path}/resources/css/id_find.css" >

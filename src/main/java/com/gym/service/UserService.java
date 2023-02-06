@@ -18,7 +18,7 @@ public interface UserService {
 
 //	회원정보 수정하기
 	public int profile_modify(UserVO vo) throws Exception;
-	
+	 
 //	비밀번호 수정하기
 	public int pw_modify(UserVO vo) throws Exception;
 	

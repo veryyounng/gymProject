@@ -92,7 +92,7 @@ public class UserController {
 			throw new RuntimeException();
 		}
 		return "redirect:/user/login";
-	}
+	} 
 
 //	로그아웃
 	@GetMapping("/logout")

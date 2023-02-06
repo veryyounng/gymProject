@@ -75,7 +75,7 @@
 	<!-- 임시 비밀번호로 변경 -->
 	<update id="update_pw">
 		update user set userpw =#{userpw} where userid =#{userid}
-	</update>
+	</update> 
 	
 	<!-- 아이디 찾기 -->
 	<select id="findId" resultType="com.gym.domain.UserVO">

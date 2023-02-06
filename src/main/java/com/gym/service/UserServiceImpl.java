@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
 	public int pw_modify(UserVO vo) throws Exception {
 		return udao.pw_modify(vo);
 	}
-	
+	 
 //	회원 탈퇴
 	@Override
 	public int delete_user(UserVO vo) throws Exception {

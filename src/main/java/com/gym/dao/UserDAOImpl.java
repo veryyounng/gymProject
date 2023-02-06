@@ -57,7 +57,7 @@ public class UserDAOImpl implements UserDAO {
 	public UserVO login(UserVO vo) throws Exception {
 		return sql.selectOne(namespace + ".login", vo);
 	}
-
+ 
 //	아이디 찾기
 	@Override
 	public UserVO findId(String username, String email) throws Exception {

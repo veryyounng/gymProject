@@ -23,4 +23,10 @@
 		select * from admin_reservation 
 		where rv_date = #{rv_date} and rv_time = #{rv_time} and rv_title = #{rv_title}
 	</select>
+	<delete id="cancelReservation">
+		delete from reservation where rv_num = #{rv_num}
+	</delete>
+	<delete id="deleteReservation">
+		delete from admin_reservation where rv_num = #{rv_num}
+	</delete>
 </mapper>

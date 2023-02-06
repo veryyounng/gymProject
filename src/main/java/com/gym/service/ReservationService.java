@@ -19,4 +19,10 @@ public interface ReservationService {
 		
 		// 이미 존재하는 예약이 있는지 확인
 		public ReservationVO selectReservation(ReservationVO vo);
+		
+		// 예약일정 삭제하기 위한 예약한 사람들 예약취소
+		public void cancelReservation(int rv_num);
+		
+		// 만들어진 예약일정 삭제
+		public int deleteReservation(int rv_num);
 }

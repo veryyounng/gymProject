@@ -32,7 +32,7 @@
 					<div class="dropdown-content">
 						<a href="/program/programid">프로그램 소개</a> <a href="/reservation/search">예약</a>
 						<c:if test="${loginUser.userid == 'admin'}">
-						<a href="/reservation/makeschedule">예약일정 생성</a>
+						<a href="/reservation/makeschedule">예약일정 관리</a>
 						</c:if>
 						<a href="/payment/pay">이용권 구매</a>
 					</div>

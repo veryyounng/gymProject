@@ -44,6 +44,13 @@ public class ReservationServiceImpl implements ReservationService {
 		return dao.selectReservation(vo);
 	}
 
+	@Override
+	public void cancelReservation(int rv_num) {
+		dao.cancelReservation(rv_num);
+	}
 
-	
+	@Override
+	public int deleteReservation(int rv_num) {
+		return dao.deleteReservation(rv_num);
+	}
 }

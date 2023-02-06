@@ -74,7 +74,7 @@ function loading(){
 						</table>
 						<table id="ex_table" style="display: none;">
 						<c:forEach items="${enews}" var="list">
-							<tr onclick="location.href='/ex_board/ex_list?ex_num=${list.ex_num}&reply_num=1'">
+							<tr onclick="location.href='/ex_board/ex_view?ex_num=${list.ex_num}&reply_num=1'">
 								<td>${list.ex_num}</td>
 								<td><fmt:formatDate 
 								value="${list.ex_date}" pattern="yyyy-MM-dd"/></td>

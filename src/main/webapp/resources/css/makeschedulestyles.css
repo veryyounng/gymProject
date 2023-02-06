@@ -1,0 +1,50 @@
+@charset "UTF-8";
+.banana .board_body .title_box h2 {
+	position: relative;
+}
+
+.banana .board_body .title_box h2 .choice {
+	width: 48px;
+	height: 28px;
+	font-family: emoji;
+	position: absolute;
+	bottom: -1px;
+	font-size: 20px;
+	border: 1px solid black;
+	padding: 3px;
+	cursor: pointer;
+	font-weight: 500;
+}
+
+.banana .board_body #insert {
+	right: 52px;
+}
+
+.banana .board_body #delete {
+	right: 0px;
+}
+
+.banana .board_body #insert:hover, .banana .board_body #delete:hover {
+	color: #fff;
+	background-color: #000;
+	transition: all .3s;
+}
+
+.banana .board_body .select {
+	color: #fff;
+	background-color: #000;
+}
+#reserBTN {
+	width: 64px;
+}
+
+#rv_title, #rv_time {
+	width: 60%;
+	height: 80%;
+	font-size: 16px;
+}
+
+.banana {
+	height: auto;
+	margin-bottom: 50px;
+}

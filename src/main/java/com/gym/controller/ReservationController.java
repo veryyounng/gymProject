@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,4 +63,14 @@ public class ReservationController {
 		return "redirect:/reservation/makeschedule";
 	}
 	
+	@PostMapping("reser_delete")
+	public String reservationDelete(int rv_num,RedirectAttributes ra) {
+		service.cancelReservation(rv_num);
+		if(service.deleteReservation(rv_num) == 1) {
+			ra.addFlashAttribute("delete","T");
+		} else {
+			ra.addFlashAttribute("delete","F");
+		}
+		return "redirect:/reservation/makeschedule";
+	}
 }

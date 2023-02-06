@@ -52,5 +52,15 @@ public class ReservationDAOImpl implements ReservationDAO {
 	public ReservationVO selectReservation(ReservationVO vo) {
 		return sql.selectOne(namespace+".selectReservation",vo);
 	}
+
+	@Override
+	public void cancelReservation(int rv_num) {
+		sql.delete(namespace+".cancelReservation",rv_num);
+	}
+
+	@Override
+	public int deleteReservation(int rv_num) {
+		return sql.delete(namespace+".deleteReservation",rv_num);
+	}
 	
 }

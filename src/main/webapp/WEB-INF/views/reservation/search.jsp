@@ -8,8 +8,9 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="shortcut icon" href="./img/파비콘.png" type="image/x-icon">
-<title>우리동네 올림픽</title>
+<link rel="shortcut icon" href="${path}/resources/img/파비콘.png"
+	type="image/x-icon">
+<title>우리동네 올림픽 - 예약하기</title>
 <link rel="stylesheet" href="${path}/resources/css/reset.css" />
 <link rel="stylesheet" href="${path}/resources/css/styles.css" />
 <link rel="stylesheet" href="${path}/resources/css/reservationstyle.css">
@@ -18,7 +19,8 @@
 <link rel="stylesheet" href="${path}/resources/css/datepicker.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
 <script>
 	if(${loginUser == null}){
@@ -31,23 +33,23 @@
 <body>
 
 	<c:choose>
-	<c:when test="${reser == 'T'}">
-		<script type="text/javascript">
+		<c:when test="${reser == 'T'}">
+			<script type="text/javascript">
 			alert("예약이 완료되었습니다.");
 		</script>
-	</c:when>
-	<c:when test="${reser == 'NO'}">
-		<script type="text/javascript">
+		</c:when>
+		<c:when test="${reser == 'NO'}">
+			<script type="text/javascript">
 			alert("이미 예약된 일정입니다.");
 		</script>
-	</c:when>
-	<c:when test="${reser == 'F'}">
-		<script type="text/javascript">
+		</c:when>
+		<c:when test="${reser == 'F'}">
+			<script type="text/javascript">
 			alert("예약에 실패했습니다. 다시 시도해주세요.");
 		</script>
-	</c:when>
+		</c:when>
 	</c:choose>
-	</script>	
+	</script>
 	<%@ include file="../include/header.jsp"%>
 	<section>
 
@@ -128,34 +130,36 @@
 					</tr>
 				</table>
 				<div class="th">&lt; 예약하기 &gt;</div>
-					<table class="type2">
-						<tr>
-							<td>이름</td>
-							<td><input type="text" value="${loginUser.username}" name="username"
-								id="username" readonly>
-								<input type="hidden" value="${loginUser.userid}" name="loginUserid" id="loginUserid"/></td>
-						</tr>
-						<tr>
-							<td>이메일</td>
-							<td><input type="email" value="${loginUser.email}" name="email"
-								id="email" readonly></td>
-						</tr>
-						<tr>
-							<td>전화번호</td>
-							<td><input type="tel" value="${loginUser.phone}" name="phone"
-								id="phone" readonly></td>
-						</tr>
-						<tr>
-							<td>예약일</td>
-							<td><input class="form-control" id="rv_date"
-								pattern="\d{4}-\d{2}-\d{2}" placeholder="달력 보기"
-								th:field="*{rv_date}" type="text" value="" /></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><input type="submit" id="reserBTN" onclick="searchTime();" value="검색"></td>
-						</tr>
-					</table>
+				<table class="type2">
+					<tr>
+						<td>이름</td>
+						<td><input type="text" value="${loginUser.username}"
+							name="username" id="username" readonly> <input
+							type="hidden" value="${loginUser.userid}" name="loginUserid"
+							id="loginUserid" /></td>
+					</tr>
+					<tr>
+						<td>이메일</td>
+						<td><input type="email" value="${loginUser.email}"
+							name="email" id="email" readonly></td>
+					</tr>
+					<tr>
+						<td>전화번호</td>
+						<td><input type="tel" value="${loginUser.phone}" name="phone"
+							id="phone" readonly></td>
+					</tr>
+					<tr>
+						<td>예약일</td>
+						<td><input class="form-control" id="rv_date"
+							pattern="\d{4}-\d{2}-\d{2}" placeholder="달력 보기"
+							th:field="*{rv_date}" type="text" value="" /></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="submit" id="reserBTN"
+							onclick="searchTime();" value="검색"></td>
+					</tr>
+				</table>
 				<!-- 검색 list(가능) 시작 -->
 				<table class="type3">
 					<span class="checkRS">※ 예약 취소 및 확인은 마이페이지에서 가능합니다.</span>
@@ -190,8 +194,6 @@ $('#reserBTN').on('click', function(){
         type: "POST",
         data:{"rv_date" : date},
         success: function(resultData){
-        	console.log("ajax 성공");
-        	console.log(resultData.length);
         	$('.ResultData').remove();
         	if(resultData.length === 0 ) {
         		$('.type4').html('검색된 결과가 없습니다.');
@@ -213,10 +215,6 @@ $('#reserBTN').on('click', function(){
 	        		$('.type3').append(str);
 	        	}
         	}
-        },
-        error: function(request, error){
-        	console.log("ajax 실패");
-        	console.log("code:"+request.status+"\n"+"message"+request.responseText+"\n"+"error:"+error);
         }
     });
 });

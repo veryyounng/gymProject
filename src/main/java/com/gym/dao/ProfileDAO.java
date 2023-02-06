@@ -18,13 +18,11 @@ public interface ProfileDAO {
 	public void my_reserve_delete(int rv_num) throws Exception;
 
 //	과거 예약 내역 개수
-	public int getMyReservePastCnt(String userid, String datepick, String date_list,
-			String lecturepick, String lecture_list) throws Exception;
+	public int getMyReservePastCnt(String userid, String date_list, String lecture_list) throws Exception;
 	
 //	과거 예약 목록
-	public List<ReservationVO> getMyReservePast(String userid, String datepick,
-			String date_list, String lecturepick, String lecture_list, int displayPost,
-			int postNum) throws Exception;
+	public List<ReservationVO> getMyReservePast(String userid, String date_list,
+			String lecture_list, int displayPost, int postNum) throws Exception;
 	
 //	마이페이지(자게) 게시글 총 개수
 	public int getMyFreeCnt(String b_writer) throws Exception;

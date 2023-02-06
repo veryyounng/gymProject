@@ -36,18 +36,15 @@ public class ProfileServiceImpl implements ProfileService {
 	
 //	현재 예약 내역 개수
 	@Override
-	public int getMyReservePastCnt(String userid, String datepick, String date_list,
-			String lecturepick, String lecture_list) throws Exception {
-		return pdao.getMyReservePastCnt(userid, datepick, date_list, lecturepick, lecture_list);
+	public int getMyReservePastCnt(String userid, String date_list, String lecture_list) throws Exception {
+		return pdao.getMyReservePastCnt(userid, date_list, lecture_list);
 	}
 	
 //	현재 예약 목록
 	@Override
-	public List<ReservationVO> getMyReservePast(String userid, String datepick,
-			String date_list, String lecturepick, String lecture_list, int displayPost,
-			int postNum) throws Exception {
-		return pdao.getMyReservePast(userid, datepick, date_list, lecturepick,
-				lecture_list, displayPost, postNum);
+	public List<ReservationVO> getMyReservePast(String userid, String date_list,
+			String lecture_list, int displayPost, int postNum) throws Exception {
+		return pdao.getMyReservePast(userid, date_list, lecture_list, displayPost, postNum);
 	}
 	
 //	마이페이지(자게) 게시글 총 개수

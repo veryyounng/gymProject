@@ -86,32 +86,30 @@ input[type="text"] {
 		<!-- 개발코드 시작 -->
 		<div class="banana">
 			<div class="choice_box">
-				<form action="" method="post">
-					<input type="text" name="pastDate" id="pastDate" readonly>
+				<form method="get" name="choice_box_form" id="choice_box_form" action="${path}/profile/my_reserve_past">
+					<input type="hidden" name="num" value="${select}">
+					<input type="text" name="pastDate" id="pastDate" value="${pastDate}" readonly>
 					&nbsp;&nbsp; ~ &nbsp;&nbsp;
-					<input type="text" name="currentDate" id="currentDate" value = "." readonly> &nbsp;
-					<input class="box" id="datepick" name="datepick" value="all_period" style="display: none;" disabled/>
+					<input type="text" name="currentDate" id="currentDate" readonly> &nbsp;
+					<input class="box" id="datepick" name="datepick" value="${page.datepick}" style="display: none;" disabled/>
 					<select class="box" id="date_list" name="date_list">
-						<option value="all_period">전체 기간</option>
-						<option value="1_month">1개월</option>
-						<option value="3_months">3개월</option>
-						<option value="6_months">6개월</option>
-						<option value="12_months">1년</option>
+						<option value="all_period" <c:if test="${page.date_list == 'all_period'}">selected="selected"</c:if>>전체 기간</option>
+						<option value="1_month" <c:if test="${page.date_list == '1_month'}">selected="selected"</c:if>>1개월</option>
+						<option value="3_months" <c:if test="${page.date_list == '3_months'}">selected="selected"</c:if>>3개월</option>
+						<option value="6_months" <c:if test="${page.date_list == '6_months'}">selected="selected"</c:if>>6개월</option>
+						<option value="12_months" <c:if test="${page.date_list == '12_months'}">selected="selected"</c:if>> 1년</option>
 					</select> &nbsp; 
-					<input class="box" id="lecturepick" name="lecturepick" value="all_lecture" style="display: none;" disabled/>
+					<input class="box" id="lecturepick" name="lecturepick" value="${page.lecturepick}" style="display: none;" disabled/>
 					<select class="box" id="lecture_list" name="lecture_list">
-						<option value="all_lecture">모든 강의</option>
-						<option value="zumba">줌바</option>
-						<option value="yoga">요가</option>
-						<option value="dietdance">다이어트댄스</option>
-						<option value="pilates">필라테스</option>
-						<option value="aerobics">에어로빅</option>
-						<option value="spinning">스피닝</option>
+						<option value="all_lecture" <c:if test="${page.lecture_list== 'all_lecture'}">selected="selected"</c:if>>모든 강의</option>
+						<option value="zumba" <c:if test="${page.lecture_list == 'zumba'}">selected="selected"</c:if>>줌바</option>
+						<option value="yoga" <c:if test="${page.lecture_list == 'yoga'}">selected="selected"</c:if>>요가</option>
+						<option value="dietdance" <c:if test="${page.lecture_list == 'dietdance'}">selected="selected"</c:if>>다이어트댄스</option>
+						<option value="pilates" <c:if test="${page.lecture_list == 'pilates'}">selected="selected"</c:if>>필라테스</option>
+						<option value="aerobics" <c:if test="${page.lecture_list == 'aerobics'}">selected="selected"</c:if>>에어로빅</option>
+						<option value="spinning" <c:if test="${page.lecture_list == 'spinning'}">selected="selected"</c:if>>스피닝</option>
 					</select>
-					<form method="post" action="${path}/profile/my_reserve_past">
-						<input type="hidden" name="num" value="${select}">
-						<input type="submit" value="검색">
-					</form>
+					<input type="submit" value="검색">
 				</form>
 			</div>
 			<div class="selectdate">
@@ -136,13 +134,13 @@ input[type="text"] {
 					<ul class="pagination">
 						<c:if test="${page.prev}">
 							<li>[<a
-								href='${path}/profile/my_reserve_past?num=${page.startPageNum-1}'>이전</a>]
+								href='${path}/profile/my_reserve_past?num=${page.startPageNum-1}&date_list=${page.date_list}&lecture_list=${page.lecture_list}'>이전</a>]
 							</li>
 						</c:if>
 						<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
 							<li>
 								<c:if test="${select != num}">
-									<a href="${path}/profile/my_reserve_past?num=${num}">${num}</a>
+									<a href="${path}/profile/my_reserve_past?num=${num}&date_list=${page.date_list}&lecture_list=${page.lecture_list}">${num}</a>
 								</c:if>
 								<c:if test="${select == num}">
 									<b style="font-weight: 700; color: red; text-decoration: underline;">${num}</b>
@@ -151,7 +149,7 @@ input[type="text"] {
 						</c:forEach>
 						<c:if test="${page.next}">
 							<li>[<a
-								href="${path}/profile/my_reserve_past?num=${page.endPageNum+1}">다음</a>]
+								href="${path}/profile/my_reserve_past?num=${page.endPageNum+1}&date_list=${page.date_list}&lecture_list=${page.lecture_list}">다음</a>]
 							</li>
 						</c:if>
 					</ul>
@@ -174,7 +172,10 @@ input[type="text"] {
 	datelist.addEventListener('change', (event) => {
 		datepick.removeAttribute('value');
 		datepick.value = event.target.value;
-		if (datepick.value == "1_month") {
+		if (datepick.value == "all_period") {
+			pd.value = ".";
+		}
+		else if (datepick.value == "1_month") {
 			let date1 = new Date();
 			const pd1 = new Date(date1.setMonth(date1.getMonth()-1));
 			pd.value = pd1.toISOString().substring(0, 10);
@@ -194,9 +195,6 @@ input[type="text"] {
 			const pd12 = new Date(date12.setFullYear(date12.getFullYear()-1));
 			pd.value = pd12.toISOString().substring(0, 10);
 		}
-		else if (datepick.value == "all_period") {
-			pd.value == ".";
-		}
 	})
 	
 	const lecturepick= document.querySelector('#lecturepick')
@@ -205,6 +203,8 @@ input[type="text"] {
 		lecturepick.removeAttribute('value');
 		lecturepick.value = event.target.value;
 	})
+	
+	
 </script>
 </html>
 

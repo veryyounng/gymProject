@@ -16,7 +16,7 @@
         <h4 class="h4">예약</h4>
         <ul>
           <li><a href="${path}/profile/my_reserve_now?num=1">예약 현황</a></li>
-          <li><a href="${path}/profile/my_reserve_past">예약 내역</a></li>
+          <li><a href="${path}/profile/my_reserve_past?num=1">예약 내역</a></li>
         </ul>
       </div>
 

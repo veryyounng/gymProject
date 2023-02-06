@@ -45,15 +45,11 @@ public class ProfileDAOImpl implements ProfileDAO {
 	
 //	과거 예약 내역 개수
 	@Override
-	public int getMyReservePastCnt(String userid, String datepick, String date_list,
-			String lecturepick, String lecture_list) throws Exception {
-		
+	public int getMyReservePastCnt(String userid, String date_list, String lecture_list) throws Exception {
 		HashMap<String, Object> data = new HashMap<String, Object>();
 		
 		data.put("userid", userid);
-		data.put("datepick", datepick);
 		data.put("date_list", date_list);
-		data.put("lecturepick", lecturepick);
 		data.put("lecture_list", lecture_list);
 		
 		return sql.selectOne(namespace + ".getMyReservePastCnt", data);
@@ -61,16 +57,13 @@ public class ProfileDAOImpl implements ProfileDAO {
 	
 //	과거 예약 목록
 	@Override
-	public List<ReservationVO> getMyReservePast(String userid, String datepick,
-			String date_list, String lecturepick, String lecture_list,
-			int displayPost, int postNum) throws Exception {
+	public List<ReservationVO> getMyReservePast(String userid, String date_list,
+			String lecture_list, int displayPost, int postNum) throws Exception {
 		
 		HashMap<String, Object> data = new HashMap<String, Object>();
 		
 		data.put("userid", userid);
-		data.put("datepick", datepick);
 		data.put("date_list", date_list);
-		data.put("lecturepick", lecturepick);
 		data.put("lecture_list", lecture_list);
 		data.put("displayPost", displayPost);
 		data.put("postNum", postNum);

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -39,7 +40,7 @@ public class ProfileController {
 	private FreeBoardService freeservice;
 
 	@RequestMapping(value = { "/profile_pw_modify", "/profile_delete_user",
-			"/my_reserve_past", "/my_free_write", "/my_exe" }, method = RequestMethod.GET)
+			"/my_free_write", "/my_exe" }, method = RequestMethod.GET)
 	public void replace() {
 	}
 
@@ -109,26 +110,27 @@ public class ProfileController {
 	}
 	
 //	과거 예약 내역 조회, 개수
-	@RequestMapping(value = "/my_reserve_past", method = RequestMethod.POST)
-	public String my_reserve_past
-	(int num, String datepick, String date_list, String lecturepick,
-			String lecture_list, Model model, HttpServletRequest req)  throws Exception {
+	@RequestMapping(value = "/my_reserve_past", method = RequestMethod.GET)
+	public void my_reserve_past(String pastDate,int num, Model model, HttpServletRequest req, String datepick, String lecturepick,
+			@RequestParam(value = "date_list", required = false, defaultValue = "all_period") String date_list,
+			@RequestParam(value = "lecture_list", required = false, defaultValue = "all_lecture") String lecture_list)  throws Exception {
 		String userid = ((UserVO) req.getSession().getAttribute("loginUser")).getUserid();
 		Page page = new Page();
 		
 		page.setNum(num);
-		page.setCount(profileservice.getMyReservePastCnt(userid, datepick, date_list, lecturepick, lecture_list));
+		page.setCount(profileservice.getMyReservePastCnt(userid, date_list, lecture_list));
+		page.setDate_list(date_list);
+		page.setLecture_list(lecture_list);
+		page.setDatepick(datepick);
+		page.setLecturepick(lecturepick);
 		
 		List<ReservationVO> list = null;
-		list = profileservice.getMyReservePast(userid, datepick, date_list, lecturepick, lecture_list, page.getDisplayPost(), page.getPostNum());
+		list = profileservice.getMyReservePast(userid, date_list, lecture_list, page.getDisplayPost(), page.getPostNum());
 		
 		model.addAttribute("page", page);
-		model.addAttribute("datepick", datepick);
-		model.addAttribute("lecturepick", lecturepick);
 		model.addAttribute("select", num);
 		model.addAttribute("list", list);
-		
-		return "/profile/my_reserve_past?num=1";
+		model.addAttribute("pastDate", pastDate);
 	}
 
 	

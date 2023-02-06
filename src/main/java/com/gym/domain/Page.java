@@ -1,8 +1,8 @@
 package com.gym.domain;
 
-import lombok.Getter;
+import lombok.Data;
 
-@Getter
+@Data
 public class Page {
 	// 현재 페이지 번호
 	private int num;
@@ -27,6 +27,13 @@ public class Page {
 
 	// 표시되는 페이지 번호 중 첫번째 번호
 	private int startPageNum;
+	
+	private String searchType;
+	private String keyword;
+	private String date_list;
+	private String lecture_list;
+	private String datepick;
+	private String lecturepick;
 
 	// 다음/이전 표시 여부
 	private boolean prev;

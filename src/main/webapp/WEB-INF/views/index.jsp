@@ -23,11 +23,6 @@
 
 <link rel="stylesheet" href="${path}/resources/css/styles.css">
 <link rel="stylesheet" href="${path}/resources/css/index.css">
-<script>
-function loading(){
-	alert("준비중 입니다.");
-}
-</script>
 
 </head>
 
@@ -87,7 +82,7 @@ function loading(){
   
 			<div class="go">
 				<div class="rsvn_go" onclick="location.href='/reservation/search'"></div>
-				<div class="shop_go" onclick= 'loading();'></div>
+				<div class="shop_go" onclick= "location.href='/payment/pay'"></div>
 			</div>
 
 		</div>

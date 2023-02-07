@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gym.domain.MessageVO;
 import com.gym.domain.Page;
+import com.gym.domain.UserVO;
 import com.gym.service.MessageService;
 
 @Controller
@@ -26,9 +27,9 @@ public class MsgController {
 	
 	@GetMapping("/msgmain")
 	public String getMsgmain(HttpServletRequest req, int num, Model model) {
-		String userid = (String)req.getSession().getAttribute("loginUser.userid");
+		UserVO user = (UserVO)req.getSession().getAttribute("loginUser");
+		String userid = user.getUserid();
 		List<MessageVO> list = service.getMailbox(userid);
-		
 		Page page = new Page();
 		
 		page.setNum(num);
@@ -41,11 +42,13 @@ public class MsgController {
 		return "/msg/message";
 	} 
 	@GetMapping("/receiveDetail")		// 수신메세지 자세히보기
-	public void receiveDetail(int msg_num, Model model,@ModelAttribute("select")int select, @ModelAttribute("page")Page page) {
+	public String receiveDetail(int msg_num, Model model,@ModelAttribute("select")int select, @ModelAttribute("page")Page page) {
 		service.updateReception(msg_num);	// 수신여부 업데이트
 		MessageVO result = service.getMSG(msg_num); // msg_num에 해당하는 MessageVO 가져오기
 		
 		model.addAttribute("result",result);
+		
+		return "/msg/msgview";
 	}
 	
 	@GetMapping("/send")

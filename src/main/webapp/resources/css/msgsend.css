@@ -1,0 +1,112 @@
+@charset "UTF-8";
+li{
+  list-style: none;
+}
+ul{
+  padding: 0;
+  margin: 0;
+}
+a{
+  text-decoration: none;
+  color: #333;
+}
+.letterbox {
+  width: 650px;
+  height: 650px;
+  border: 2px solid #333;
+  position: relative;
+}
+.title {
+  border-bottom: 2px solid #333;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  position: relative;
+}
+.receive {
+  background-color: #eddd7f;
+  height: 35px;
+  display: flex;
+  align-items: center;  
+  padding-left: 20px; 
+  border-bottom: 2px solid #333;
+  box-sizing: border-box;
+}
+.delete {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 10px;
+}
+#deleteform{
+  padding: 10px;  
+}
+
+.btn{
+  width: 75px;
+  height: 30px;
+}
+
+.msgbox{
+  margin-left: 8px;
+  justify-content: center;
+  width: 630px;
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+
+}
+.list {
+  display: flex;
+  align-items: center;
+}
+.list.list1{
+  height: 50px;
+  align-items: center;
+  background-color: rgba(225, 219, 130, 0.2);
+}
+.list1 li:first-child,
+.list2 li:first-child{
+  padding-left: 10px;
+}
+.list1 li:nth-child(5),
+.list2 li:nth-child(5){
+  padding-right: 10px;
+
+}
+ul.list.list2{
+  height: 40px;
+  align-items: center;
+  border-bottom: 1px dotted rgb(211, 209, 209);
+}
+ul.list.list2:hover{
+  background-color: rgb(214, 214, 214);
+}
+ul.list.list2:last-child{
+  border-bottom: none;
+}
+.list2 li{
+  font-size: 15px;
+}
+.list2 li:last-child{
+  margin: 0 auto;
+}
+.btns{
+}
+.btns ul{
+  height: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.btns ul li{
+  width: 20px;
+  text-align: center;
+}
+.btns ul li.btns_prev,
+.btns ul li.btns_next{
+  width: 40px;
+}

@@ -25,7 +25,7 @@ public class MsgController {
 	private MessageService service;
 	
 	@GetMapping("/msgmain")
-	public void getMsgmain(HttpServletRequest req, int num, Model model) {
+	public String getMsgmain(HttpServletRequest req, int num, Model model) {
 		String userid = (String)req.getSession().getAttribute("loginUser.userid");
 		List<MessageVO> list = service.getMailbox(userid);
 		
@@ -37,6 +37,8 @@ public class MsgController {
 		model.addAttribute("list", list);
 		model.addAttribute("page", page);
 		model.addAttribute("select", num);
+		
+		return "/msg/message";
 	}
 	@GetMapping("/receiveDetail")		// 수신메세지 자세히보기
 	public void receiveDetail(int msg_num, Model model,@ModelAttribute("select")int select, @ModelAttribute("page")Page page) {

@@ -39,7 +39,7 @@ public class MsgController {
 		model.addAttribute("select", num);
 		
 		return "/msg/message";
-	}
+	} 
 	@GetMapping("/receiveDetail")		// 수신메세지 자세히보기
 	public void receiveDetail(int msg_num, Model model,@ModelAttribute("select")int select, @ModelAttribute("page")Page page) {
 		service.updateReception(msg_num);	// 수신여부 업데이트

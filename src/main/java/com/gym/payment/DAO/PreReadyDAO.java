@@ -7,4 +7,6 @@ public interface PreReadyDAO {
 	// 상품정보 가져오기
 	public PreReadyVO getProduct(String proNum) throws Exception;
 	
+	public void upDate(String userId, Integer month) throws Exception;
+	
 }

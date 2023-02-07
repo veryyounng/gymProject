@@ -80,10 +80,6 @@ public class KapayService {
 
 	public String kakaoPayReady01(PreReadyVO pr) {
 
-		System.out.println(pr.getOrderId());
-		System.out.println(pr.getUserId());
-		System.out.println(pr.getTotalAmount());
-
 		RestTemplate restTemplate = new RestTemplate();
 		
 		// 서버로 요청할 Header
@@ -127,11 +123,18 @@ public class KapayService {
 	}
 	
 	
-	public KakaoPayApprovalVO kakaoPayInfo(String pg_token) {
+	public KakaoPayApprovalVO kakaoPayInfo(String pg_token) throws Exception {
 		
 		log.info("KakaoPayInfoVO............................................");
-        log.info("-----------------------------");
         
+		
+		// 유저 회원권 기간 업데이트
+		String userId = kakaoPayReadyVO.getUserId();
+		Integer month = kakaoPayReadyVO.getMonth();
+		System.out.println("ID : " + userId + "\nMonth : " + month);
+
+		pdao.upDate(userId, month);
+		
 		RestTemplate restTemplate = new RestTemplate();
 		
         // 서버로 요청할 Header

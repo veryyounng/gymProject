@@ -12,11 +12,22 @@
 		where pronum = #{pronum}
 	</select>
 	
+	<!-- 회원권 일자가 NULL 또는 과거일경우 오늘날짜로 업데이트 -->
+	<update id = "pastdate" parameterType="hashmap">
+		UPDATE USER	SET duedate = 
+			CASE
+				WHEN duedate IS NULL THEN DATE_FORMAT(now(), '%Y-%m-%d')
+				WHEN duedate <![CDATA[<]]> now() THEN DATE_FORMAT(now(), '%Y-%m-%d')
+				ELSE duedate
+			END
+		WHERE userid = #{userId};
+	</update>
+	
 	<!-- 유저 일자 업데이트 -->
 	<update id = "upduedate" parameterType="hashmap">
 		update user set duedate = 
 			date_add(duedate, interval #{month} month)
-		where userid = #{userid};
+		where userid = #{userId};
 	</update>
 
 </mapper>

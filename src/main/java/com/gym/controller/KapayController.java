@@ -41,12 +41,8 @@ public class KapayController {
 	public String postKapay01(@RequestParam("proNum") String proNum, 
 								@RequestParam("userId") String userId) throws Exception {
 		
-
 		PreReadyVO pr = kapayservice.testPreReady(proNum);
 
-/*		
-		KakaoPayReadyVO krvo = kapayservice.testKakaoReady(proNum);
-*/		
 		pr.setUserId(userId);
 		System.out.println(pr.toString());
 		
@@ -68,7 +64,7 @@ public class KapayController {
 	
 	
 	@GetMapping("/kakaoPaySuccess")
-	public void kakaoPaySuccess(@RequestParam("pg_token") String pg_token, Model model) {
+	public void kakaoPaySuccess(@RequestParam("pg_token") String pg_token, Model model) throws Exception {
 		
 		log.info("kakaoPaySuccess get............................................");
         log.info("kakaoPaySuccess pg_token : " + pg_token);

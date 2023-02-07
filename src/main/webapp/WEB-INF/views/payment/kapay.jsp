@@ -31,21 +31,21 @@
 
 <form method="post" name="payFormGold" id="payFormGold" >
 	<input type = "hidden" value = "p1001" id = "proNum" name="proNum">
-	<input type = "hidden" value = "apple" id = "userId"  name="userId">
+	<input type = "hidden" value = "cherry" id = "userId"  name="userId">
 <button onclick="pay01()">골드멤버 결제하기(/kapay01)</button>
 </form>
 
 
 <form method="post" name="payFormSilver" id="payFormSilver" >
 	<input type = "hidden" value = "p1002" id = "proNum" name="proNum">
-	<input type = "hidden" value = "apple" id = "userId"  name="userId">
+	<input type = "hidden" value = "cherry" id = "userId"  name="userId">
 <button onclick="pay02()">실버멤버 결제하기(/kapay01)</button>
 </form>
 
 
 <form method="post" name="payFormBronze" id="payFormBronze" >
 	<input type = "hidden" value = "p1003" id = "proNum" name="proNum">
-	<input type = "hidden" value = "apple" id = "userId"  name="userId">
+	<input type = "hidden" value = "cherry" id = "userId"  name="userId">
 <button onclick="pay03()">브론즈멤버 결제하기(/kapay01)</button>
 </form>
 

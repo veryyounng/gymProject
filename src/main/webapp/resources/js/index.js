@@ -6,7 +6,6 @@ new Swiper('.swiper', {
   slidesPerView: 6,
   spaceBetween: 10,
   centeredSlides: true,
-  centeredSlides: true,
   pagination: {
     el: '.swiper-pagination',
     clickable: true

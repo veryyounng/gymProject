@@ -57,4 +57,9 @@ public class MessageDAOImpl implements MessageDAO {
 		return sql.delete(namespace+".msgDelete",msg_num);
 	}
 
+	@Override
+	public int newMsg(String userid) {
+		return sql.selectOne(namespace+".newMsg",userid);
+	}
+
 }

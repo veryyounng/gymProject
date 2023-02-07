@@ -29,4 +29,7 @@ public interface MessageDAO {
 	
 	// 메세지 삭제하기
 	public int msgDelete(int msg_num);
+	
+	// 안읽은 메세지 있는지 확인하기
+	public int newMsg(String userid);
 }

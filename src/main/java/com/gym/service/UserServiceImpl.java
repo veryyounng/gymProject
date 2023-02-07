@@ -1,24 +1,22 @@
 package com.gym.service;
 
-import java.io.PrintWriter;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gym.dao.MessageDAO;
 import com.gym.dao.UserDAO;
 import com.gym.domain.UserVO;
-
-import lombok.Setter;
 
 @Service
 public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDAO udao;
+	
+	@Autowired
+	private MessageDAO mdao;
 	
 //  회원가입
 	@Override
@@ -69,7 +67,11 @@ public class UserServiceImpl implements UserService {
 				
 			}else {
 				req.getSession().setAttribute("loginUser", loginUser);
-				
+				if(mdao.newMsg(loginUser.getUserid()) == 0) {
+					req.getSession().setAttribute("newMsg", "F");
+				} else {
+					req.getSession().setAttribute("newMsg", "T");
+				}
 			}return true;
 		}
 	}

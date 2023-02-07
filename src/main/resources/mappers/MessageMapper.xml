@@ -34,4 +34,8 @@
 	<delete id="msgDelete">
 		delete from message where msg_num = #{msg_num}
 	</delete>
+	
+	<select id="newMsg" resultType="int">
+		select count(*) from message where receiver=#{userid} and reception = 'X'
+	</select>
 </mapper>

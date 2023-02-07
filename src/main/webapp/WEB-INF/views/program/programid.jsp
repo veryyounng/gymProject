@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>프로그램 소개</title>
-
+<link rel="shortcut icon" href="${path}/resources/img/파비콘.png" type="image/x-icon">
 <link rel="stylesheet"
 	href="${path}/resources/programstyle/css/program.css">
 <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"

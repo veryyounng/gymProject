@@ -5,8 +5,7 @@
 <head>
 <meta charset="UTF-8">
 
-<link rel="icon" type="image/x-icon"
-	href="${path}/resources/img/favicon.png" />
+<link rel="shortcut icon" href="${path}/resources/img/파비콘.png" type="image/x-icon">
 <link rel="stylesheet" href="${path}/resources/faqstyle/css/faq.css" />
 <link rel="stylesheet"
 	href="${path}/resources/faqstyle/css/awesome_min.css" />

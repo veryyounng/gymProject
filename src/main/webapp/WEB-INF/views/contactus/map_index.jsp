@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>오시는 길</title>
 </head>
+<link rel="shortcut icon" href="${path}/resources/img/파비콘.png" type="image/x-icon">
 <link rel="stylesheet" href="${path}/resources/mapstyle/css/map.css" />
 <link rel="stylesheet" href="${path}/resources/css/styles.css">
 

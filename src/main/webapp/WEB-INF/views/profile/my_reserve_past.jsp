@@ -177,7 +177,7 @@ input[type="text"] {
 <script src="${path}/resources/js/header.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
-	var url = window.location.pathname;
+	var url = window.location.pathname+"?num=${select}";
 	
 	$('.sidetab').find('a').each(function() {
 		$(this).toggleClass('current', $(this).attr('href') == url);

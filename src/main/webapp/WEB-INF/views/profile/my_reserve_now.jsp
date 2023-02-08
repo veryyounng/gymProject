@@ -54,10 +54,10 @@ table.type3 {
 }
 
 .side-bar div ul li a.current {
-	pointer-events: none !impotant;
-	cursor: default !impotant;
-	color: red !impotant;
-	font-weight: bold !impotant;
+	pointer-events: none;
+	cursor: default;
+	color: red;
+	font-weight: bold;
 }
 </style>
 </head>
@@ -135,10 +135,12 @@ table.type3 {
 <script src="${path}/resources/js/header.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
-	let url = window.location.pathname;
+	let url = window.location.pathname+"?num=${select}";
+	console.log(url);
 	
 	$('.sidetab').find('a').each(function() {
 		$(this).toggleClass('current', $(this).attr('href') == url);
+		console.log($(this).attr('href'));
 	});
 </script>
 </html>

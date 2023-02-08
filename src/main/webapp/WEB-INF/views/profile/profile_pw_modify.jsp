@@ -82,12 +82,14 @@
 				onsubmit="return sendit()">
 				<table>
 					<tr>
-						<td><input type="hidden" name="userid" id="userid"
-							value="${loginUser.userid}"></td>
+						<td>
+							<input type="hidden" name="userid" id="userid" value="${loginUser.userid}">
+						</td>
 					</tr>
 					<tr>
 						<th><label for="userpw">현재 비밀번호</label></th>
-						<td><input type="password" name="userpw" id="userpw">
+						<td>
+							<input type="password" name="userpw" id="userpw">
 						</td>
 					</tr>
 					<tr>
@@ -95,7 +97,8 @@
 					</tr>
 					<tr>
 						<th><label for="userpw_re">새 비밀번호</label></th>
-						<td><input type="password" name="userpw_re" id="userpw_re">
+						<td>
+							<input type="password" name="userpw_re" id="userpw_re">
 						</td>
 					</tr>
 					<tr>
@@ -103,8 +106,9 @@
 					</tr>
 					<tr>
 						<th><label for="userpw_recheck">새 비밀번호 확인</label></th>
-						<td><input type="password" name="userpw_recheck"
-							id="userpw_recheck"></td>
+						<td>
+							<input type="password" name="userpw_recheck" id="userpw_recheck">
+						</td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -113,8 +117,9 @@
 						<td>&nbsp;</td>
 					</tr>
 					<tr>
-						<td colspan="2" style="text-align: center;"><input
-							type="submit" value="비밀번호 수정"></td>
+						<td colspan="2" style="text-align: center;">
+							<input type="submit" value="비밀번호 수정">
+						</td>
 					</tr>
 				</table>
 			</form>
@@ -128,7 +133,7 @@
 <script>
 	var url = window.location.pathname;
 	
-	$('.side-bar').find('a').each(function() {
+	$('.sidetab').find('a').each(function() {
 		$(this).toggleClass('current', $(this).attr('href') == url);
 	});
 

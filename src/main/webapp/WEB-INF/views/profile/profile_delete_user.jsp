@@ -77,13 +77,13 @@
 
 		<!-- 개발코드 시작 -->
 		<div class="banana">
-			<form name="joinForm" method="post" action=""
-				onsubmit="return sendit()">
+			<form name="joinForm" method="post" action="" onsubmit="return sendit()">
 				<table>
 					<tr>
 						<th><label for="userid">아이디</label></th>
-						<td><input type="text" name="userid" id="userid" value=""
-							style="color: gray;"></td>
+						<td>
+							<input type="text" name="userid" id="userid" value="" style="color: gray;">
+						</td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -93,7 +93,8 @@
 					</tr>
 					<tr>
 						<th><label for="userpw">비밀번호</label></th>
-						<td><input type="password" name="userpw" id="userpw">
+						<td>
+							<input type="password" name="userpw" id="userpw">
 						</td>
 					</tr>
 					<tr>
@@ -110,8 +111,9 @@
 						<td>&nbsp;</td>
 					</tr>
 					<tr>
-						<td colspan="2"><input type="text" name="delete_confirm"
-							id="delete_confirm"></td>
+						<td colspan="2">
+							<input type="text" name="delete_confirm" id="delete_confirm">
+						</td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -120,8 +122,9 @@
 						<td>&nbsp;</td>
 					</tr>
 					<tr>
-						<td colspan="2" style="text-align: center;"><input
-							type="submit" value="회원탈퇴"></td>
+						<td colspan="2" style="text-align: center;">
+							<input type="submit" value="회원탈퇴">
+						</td>
 					</tr>
 				</table>
 			</form>
@@ -135,7 +138,7 @@
 <script>
 	var url = window.location.pathname;
 	
-	$('.side-bar').find('a').each(function() {
+	$('.sidetab').find('a').each(function() {
 		$(this).toggleClass('current', $(this).attr('href') == url);
 	});
 	

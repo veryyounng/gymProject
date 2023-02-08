@@ -191,8 +191,16 @@
 					<tr>
 						<th>회원권</th>
 						<td>
-							<input type="text" name="membershipperiod" id="membershipperiod" value="" readonly>
-							<input type="button" value="구매(갱신)">
+							<c:choose>
+								<c:when test="${loginUser.duedate == null}">
+									<input type="text" name="membershipperiod" id="membershipperiod" value="회원권을 구매해주세요" readonly>
+									<input type="button" onclick="location.href = '${path}/payment/pay'" value="구매">
+								</c:when>
+								<c:otherwise>
+									<input type="text" name="membershipperiod" id="membershipperiod" value="~ ${loginUser.duedate}" readonly>
+									<input type="button" onclick="location.href = '${path}/payment/pay'" value="갱신">
+								</c:otherwise>
+							</c:choose>
 						</td>
 					</tr>
 				</table>
@@ -209,7 +217,7 @@
 	var url = window.location.pathname;
 	
 //	side-bar 클래스 안에 있는 a태그를 찾고, for문 기능을 하는 each 함수를 통해 하나하나 순환
-	$('.side-bar').find('a').each(function() {
+	$('.sidetab').find('a').each(function() {
 		$(this).toggleClass('current', $(this).attr('href') == url);
 	});
 //	this 선택자를 통해 해당 객체를 선택 (a).

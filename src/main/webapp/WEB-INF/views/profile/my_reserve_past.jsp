@@ -179,7 +179,7 @@ input[type="text"] {
 <script>
 	var url = window.location.pathname;
 	
-	$('.side-bar').find('a').each(function() {
+	$('.sidetab').find('a').each(function() {
 		$(this).toggleClass('current', $(this).attr('href') == url);
 	});
 

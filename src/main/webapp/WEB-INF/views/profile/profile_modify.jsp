@@ -84,8 +84,9 @@
 				<table>
 					<tr>
 						<th><label for="userid">아이디</label></th>
-						<td><input type="text" name="userid" id="userid"
-							value="${loginUser.userid}" readonly style="color: gray;"></td>
+						<td>
+							<input type="text" name="userid" id="userid" value="${loginUser.userid}" readonly style="color: gray;">
+						</td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -95,8 +96,9 @@
 					</tr>
 					<tr>
 						<th><label for="email">이메일</label></th>
-						<td><input type="text" name="email" id="email"
-							value="${loginUser.email}" readonly style="color: gray;"></td>
+						<td>
+							<input type="text" name="email" id="email" value="${loginUser.email}" readonly style="color: gray;">
+						</td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -106,8 +108,9 @@
 					</tr>
 					<tr>
 						<th><label for="username">이름</label></th>
-						<td><input type="text" name="username" id="username"
-							value="${loginUser.username}" readonly style="color: gray"></td>
+						<td>
+							<input type="text" name="username" id="username" value="${loginUser.username}" readonly style="color: gray">
+						</td>
 					</tr>
 					<tr>
 						<td></td>
@@ -118,8 +121,9 @@
 					</tr>
 					<tr>
 						<th><label for="usernick">닉네임</label></th>
-						<td><input type="text" name="usernick" id="usernick"
-							onfocusout="nickcheck()" value="${loginUser.usernick}"></td>
+						<td>
+							<input type="text" name="usernick" id="usernick" onfocusout="nickcheck()" value="${loginUser.usernick}">
+						</td>
 					</tr>
 					<tr>
 						<td></td>
@@ -130,8 +134,9 @@
 					</tr>
 					<tr>
 						<th><label for="phone">전화번호</label></th>
-						<td><input type="text" name="phone" id="phone"
-							value="${loginUser.phone}"></td>
+						<td>
+							<input type="text" name="phone" id="phone" value="${loginUser.phone}">
+						</td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -141,27 +146,27 @@
 					</tr>
 					<tr class="zipcode_area">
 						<th>우편번호</th>
-						<td><input type="text" name="zipcode" id="sample6_postcode"
-							readonly onclick="sample6_execDaumPostcode()"
-							value="${loginUser.zipcode}"> <input type="button"
-							value="우편번호 찾기" onclick="sample6_execDaumPostcode()"></td>
+						<td>
+							<input type="text" name="zipcode" id="sample6_postcode" readonly onclick="sample6_execDaumPostcode()" value="${loginUser.zipcode}">
+							<input type="button" value="우편번호 찾기" onclick="sample6_execDaumPostcode()">
+						</td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
 					</tr>
 					<tr class="addr_area">
 						<th>주소</th>
-						<td><input type="text" name="addr" id="sample6_address"
-							value="${loginUser.addr}" readonly></td>
+						<td>
+							<input type="text" name="addr" id="sample6_address" value="${loginUser.addr}" readonly>
+						</td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
 					</tr>
 					<tr>
 						<th>상세주소</th>
-						<td><input type="text" name="addrdetail"
-							id="sample6_detailAddress" onfocusout="detail_addrcheck()"
-							value="${loginUser.addrdetail}"></td>
+						<td><input type="text" name="addrdetail" id="sample6_detailAddress" onfocusout="detail_addrcheck()" value="${loginUser.addrdetail}">
+						</td>
 					</tr>
 					<tr>
 						<td></td>
@@ -172,8 +177,9 @@
 					</tr>
 					<tr>
 						<th>참고항목</th>
-						<td><input type="text" name="addretc"
-							id="sample6_extraAddress" value="${loginUser.addretc}" readonly></td>
+						<td>
+							<input type="text" name="addretc" id="sample6_extraAddress" value="${loginUser.addretc}" readonly>
+						</td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -182,9 +188,10 @@
 						<td>&nbsp;</td>
 					</tr>
 					<tr>
-						<td colspan="2" style="text-align: center;"><input
-							type="submit" value="수정 완료"> <input type="reset"
-							value="초기화"></td>
+						<td colspan="2" style="text-align: center;">
+							<input type="submit" value="수정 완료">
+							<input type="reset" value="초기화">
+						</td>
 					</tr>
 				</table>
 			</form>
@@ -199,7 +206,7 @@
 <script>
 	var url = window.location.pathname;
 	
-	$('.side-bar').find('a').each(function() {
+	$('.sidetab').find('a').each(function() {
 		$(this).toggleClass('current', $(this).attr('href') == url);
 	});
 	

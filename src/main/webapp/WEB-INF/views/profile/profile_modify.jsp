@@ -233,8 +233,7 @@
 		const addrdetail = document.joinForm.addrdetail;
 
 		if (!zipcode.value == "" && addrdetail.value == "") {
-			document.getElementById("detail_addrcheck").setAttribute('style',
-					'color: red;');
+			document.getElementById("detail_addrcheck").setAttribute('style', 'color: red;');
 			document.getElementById("detail_addrcheck").innerHTML = "상세주소를 입력해주세요!"
 		} else if (!zipcode.value == "" && !addrdetail.value == "") {
 			document.getElementById("detail_addrcheck").innerHTML = ""
@@ -248,7 +247,7 @@
 		const englisha = /[a-z]/;
 		const special = /[~!@#$%^&*]/;
 		const number = /[0-9]/;
-		const phone_num = /^010||^011||^016||^017||^019\d{8}/;
+		const phone_num = /^(?:(010\d{4})|(01[1|6|7|8|9]\d{3,4}))(\d{4})$/;
 
 		const usernick = joinform.usernick;
 		if (usernick.value == "") {

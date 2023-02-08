@@ -53,7 +53,7 @@
 }
 
 .banana #membershipperiod {
-	width: 217px;
+	width: 255px;
 	height: 40px;
 }
 
@@ -226,19 +226,3 @@
 //	근데 왜 js파일을 따로 만들면 적용이 안 되는지... 잘못 사용하고 있는 부분 확인해보기.
 </script>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

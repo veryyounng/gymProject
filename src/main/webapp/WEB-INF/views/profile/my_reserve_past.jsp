@@ -22,10 +22,11 @@
 <link rel="stylesheet" href="${path}/resources/css/styles.css" />
 <link rel="stylesheet" href="${path}/resources/css/reservationstyle.css">
 <link rel="stylesheet" href="${path}/resources/css/free_list.css">
+<link rel="shortcut icon" href="${path}/resources/img/파비콘.png" type="image/x-icon">
 <style>
 .side-bar {
 	position: relative;
-	top: -195px;
+	top: -171px;
 }
 
 .banana {
@@ -76,11 +77,24 @@ input[type="text"] {
 	text-align: right;
 	padding-right: 10px;
 }
+
+.side-bar div ul li a.current {
+	pointer-events: none;
+	cursor: default;
+	color: red;
+	font-weight: bold;
+}
 </style>
 </head>
 
 <body>
 	<%@ include file="../include/header.jsp"%>
+	<c:if test="${loginUser == null }">
+		<script>
+			alert("로그인 후 이용하세요!");
+			location.replace('${cp}/user/login');
+		</script>
+	</c:if>
 	<section>
 		<%@ include file="../include/profile_sidebar.jsp"%>
 		<!-- 개발코드 시작 -->
@@ -163,6 +177,12 @@ input[type="text"] {
 <script src="${path}/resources/js/header.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
+	var url = window.location.pathname;
+	
+	$('.side-bar').find('a').each(function() {
+		$(this).toggleClass('current', $(this).attr('href') == url);
+	});
+
 	$('#currentDate').val(new Date().toISOString().substring(0, 10));
 	
 	const datepick= document.querySelector('#datepick');
@@ -203,14 +223,5 @@ input[type="text"] {
 		lecturepick.removeAttribute('value');
 		lecturepick.value = event.target.value;
 	})
-	
-	
 </script>
 </html>
-
-
-
-
-
-
-

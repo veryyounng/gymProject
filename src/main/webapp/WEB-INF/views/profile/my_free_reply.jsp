@@ -20,13 +20,15 @@
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
 	rel="stylesheet" type="text/css" />
 <title>우리동네 올림픽</title>
+<link rel="stylesheet" href="${path}/resources/css/reset.css" />
 <link rel="stylesheet" href="${path}/resources/css/styles.css">
 <link rel="stylesheet" href="${path}/resources/css/notistyle.css">
 <link rel="stylesheet" href="${path}/resources/css/free_list.css">
+<link rel="shortcut icon" href="${path}/resources/img/파비콘.png" type="image/x-icon">
 <style>
 .side-bar {
 	position: relative;
-	top: -232px;
+	top: -246px;
 }
 
 section {
@@ -161,11 +163,24 @@ ul.tabs li.current {
 .tab-content.current {
 	display: inherit;
 }
+
+.side-bar div ul li a.current {
+	pointer-events: none;
+	cursor: default;
+	color: red;
+	font-weight: bold;
+}
 </style>
 </head>
 
 <body>
 	<%@ include file="../include/header.jsp"%>
+	<c:if test="${loginUser == null }">
+		<script>
+			alert("로그인 후 이용하세요!");
+			location.replace('${cp}/user/login');
+		</script>
+	</c:if>
 	<section>
 		<!-- 사이드바 시작 -->
 		<%@ include file="../include/profile_sidebar.jsp"%>
@@ -267,6 +282,12 @@ ul.tabs li.current {
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="${path}/resources/js/header.js"></script>
 <script>
+	var url = window.location.pathname;
+	
+	$('.side-bar').find('a').each(function() {
+		$(this).toggleClass('current', $(this).attr('href') == url);
+	});
+
 	function delete_check() {
 		if (confirm("정말로 삭제하시겠습니까?")) {
 			return true;

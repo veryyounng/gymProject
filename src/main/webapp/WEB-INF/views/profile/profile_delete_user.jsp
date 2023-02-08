@@ -18,11 +18,13 @@
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
 	rel="stylesheet" type="text/css" />
 <title>우리동네 올림픽</title>
+<link rel="stylesheet" href="${path}/resources/css/reset.css" />
 <link rel="stylesheet" href="${path}/resources/css/styles.css">
+<link rel="shortcut icon" href="${path}/resources/img/파비콘.png" type="image/x-icon">
 <style>
 .side-bar {
 	position: relative;
-	top: -57px;
+	top: -71px;
 }
 
 .banana {
@@ -52,11 +54,24 @@
 	width: 390px;
 	height: 40px;
 }
+
+.side-bar div ul li a.current {
+	pointer-events: none;
+	cursor: default;
+	color: red;
+	font-weight: bold;
+}
 </style>
 </head>
 
 <body>
 	<%@ include file="../include/header.jsp"%>
+	<c:if test="${loginUser == null }">
+		<script>
+			alert("로그인 후 이용하세요!");
+			location.replace('${cp}/user/login');
+		</script>
+	</c:if>
 	<section>
 		<%@ include file="../include/profile_sidebar.jsp"%>
 
@@ -116,7 +131,14 @@
 	<%@ include file="../include/footer.jsp"%>
 </body>
 <script src="${path}/resources/js/header.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
+	var url = window.location.pathname;
+	
+	$('.side-bar').find('a').each(function() {
+		$(this).toggleClass('current', $(this).attr('href') == url);
+	});
+	
 	function sendit() {
 		const joinForm = document.joinForm;
 		const userid = joinForm.userid;

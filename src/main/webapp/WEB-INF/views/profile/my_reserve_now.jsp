@@ -23,10 +23,11 @@
 <link rel="stylesheet" href="${path}/resources/css/styles.css" />
 <link rel="stylesheet" href="${path}/resources/css/reservationstyle.css">
 <link rel="stylesheet" href="${path}/resources/css/free_list.css">
+<link rel="shortcut icon" href="${path}/resources/img/파비콘.png" type="image/x-icon">
 <style>
 .side-bar {
 	position: relative;
-	top: -146px;
+	top: -120px;
 }
 
 .banana {
@@ -51,11 +52,24 @@
 table.type3 {
 	margin-top: 0px;
 }
+
+.side-bar div ul li a.current {
+	pointer-events: none;
+	cursor: default;
+	color: red;
+	font-weight: bold;
+}
 </style>
 </head>
 
 <body>
 	<%@ include file="../include/header.jsp"%>
+	<c:if test="${loginUser == null }">
+		<script>
+			alert("로그인 후 이용하세요!");
+			location.replace('${cp}/user/login');
+		</script>
+	</c:if>
 	<section>
 		<%@ include file="../include/profile_sidebar.jsp"%>
 		<!-- 개발코드 시작 -->
@@ -119,4 +133,12 @@ table.type3 {
 	<%@ include file="../include/footer.jsp"%>
 </body>
 <script src="${path}/resources/js/header.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>
+	var url = window.location.pathname;
+	
+	$('.side-bar').find('a').each(function() {
+		$(this).toggleClass('current', $(this).attr('href') == url);
+	});
+</script>
 </html>

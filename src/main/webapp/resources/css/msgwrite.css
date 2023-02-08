@@ -29,6 +29,10 @@ textarea {
   height: 20px;
   padding: 3px;
 }
+#msgtitle{
+  width: 613px;
+  height: 20px;	
+}
 
 .msgcontents{
   margin-top: 5px;

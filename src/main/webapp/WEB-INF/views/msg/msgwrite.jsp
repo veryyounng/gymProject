@@ -12,10 +12,35 @@
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <link rel="stylesheet" href="${path}/resources/css/message.css">
 <link rel="stylesheet" href="${path}/resources/css/msgwrite.css">
-<script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script type="text/javascript">
 	function goBack() {
 		window.history.back();
 	}
+	
+	function check(){
+		let msgtitle = $("#msgtitle");
+		let msgcontents = $("#msgcontents");
+		let receiver = $("#receiver");
+		
+		if(receiver.val() == ""){
+			alert("받는사람을 입력하세요.");
+			receiver.focus();
+			return false;
+		}
+		if(msgtitle.val() == ""){
+			alert("제목을 입력하세요.");
+			msgtitle.focus();
+			return false;
+		}
+		if(msgcontents.val() == ""){
+			alert("내용을 입력하세요.");
+			msgcontents.focus();
+			return false;
+		}
+			return true;
+	}
+	
 </script>
 </head>
 
@@ -36,7 +61,7 @@
 					</div>
 					<div class="input">
 						받는사람 : <input type="text" class="input-receive"
-							placeholder="아이디를 입력하세요" value="${receiver}" name="receiver">
+							placeholder="아이디를 입력하세요" value="${receiver}" name="receiver" id="receiver">
 					</div>
 					<div class="msgtitle">
 						<input type="text" placeholder="제목을 입력하세요." id="msgtitle"
@@ -48,7 +73,7 @@
 					</div>
 				</div>
 				<div class="btns">
-					<input class="btn btn_send" type="submit" value="보내기">
+					<input class="btn btn_send" type="submit" value="보내기" onclick= "return check();">
 			<input class="btn btn_back" type="button" value="뒤로가기"
 				onclick="return goBack()" />
 				</div>
@@ -56,9 +81,5 @@
 
 		</div>
 	</section>
-
-
-
 </body>
-
 </html>

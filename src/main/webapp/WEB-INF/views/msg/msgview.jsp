@@ -14,7 +14,15 @@
 <link rel="stylesheet" href="${path}/resources/css/message.css" />
 <link rel="stylesheet" href="${path}/resources/css/msgwrite.css" />
 <link rel="stylesheet" href="${path}/resources/css/msgview.css" />
-
+<script>
+	function delete_check() {
+		if (confirm("정말로 삭제하시겠습니까?")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+</script>
 </head>
 
 <body>
@@ -38,12 +46,15 @@
 				<div class="msgcontents">${result.contents}</div>
 			</div>
 			<div class="btns">
-				<form id="sendmsg" method="post" action="">
-					<input class="btn btn_answer" type="submit" value="답장" onclick="">
+				<form id="sendmsg" method="post" action="${path}/msg/msgwrite">
+					<input type="hidden" name="receiver" value="${result.sender}"/>
+					<input class="btn btn_answer" type="submit" value="답장" />
 				</form>
-				<form id="delete" method="post" action="">
-					<input class="btn btn_delete" type="submit" value="삭제" onclick="">
+				<form id="delete" method="post" action="${path}/msg/msgDelete">
+					<input type="hidden" name="msg_num" value="${result.msg_num}">
+					<input class="btn btn_delete" type="submit" value="삭제" onclick="return delete_check();">
 				</form>
+				<input class="btn btn_back" type="button" value="뒤로가기" onclick="location.href='/msg/msgmain?num=${select}'">
 			</div>
 		</div>
 	</section>

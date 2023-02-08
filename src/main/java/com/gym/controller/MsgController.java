@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gym.domain.MessageVO;
@@ -51,23 +52,32 @@ public class MsgController {
 		return "/msg/msgview";
 	}
 	
-	@GetMapping("/send")
+	@GetMapping("/msgwrite")
 	public void getPage() {}
 	
+	@PostMapping("/msgwrite")
+	public void postwrite(String receiver, Model model) {
+		model.addAttribute("receiver",receiver);
+	}
+	
 	@PostMapping("/send")
-	public String postSend(MessageVO vo, RedirectAttributes ra) throws Exception {
+	public String postSend(MessageVO vo, RedirectAttributes ra, HttpServletRequest req) throws Exception {
+		UserVO user = (UserVO)req.getSession().getAttribute("loginUser");
+		String userid = user.getUserid();
+		vo.setSender(userid);
 		if(service.msgSend(vo) == 1) {			// form에 hidden으로 loginUser.userid 넣어야함. 
 			ra.addFlashAttribute("send","T");
 		} else {
 			ra.addFlashAttribute("send","F");
 		}
 		
-		return "redirect:/msg/msgmain";			// msgmain에 send c:if문 생성해야함.
+		return "redirect:/msg/msgmain?num=1";			// msgmain에 send c:if문 생성해야함.
 	}
 	
-	@GetMapping("/sentMsg")
+	@GetMapping("/msgsend")
 	public void getSentMsg(HttpServletRequest req, Model model, int num) {
-		String userid = (String)req.getSession().getAttribute("loginUser.userid");
+		UserVO user = (UserVO)req.getSession().getAttribute("loginUser");
+		String userid = user.getUserid();
 		List<MessageVO> list = service.getSentMsg(userid);
 		
 		Page page = new Page();
@@ -81,10 +91,12 @@ public class MsgController {
 	}
 	
 	@GetMapping("/sentMsgDetail")		// 보낸메세지 자세히보기
-	public void sentMsgDetail(int msg_num, Model model,@ModelAttribute("select")int select, @ModelAttribute("page")Page page) {
+	public String sentMsgDetail(int msg_num, Model model,@ModelAttribute("select")int select, @ModelAttribute("page")Page page) {
 		MessageVO result = service.getMSG(msg_num);
 		
 		model.addAttribute("result",result);
+		
+		return "/msg/msgview_2";
 	}
 	
 	@PostMapping("/msgDelete")

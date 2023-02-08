@@ -47,6 +47,7 @@ a{
 .btn{
   width: 75px;
   height: 30px;
+  margin: 0 10px;
 }
 
 .msgbox{
@@ -101,8 +102,7 @@ ul.list.list2:last-child{
 .list2 li:last-child{
   margin: 0 auto;
 }
-.btns{
-}
+
 .btns ul{
   height: 60px;
   width: 100%;

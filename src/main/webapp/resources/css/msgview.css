@@ -14,7 +14,10 @@
   margin: 15px auto;
   padding-bottom: 5px;
 }
-.btns .btn_answer,
-.btns .btn_delete{
+.btn_answer,
+.btn_delete{
   margin: 0 10px;
+}
+.btn_back{
+	margin: 0 10px;
 }

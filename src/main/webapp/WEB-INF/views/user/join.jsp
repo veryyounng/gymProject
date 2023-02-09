@@ -167,7 +167,6 @@ textarea {
 	<%@ include file="../include/footer.jsp"%>
 </body>
 <!-- check Box 이벤트처리를 위한 Script -->
-<script src="${path}/resources/js/header.js"></script>
 <script>
 	var doc = document;
 	var form1 = doc.getElementById('form1');

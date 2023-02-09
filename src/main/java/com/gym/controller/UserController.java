@@ -88,7 +88,7 @@ public class UserController {
 		int result = service.idchk(userid);
 		try {
 			if (result != 0) {
-				return "/join_form";
+				return "/";
 			} else {
 				service.join(vo);
 			}

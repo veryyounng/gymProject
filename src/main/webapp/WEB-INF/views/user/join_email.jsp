@@ -132,7 +132,6 @@
 	<%@ include file="../include/footer.jsp"%>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-<script src="${path}/resources/js/header.js"></script>
 <script>
 //	도메인 직접 입력 or domain option 선택
 	const domainListEl = document.querySelector('#domain-list')

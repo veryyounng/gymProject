@@ -59,6 +59,18 @@ public class Ex_ReplyDAOImpl implements Ex_ReplyDAO {
 		return sql.selectOne(namespace + ".exc_replyselect", ervo);
 	}
 
+	// ajax 댓글 조회
+	@Override
+	public Ex_ReplyVO exc_modiview(int exc_num) throws Exception {
+		return sql.selectOne(namespace + ".exc_modiview", exc_num);
+	}
+
+	// ajax 댓글 수정
+	@Override
+	public void exc_modireply(Ex_ReplyVO ervo) throws Exception {
+		sql.update(namespace + ".modireply", ervo);
+	}
+
 	
 	
 	

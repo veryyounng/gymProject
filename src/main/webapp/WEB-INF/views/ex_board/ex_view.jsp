@@ -30,57 +30,88 @@
 <link rel="stylesheet" href="${path}/resources/css/free_content.css">
 <link rel="shortcut icon" href="${path}/resources/img/파비콘.png" type="image/x-icon">
 
+<style>
+    #btn_delete{
+    border: 1px solid #dddddd;
+  	width: 80px;
+  	height: 40px;
+  	display: flex;
+  	align-items: center;
+  	justify-content: center;
+  	cursor: pointer;
+  	vertical-align: top;
+  	background-color: white;
+    }
+    #btn_delete:hover{
+	color: #000;
+  	background-color: rgb(242, 242, 242);
+	}
+</style>
+
+</head>
+
 <title>운동지식공유 게시판</title>
 
 </head>
 
 <body>
 <%@ include file="../include/header.jsp" %>
-	<article>
-		<div class="container" role="main">
+	<div class="banana">
+       <div class="board_body">
 
-			<h2>운동지식공유 게시판 게시물 보기</h2>
-			<br>
-				<div class="mb-3">
-					<label for="title">제목</label>
-					<input type="text" class="form-control" name="ex_title" id="ex_title" value="${ex_view.ex_title}" >
+			<!-- 제목 -->
+			<div class="title_box">
+			<h2>운동지식공유 게시판 </h2>
+			</div>
+
+				<!-- 게시물 정보 -->				
+				<div class="title_box2">
+					<div class="view_title" id="ex_title" name="ex_title"> ${ex_view.ex_title}</div>
+					<div class="cnt_date_writer" >
+						<div class="writer" id="ex_writer" name="ex_writer">작성자 : ${ex_view.ex_writer}</div>
+						<div class="view_date" id="ex_date" name="ex_date"> 작성일 : <fmt:formatDate value="${ex_view.ex_date}" pattern="yyyy-MM-dd HH:mm"/></div>
+						<div class="view_cnt" id="view_cnt" name="view_cnt">조회수 : ${ex_view.view_cnt}</div>
+						<input type="hidden" name="ex_num" id="ex_num" value="${ex_view.ex_num}">
+					</div>
 				</div>
 
+				<!-- 본문 -->
 				<div class="mb-3">
-					<label for="reg_id">작성자</label>
-					<input type="text" class="form-control" name="ex_writer" id="ex_writer" value="${ex_view.ex_writer}" >
-				</div>
-
-				<div class="mb-3">
-					<label for="content">내용</label>
 					<textarea rows="5" class="form-control" name="ex_content" id="ex_content" >${ex_view.ex_content}</textarea>
 				</div>
 				
+				<div class="btns">
+				
+				<!-- 수정 / 삭제버튼 표시 -->
 				<c:if test="${ex_view.ex_writer == loginUser.userid}">
-					<div class="mb-3">
-						<a href="/ex_board/ex_modify?ex_num=${ex_view.ex_num}">게시물 수정</a>
-						<form method = "post" action="${cp}/ex_board/ex_delete" id = "ex_delete" name = "ex_delete">
-							<input type = "hidden" value = "${ex_view.ex_num}" name = "ex_num">
-							<input class="btn_delete" type="submit" value="삭제" id="btn_delete" onclick = "return delete_check();">
-						</form>
-					</div>
+					<a class="btn_modi" a href="/ex_board/ex_modify?ex_num=${ex_view.ex_num}">수정</a>
+				<form method = "post" action="${cp}/ex_board/ex_delete" id = "ex_delete" name = "ex_delete">
+					<input type = "hidden" value = "${ex_view.ex_num}" name = "ex_num">
+					<input class="btn_delete" type="submit" value="삭제" id="btn_delete" onclick = "return delete_check();">
+				</form>
 				</c:if>
+				</div>
+				<br>
 
 	<!-- 댓글 시작 -->
-	<div>
-		<form method="post" action="/ex_reply/exc_write" name = "ex_replyform">
-			<p>
-				<label>댓글 작성자</label> <input type="text" name = "exc_writer" value = "${loginUser.userid}">
-			</p>
-			<p>
-				<textarea rows="3" cols="50" name = "exc_contents"></textarea>
-			</p>
-			<p>
-				<input type="hidden" name = "ex_num" value = "${ex_view.ex_num}">
-				<button type = "submit">댓글 작성</button>
-			</p>
+		<form method="post" action="/ex_reply/exc_write" name = "ex_replyform" id = "ex_replyform">
+			<ul class="reply_textbox">
+        	<div class="reply_textbox2">
+				<div class="reply_wr">
+            	<label class="reply_writer">댓글 작성자</label>
+            	<input style="width:90px; padding:0 5px;" type="text" value="${loginUser.userid}" id="exc_writer" name="exc_writer" readonly>
+          		</div>
+			
+				<div>
+	            	<textarea rows="5" cols="50" class="reply_text" style="resize:none;" name="exc_contents"></textarea>
+	            	<input type="hidden" value="${ex_view.ex_num}" name="ex_num" >
+				</div>
+			
+				<div>
+	            	<button type="button" class="reply_btn" onclick="replyCheck();">댓글 작성</button>
+				</div>
+			</div>
 		</form>
-	</div>
 	
 	<!-- 댓글 보기 -->
 	<c:forEach items = "${ex_reply}" var = "ex_reply">
@@ -91,15 +122,18 @@
 				<div class="free_reply_div2">
 				
 				<!-- 댓글 수정 삭제 -->
-				<p>
-					<a href="/ex_reply/ex_replymodify?ex_num=${ex_view.ex_num}&exc_num=${ex_reply.exc_num}">수정</a> / 
-							
+				<c:if test="${ex_reply.exc_writer == loginUser.userid}">
+					<a class="free_reply_modify" id ="ex_reply_modireply${ex_reply.exc_num}" href="${ex_reply.exc_num}">수정</a>
+					<%-- <a class="free_reply_modify" href="/ex_reply/ex_replymodify?ex_num=${ex_view.ex_num}&exc_num=${ex_reply.exc_num}">수정</a> --%>
 					<form method = "post" action="${cp}/ex_reply/ex_replydelete?ex_num=${ex_view.ex_num}&exc_num=${ex_reply.exc_num}"
 					 id = "ex_replydelete" name = "ex_replydelete">
-						<input class="btn_delete" type="submit" value="삭제" id="btn_delete" onclick = "return reply_delete();">
+						<input type="hidden" value="${ex_reply.exc_num}" name="exc_num">
+						<input type="hidden" value="${select}" name="select">
+						<input type="hidden" value="${ex_reply.ex_num}" name="ex_num">
+						<input class="free_reply_delete" type="submit" value="삭제" id="" onclick = "return reply_delete();">
 					</form>
-				</p>
-				<hr />
+				</c:if>
+				</div>
 			</div>
 		</li>
 	</c:forEach>
@@ -130,8 +164,7 @@
 	<!-- 댓글 끝 -->
 
 	</div>
-		
-	</article>
+</div>
 	
 <%@ include file = "../include/footer.jsp" %>
 	
@@ -180,6 +213,66 @@
  	   return false;
  	   }
     }
+    
+    //댓글 수정 ajax
+    	$('.free_reply_modify').on("click",updateviewBtn);
+        function updateviewBtn(e){
+    	   
+			e.preventDefault();
+			let exc_num = $(this).attr("href");
+			let replyModi = $(".reply"+exc_num);
+			let ex_num = $("#ex_num").val();
+			let reply_num = ${select};
+    	   
+			$.ajax({
+        	   url: "exc_modiview",
+        	   type: "POST",
+        	   data: {"exc_num": exc_num},
+        	   success : function(result){
+        		   replyModi.empty();
+        		   var commentsview = "";
+        		   commentsview += '<form action="/ex_reply/exc_modireply" name="replymodiform" id="replymodiform" method="post">';
+                   commentsview += '<ul class="reply_textbox">';
+                   commentsview += '<div class="reply_textbox2" style="border:none;">';
+                   commentsview += '<div class="reply_wr">';
+                   commentsview += '<label class="reply_writer">';
+                   commentsview += '<p>'+ result.exc_writer;
+                   
+                   commentsview += '</p>';
+                   commentsview += '</div>';
+                   commentsview += '<textarea rows="5" cols="50" class="reply_text2" style="resize:none;" id="reply_modify" name="exc_contents">';
+                   commentsview += 	result.exc_contents;
+                   commentsview += '</textarea>';
+                   commentsview += '<input type="hidden" value="'+ result.exc_num + '" name="exc_num" />';
+                   commentsview += '<input type="hidden" value="'+ reply_num + '" name="reply_num" />';
+                   commentsview += '<input type="hidden" value="'+ ex_num + '" name="ex_num" />';
+                   commentsview += '</div>';
+                   commentsview += '<div>';
+                   commentsview += '<button type="button" class="reply_btn" onclick="replyModiCheck();">';
+                   commentsview += '수정완료';
+                   commentsview += '</button>';
+                   commentsview += '</div>';
+                   commentsview += '</div>';
+                   commentsview += '</form>';
+                   replyModi.append(commentsview);
+        	   },
+        	   error: function(request, error){
+               	console.log("ajax 실패");
+               	console.log("code:"+request.status+"\n"+"message"+request.responseText+"\n"+"error:"+error);
+               }
+
+        })
+       } 
+        
+        function replyModiCheck(){
+        	if($("#reply_modify").val() == "") {
+        		alert("댓글을 입력해주세요.");
+        		return false;
+        	} 
+        	$("#replymodiform").submit();
+        	
+        }
+    
     
 </script>
 

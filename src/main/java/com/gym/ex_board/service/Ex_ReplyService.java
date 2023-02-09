@@ -23,5 +23,11 @@ public interface Ex_ReplyService {
 	
 	// 단일 댓글 조회
 	public Ex_ReplyVO exc_replySelect(Ex_ReplyVO ervo) throws Exception;
+	
+	// ajax 댓글 조회
+	public Ex_ReplyVO exc_modiview(int exc_num) throws Exception;
+	
+	// ajax 댓글 수정
+	public void exc_modireply(Ex_ReplyVO ervo) throws Exception;
 }
 

@@ -50,5 +50,17 @@ public class Ex_ReplyServiceImpl implements Ex_ReplyService {
 		return dao.exc_replySelect(ervo);
 	}
 
+	// ajax 댓글 조회
+	@Override
+	public Ex_ReplyVO exc_modiview(int exc_num) throws Exception {
+		return dao.exc_modiview(exc_num);
+	}
+
+	// ajax 댓글 수정
+	@Override
+	public void exc_modireply(Ex_ReplyVO ervo) throws Exception {
+		dao.exc_modireply(ervo);
+	}
+
 
 }

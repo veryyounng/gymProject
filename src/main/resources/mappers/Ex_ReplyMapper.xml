@@ -49,4 +49,17 @@
 			and exc_num = #{exc_num}
 	</select>
 
+	<!-- ajax 댓글 조회 -->
+	<select id="exc_modiview" parameterType="_int" resultType="com.gym.ex_board.vo.Ex_ReplyVO">
+		select *
+		from exc_comment
+		where exc_num = #{exc_num}
+	</select>
+	
+	<!-- ajax 댓글 수정 -->
+	<update id="exc_modireply">
+		update exc_commnet set exc_contents = #{exc_contents}
+		where exc_num = #{exc_num}
+	</update>
+	
 </mapper>

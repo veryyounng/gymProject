@@ -82,6 +82,12 @@
 		select count(*) from user
 			where userid = #{userid} and email =#{email}
 	</select>
+	<!-- 비밀번호 변경하기  -->
+	<update id="changePW">
+		update user set 
+			userpw =#{userpw}
+		where userid =#{userid}
+	</update>
 </mapper>
 
 

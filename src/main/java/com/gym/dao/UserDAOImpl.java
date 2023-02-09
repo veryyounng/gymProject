@@ -76,6 +76,14 @@ public class UserDAOImpl implements UserDAO {
 		return sql.selectOne(namespace + ".findPw", data);
 	}
 
+	@Override
+	public void changePW(String userid, String userpw) throws Exception {
+		HashMap<String, String> map =  new HashMap<String, String>();
+		map.put("userid", userid);
+		map.put("userpw", userpw);
+		sql.update(namespace + ".changePW", map);
+	}
+
 
 
 

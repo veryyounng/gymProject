@@ -1,8 +1,11 @@
 package com.gym.service;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.gym.dao.UserDAO;
 import com.gym.domain.UserVO;
 
 public interface UserService {
@@ -33,6 +36,9 @@ public interface UserService {
 
 //	비밀번호 찾을 때 아이디랑 이메일 주소 확인하기
 	public int findpw(String userid, String email) throws Exception;
+
+//	비밀번호 변경
+	public void changePW(String userid, String userpw) throws Exception;
 
 
 

@@ -1,7 +1,5 @@
 package com.gym.controller;
 
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.gym.domain.KakaoPayReadyVO;
 import com.gym.domain.UserVO;
 import com.gym.payment.vo.PreReadyVO;
 import com.gym.service.KapayService;
@@ -41,19 +37,16 @@ public class KapayController {
 	
 	
 	@PostMapping("/kapay01")
-	public String postKapay01(@RequestParam("proNum") String proNum, String host, HttpServletRequest req) throws Exception {
+	public String postKapay01(@RequestParam("proNum") String proNum, HttpServletRequest req) throws Exception {
 		
 		UserVO vo = (UserVO)req.getSession().getAttribute("loginUser");
 		String userId = vo.getUserid();
-		System.out.println("===================================");
-		System.out.println(host);
-		System.out.println("===================================");
 		PreReadyVO pr = kapayservice.testPreReady(proNum);
 
 		pr.setUserId(userId);
 		System.out.println(pr.toString());
 		
-		String result = kapayservice.kakaoPayReady01(pr,host);
+		String result = kapayservice.kakaoPayReady01(pr,req);
 		
 		return "redirect:"+result;
 		

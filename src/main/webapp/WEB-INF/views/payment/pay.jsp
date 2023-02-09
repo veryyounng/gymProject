@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>이용권 구매</title>
+
+<link rel="shortcut icon" href="${path}/resources/img/파비콘.png" type="image/x-icon">
 <link rel="stylesheet" href="${path}/resources/css/reset.css" />
 <link rel="stylesheet" href="${path}/resources/css/styles.css" />
 <link rel="stylesheet" href="${path}/resources/paymentstyle/pay.css" />
@@ -24,7 +26,6 @@
 				
 				<form method="post" name="payFormSilver" id="payFormSilver" >		
 				<input type = "hidden" value = "p1002" id = "proNum" name="proNum">
-				<input type="hidden" name="host" id="location_host_silver" />
 				<div class="box silver_box" onclick="pay02()">
 					<div class="box-main left-main"></div>
 					<div class="box-price">
@@ -37,7 +38,6 @@
 				
 				<form method="post" name="payFormGold" id="payFormGold" >
 				<input type = "hidden" value = "p1001" id = "proNum" name="proNum">
-				<input type="hidden" name="host" id="location_host_gold" />
 				<div class="box gold_box" onclick="pay01()">
 					<div class="box-main mid-main"></div>
 					<div class="box-price">
@@ -50,7 +50,6 @@
 				
 				<form method="post" name="payFormBronze" id="payFormBronze" >
 				<input type = "hidden" value = "p1003" id = "proNum" name="proNum">
-				<input type="hidden" name="host" id="location_host_bronze" />
 				<div class="box bronze_box" onclick="pay03()">
 					<div class="box-main right-main"></div>
 					<div class="box-price">

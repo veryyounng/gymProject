@@ -3,6 +3,8 @@ package com.gym.service;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -15,9 +17,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.gym.domain.KakaoPayApprovalVO;
 import com.gym.domain.KakaoPayReadyVO;
-
 import com.gym.payment.DAO.PreReadyDAO;
-import com.gym.payment.DAO.PreReadyDAOImpl;
 import com.gym.payment.vo.PreReadyVO;
 
 import lombok.extern.java.Log;
@@ -78,10 +78,12 @@ public class KapayService {
 	}
 */	
 
-	public String kakaoPayReady01(PreReadyVO pr, String host) {
+	public String kakaoPayReady01(PreReadyVO pr, HttpServletRequest req) {
 
 		RestTemplate restTemplate = new RestTemplate();
-		
+		String file = "";
+		String header_file = req.getScheme();
+		file = req.getServerName()+":"+req.getServerPort();
 		// 서버로 요청할 Header
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Authorization", "KakaoAK " + "cb1a3c37b02c9bee7ce2fcd19e970a22");
@@ -97,9 +99,9 @@ public class KapayService {
 		params.add("quantity", "1"); //수량
 		params.add("total_amount", pr.getTotalAmount()); //가격
 		params.add("tax_free_amount", pr.getTaxFree());
-		params.add("approval_url", "http://"+host+"/payment/kakaoPaySuccess");
-		params.add("cancel_url", "http://"+host+"/payment/kapayCancel");
-		params.add("fail_url", "http://"+host+"/payment/kapaySuccessFail");
+		params.add("approval_url", header_file+"://"+file+"/payment/kakaoPaySuccess");
+		params.add("cancel_url", header_file+"://"+file+"/payment/kapayCancel");
+		params.add("fail_url", header_file+"://"+file+"/payment/kapaySuccessFail");
 		
 			HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
 			

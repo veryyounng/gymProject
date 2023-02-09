@@ -24,19 +24,33 @@
 <style>
 .side-bar {
 	position: relative;
-	top: -71px;
+	top: -72px;
 }
 
 .banana {
-	border: 1px solid black;
 	height: 600px;
 	margin: 0 auto;
-	display: flex;
 	align-items: center;
 }
 
-.banana form {
+.banana .banana_title {
 	margin: 0 auto;
+	border-bottom: 2px solid black;
+	padding: 0px 50px 30px 50px;
+	width: 75%;
+}
+
+.banana .banana_title h2 {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.banana form {
+	margin: 145px auto;
+}
+
+.banana table {
+	margin: 50px auto;
 }
 
 .banana table th {
@@ -77,6 +91,9 @@
 
 		<!-- 개발코드 시작 -->
 		<div class="banana">
+			<div class="banana_title">
+				<h2>회원 탈퇴</h2>
+			</div>
 			<form name="joinForm" method="post" action="" onsubmit="return sendit()">
 				<table>
 					<tr>
@@ -133,7 +150,6 @@
 	</section>
 	<%@ include file="../include/footer.jsp"%>
 </body>
-<script src="${path}/resources/js/header.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
 	var url = window.location.pathname;

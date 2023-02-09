@@ -27,16 +27,24 @@
 <style>
 .side-bar {
 	position: relative;
-	top: -120px;
+	top: -146px;
 }
 
 .banana {
-	border: 1px solid black;
-	height: 700px;
+	height: 750px;
 	margin: 0 auto;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
+}
+
+.banana .banana_title {
+	margin: 0 auto;
+	border-bottom: 2px solid black;
+	padding: 0px 50px 30px 50px;
+	width: 75%;
+}
+
+.banana .banana_title h2 {
+	font-size: 20px;
+	font-weight: bold;
 }
 
 .banana form {
@@ -47,6 +55,10 @@
 	width: 90px;
 	text-align: left;
 	font-weight: bold;
+}
+
+.selectdate {
+	margin: 50px auto;
 }
 
 table.type3 {
@@ -74,6 +86,9 @@ table.type3 {
 		<%@ include file="../include/profile_sidebar.jsp"%>
 		<!-- 개발코드 시작 -->
 		<div class="banana">
+			<div class="banana_title">
+				<h2>현재 예약</h2>
+			</div>
 			<div class="selectdate">
 				<table class="type3">
 					<tr class="reser_type">
@@ -87,11 +102,11 @@ table.type3 {
 
 					<c:forEach items="${list}" var="reservelist" varStatus="status">
 						<tr class="reser_result">
-							<td>${page.count - status.count + 1}</td>
+							<td>${page.count - status.count - (select-1) * 10 + 1}</td>
 							<td>${reservelist.rv_title}</td>
 							<td>${reservelist.rv_date}</td>
 							<td>${reservelist.rv_time}</td>
-							<td>${reservelist.rv_headCnt}/ ${reservelist.rv_limit}</td>
+							<td>${reservelist.rv_headCnt} / ${reservelist.rv_limit}</td>
 							<form method="post" action="${path}/profile/my_reserve_delete">
 								<td>
 									<input type="hidden" name="rv_num" value="${reservelist.rv_num}">
@@ -101,6 +116,7 @@ table.type3 {
 							</form>
 						</tr>
 					</c:forEach>
+					
 				</table>
 				<div class="btns">
 					<ul class="pagination">
@@ -132,10 +148,9 @@ table.type3 {
 	</section>
 	<%@ include file="../include/footer.jsp"%>
 </body>
-<script src="${path}/resources/js/header.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
-	let url = window.location.pathname+"?num=${select}";
+	let url = window.location.pathname+"?num=1";
 	console.log(url);
 	
 	$('.sidetab').find('a').each(function() {

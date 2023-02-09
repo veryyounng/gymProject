@@ -24,19 +24,33 @@
 <style>
 .side-bar {
 	position: relative;
-	top: -77px;
+	top: -153px;
 }
 
 .banana {
-	border: 1px solid black;
 	height: 100%;
 	margin: 0 auto;
-	display: flex;
 	align-items: center;
 }
 
 .banana form {
 	margin: 0 auto;
+}
+
+.banana .banana_title {
+	margin: 0 auto;
+	border-bottom: 2px solid black;
+	padding: 0px 50px 30px 50px;
+	width: 75%;
+}
+
+.banana .banana_title h2 {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.banana table {
+	margin: 50px auto;
 }
 
 .banana table th {
@@ -86,6 +100,9 @@
 		<%@ include file="../include/profile_sidebar.jsp"%>
 		<!-- 개발코드 시작 -->
 		<div class="banana">
+			<div class="banana_title">
+				<h2>내 프로필</h2>
+			</div>
 			<form name="joinForm" method="post" action="" onsubmit="">
 				<table>
 					<tr>
@@ -210,7 +227,6 @@
 	</section>
 	<%@ include file="../include/footer.jsp"%>
 </body>
-<script src="${path}/resources/js/header.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
 //	현재 페이지의 경로 이름을 반환하는 함수 선언

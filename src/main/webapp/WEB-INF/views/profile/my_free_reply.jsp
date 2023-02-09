@@ -28,19 +28,17 @@
 <style>
 .side-bar {
 	position: relative;
-	top: -246px;
+	top: -227px;
 }
 
 section {
 	min-height: 0px;
-	height: 950px;
+	height: 910px;
 }
 
 .banana {
-	border: 1px solid black;
 	height: 100%;
 	margin: 0 auto;
-	align-items: center;
 	padding-top: 50px;
 	padding-left: 50px;
 	padding-right: 50px;
@@ -98,8 +96,8 @@ section {
 	margin-bottom: 10px;
 }
 
-.banana #contents .ul_news .etc #write_notice button, .banana #contents .ul_news .etc #write_notice input
-	{
+.banana #contents .ul_news .etc #write_notice button,
+	.banana #contents .ul_news .etc #write_notice input {
 	margin-left: -15px;
 }
 
@@ -280,14 +278,7 @@ ul.tabs li.current {
 	<%@ include file="../include/footer.jsp"%>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-<script src="${path}/resources/js/header.js"></script>
 <script>
-	var url = window.location.pathname+"?num=${select}";
-	
-	$('.sidetab').find('a').each(function() {
-		$(this).toggleClass('current', $(this).attr('href') == url);
-	});
-
 	function delete_check() {
 		if (confirm("정말로 삭제하시겠습니까?")) {
 			return true;
@@ -296,6 +287,7 @@ ul.tabs li.current {
 			return false;
 		}
 	}
+	
+	$('.myfree').attr('class', 'current');
 </script>
-
 </html>

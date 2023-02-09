@@ -81,12 +81,17 @@ public class UserServiceImpl implements UserService {
 	public UserVO findId(String username, String email) throws Exception {
 		return udao.findId(username, email);
 	}
-
+ 
 //	비밀번호 찾기할때 회원정보 확인하기
 	@Override
 	public int findpw(String userid, String email) throws Exception {
 		
 		return udao.findpw(userid, email);
+	}
+
+	@Override
+	public void changePW(String userid, String userpw) throws Exception {
+		udao.changePW(userid, userpw);
 	}
 
 

@@ -26,7 +26,7 @@
 				<div class="logo_medal"></div>
            		<div class="logo_img"></div>
 			</div>
-			<form action="${path}/user/changePw" method="get" class="pwfindform">
+			<form action="${path}/user/changePW_view" method="post" class="pwfindform" >
 				<table id="idfindtable">
 					<tr id="nameline">
 						<th><label for="username1" id="usernamefixed" >아이디</label></th>
@@ -34,8 +34,7 @@
 					</tr>
 					<tr id="emailline">
 						<th><label for="useremail1" id="useremailfixed">이메일 주소</label></th>
-						<td><input type="text" id="useremailtext"
-							onkeyup="pwcheck()"> @ <input class="text_box"
+						<td><input type="text" id="useremailtext"> @ <input class="text_box"
 							id="domain-txt" type="text" /> <select class="select_box"
 							id="domain-list">
 								<option value="type">직접 입력</option>

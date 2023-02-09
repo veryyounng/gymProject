@@ -28,19 +28,17 @@
 <style>
 .side-bar {
 	position: relative;
-	top: -197px;
+	top: -177px;
 }
 
 section {
 	min-height: 0px;
-	height: 850px;
+	height: 810px;
 }
 
 .banana {
-	border: 1px solid black;
 	height: 100%;
 	margin: 0 auto;
-	align-items: center;
 	padding-top: 50px;
 	padding-left: 50px;
 	padding-right: 50px;
@@ -318,9 +316,8 @@ ul.tabs li.current {
 	<%@ include file="../include/footer.jsp"%>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-<script src="${path}/resources/js/header.js"></script>
 <script>
-	var url = window.location.pathname+"?num=${select}";
+	var url = window.location.pathname+"?num=1";
 	
 	$('.sidetab').find('a').each(function() {
 		$(this).toggleClass('current', $(this).attr('href') == url);

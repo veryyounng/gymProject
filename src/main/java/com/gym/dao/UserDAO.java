@@ -32,4 +32,7 @@ public interface UserDAO {
 
 //	비밀번호 찾을 때 아이디랑 이메일주소 회원정보에서 비교하기
 	public int findpw(String userid, String email);
+	
+//	비밀번호 변경
+	public void changePW(String userid, String userpw) throws Exception;
 }

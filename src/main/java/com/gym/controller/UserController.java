@@ -129,5 +129,18 @@ public class UserController {
 		}
 		
 	}
+	
+//	비밀번호 변경 view 보여주기 post방식
+	@PostMapping("/changePW_view")
+	public String postChangePW_view(@RequestParam("username") String userid, Model model) throws Exception{
+		model.addAttribute("userid", userid);
+		return "/user/changePW";
+	}
+//	비밀번호 변경하기
+	@PostMapping("/changePW")
+	public String postChangePW(String userpw, String userid) throws Exception{
+		service.changePW(userid, userpw);
+		return "redirect:/user/login";
+	}
 
 }

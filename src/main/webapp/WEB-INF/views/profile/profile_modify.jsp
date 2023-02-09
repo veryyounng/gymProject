@@ -24,19 +24,33 @@
 <style>
 .side-bar {
 	position: relative;
-	top: -70px;
+	top: -145px;
 }
 
 .banana {
-	border: 1px solid black;
 	height: 100%;
 	margin: 0 auto;
-	display: flex;
 	align-items: center;
+}
+
+.banana .banana_title {
+	margin: 0 auto;
+	border-bottom: 2px solid black;
+	padding: 0px 50px 30px 50px;
+	width: 75%;
+}
+
+.banana .banana_title h2 {
+	font-size: 20px;
+	font-weight: bold;
 }
 
 .banana form {
 	margin: 0 auto;
+}
+
+.banana table {
+	margin: 50px auto;
 }
 
 .banana table th {
@@ -79,6 +93,9 @@
 
 		<!-- 개발코드 시작 -->
 		<div class="banana">
+			<div class="banana_title">
+				<h2>프로필 수정</h2>
+			</div>
 			<form name="joinForm" method="post" action="${path}/profile/profile_modify">
 				<table>
 					<tr>

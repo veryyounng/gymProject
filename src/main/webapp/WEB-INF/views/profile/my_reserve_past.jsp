@@ -26,14 +26,24 @@
 <style>
 .side-bar {
 	position: relative;
-	top: -171px;
+	top: -187px;
 }
 
 .banana {
-	border: 1px solid black;
-	height: 800px;
+	height: 830px;
 	margin: 0 auto;
-	align-items: center;
+}
+
+.banana .banana_title {
+	margin: 0 auto;
+	border-bottom: 2px solid black;
+	padding: 0px 50px 30px 50px;
+	width: 75%;
+}
+
+.banana .banana_title h2 {
+	font-size: 20px;
+	font-weight: bold;
 }
 
 .banana form {
@@ -99,6 +109,9 @@ input[type="text"] {
 		<%@ include file="../include/profile_sidebar.jsp"%>
 		<!-- 개발코드 시작 -->
 		<div class="banana">
+			<div class="banana_title">
+				<h2>과거 예약</h2>
+			</div>
 			<div class="choice_box">
 				<form method="get" name="choice_box_form" id="choice_box_form" action="${path}/profile/my_reserve_past">
 					<input type="hidden" name="num" value="${select}">
@@ -137,7 +150,7 @@ input[type="text"] {
 
 					<c:forEach items="${list}" var="reservelist" varStatus="status">
 						<tr class="reser_result">
-							<td>${page.count - status.count + 1}</td>
+							<td>${page.count - status.count - (select-1) * 10 + 1}</td>
 							<td>${reservelist.rv_title}</td>
 							<td>${reservelist.rv_date}</td>
 							<td>${reservelist.rv_time}</td>
@@ -174,10 +187,9 @@ input[type="text"] {
 	</section>
 	<%@ include file="../include/footer.jsp"%>
 </body>
-<script src="${path}/resources/js/header.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
-	var url = window.location.pathname+"?num=${select}";
+	var url = window.location.pathname+"?num=1";
 	
 	$('.sidetab').find('a').each(function() {
 		$(this).toggleClass('current', $(this).attr('href') == url);

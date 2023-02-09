@@ -15,8 +15,6 @@
 	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-<script src="${path}/resources/js/kapay.js"></script>
-
 </head>
 <body>
 	<%@ include file="../include/header.jsp"%>
@@ -26,6 +24,7 @@
 				
 				<form method="post" name="payFormSilver" id="payFormSilver" >		
 				<input type = "hidden" value = "p1002" id = "proNum" name="proNum">
+				<input type="hidden" name="host" id="location_host_silver" />
 				<div class="box silver_box" onclick="pay02()">
 					<div class="box-main left-main"></div>
 					<div class="box-price">
@@ -38,6 +37,7 @@
 				
 				<form method="post" name="payFormGold" id="payFormGold" >
 				<input type = "hidden" value = "p1001" id = "proNum" name="proNum">
+				<input type="hidden" name="host" id="location_host_gold" />
 				<div class="box gold_box" onclick="pay01()">
 					<div class="box-main mid-main"></div>
 					<div class="box-price">
@@ -50,6 +50,7 @@
 				
 				<form method="post" name="payFormBronze" id="payFormBronze" >
 				<input type = "hidden" value = "p1003" id = "proNum" name="proNum">
+				<input type="hidden" name="host" id="location_host_bronze" />
 				<div class="box bronze_box" onclick="pay03()">
 					<div class="box-main right-main"></div>
 					<div class="box-price">
@@ -64,5 +65,5 @@
 		</div>
 	<%@ include file="../include/footer.jsp"%>
 </body>
-
+<script src="${path}/resources/js/kapay.js"></script>
 </html>

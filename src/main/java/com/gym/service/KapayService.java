@@ -78,7 +78,7 @@ public class KapayService {
 	}
 */	
 
-	public String kakaoPayReady01(PreReadyVO pr) {
+	public String kakaoPayReady01(PreReadyVO pr, String host) {
 
 		RestTemplate restTemplate = new RestTemplate();
 		
@@ -97,9 +97,9 @@ public class KapayService {
 		params.add("quantity", "1"); //수량
 		params.add("total_amount", pr.getTotalAmount()); //가격
 		params.add("tax_free_amount", pr.getTaxFree());
-		params.add("approval_url", "http://localhost:9090/payment/kakaoPaySuccess");
-		params.add("cancel_url", "http://localhost:9090/payment/kapayCancel");
-		params.add("fail_url", "http://localhost:9090/payment/kapaySuccessFail");
+		params.add("approval_url", "http://"+host+"/payment/kakaoPaySuccess");
+		params.add("cancel_url", "http://"+host+"/payment/kapayCancel");
+		params.add("fail_url", "http://"+host+"/payment/kapaySuccessFail");
 		
 			HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
 			

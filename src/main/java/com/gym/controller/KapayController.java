@@ -41,17 +41,19 @@ public class KapayController {
 	
 	
 	@PostMapping("/kapay01")
-	public String postKapay01(@RequestParam("proNum") String proNum, HttpServletRequest req) throws Exception {
+	public String postKapay01(@RequestParam("proNum") String proNum, String host, HttpServletRequest req) throws Exception {
 		
 		UserVO vo = (UserVO)req.getSession().getAttribute("loginUser");
 		String userId = vo.getUserid();
-		
+		System.out.println("===================================");
+		System.out.println(host);
+		System.out.println("===================================");
 		PreReadyVO pr = kapayservice.testPreReady(proNum);
 
 		pr.setUserId(userId);
 		System.out.println(pr.toString());
 		
-		String result = kapayservice.kakaoPayReady01(pr);
+		String result = kapayservice.kakaoPayReady01(pr,host);
 		
 		return "redirect:"+result;
 		

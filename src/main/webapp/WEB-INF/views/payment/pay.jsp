@@ -15,7 +15,7 @@
 	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-
+<script src="${path}/resources/js/kapay.js"></script>
 
 </head>
 <body>
@@ -24,7 +24,9 @@
 			<div class="big-box">
 				<div id="head_title">이용권 구매</div>
 				
-				<div class="box silver_box">
+				<form method="post" name="payFormSilver" id="payFormSilver" >		
+				<input type = "hidden" value = "p1002" id = "proNum" name="proNum">
+				<div class="box silver_box" onclick="pay02()">
 					<div class="box-main left-main"></div>
 					<div class="box-price">
 						<div id="hidden_btn">구매하기</div>
@@ -32,8 +34,11 @@
 					</div>
 					<div class="box-term">3개월 + 3개월</div>
 				</div>
-
-				<div class="box gold_box">
+				</form>
+				
+				<form method="post" name="payFormGold" id="payFormGold" >
+				<input type = "hidden" value = "p1001" id = "proNum" name="proNum">
+				<div class="box gold_box" onclick="pay01()">
 					<div class="box-main mid-main"></div>
 					<div class="box-price">
 						<div id="hidden_btn">구매하기</div>
@@ -41,8 +46,11 @@
 					</div>
 					<div class="box-term">6개월 + 6개월</div>
 				</div>
-
-				<div class="box bronze_box">
+				</form>
+				
+				<form method="post" name="payFormBronze" id="payFormBronze" >
+				<input type = "hidden" value = "p1003" id = "proNum" name="proNum">
+				<div class="box bronze_box" onclick="pay03()">
 					<div class="box-main right-main"></div>
 					<div class="box-price">
 						<div id="hidden_btn">구매하기</div>
@@ -50,8 +58,11 @@
 					</div>
 					<div class="box-term">1개월 + 1개월</div>
 				</div>
+				</form>
+				
 			</div>
 		</div>
 	<%@ include file="../include/footer.jsp"%>
 </body>
+
 </html>

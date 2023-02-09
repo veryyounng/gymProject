@@ -2,6 +2,8 @@ package com.gym.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gym.domain.KakaoPayReadyVO;
+import com.gym.domain.UserVO;
 import com.gym.payment.vo.PreReadyVO;
 import com.gym.service.KapayService;
 
@@ -26,7 +29,7 @@ public class KapayController {
 	@Setter(onMethod_ = @Autowired)
 	private KapayService kapayservice;
 	
-	@GetMapping("/kapay")
+	@GetMapping({"/kapay","/pay"})
 	public void getKapay() {}
 
 /*	
@@ -38,8 +41,10 @@ public class KapayController {
 	
 	
 	@PostMapping("/kapay01")
-	public String postKapay01(@RequestParam("proNum") String proNum, 
-								@RequestParam("userId") String userId) throws Exception {
+	public String postKapay01(@RequestParam("proNum") String proNum, HttpServletRequest req) throws Exception {
+		
+		UserVO vo = (UserVO)req.getSession().getAttribute("loginUser");
+		String userId = vo.getUserid();
 		
 		PreReadyVO pr = kapayservice.testPreReady(proNum);
 

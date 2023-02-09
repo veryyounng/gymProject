@@ -15,7 +15,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.gym.domain.KakaoPayApprovalVO;
 import com.gym.domain.KakaoPayReadyVO;
-import com.gym.payment.DAO.KakaoPayReadyDAO;
+
 import com.gym.payment.DAO.PreReadyDAO;
 import com.gym.payment.DAO.PreReadyDAOImpl;
 import com.gym.payment.vo.PreReadyVO;

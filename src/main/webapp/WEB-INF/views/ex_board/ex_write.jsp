@@ -29,18 +29,14 @@ href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wg
 <title>운동지식공유 게시판</title>
 
 <style>
-
 #cke_1_contents{
 	height: 600px !important;
 	resize: none !important;
 	}
-	
 	a {
 	text-decoration:none !important;
 	}
-
 </style>
-
 </head>
 
 <body>
@@ -54,8 +50,9 @@ href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wg
 	<article>
 		<div class="container" role="main">
 
-			<h2>운동지식공유 게시판 글쓰기</h2>
-			<form name="form" id="form" role="form" method="post" action="${pageContext.request.contextPath}/ex_board/ex_write">
+			<h2 style="margin-top: 100px">운동지식공유 게시판 글쓰기</h2>
+			<form name="form" id="form" role="form" method="post" style= "margin-top: 20px"
+			action="${pageContext.request.contextPath}/ex_board/ex_write">
 
 				<div class="mb-3">
 					<label for="title">제목</label>
@@ -70,9 +67,9 @@ href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wg
 				</div>
 
 			</form>
-			<div >
+			<div style="margin-bottom: 50px">
 				<button type="button" class="btn btn-sm btn-primary" id="btnSave"
-				 onclick="document.getElementById('form').submit();">작성완료</button>
+				 onclick="check();">작성완료</button>
 				<!-- <button type="button" class="btn btn-sm btn-primary" id="btnList" >목록</button> -->
 			</div>
 		</div>
@@ -86,6 +83,20 @@ href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wg
        ck = CKEDITOR.replace("ex_content");
     };
     
+    function check(){
+    	let title = $("#ex_title");
+    	if(title.val() == ""){
+    		alert("제목을 입력하세요.");
+    		title.focus();
+    		return false;
+    	}
+    	
+    	if(confirm("게시물을 등록하시겠습니까?")){
+    		$("#form").submit();
+    	}else{
+    		return false;
+    	}
+    }
     
    
 </script>

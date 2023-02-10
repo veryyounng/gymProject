@@ -17,6 +17,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.gym.domain.KakaoPayApprovalVO;
 import com.gym.domain.KakaoPayReadyVO;
+import com.gym.domain.UserVO;
 import com.gym.payment.DAO.PreReadyDAO;
 import com.gym.payment.vo.PreReadyVO;
 
@@ -78,7 +79,7 @@ public class KapayService {
 	}
 */	
 
-	public String kakaoPayReady01(PreReadyVO pr, HttpServletRequest req) {
+	public String kakaoPayReady01(PreReadyVO pr, HttpServletRequest req, String userId) {
 
 		RestTemplate restTemplate = new RestTemplate();
 		String file = "";
@@ -94,7 +95,7 @@ public class KapayService {
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
 		params.add("cid", "TC0ONETIME");	//CID값 테스트용
 		params.add("partner_order_id", pr.getOrderId()); //주문번호
-		params.add("partner_user_id", pr.getUserId()); //id
+		params.add("partner_user_id", userId); //id
 		params.add("item_name", pr.getItemName()); //아이템이름
 		params.add("quantity", "1"); //수량
 		params.add("total_amount", pr.getTotalAmount()); //가격
@@ -110,7 +111,7 @@ public class KapayService {
 			kakaoPayReadyVO = restTemplate.postForObject(new URI(HOST + "/v1/payment/ready"), body, KakaoPayReadyVO.class);
 		
 			kakaoPayReadyVO.setOrderId(pr.getOrderId());
-			kakaoPayReadyVO.setUserId(pr.getUserId());
+			kakaoPayReadyVO.setUserId(userId);
 			kakaoPayReadyVO.setTotalAmount(pr.getTotalAmount());
 			kakaoPayReadyVO.setMonth(pr.getMonth());
 			

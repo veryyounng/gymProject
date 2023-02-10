@@ -145,17 +145,12 @@ public class Ex_BoardController {
 	@RequestMapping(value = "/exc_modireply", method = RequestMethod.POST)
 	public String exc_modireply(Ex_ReplyVO ervo, int reply_num) throws Exception {
 		
-		System.out.println("1");
-		
 		ex_replyservice.exc_modireply(ervo);
-		
-		System.out.println("2");
 		
 		int ex_num = ervo.getEx_num();
 		
-		System.out.println("3");
-		
 		return "redirect:/ex_board/ex_view?reply_num=" + reply_num + "&ex_num=" + ex_num;
+		
 	}
 	
 	//게시물 목록 + 페이징 추가 + 검색

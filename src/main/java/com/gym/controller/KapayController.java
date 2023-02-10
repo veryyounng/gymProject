@@ -42,11 +42,8 @@ public class KapayController {
 		UserVO vo = (UserVO)req.getSession().getAttribute("loginUser");
 		String userId = vo.getUserid();
 		PreReadyVO pr = kapayservice.testPreReady(proNum);
-
-		pr.setUserId(userId);
-		System.out.println(pr.toString());
 		
-		String result = kapayservice.kakaoPayReady01(pr,req);
+		String result = kapayservice.kakaoPayReady01(pr, req, userId);
 		
 		return "redirect:"+result;
 		

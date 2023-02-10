@@ -74,13 +74,15 @@
 						<input type="hidden" name="ex_num" id="ex_num" value="${ex_view.ex_num}">
 					</div>
 				</div>
+				<hr style = "margin-top : -1px">
 
 				<!-- 본문 -->
-				<div class="mb-3">
-					<textarea rows="5" class="form-control" name="ex_content" id="ex_content" >${ex_view.ex_content}</textarea>
+				<div class="view_content">
+					${ex_view.ex_content}
 				</div>
 				
 				<div class="btns">
+					<a class="btn_back" href="/ex_board/ex_list?searchType=T&keyword=${keyword}&num=${select}">목록</a>
 				
 				<!-- 수정 / 삭제버튼 표시 -->
 				<c:if test="${ex_view.ex_writer == loginUser.userid}">
@@ -191,7 +193,7 @@
     //댓글 체크
     function replyCheck(){
  	   let reply_writer = $("#exc_writer").val();
- 	   let reply_content = $("#exc_contents").val();
+ 	   let reply_content = $(".reply_text").val();
  	   if(reply_writer == ""){
  		   alert("로그인 후 이용하세요!");
  		   return false;

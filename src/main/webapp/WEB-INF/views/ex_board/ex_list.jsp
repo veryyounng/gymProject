@@ -6,10 +6,10 @@
 <!DOCTYPE html>
 <html>
 <head> 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>운동지식공유 게시판</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>운동지식공유 게시판</title>
     
 <link rel="stylesheet" href="${path}/resources/css/reset.css">
 <link rel="stylesheet" href="${path}/resources/css/free_styles.css">
@@ -19,11 +19,11 @@
 <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-    <script>
-        function getIndex() {
-            location.href = './views/index.jsp';
-        }
-    </script>
+<script>
+	function getIndex() {
+		location.href = './views/index.jsp';
+	}
+</script>
     <style>
 	section {
 		height: 1120px;
@@ -91,36 +91,40 @@
                     <form name="form1" method="post" id="form1">
                         <input type="hidden" name="table_name" value="notice_list">
                         <ul class="ul_news_title" >
-                            <div class="boardnum" style="width: 5%;">
+                            <div class="boardnum" style="width: 30px;">
                                 <span class="board_num">번호</span>
                             </div>
-                            <div class="title" style="width: 60%;">
+                            <div class="title" style="width: 538px;">
                                 <span>제목</span></a>
                             </div>
-                            <div class="writer_id" style="width: 10%;"><span class="">작성자</span></div>
-                            <div class="data" style="width: 15%;"><span class="">작성일</span></div>
-                            <div class="view" style="width: 10%;"><span class="view" style="width: 10%;">조회수</span></div>
+                            <div class="writer_id" style="width: 100px;"><span class="">작성자</span></div>
+                            <div class="data" style="width: 150px;"><span class="">작성일</span></div>
+                            <div class="view">
+                            	<span class="view" style="width: 40px;">조회수</span>
+                            </div>
                         </ul>
             	<c:forEach  items = "${ex_list}" var="ex_list">
                 	<ul class="ul_news">
-                    	<div class="boardnum" style="width: 5%;">
+                    	<div class="boardnum" style="width: 30px;">
                         	<span class="board_num">${ex_list.ex_num}</span>
                         </div>
                         
-                        <div class="title" style="width: 60%;">
+                        <div class="title" style="width: 538px;">
                         	<span>
                         		<a href = "${path}/ex_board/ex_view?ex_num=${ex_list.ex_num}&reply_num=1">${ex_list.ex_title}</a>
                         	</span>
                         </div>
                         
-                        <div class="writer_id" style="width: 10%;"><span class="">${ex_list.ex_writer}</span></div>
+                        <div class="writer_id" style="width: 100px;"><span class="">${ex_list.ex_writer}</span></div>
 						
-						<div class="data" style="width: 15%;">
+						<div class="data" style="width: 150px;">
 							<span class="date"><fmt:formatDate
-									value="${ex_list.ex_date}" pattern="yyyy-MM-dd" /></span>
+									value="${ex_list.ex_date}" pattern="yy-MM-dd HH:mm" /></span>
 						</div>
 
-                        <div class="view" style="width: 10%;"><span>${ex_list.view_cnt}</span></div>
+                        <div class="view">
+                        	<span class="view" style="display:inline-block; width: 40px !important; text-align:right;">${ex_list.view_cnt}</span>
+                        </div>
                         
                     </ul> 
                 </c:forEach>
@@ -128,8 +132,9 @@
                     </form>
                 </div>
                 
-                <div id="write_notice"><button><a href="/ex_board/ex_write">글쓰기</a></button></div>
-                
+                <div id="write_notice">
+                	<a href="/ex_board/ex_write"><button onclick="idcheck()">글쓰기</button></a>
+                </div>
                 
                 <!-- 페이지 작업 -->
                 <div class="btns">
@@ -148,7 +153,7 @@
                     		
 		             			<c:if test = "${select == num}">
                     				<b style="font-weight: 700; color: red; text-decoration: underline;">
-                    				&nbsp;${num}&nbsp;
+                    				${num}
                     				</b>
                     			</c:if>
                     		

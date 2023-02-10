@@ -62,7 +62,7 @@
 									class="date"><fmt:formatDate value="${result.time}"
 											pattern="yy-MM-dd HH:mm" /></span></li>
 								<li style="width: 60px; text-align: center;"><input
-									type="checkbox" name="chkAll" /></li>
+									type="checkbox" name="chkAll" value="${result.msg_num}"/></li>
 							</ul>
 						</c:forEach>
 					</c:when>

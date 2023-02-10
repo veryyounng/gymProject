@@ -1,5 +1,6 @@
 package com.gym.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -23,8 +24,12 @@ public class MessageDAOImpl implements MessageDAO {
 	}
 
 	@Override
-	public List<MessageVO> getMailbox(String userid) {
-		return sql.selectList(namespace+".getMailbox",userid);
+	public List<MessageVO> getMailbox(String userid,int displayPost, int postNum) {
+		HashMap<String, Object> data = new HashMap<String, Object>();
+		data.put("userid", userid);
+		data.put("displayPost", displayPost);
+		data.put("postNum", postNum);
+		return sql.selectList(namespace+".getMailbox",data);
 	}
 
 	@Override
@@ -33,8 +38,12 @@ public class MessageDAOImpl implements MessageDAO {
 	}
 
 	@Override
-	public List<MessageVO> getSentMsg(String userid) {
-		return sql.selectList(namespace+".getSentMsg",userid);
+	public List<MessageVO> getSentMsg(String userid,int displayPost, int postNum) {
+		HashMap<String, Object> data = new HashMap<String, Object>();
+		data.put("userid", userid);
+		data.put("displayPost", displayPost);
+		data.put("postNum", postNum);
+		return sql.selectList(namespace+".getSentMsg",data);
 	}
 
 	@Override

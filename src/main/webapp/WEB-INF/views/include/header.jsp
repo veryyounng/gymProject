@@ -15,7 +15,7 @@
 		}
 	}
 	function openMsg(){
-		let newMsgPage = "width=672, height=715, left=0, top=0,"+ 
+		let newMsgPage = "width=670, height=680, left=0, top=0,"+ 
 						"location=no,menubar=no,resizable=no,scrollbars=no,status=no,"+
 						"titlebar=no,toolbar=no";
 

@@ -8,7 +8,7 @@
 	</insert>
 	
 	<select id="getMailbox" resultType="com.gym.domain.MessageVO">
-		select * from message where receiver = #{userid}
+		select * from message where receiver=#{userid} order by reception desc, msg_num desc limit #{displayPost},#{postNum}
 	</select>
 	
 	<select id="getCount" resultType="int">
@@ -16,7 +16,7 @@
 	</select>
 	
 	<select id="getSentMsg" resultType="com.gym.domain.MessageVO">
-		select * from message where sender = #{sender}
+		select * from message where sender = #{userid} limit #{displayPost},#{postNum}
 	</select>
 	
 	<select id="getSentCount" resultType="int">

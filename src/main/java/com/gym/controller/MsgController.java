@@ -18,6 +18,7 @@ import com.gym.domain.MessageVO;
 import com.gym.domain.Page;
 import com.gym.domain.UserVO;
 import com.gym.service.MessageService;
+import com.gym.service.UserService;
 
 @Controller
 @RequestMapping("/msg/*")
@@ -30,12 +31,12 @@ public class MsgController {
 	public String getMsgmain(HttpServletRequest req, int num, Model model) {
 		UserVO user = (UserVO)req.getSession().getAttribute("loginUser");
 		String userid = user.getUserid();
-		List<MessageVO> list = service.getMailbox(userid);
+		
 		Page page = new Page();
 		
 		page.setNum(num);
 		page.setCount(service.getCount(userid));
-		
+		List<MessageVO> list = service.getMailbox(userid,page.getDisplayPost(),page.getPostNum());
 		model.addAttribute("list", list);
 		model.addAttribute("page", page);
 		model.addAttribute("select", num);
@@ -43,10 +44,15 @@ public class MsgController {
 		return "/msg/message";
 	} 
 	@GetMapping("/receiveDetail")		// 수신메세지 자세히보기
-	public String receiveDetail(int msg_num, Model model,@ModelAttribute("select")int select, @ModelAttribute("page")Page page) {
+	public String receiveDetail(int msg_num, Model model,@ModelAttribute("select")int select, @ModelAttribute("page")Page page,HttpServletRequest req) {
 		service.updateReception(msg_num);	// 수신여부 업데이트
 		MessageVO result = service.getMSG(msg_num); // msg_num에 해당하는 MessageVO 가져오기
-		
+		UserVO loginUser = (UserVO)req.getSession().getAttribute("loginUser");
+		if(service.newMsg(loginUser.getUserid()) == 0) {
+			req.getSession().setAttribute("newMsg", "F");
+		} else {
+			req.getSession().setAttribute("newMsg", "T");
+		}
 		model.addAttribute("result",result);
 		
 		return "/msg/msgview";
@@ -78,12 +84,12 @@ public class MsgController {
 	public void getSentMsg(HttpServletRequest req, Model model, int num) {
 		UserVO user = (UserVO)req.getSession().getAttribute("loginUser");
 		String userid = user.getUserid();
-		List<MessageVO> list = service.getSentMsg(userid);
 		
 		Page page = new Page();
 		
 		page.setNum(num);
 		page.setCount(service.getSentCount(userid));
+		List<MessageVO> list = service.getSentMsg(userid,page.getDisplayPost(),page.getPostNum());
 		
 		model.addAttribute("list", list);
 		model.addAttribute("page", page);
@@ -100,12 +106,23 @@ public class MsgController {
 	}
 	
 	@PostMapping("/msgDelete")
-	public String msgDelete(int msg_num, RedirectAttributes ra) {
-		if(service.msgDelete(msg_num) == 1) { 
+	public String msgDelete(int[] delete_num, RedirectAttributes ra) {
+		boolean flag = false;
+		for(int i=0;i<delete_num.length;i++) {
+			if(service.msgDelete(delete_num[i]) == 1) {
+				flag = true;
+			}
+			else {
+				flag = false;
+				break;
+			}
+		}
+		if(flag) {
 			ra.addFlashAttribute("delete","T");
 		} else {
 			ra.addFlashAttribute("delete","F");
 		}
+		
 		return "redirect:/msg/msgmain?num=1";
 	}
 }

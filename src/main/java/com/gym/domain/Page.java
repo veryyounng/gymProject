@@ -16,7 +16,7 @@ public class Page {
 	// 하단 페이징 번호 ([ 게시물 총 갯수 ÷ 한 페이지에 출력할 갯수 ]의 올림)
 	private int pageNum;
 
-	// 출력할 게시물
+	// 출력할 게시물 시작번호
 	private int displayPost;
 
 	// 한번에 표시할 페이징 번호의 갯수

@@ -20,8 +20,8 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	@Override
-	public List<MessageVO> getMailbox(String userid) {
-		return dao.getMailbox(userid);
+	public List<MessageVO> getMailbox(String userid,int displayPost, int postNum) {
+		return dao.getMailbox(userid,displayPost,postNum);
 	}
 
 	@Override
@@ -30,8 +30,8 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	@Override
-	public List<MessageVO> getSentMsg(String userid) {
-		return dao.getSentMsg(userid);
+	public List<MessageVO> getSentMsg(String userid,int displayPost, int postNum) {
+		return dao.getSentMsg(userid, displayPost, postNum);
 	}
 
 	@Override
@@ -54,4 +54,8 @@ public class MessageServiceImpl implements MessageService {
 		return dao.msgDelete(msg_num);
 	}
 	
+	@Override
+	public int newMsg(String userid) {
+		return dao.newMsg(userid);
+	}
 }

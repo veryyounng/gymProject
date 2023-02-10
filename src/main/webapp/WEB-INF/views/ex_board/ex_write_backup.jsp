@@ -10,7 +10,6 @@
 <head>
 <meta charset="UTF-8">
 <!-- ckeditor CDN -->
-<!-- <script type="text/javascript" src="/resources/ckeditor/ckeditor.js"></script> -->
 <script src="//cdn.ckeditor.com/4.20.1/standard/ckeditor.js"></script>
 
 <!-- jQuery -->

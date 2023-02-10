@@ -26,8 +26,8 @@
 <c:if test="${send == 'T'}">
 	<script>
 		alert("메세지 전송 완료!");
+		location.replace(window.location.href);
 	</script>
-	<c:set var= "send" value ="a" scope="session"/>
 </c:if>
 <c:if test="${send == 'F'}">
 	<script>

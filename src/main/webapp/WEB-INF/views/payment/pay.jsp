@@ -19,6 +19,12 @@
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </head>
 <body>
+<c:if test="${loginUser == null }">
+		<script>
+			alert("로그인 후 이용하세요!");
+			location.replace('${cp}/user/login');
+		</script>
+</c:if>
 	<%@ include file="../include/header.jsp"%>
 		<div id="main_box">
 			<div class="big-box">
@@ -65,4 +71,6 @@
 	<%@ include file="../include/footer.jsp"%>
 </body>
 <script src="${path}/resources/js/kapay.js"></script>
+
+
 </html>

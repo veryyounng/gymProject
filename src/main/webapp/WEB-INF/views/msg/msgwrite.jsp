@@ -75,7 +75,7 @@
 				<div class="btns">
 					<input class="btn btn_send" type="submit" value="보내기" onclick= "return check();">
 			<input class="btn btn_back" type="button" value="뒤로가기"
-				onclick="return goBack()" />
+				onclick="history.back(-2)" />
 				</div>
 			</form>
 

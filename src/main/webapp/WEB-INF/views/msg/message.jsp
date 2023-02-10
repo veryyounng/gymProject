@@ -27,6 +27,7 @@
 	<script>
 		alert("메세지 전송 완료!");
 	</script>
+	<c:set var= "send" value ="a" scope="session"/>
 </c:if>
 <c:if test="${send == 'F'}">
 	<script>

@@ -16,7 +16,7 @@
 	</select>
 	
 	<select id="getSentMsg" resultType="com.gym.domain.MessageVO">
-		select * from message where sender = #{userid} limit #{displayPost},#{postNum}
+		select * from message where sender = #{userid} order by msg_num limit #{displayPost},#{postNum}
 	</select>
 	
 	<select id="getSentCount" resultType="int">

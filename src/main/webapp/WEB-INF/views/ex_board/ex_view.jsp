@@ -231,7 +231,7 @@
         	   success : function(result){
         		   replyModi.empty();
         		   var commentsview = "";
-        		   commentsview += '<form action="/ex_reply/exc_modireply" name="replymodiform" id="replymodiform" method="post">';
+        		   commentsview += '<form action="/ex_board/exc_modireply" name="replymodiform" id="replymodiform" method="post">';
                    commentsview += '<ul class="reply_textbox">';
                    commentsview += '<div class="reply_textbox2" style="border:none;">';
                    commentsview += '<div class="reply_wr">';

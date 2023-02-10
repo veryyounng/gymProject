@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gym.ex_board.service.Ex_BoardService;
 import com.gym.ex_board.service.Ex_ReplyService;
@@ -128,6 +129,33 @@ public class Ex_BoardController {
 		
 		return "redirect:/ex_board/ex_list?num=1";
 		
+	}
+	
+	// ajax 댓글 조회
+	@RequestMapping(value = "/exc_modiview", method = RequestMethod.POST)
+	@ResponseBody
+	public Ex_ReplyVO exc_modi(@RequestParam("exc_num") int exc_num) throws Exception {
+		
+		Ex_ReplyVO result = ex_replyservice.exc_modiview(exc_num);
+		
+		return result;
+	}
+	
+	// ajax 댓글 수정
+	@RequestMapping(value = "/exc_modireply", method = RequestMethod.POST)
+	public String exc_modireply(Ex_ReplyVO ervo, int reply_num) throws Exception {
+		
+		System.out.println("1");
+		
+		ex_replyservice.exc_modireply(ervo);
+		
+		System.out.println("2");
+		
+		int ex_num = ervo.getEx_num();
+		
+		System.out.println("3");
+		
+		return "redirect:/ex_board/ex_view?reply_num=" + reply_num + "&ex_num=" + ex_num;
 	}
 	
 	//게시물 목록 + 페이징 추가 + 검색

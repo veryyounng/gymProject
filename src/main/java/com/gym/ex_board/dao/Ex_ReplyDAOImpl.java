@@ -68,7 +68,7 @@ public class Ex_ReplyDAOImpl implements Ex_ReplyDAO {
 	// ajax 댓글 수정
 	@Override
 	public void exc_modireply(Ex_ReplyVO ervo) throws Exception {
-		sql.update(namespace + ".modireply", ervo);
+		sql.update(namespace + ".exc_modireply", ervo);
 	}
 
 	

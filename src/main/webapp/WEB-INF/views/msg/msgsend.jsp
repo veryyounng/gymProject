@@ -29,7 +29,7 @@
 					<input class="btn btn_receive" type="submit" value="받은 쪽지함"
 						onclick="location.href='/msg/msgmain?num=1'">
 				</div>
-				<form id="deleteform" method="post" action="${cp}/msg/msgDelete">
+				<form id="deleteform" method="post" action="${cp}/msg/msgSentDelete">
 					<input class="btn btn_delete" type="submit" value="선택삭제" onclick="return delete_check();">
 					<input type="hidden" name="delete_num" id="delete_num"/>
 				</form>

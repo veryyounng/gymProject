@@ -12,10 +12,24 @@
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <link rel="stylesheet" href="${path}/resources/css/message.css">
 <link rel="stylesheet" href="${path}/resources/css/msgsend.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script defer src="${path}/resources/js/message.js"></script>
+
 </head>
 
+<c:if test="${delete == 'T'}">
+	<script>
+		alert("메세지가 삭제되었습니다.");
+	</script>
+</c:if>
+<c:if test="${delete == 'F'}">
+	<script>
+		alert("메세지 삭제 실패. 다시 시도해주세요.");
+	</script>
+</c:if>
+
 <body>
+
 	<section>
 
 		<div class="letterbox">
@@ -29,7 +43,7 @@
 					<input class="btn btn_receive" type="submit" value="받은 쪽지함"
 						onclick="location.href='/msg/msgmain?num=1'">
 				</div>
-				<form id="deleteform" method="post" action="${cp}/msg/msgSentDelete">
+				<form id="deleteform" method="post" action="${path}/msg/msgSentDelete">
 					<input class="btn btn_delete" type="submit" value="선택삭제" onclick="return delete_check();">
 					<input type="hidden" name="delete_num" id="delete_num"/>
 				</form>
@@ -62,7 +76,7 @@
 									class="date"><fmt:formatDate value="${result.time}"
 											pattern="yy-MM-dd HH:mm" /></span></li>
 								<li style="width: 60px; text-align: center;"><input
-									type="checkbox" name="chkAll" value="${result.msg_num}"/></li>
+									type="checkbox" name="chkAll" class="deleteCheckbox" value="${result.msg_num}"/></li>
 							</ul>
 						</c:forEach>
 					</c:when>

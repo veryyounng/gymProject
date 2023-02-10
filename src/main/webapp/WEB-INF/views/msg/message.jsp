@@ -11,8 +11,7 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <link rel="stylesheet" href="${path}/resources/css/message.css">
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script defer src="${path}/resources/js/message.js"></script>
 <c:if test="${delete == 'T'}">
 	<script>
@@ -52,7 +51,7 @@
 						class="btn btn_send" type="submit" value="쪽지 보내기"
 						onclick="location.href='/msg/msgwrite'">
 				</div>
-				<form id="deleteform" method="post" action="${cp}/msg/msgDelete">
+				<form id="deleteform" method="post" action="${path}/msg/msgDelete">
 					<input class="btn btn_delete" type="submit" value="선택삭제"
 						onclick="return delete_check();">
 					<input type="hidden" name="delete_num" id="delete_num"/>

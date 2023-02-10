@@ -106,7 +106,36 @@ public class MsgController {
 	}
 	
 	@PostMapping("/msgDelete")
-	public String msgDelete(int[] delete_num, RedirectAttributes ra) {
+	public String msgDelete(@RequestParam(value = "delete_num", required=false)int[] delete_num,@RequestParam(value="msg_num",required = false)int msg_num, RedirectAttributes ra) {
+		
+		if(delete_num != null) {
+			boolean flag = false;
+			for(int i=0;i<delete_num.length;i++) {
+				if(service.msgDelete(delete_num[i]) == 1) {
+					flag = true;
+				}
+				else {
+					flag = false;
+					break;
+				}
+			}
+			if(flag) {
+				ra.addFlashAttribute("delete","T");
+			} else {
+				ra.addFlashAttribute("delete","F");
+			}
+		}else {
+			if(service.msgDelete(msg_num) == 1) {
+				ra.addFlashAttribute("delete","T");
+			} else {
+				ra.addFlashAttribute("delete","F");
+			}
+		}
+		return "redirect:/msg/msgmain?num=1";
+	}
+	
+	@PostMapping("/msgSentDelete")
+	public String msgSentDelete(int[] delete_num, RedirectAttributes ra) {
 		boolean flag = false;
 		for(int i=0;i<delete_num.length;i++) {
 			if(service.msgDelete(delete_num[i]) == 1) {
@@ -123,6 +152,6 @@ public class MsgController {
 			ra.addFlashAttribute("delete","F");
 		}
 		
-		return "redirect:/msg/msgmain?num=1";
+		return "redirect:/msg/msgsend?num=1";
 	}
 }

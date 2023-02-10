@@ -23,6 +23,9 @@
 	src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
 <script>
+	if(${loginUser.duedate}){
+		
+	}
 	if(${loginUser == null}){
 		alert("로그인 후 이용하세요");
 		location.href = "/user/login";

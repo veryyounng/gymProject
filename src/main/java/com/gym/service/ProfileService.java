@@ -5,6 +5,8 @@ import java.util.List;
 import com.gym.domain.FreeBoardVO;
 import com.gym.domain.ReplyVO;
 import com.gym.domain.ReservationVO;
+import com.gym.ex_board.vo.Ex_BoardVO;
+import com.gym.ex_board.vo.Ex_ReplyVO;
 
 public interface ProfileService {
 
@@ -52,4 +54,33 @@ public interface ProfileService {
 
 //	마이페이지(자게) 댓글 일괄 삭제	
 	public void myFreeRepDeleteAll(String c_writer) throws Exception;
+	
+	
+	
+//	마이페이지(운지공) 게시글 총 개수
+	public int getMyExCnt(String ex_writer) throws Exception;
+	
+//	마이페이지(운지공) 게시글 목록
+	public List<Ex_BoardVO> getMyExList(String ex_writer, int displayPost, int postNum) throws Exception;
+	
+//	마이페이지(운지공) 게시글 조회
+	public Ex_BoardVO getMyExDetail(int ex_num) throws Exception;
+	
+//	마이페이지(운지공) 게시글 삭제
+	public void myExDelete(int ex_num) throws Exception;
+	
+//	마이페이지(운지공) 게시글 일괄 삭제
+	public void myExDeleteAll(String ex_writer) throws Exception;
+	
+//	마이페이지(운지공) 댓글 총 개수
+	public int getMyExRepCnt(String exc_writer) throws Exception;
+	
+//	마이페이지(운지공) 댓글 목록
+	public List<Ex_ReplyVO> getMyExRepList(String exc_writer, int displayPost, int postNum) throws Exception;
+	
+//	마이페이지(운지공) 댓글 삭제
+	public void myExRepDelete(int exc_num) throws Exception;
+	
+//	마이페이지(운지공) 댓글 일괄 삭제	
+	public void myExRepDeleteAll(String exc_writer) throws Exception;
 }

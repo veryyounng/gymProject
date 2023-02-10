@@ -22,6 +22,10 @@ import com.gym.domain.ReplyPage;
 import com.gym.domain.ReplyVO;
 import com.gym.domain.ReservationVO;
 import com.gym.domain.UserVO;
+import com.gym.ex_board.service.Ex_BoardService;
+import com.gym.ex_board.service.Ex_ReplyService;
+import com.gym.ex_board.vo.Ex_BoardVO;
+import com.gym.ex_board.vo.Ex_ReplyVO;
 import com.gym.service.FreeBoardService;
 import com.gym.service.ProfileService;
 import com.gym.service.UserService;
@@ -38,11 +42,17 @@ public class ProfileController {
 
 	@Autowired
 	private FreeBoardService freeservice;
+	
+	@Autowired
+	private Ex_BoardService exservice;
+	
+	@Autowired
+	private Ex_ReplyService excservice;
 
+	
 	@RequestMapping(value = { "/profile_pw_modify", "/profile_delete_user",
 			"/my_free_write", "/my_exe" }, method = RequestMethod.GET)
-	public void replace() {
-	}
+	public void replace() {}
 
 //	개인 정보 보기, 개인 정보 수정
 	@RequestMapping(value = { "/profile_check", "/profile_modify" }, method = RequestMethod.GET)
@@ -243,5 +253,117 @@ public class ProfileController {
 		String userid = ((UserVO) req.getSession().getAttribute("loginUser")).getUserid();
 		profileservice.myFreeRepDeleteAll(userid);
 		return "redirect:/profile/my_free_reply?num=" + num;
+	}
+	
+	
+	
+//	마이페이지(운지공) 게시글 목록, 개수
+	@RequestMapping(value = "/my_ex", method = RequestMethod.GET)
+	public void my_ex(int num, Model model, HttpServletRequest req) throws Exception {
+		String userid = ((UserVO) req.getSession().getAttribute("loginUser")).getUserid();
+		Page page = new Page();
+		ReplyPage replypage = new ReplyPage();
+		
+		page.setNum(num);
+		page.setCount(profileservice.getMyExCnt(userid));
+		replypage.setCount(profileservice.getMyExRepCnt(userid));
+		
+		List<Ex_BoardVO> list = null;
+		list = profileservice.getMyExList(userid, page.getDisplayPost(), page.getPostNum());
+		
+		model.addAttribute("page", page);
+		model.addAttribute("replypage", replypage);
+		model.addAttribute("select", num);
+		model.addAttribute("list", list);
+	}
+	
+//	마이페이지(운지공) 게시글 조회
+	@RequestMapping(value = "/my_ex_detail", method = RequestMethod.GET)
+	public void my_ex_detail(@RequestParam("ex_num") int ex_num, int reply_num, Model model) throws Exception {
+		Ex_BoardVO vo = profileservice.getMyExDetail(ex_num);
+		
+		ReplyPage page = new ReplyPage();
+		page.setNum(reply_num);
+		page.setCount(excservice.exc_count(ex_num));
+		
+		List<Ex_ReplyVO> reply = null;
+		reply = excservice.exc_list(ex_num, page.getDisplayPost(), page.getPostNum());
+		
+		model.addAttribute("exedetail", vo);
+		model.addAttribute("page", page);
+		model.addAttribute("reply", reply);
+		model.addAttribute("select", reply_num);
+	}
+	
+//	마이페이지(운지공) 게시글 작성
+	@RequestMapping(value = "/my_ex_write", method = RequestMethod.POST)
+	public String my_ex_write(Ex_BoardVO vo) throws Exception {
+		exservice.write(vo);
+		return "redirect:/profile/my_ex?num=1";
+	}
+	
+//	마이페이지(운지공) 수정용 게시글 조회
+	@RequestMapping(value = "/my_ex_modify", method = RequestMethod.GET)
+	public void my_ex_modify(@RequestParam("ex_num") int ex_num, Model model) throws Exception {
+		Ex_BoardVO vo = exservice.view(ex_num);
+		model.addAttribute("exdetail", vo);
+	}
+	
+//	마이페이지(운지공) 게시글 수정
+	@RequestMapping(value = "/my_ex_modify", method = RequestMethod.POST)
+	public String my_ex_modify(Ex_BoardVO vo) throws Exception {
+		exservice.Ex_Modify(vo);
+		int ex_num = vo.getEx_num();
+		return "redirect:/profile/my_ex_detail?reply_num=1&ex_num=" + ex_num;
+	}
+	
+//	마이페이지(운지공) 게시글 삭제
+	@RequestMapping(value = "/my_ex_delete", method = RequestMethod.POST)
+	public String my_ex_delete(int ex_num, int num) throws Exception {
+		profileservice.myExDelete(ex_num);
+		return "redirect:/profile/my_ex?num=" + num;
+	}
+	
+//	마이페이지(운지공) 게시글 일괄 삭제
+	@RequestMapping(value = "my_ex_delete_all", method = RequestMethod.POST)
+	public String my_ex_delete_all(HttpServletRequest req, int num) throws Exception {
+		String userid = ((UserVO) req.getSession().getAttribute("loginUser")).getUserid();
+		profileservice.myExDeleteAll(userid);
+		return "redirect:/profile/my_ex?num=" + num;
+	}
+	
+//	마이페이지(운지공) 댓글 목록, 개수
+	@RequestMapping(value = "/my_ex_reply", method = RequestMethod.GET)
+	public void my_ex_reply(Model model, HttpServletRequest req, int num) throws Exception {
+		String userid = ((UserVO) req.getSession().getAttribute("loginUser")).getUserid();
+		Page page = new Page();
+		ReplyPage replypage = new ReplyPage();
+		
+		replypage.setNum(num);
+		page.setCount(profileservice.getMyExCnt(userid));
+		replypage.setCount(profileservice.getMyExRepCnt(userid));
+		
+		List<Ex_ReplyVO> replylist = null;
+		replylist = profileservice.getMyExRepList(userid, replypage.getDisplayPost(), replypage.getPostNum());
+		
+		model.addAttribute("page", page);
+		model.addAttribute("replypage", replypage);
+		model.addAttribute("replyselect", num);
+		model.addAttribute("replylist", replylist);
+	}
+	
+//	마이페이지(운지공) 댓글 삭제
+	@RequestMapping(value = "/my_ex_reply_delete", method = RequestMethod.POST)
+	public String my_ex_reply_delete(int num, int exc_num) throws Exception {
+		profileservice.myExRepDelete(exc_num);
+		return "redirect:/profile/my_ex_reply?num=" + num;
+	}
+	
+//	마이페이지(운지공) 댓글 일괄 삭제
+	@RequestMapping(value = "my_ex_reply_delete_all", method = RequestMethod.POST)
+	public String my_ex_delete_reply_all(HttpServletRequest req, int num) throws Exception {
+		String userid = ((UserVO) req.getSession().getAttribute("loginUser")).getUserid();
+		profileservice.myExRepDeleteAll(userid);
+		return "redirect:/profile/my_ex_reply?num=" + num;
 	}
 }

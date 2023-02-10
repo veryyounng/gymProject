@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 import com.gym.domain.FreeBoardVO;
 import com.gym.domain.ReplyVO;
 import com.gym.domain.ReservationVO;
+import com.gym.ex_board.vo.Ex_BoardVO;
+import com.gym.ex_board.vo.Ex_ReplyVO;
 
 @Repository
 public class ProfileDAOImpl implements ProfileDAO {
@@ -137,5 +139,71 @@ public class ProfileDAOImpl implements ProfileDAO {
 	public void myFreeRepDeleteAll(String c_writer) throws Exception {
 		sql.delete(namespace + ".myFreeRepDeleteAll", c_writer);
 	}
-
+	
+	
+	
+//	마이페이지(운지공) 게시글 총 개수
+	@Override
+	public int getMyExCnt(String ex_writer) throws Exception {
+		return sql.selectOne(namespace + ".getMyExCnt", ex_writer);
+	}
+	
+//	마이페이지(운지공) 게시글 목록
+	@Override
+	public List<Ex_BoardVO> getMyExList(String ex_writer, int displayPost, int postNum) throws Exception {
+		HashMap<String, Object> data = new HashMap<String, Object>();
+		
+		data.put("ex_writer", ex_writer);
+		data.put("displayPost", displayPost);
+		data.put("postNum", postNum);
+		
+		return sql.selectList(namespace + ".getMyExList", data);
+	}
+	
+//	마이페이지(운지공) 게시글 조회
+	@Override
+	public Ex_BoardVO getMyExDetail(int ex_num) throws Exception{
+		return sql.selectOne(namespace + ".getMyExDetail", ex_num);
+	}
+	
+//	마이페이지(운지공) 게시글 삭제
+	@Override
+	public void myExDelete(int ex_num) throws Exception {
+		sql.delete(namespace + ".myExDelete", ex_num);
+	}
+	
+//	마이페이지(운지공) 게시글 일괄 삭제
+	@Override
+	public void myExDeleteAll(String ex_writer) throws Exception {
+		sql.delete(namespace + ".myExDeleteAll", ex_writer);
+	}
+	
+//	마이페이지(운지공) 댓글 총 개수
+	@Override
+	public int getMyExRepCnt(String ex_writer) throws Exception {
+		return sql.selectOne(namespace + ".getMyExRepCnt", ex_writer);
+	}
+	
+//	마이페이지(운지공) 댓글 목록
+	@Override
+	public List<Ex_ReplyVO> getMyExRepList(String exc_writer, int displayPost, int postNum) throws Exception {
+		HashMap<String, Object> data = new HashMap<String, Object>();
+		data.put("exc_writer", exc_writer);
+		data.put("displayPost", displayPost);
+		data.put("postNum", postNum);
+		
+		return sql.selectList(namespace + ".getMyExRepList", data);
+	}
+	
+//	마이페이지(운지공) 댓글 삭제
+	@Override
+	public void myExRepDelete(int exc_num) throws Exception {
+		sql.delete(namespace + ".myExRepDelete", exc_num);
+	}
+	
+//	마이페이지(운지공) 댓글 일괄 삭제	
+	@Override
+	public void myExRepDeleteAll(String exc_writer) throws Exception {
+		sql.delete(namespace + ".myExRepDeleteAll", exc_writer);
+	}
 }

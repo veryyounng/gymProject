@@ -24,7 +24,7 @@
         <h4 class="h4">내 글</h4>
         <ul>
           <li class="sidetab"><a class="myfree" href="${path}/profile/my_free?num=1">자유 게시판</a></li>
-          <li class="sidetab"><a class="myexe" href="${path}/profile/my_exe?num=1">운동지식 공유</a></li>
+          <li class="sidetab"><a class="myex" href="${path}/profile/my_ex?num=1">운동지식 공유</a></li>
         </ul>
       </div>
 

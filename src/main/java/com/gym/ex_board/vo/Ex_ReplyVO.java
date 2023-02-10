@@ -25,6 +25,7 @@ public class Ex_ReplyVO {
 	private String exc_contents;
 	private Date exc_date;
 	private int exc_like;
+	private String ex_title;
 	
 	
 	

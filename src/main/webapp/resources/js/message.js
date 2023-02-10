@@ -12,6 +12,7 @@ function delete_check() {
 			  deletearr.push($(this).val());
 		});
 		$("#delete_num").val(deletearr);
+		console.log(deletearr[0]);
 		if (confirm("정말로 삭제하시겠습니까?")) {
 			return true;
 		} else {

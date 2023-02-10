@@ -18,7 +18,6 @@ import com.gym.domain.MessageVO;
 import com.gym.domain.Page;
 import com.gym.domain.UserVO;
 import com.gym.service.MessageService;
-import com.gym.service.UserService;
 
 @Controller
 @RequestMapping("/msg/*")
@@ -105,10 +104,20 @@ public class MsgController {
 		return "/msg/msgview_2";
 	}
 	
-	@PostMapping("/msgDelete")
-	public String msgDelete(@RequestParam(value = "delete_num", required=false)int[] delete_num,@RequestParam(value="msg_num",required = false)int msg_num, RedirectAttributes ra) {
+	@PostMapping("/msgOneDelete")
+	public String msgOneDelete(int msg_num, RedirectAttributes ra) {
+		if(service.msgDelete(msg_num) == 1) {
+			ra.addFlashAttribute("delete","T");
+		}
+		else {
+			ra.addFlashAttribute("delete","F");
+		}
 		
-		if(delete_num != null) {
+		return "redirect:/msg/msgmain?num=1";
+	}
+	
+	@PostMapping("/msgDelete")
+	public String msgDelete(int[] delete_num, RedirectAttributes ra) {
 			boolean flag = false;
 			for(int i=0;i<delete_num.length;i++) {
 				if(service.msgDelete(delete_num[i]) == 1) {
@@ -124,33 +133,39 @@ public class MsgController {
 			} else {
 				ra.addFlashAttribute("delete","F");
 			}
-		}else {
-			if(service.msgDelete(msg_num) == 1) {
-				ra.addFlashAttribute("delete","T");
-			} else {
-				ra.addFlashAttribute("delete","F");
-			}
-		}
+	
 		return "redirect:/msg/msgmain?num=1";
+	}
+	
+	@PostMapping("/msgSentOneDelete")
+	public String msgSentOneDelete(int msg_num, RedirectAttributes ra) {
+		if(service.msgDelete(msg_num) == 1) {
+			ra.addFlashAttribute("delete","T");
+		}
+		else {
+			ra.addFlashAttribute("delete","F");
+		}
+		
+		return "redirect:/msg/msgsend?num=1";
 	}
 	
 	@PostMapping("/msgSentDelete")
 	public String msgSentDelete(int[] delete_num, RedirectAttributes ra) {
-		boolean flag = false;
-		for(int i=0;i<delete_num.length;i++) {
-			if(service.msgDelete(delete_num[i]) == 1) {
-				flag = true;
+			boolean flag = false;
+			for(int i=0;i<delete_num.length;i++) {
+				if(service.msgDelete(delete_num[i]) == 1) {
+					flag = true;
+				}
+				else {
+					flag = false;
+					break;
+				}
 			}
-			else {
-				flag = false;
-				break;
+			if(flag) {
+				ra.addFlashAttribute("delete","T");
+			} else {
+				ra.addFlashAttribute("delete","F");
 			}
-		}
-		if(flag) {
-			ra.addFlashAttribute("delete","T");
-		} else {
-			ra.addFlashAttribute("delete","F");
-		}
 		
 		return "redirect:/msg/msgsend?num=1";
 	}

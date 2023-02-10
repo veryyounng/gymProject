@@ -34,7 +34,7 @@
 			<div class="msgcontents">${result.contents}</div>
 		</div>
 		<div class="btns">
-			<form id="delete" method="post" action="${path}/msg/msgDelete">
+			<form id="delete" method="post" action="${path}/msg/msgSentOneDelete">
 			<input type="hidden" name="msg_num" value="${result.msg_num}">
 				<input class="btn btn_delete" type="submit" value="삭제" onclick="return delete_check();">
 			</form>

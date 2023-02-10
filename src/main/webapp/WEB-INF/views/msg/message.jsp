@@ -62,7 +62,7 @@
 					<li style="width: 220px; text-align: center;">제목</li>
 					<li style="width: 80px; text-align: center;">수신여부</li>
 					<li style="width: 150px; text-align: center;">보낸시간</li>
-					<li style="width: 80px; text-align:center;"><input
+					<li style="text-align:center;"><input
 						type="checkbox" name="chkAll" value="selectAll"
 						onclick="selectAll(this)" />전체선택</li>
 				</ul>

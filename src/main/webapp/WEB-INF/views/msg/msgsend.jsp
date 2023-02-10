@@ -12,7 +12,7 @@
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <link rel="stylesheet" href="${path}/resources/css/message.css">
 <link rel="stylesheet" href="${path}/resources/css/msgsend.css">
-<script defer src="${path}/resource/js/message.js"></script>
+<script defer src="${path}/resources/js/message.js"></script>
 </head>
 
 <body>

@@ -117,7 +117,7 @@ public class Ex_BoardController {
 		
 		service.Ex_Modify(evo);
 		
-		return "redirect:/ex_board/ex_view?ex_num=" + evo.getEx_num();
+		return "redirect:/ex_board/ex_view?reply_num=1&ex_num=" + evo.getEx_num();
 		
 	}
 	

@@ -10,8 +10,11 @@
 <head>
 <meta charset="UTF-8">
 <!-- ckeditor CDN -->
-<!-- <script type="text/javascript" src="/resources/ckeditor/ckeditor.js"></script> -->
-<script src="//cdn.ckeditor.com/4.20.1/standard/ckeditor.js"></script>
+<!-- <script src="//cdn.ckeditor.com/4.20.1/standard/ckeditor.js"></script> -->
+
+<!-- ckeditor resources -->
+<script type="text/javascript" src="/resources/ckeditor/ckeditor.js"></script>
+
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

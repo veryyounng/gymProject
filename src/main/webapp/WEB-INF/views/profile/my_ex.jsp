@@ -251,7 +251,7 @@ ul.tabs li.current {
 								<div class="etc">
 								<form method="get" action="${path}/profile/my_ex_modify">
 										<div id="write_notice">
-											<input type="hidden" name="b_num" value="${exlist.ex_num}">
+											<input type="hidden" name="ex_num" value="${exlist.ex_num}">
 											<input type="hidden" name="num" value="${select}">
 											<input type="submit" value="수정">
 										</div>

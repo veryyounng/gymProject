@@ -51,7 +51,7 @@ public class ProfileController {
 
 	
 	@RequestMapping(value = { "/profile_pw_modify", "/profile_delete_user",
-			"/my_free_write", "/my_exe" }, method = RequestMethod.GET)
+			"/my_free_write", "/my_ex_write" }, method = RequestMethod.GET)
 	public void replace() {}
 
 //	개인 정보 보기, 개인 정보 수정
@@ -289,9 +289,9 @@ public class ProfileController {
 		List<Ex_ReplyVO> reply = null;
 		reply = excservice.exc_list(ex_num, page.getDisplayPost(), page.getPostNum());
 		
-		model.addAttribute("exedetail", vo);
-		model.addAttribute("page", page);
-		model.addAttribute("reply", reply);
+		model.addAttribute("ex_view", vo);
+		model.addAttribute("erpage", page);
+		model.addAttribute("ex_reply", reply);
 		model.addAttribute("select", reply_num);
 	}
 	
@@ -306,7 +306,7 @@ public class ProfileController {
 	@RequestMapping(value = "/my_ex_modify", method = RequestMethod.GET)
 	public void my_ex_modify(@RequestParam("ex_num") int ex_num, Model model) throws Exception {
 		Ex_BoardVO vo = exservice.view(ex_num);
-		model.addAttribute("exdetail", vo);
+		model.addAttribute("ex_view", vo);
 	}
 	
 //	마이페이지(운지공) 게시글 수정

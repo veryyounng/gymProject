@@ -11,7 +11,9 @@
 <head>
 <meta charset="UTF-8">
 <!-- ckeditor CDN -->
-<script src="//cdn.ckeditor.com/4.20.1/standard/ckeditor.js"></script>
+<!-- <script src="//cdn.ckeditor.com/4.20.1/standard/ckeditor.js"></script> -->
+<!-- ckeditor resources -->
+<script type="text/javascript" src="/resources/ckeditor/ckeditor.js"></script>
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <!-- Bootstrap CSS -->
@@ -21,16 +23,11 @@
 <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons" />
 <link rel="shortcut icon" href="${path}/resources/img/파비콘.png" type="image/x-icon">
 
-<title>자유 게시판</title>
-
+<title>운동지식공유 게시판</title>
 <style>
 #cke_1_contents {
 	height: 600px !important;
 	resize: none !important;
-}
-
-a {
-	text-decoration: none !important;
 }
 </style>
 </head>
@@ -45,48 +42,35 @@ a {
 	</c:if>
 	<article>
 		<div class="container" role="main">
-			<h2 style="margin-top: 100px">자유 게시판 글쓰기</h2>
-			<form name="form" id="form" role="form" method="post" action="${path}/profile/my_free_write" style="margin-top: 20px">
+			<h2 style="margin-top: 100px">운동지식공유 게시판 수정하기</h2>
+			<form name="form" id="form" role="form" method="post" action="${path}/profile/my_ex_modify" style="margin-top: 20px">
 				<div class="mb-3">
-					<label for="title">제목</label>
-					<input type="text" class="form-control" name="b_title" id="b_title" placeholder="제목을 입력해 주세요">
-					<input type="hidden" class="form-control" name="b_writer" id="b_writer" value="${loginUser.userid}">
+					<label for="title">제목</label> <input type="text" class="form-control" name="ex_title" value="${ex_view.ex_title }">
+					<input type="hidden" class="form-control" name="ex_num" value="${ex_view.ex_num }">
+					<input type="hidden" class="form-control" name="ex_writer" value="${loginUser.userid }">
 				</div>
+
 				<div class="mb-3">
 					<label for="content">내용</label>
-					<textarea class="form-control3" rows="5" name="b_content" id="b_content" placeholder="내용을 입력해 주세요"></textarea>
+					<textarea class="form-control3" rows="5" name="ex_content">${ex_view.ex_content }</textarea>
 				</div>
 			</form>
 			<div style="margin-bottom: 50px">
-				<button type="button" class="btn btn-sm btn-primary" id="btnSave" onclick="check();">작성완료</button>
+				<button type="button" class="btn btn-sm btn-primary" id="btnSave" onclick="document.getElementById('form').submit();">수정 완료</button>
 				<!-- <button type="button" class="btn btn-sm btn-primary" id="btnList" >목록</button> -->
 			</div>
 		</div>
-
 	</article>
 	<%@ include file="../include/footer.jsp"%>
 
 	<script>
 		//ckeditor setting
 		window.onload = function() {
-			ck = CKEDITOR.replace("b_content");
+			ck = CKEDITOR.replace("ex_content");
 		};
-
-		function check() {
-			let title = $("#b_title");
-			if (title.val() == "") {
-				alert("제목을 입력하세요.");
-				title.focus();
-				return false;
-			}
-
-			if (confirm("게시물을 등록하시겠습니까?")) {
-				$("#form").submit();
-			} else {
-				return false;
-			}
-		}
 	</script>
+
 </body>
+
 </html>
 

@@ -25,6 +25,7 @@
 #title_box2 {
   height: 60px;
   border-bottom: 1px solid #dddddd;
+  padding-top: 7px;
 }
 .view_title {
   color: black;

@@ -64,7 +64,7 @@ header .header-menu {
   width: 75px;
 }
 .header-menu > div:last-child {
-  width: 800px;
+  width: 847px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -121,6 +121,7 @@ header .header-menu {
   color: red;
   transition: all 0.3s;
 }
+
 #loginview {
   font-weight: 500;
   font-size: 12px;

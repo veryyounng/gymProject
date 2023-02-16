@@ -88,7 +88,7 @@
 					<a class="btn_back" href="/ex_board/ex_list?searchType=T&keyword=${keyword}&num=${select}">목록</a>
 				
 				<!-- 수정 / 삭제버튼 표시 -->
-				<c:if test="${ex_view.ex_writer == loginUser.userid}">
+				<c:if test="${ex_view.ex_writer == loginUser.userid || loginUser.userid == 'admin'}">
 					<a class="btn_modi" a href="/ex_board/ex_modify?ex_num=${ex_view.ex_num}">수정</a>
 				<form method = "post" action="${cp}/ex_board/ex_delete" id = "ex_delete" name = "ex_delete">
 					<input type = "hidden" value = "${ex_view.ex_num}" name = "ex_num">
@@ -127,7 +127,7 @@
 				<div class="free_reply_div2">
 				
 				<!-- 댓글 수정 삭제 -->
-				<c:if test="${ex_reply.exc_writer == loginUser.userid}">
+				<c:if test="${ex_reply.exc_writer == loginUser.userid || loginUser.userid == 'admin'}">
 					<a class="free_reply_modify" id ="ex_reply_modireply${ex_reply.exc_num}" href="${ex_reply.exc_num}">수정</a>
 					<%-- <a class="free_reply_modify" href="/ex_reply/ex_replymodify?ex_num=${ex_view.ex_num}&exc_num=${ex_reply.exc_num}">수정</a> --%>
 					<form method = "post" action="${cp}/ex_reply/ex_replydelete?ex_num=${ex_view.ex_num}&exc_num=${ex_reply.exc_num}"

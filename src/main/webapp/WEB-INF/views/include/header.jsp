@@ -71,7 +71,9 @@
 					<a id="loginview" href="${path}/user/login">로그인/회원가입</a>
 				</c:when>
 				<c:otherwise>
-
+			<div class ="welcome" style="margin-right: 20px;">
+				<strong style="font-weight: 700; color: chocolate;">${loginUser.usernick}</strong> 님
+			</div>
 					<a href="" onclick="openMsg()" style="margin-right: 15px; padding-top: 3px;"> 
 						<i class="material-symbols-outlined" style="font-size: 17px;"> 
 							<c:if test="${newMsg == 'F'}">

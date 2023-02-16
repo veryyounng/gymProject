@@ -66,7 +66,7 @@
       		<div class="btns">
         		<a class="btn_back" href="/free/freelist?searchType=T&keyword=${keyword}&num=${select}">목록</a>
          	<!-- 수정 삭제 버튼 나오기 -->
-         	<c:if test="${freedetail.b_writer == loginUser.userid}">
+         	<c:if test="${freedetail.b_writer == loginUser.userid || loginUser.userid == 'admin'}">
         		<a class="btn_modi" href="/free/freemodify?b_num=${freedetail.b_num}">수정</a>
             <form  method="post" action="${cp}/free/freedelete" id="deleteForm" name="deleteForm">
             	<input type="hidden" value="${freedetail.b_num}" name="b_num">
@@ -100,7 +100,7 @@
             			<div class="free_reply_div2">
             			
             			<!-- 댓글 수정 삭제 -->
-            			<c:if test="${free_reply.c_writer == loginUser.userid}">
+            			<c:if test="${free_reply.c_writer == loginUser.userid || loginUser.userid == 'admin'}">
         					<a class="free_reply_modify" id ="free_reply_modify${free_reply.c_num}" href="${free_reply.c_num}">수정</a>
             				<form  method="post" action="${cp}/free/replydelete" id="reply_delete_form" name="reply_delete_form">
             					<input type="hidden" value="${free_reply.c_num}" name="c_num">

@@ -46,6 +46,9 @@
 	color: #000;
   	background-color: rgb(242, 242, 242);
 	}
+	a{
+	text-decoration: none !important; 
+	}
 </style>
 
 </head>

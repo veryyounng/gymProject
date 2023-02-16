@@ -6,7 +6,7 @@
 <footer>
 	<div class="foot_box">
 		<div>
-			<a href="#">회사소개</a> &nbsp;|&nbsp; <a href="${path}/footer/privacy"> <strong>개인정보처리방침</strong></a>
+			<a href="/company/company">회사소개</a> &nbsp;|&nbsp; <a href="${path}/footer/privacy"> <strong>개인정보처리방침</strong></a>
 			&nbsp;|&nbsp; <a href="${path}/footer/media">영상정보처리방침</a>
 		</div>
 		<div>(주)우리동네 올림픽</div>

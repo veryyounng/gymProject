@@ -22,16 +22,18 @@
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
-<script>
-	if(${!reservationOk}){
-		alert("이용권을 확인해주세요.");
-		location.href="/payment/pay";
-	}
-	if(${loginUser == null}){
+<c:if test="${loginUser == null}">
+	<script>
 		alert("로그인 후 이용하세요");
 		location.href = "/user/login";
-	}
-</script>
+	</script>
+</c:if>
+<c:if test="${!reservationOk}">
+	<script>
+		alert("이용권을 확인해주세요.");
+		location.href="/payment/pay";
+	</script>
+</c:if>
 
 </head>
 <body>

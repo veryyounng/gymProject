@@ -33,11 +33,13 @@ public class ReservationController {
 	public void getSearch(HttpServletRequest req, Model model) {
 		UserVO loginUser = (UserVO)req.getSession().getAttribute("loginUser");
 		Date date = new Date();
-		if(loginUser.getDuedate() != null) {
-			boolean dueCheck = loginUser.getDuedate().after(date);
-			model.addAttribute("reservationOk", dueCheck);
-		} else {
-			model.addAttribute("reservationOk",false);
+		if(loginUser != null) {
+			if(loginUser.getDuedate() != null) {
+				boolean dueCheck = loginUser.getDuedate().after(date);
+				model.addAttribute("reservationOk", dueCheck);
+			} else {
+				model.addAttribute("reservationOk",false);
+			}
 		}
 	}
 	

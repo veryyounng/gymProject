@@ -84,7 +84,7 @@ public class KapayService {
 		RestTemplate restTemplate = new RestTemplate();
 		String file = "";
 		String header_file = req.getScheme();
-		file = req.getServerName()+":"+req.getServerPort();
+		file = req.getServerName();
 		// 서버로 요청할 Header
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Authorization", "KakaoAK " + "cb1a3c37b02c9bee7ce2fcd19e970a22");
@@ -107,9 +107,7 @@ public class KapayService {
 			HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
 			
 		try {
-			
 			kakaoPayReadyVO = restTemplate.postForObject(new URI(HOST + "/v1/payment/ready"), body, KakaoPayReadyVO.class);
-		
 			kakaoPayReadyVO.setOrderId(pr.getOrderId());
 			kakaoPayReadyVO.setUserId(userId);
 			kakaoPayReadyVO.setTotalAmount(pr.getTotalAmount());

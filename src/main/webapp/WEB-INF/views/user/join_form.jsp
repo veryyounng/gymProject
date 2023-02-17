@@ -227,12 +227,7 @@
 			success : function(result) {
 				$('#userid_chkpoint').val('Y');
 				if (result == 'success') {
-					if ($('userid').val() == "") {
-						$('#idcheck').attr('style', "color:red;");
-						$('#idcheck').text('아이디를 입력해주세요!');
-					}
-					
-					else if ($('#userid').val().length < 4 || $('#userid').val().length > 16) {
+					if ($('#userid').val().length < 4 || $('#userid').val().length > 16) {
 						$('#idcheck').attr('style', "color:red;");
 						$('#idcheck').text('아이디는 4자 이상, 16자 이하로 입력해주세요!');
 					}
@@ -262,18 +257,18 @@
 	
 //   번호 가져오기
    $("#userphone").blur(function(){
-      phone_num();   
+      phone_number();   
    });
    
    $("#middle_num").blur(function(){
-      phone_num();
+      phone_number();
    });
    
    $("#last_num").blur(function() {
-      phone_num();
+      phone_number();
    });
 
-   function phone_num() {
+   function phone_number() {
       const first = $("#userphone").val();
       const middle = $("#middle_num").val();
       const last = $("#last_num").val();

@@ -23,8 +23,9 @@
 	src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
 <script>
-	if(${loginUser.duedate}){
-		
+	if(${!reservationOk}){
+		alert("이용권을 확인해주세요.");
+		location.href="/payment/pay";
 	}
 	if(${loginUser == null}){
 		alert("로그인 후 이용하세요");

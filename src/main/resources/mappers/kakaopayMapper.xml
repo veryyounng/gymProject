@@ -29,5 +29,8 @@
 			date_add(duedate, interval #{month} month)
 		where userid = #{userId};
 	</update>
-
+	
+	<select id="updateloginUser" resultType="com.gym.domain.UserVO">
+		select * from user where userid = #{userid}
+	</select>
 </mapper>

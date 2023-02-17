@@ -172,4 +172,8 @@ public class KapayService {
 		
 		return null;
 	}
+
+	public UserVO updateloginUser(String userid) {
+		return pdao.updateloginUser(userid);
+	}
 }

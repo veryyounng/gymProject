@@ -1,5 +1,6 @@
 package com.gym.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,11 +28,19 @@ public class ReservationController {
 	
 	@GetMapping("/makeschedule")
 	public void getMap() {}
+	
 	@GetMapping("/search")
 	public void getSearch(HttpServletRequest req, Model model) {
 		UserVO loginUser = (UserVO)req.getSession().getAttribute("loginUser");
-//		loginUser
+		Date date = new Date();
+		if(loginUser.getDuedate() != null) {
+			boolean dueCheck = loginUser.getDuedate().after(date);
+			model.addAttribute("reservationOk", dueCheck);
+		} else {
+			model.addAttribute("reservationOk",false);
+		}
 	}
+	
 	@PostMapping("/result")
 	public @ResponseBody List<ReservationVO> postSearch(@RequestParam("rv_date") String rv_date) throws Exception {
 		List<ReservationVO> list = null;

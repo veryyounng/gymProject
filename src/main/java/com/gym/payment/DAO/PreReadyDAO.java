@@ -1,5 +1,6 @@
 package com.gym.payment.DAO;
 
+import com.gym.domain.UserVO;
 import com.gym.payment.vo.PreReadyVO;
 
 public interface PreReadyDAO {
@@ -8,5 +9,7 @@ public interface PreReadyDAO {
 	public PreReadyVO getProduct(String proNum) throws Exception;
 	
 	public void upDate(String userId, Integer month) throws Exception;
+
+	public UserVO updateloginUser(String userid);
 	
 }

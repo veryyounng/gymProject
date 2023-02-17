@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.gym.domain.UserVO;
 import com.gym.payment.vo.PreReadyVO;
 
 @Repository
@@ -36,6 +37,11 @@ public class PreReadyDAOImpl implements PreReadyDAO {
 		
 		// duedate 업데이트
 		sql.update(namespace + ".upduedate", map); 
+	}
+
+	@Override
+	public UserVO updateloginUser(String userid) {
+		return sql.selectOne(namespace+".updateloginUser", userid);
 	}
 
 }

@@ -61,12 +61,19 @@ public class KapayController {
 	
 	
 	@GetMapping("/kakaoPaySuccess")
-	public void kakaoPaySuccess(@RequestParam("pg_token") String pg_token, Model model) throws Exception {
+	public void kakaoPaySuccess(@RequestParam("pg_token") String pg_token, Model model,HttpServletRequest req) throws Exception {
 		
 		log.info("kakaoPaySuccess get............................................");
         log.info("kakaoPaySuccess pg_token : " + pg_token);
         
 		model.addAttribute("info", kapayservice.kakaoPayInfo(pg_token));
+		
+		UserVO loginUser = (UserVO)req.getSession().getAttribute("loginUser");
+		String userid = loginUser.getUserid();
+		loginUser = kapayservice.updateloginUser(userid);
+		System.out.println(loginUser.getDuedate());
+		req.getSession().setAttribute("loginUser", loginUser);
+		
 	}
 	
 	@GetMapping("/kapayCancel")

@@ -29,7 +29,7 @@ public interface UserService {
 	public int delete_user(UserVO vo) throws Exception;
 
 //	로그인
-	boolean login(UserVO vo, HttpServletRequest req) throws Exception;
+	public UserVO login(UserVO vo) throws Exception;
 
 //	아이디 찾기
 	public UserVO findId(String username, String email) throws Exception;

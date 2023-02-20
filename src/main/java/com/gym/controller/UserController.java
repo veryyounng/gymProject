@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.gym.dao.MessageDAO;
 import com.gym.domain.UserVO;
 import com.gym.service.MailSendService;
+import com.gym.service.MessageService;
 import com.gym.service.UserService;
 
 @Controller
@@ -33,6 +35,11 @@ public class UserController {
 
 	@Autowired
 	private MailSendService mailService;
+	
+	@Autowired
+	private MessageService messageService;
+	
+
 
 	@RequestMapping(value = { "/login", "/join", "id_find", "/pw_find" , "/changePw"}, method = RequestMethod.GET)
 	public void replace() {
@@ -41,13 +48,21 @@ public class UserController {
 //  로그인
 	@PostMapping("/login")
 	public String login(UserVO vo, HttpServletRequest req, RedirectAttributes ra) throws Exception {
-		if (service.login(vo, req)) {
-			return "redirect:/";
-		} else {
+		UserVO loginUser = service.login(vo);
+		if(loginUser == null) {
+		
 			ra.addFlashAttribute("loginfail", "F");
 			return "redirect:/user/login";
 		}
-
+		else {
+			req.getSession().setAttribute("loginUser", loginUser);
+			if(messageService.newMsg(loginUser.getUserid()) == 0) {
+				req.getSession().setAttribute("newMsg", "F");
+			} else {
+				req.getSession().setAttribute("newMsg", "T");
+			}
+			return "redirect:/";
+		}
 	}
 
 	@RequestMapping(value = "/join_email", method = RequestMethod.POST)

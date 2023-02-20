@@ -32,7 +32,12 @@ href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wg
 		location.href = "/user/login";
 	}
 </script>
-
+	<c:if test="${loginUser.userid != 'admin' }">
+		<script>
+		alert("잘못된 접근입니다.");
+		location.href= "/";
+		</script>
+	</c:if>
 <style>
 .board_body {
     width: 1000px;

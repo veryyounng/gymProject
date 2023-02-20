@@ -50,7 +50,7 @@
 			</div>
 			<div class="msgbox">
 				<ul class="list list1">
-					<li style="width: 80px; text-align: center;">보낸사람</li>
+					<li style="width: 80px; text-align: center;">받는사람</li>
 					<li style="width: 220px; text-align: center;">제목</li>
 					<li style="width: 80px; text-align: center;">수신여부</li>
 					<li style="width: 150px; text-align: center;">보낸시간</li>
@@ -62,7 +62,7 @@
 					<c:when test="${page.count != 0}">
 						<c:forEach items="${list}" var="result">
 							<ul class="list list2">
-								<li style="width: 80px; text-align: center;">${result.sender}</li>
+								<li style="width: 80px; text-align: center;">${result.receiver}</li>
 								<li
 									onclick="location.href='/msg/sentMsgDetail?msg_num=${result.msg_num}&select=${select}&page=${page}'"
 									style="width: 190px; text-align: center;">${result.title}</li>

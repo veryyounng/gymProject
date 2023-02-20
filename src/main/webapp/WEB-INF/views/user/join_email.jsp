@@ -9,14 +9,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="./main_logo.gif" type="image/x-icon">
-<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
-	crossorigin="anonymous"></script>
-<link
-	href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
-	rel="stylesheet" type="text/css" />
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
-	rel="stylesheet" type="text/css" />
+<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
 <title>회원가입</title>
 <link rel="stylesheet" href="${path}/resources/css/styles.css">
 <style>
@@ -57,8 +52,7 @@
 	<section>
 		<!-- 개발코드 시작 -->
 		<div class="banana">
-			<form name="email_certification" id="emailform" method="post"
-				action="${path}/user/join_form">
+			<form name="email_certification" id="emailform" method="post" action="${path}/user/join_form">
 				<table>
 					<tr>
 						<th>이메일</th>
@@ -224,6 +218,8 @@
 				success : function (data) {
 					console.log("data : " +  data);
 					checkInput.attr('disabled',false);
+					// data는 인스턴스 변수로 선언되었기 때문에 data를 선언한 함수 내에서만 사용할 수 있다.
+					// 인증번호는 해당 함수 밖에서도 사용해야 하기 때문에 전역변수로 선언한 code에 담아준다.
 					code = data;
 					alert('인증번호가 전송되었습니다.');
 				}         

@@ -63,27 +63,27 @@ section {
 }
 
 .banana #contents .boardnum {
-	width: 5%;
+	width: 50px;
 }
 
 .banana #contents .title {
-	width: 45%;
+	width: 570px;
 }
 
 .banana #contents .writer_id {
-	width: 20%;
+	width: 100px;
 }
 
-.banana #contents .data {
-	width: 10%;
+.banana #contents .date {
+	width: 100px;
 }
 
 .banana #contents .view {
-	width: 10%;
+	width: 70px;
 }
 
 .banana #contents .etc {
-	width: 10%;
+	width: 150px;
 }
 
 .banana #contents .ul_news {
@@ -96,37 +96,31 @@ section {
 	margin-bottom: 10px;
 }
 
-.banana #contents .ul_news .etc #write_notice button, .banana #contents .ul_news .etc #write_notice input
-	{
-	margin-left: -15px;
-}
-
-.banana #contents .ul_news .etc #write_notice .modify_btn {
+#write_notice .modify_btn {
 	background-color: #eee;
 	border-color: #ddd;
 	color: black;
 }
 
-.banana #contents .ul_news .etc #write_notice input {
+#write_notice .delete_btn {
 	background-color: #333333;
 	color: #eee;
 	cursor: pointer;
 }
 
-.banana #contents .ul_news .reply_contents {
-	width: 90%;
-}
-
-.banana #contents .ul_news .reply_contents span {
-	display: block;
-	margin-left: 5px;
-	margin-bottom: 5px;
+.modify_div, .delete_div {
+	display: inline-block;
+	text-align: center;
 }
 
 .deleteandwrite_btn {
 	display: flex;
 	justify-content: end;
 	margin-left: -15px;
+}
+
+.deleteandwrite_btn form {
+	margin: 0;
 }
 
 ul {
@@ -192,8 +186,7 @@ ul.tabs li.current {
 				</div>
 				<div class="profile_intro">
 					<span style="font-size: 25px; margin-bottom: 10px;">${loginUser.usernick}님</span>
-					<span style="font-size: 15px;">자유게시판 게시글 수: ${page.count}개 /
-						댓글 수: ${replypage.count}개</span>
+					<span style="font-size: 15px;">자유게시판 게시글 수: ${page.count}개 / 댓글 수: ${replypage.count}개</span>
 				</div>
 			</div>
 			<div class="boardcontents">
@@ -204,101 +197,92 @@ ul.tabs li.current {
 					</ul>
 
 					<!-- 게시글 탭 시작 -->
-					<div id="tab-1" class="tab-content current" style="height: 510px;">
+					<div id="tab-1" class="tab-content current" style="height: 525px;">
 						<form name="form1" method="post" id="form1">
 							<input type="hidden" name="b_writer" value="${loginUser.userid}">
 							<input type="hidden" name="num" value="${select}">
 							<ul class="ul_news_title">
-								<div class=boardnum>
-									<span class="board_num">번호</span>
-								</div>
-								<div class="title">
-									<a><span>제목</span></a>
-								</div>
-								<div class="writer_id">
-									<span class="">작성자</span>
-								</div>
-								<div class="data">
-									<span class="date">작성일자</span>
-								</div>
-								<div class="view">
-									<span class="view">조회수</span>
-								</div>
-								<div class="etc"></div>
+								<table>
+									<tr>
+										<td class="boardnum">번호</td>
+										<td class="title">제목</td>
+										<td class="writer_id">작성자</td>
+										<td class="date">작성일자</td>
+										<td class="view">조회수</td>
+										<td class="etc">&nbsp;</td>
+									</tr>
+								</table>
 							</ul>
 						</form>
 						<c:forEach items="${list}" var="freelist">
 							<ul class="ul_news">
-								<div class="boardnum">
-									<span class="board_num">${freelist.b_num}</span>
-								</div>
-								<div class="title">
-									<a href="/profile/my_free_detail?b_num=${freelist.b_num}&reply_num=1"><span>${freelist.b_title}</span></a>
-								</div>
-								<div class="writer_id">
-									<span class="">${freelist.b_writer}</span>
-								</div>
-								<div class="data">
-									<span class="date"><fmt:formatDate
-											value="${freelist.b_date}" pattern="yyyy-MM-dd" /></span>
-								</div>
-								<div class="view">
-									<span class="view"
-										style="display: inline-block; width: 40px !important; text-align: right;">${freelist.view_cnt}</span>
-								</div>
-								<div class="etc">
-								<form method="get" action="${path}/profile/my_free_modify">
-										<div id="write_notice">
-											<input type="hidden" name="b_num" value="${freelist.b_num}">
-											<input type="hidden" name="num" value="${select}">
-											<input type="submit" value="수정">
-										</div>
-									</form>
-									<form method="post" action="${path}/profile/my_free_delete">
-										<div id="write_notice">
-											<input type="hidden" name="b_num" value="${freelist.b_num}">
-											<input type="hidden" name="num" value="${select}">
-											<input type="submit" value="삭제" onclick="return delete_check();">
-										</div>
-									</form>
-								</div>
+								<table>
+									<tr>
+										<td class="boardnum">${freelist.b_num}</td>
+										<td class="title"><a href="/profile/my_free_detail?b_num=${freelist.b_num}&reply_num=1"><span>${freelist.b_title}</span></a></td>
+										<td class="writer_id">${freelist.b_writer}</td>
+										<td class="date"><fmt:formatDate value="${freelist.b_date}" pattern="yyyy-MM-dd" /></td>
+										<td class="view">${freelist.view_cnt}</td>
+										<td class="etc">
+											<div class="modify_div">
+												<form method="get" action="${path}/profile/my_free_modify">
+													<div id="write_notice">
+														<input type="hidden" name="b_num" value="${freelist.b_num}">
+														<input type="hidden" name="num" value="${select}">
+														<input type="submit" class="modify_btn" value="수정">
+													</div>
+												</form>
+											</div>
+											<div class="delete_div">
+												<form method="post" action="${path}/profile/my_free_delete">
+													<div id="write_notice">
+														<input type="hidden" name="b_num" value="${freelist.b_num}">
+														<input type="hidden" name="num" value="${select}">
+														<input type="submit" class="delete_btn" value="삭제" onclick="return delete_check();">
+													</div>
+												</form>
+											</div>
+										</td>
+									</tr>
+								</table>
 							</ul>
 						</c:forEach>
 						<div class="deleteandwrite_btn">
-							<form method="get" action="${path}/profile/my_free_write">
+							<form method="get" class="free_write" action="${path}/profile/my_free_write">
 								<div id="write_notice">
 									<input type="hidden" name="b_writer" value="${loginUser.userid}">
 									<input type="hidden" name="num" value="${select}">
-									<input type="submit" value="글쓰기">
+									<input type="submit" class="modify_btn" value="글쓰기">
 								</div>
 							</form>
-							<form method="post" action="${path}/profile/my_free_delete_all">
+							<form method="post" class="free_delete" action="${path}/profile/my_free_delete_all">
 								<div id="write_notice">
 									<input type="hidden" name="b_writer" value="${loginUser.userid}">
 									<input type="hidden" name="num" value="${select}">
-									<input type="submit" value="전체 삭제" onclick="return delete_check();">
+									<input type="submit" class="delete_btn" value="전체 삭제" onclick="return delete_check();">
 								</div>
 							</form>
 						</div>
 						<div class="btns">
 							<ul class="pagination">
 								<c:if test="${page.prev}">
-									<li>[<a
-										href='${path}/profile/my_free?num=${page.startPageNum-1}'>이전</a>]
+									<li>
+										[<a href='${path}/profile/my_free?num=${page.startPageNum-1}'>이전</a>]
 									</li>
 								</c:if>
-								<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}"
-									var="num">
-									<li><c:if test="${select != num}">
+								<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
+									<li>
+										<c:if test="${select != num}">
 											<a href="${path}/profile/my_free?num=${num}">${num}</a>
-										</c:if> <c:if test="${select == num}">
-											<b
-												style="font-weight: 700; color: red; text-decoration: underline;">${num}</b>
-										</c:if></li>
+										</c:if>
+										<c:if test="${select == num}">
+											<b style="font-weight: 700; color: red; text-decoration: underline;">${num}</b>
+										</c:if>
+									</li>
 								</c:forEach>
 								<c:if test="${page.next}">
-									<li>[<a
-										href="${path}/profile/my_free?num=${page.endPageNum+1}">다음</a>]
+									<li>
+										[<a href="${path}/profile/my_free?num=${page.endPageNum+1}">다음</a>]
 									</li>
 								</c:if>
 							</ul>

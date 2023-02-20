@@ -9,14 +9,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="./main_logo.gif" type="image/x-icon">
-<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
-	crossorigin="anonymous"></script>
-<link
-	href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
-	rel="stylesheet" type="text/css" />
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
-	rel="stylesheet" type="text/css" />
+<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
 <title>회원가입</title>
 <link rel="stylesheet" href="${path}/resources/css/styles.css">
 <style>
@@ -142,9 +137,9 @@
 								<option value="016">016</option>
 								<option value="017">017</option>
 								<option value="019">019</option>
-						</select>
-						 - <input type="text" name="middle_num" id="middle_num">
-						 - <input type="text" name="last_num" id="last_num">
+							</select>
+							- <input type="text" name="middle_num" id="middle_num">
+						 	- <input type="text" name="last_num" id="last_num">
 						</td>
 						<td>
 							<input type="hidden" name="phone" id="phone">

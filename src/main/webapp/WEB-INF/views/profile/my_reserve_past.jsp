@@ -62,7 +62,9 @@
 
 .choice_box form {
 	display: flex;
+	align-items: center;
 	width: 55%;
+	line-height: 0px;
 }
 
 #pastDate, #currentDate {
@@ -94,6 +96,10 @@ input[type="text"] {
 	color: red;
 	font-weight: bold;
 }
+
+#reserve_search {
+	height: 25px;
+}
 </style>
 </head>
 
@@ -115,9 +121,9 @@ input[type="text"] {
 			<div class="choice_box">
 				<form method="get" name="choice_box_form" id="choice_box_form" action="${path}/profile/my_reserve_past">
 					<input type="hidden" name="num" value="${select}">
-					<input type="text" name="pastDate" id="pastDate" value="${pastDate}" readonly>
-					&nbsp;&nbsp; ~ &nbsp;&nbsp;
-					<input type="text" name="currentDate" id="currentDate" readonly> &nbsp;
+					<input type="text" name="pastDate" id="pastDate" style="margin-right:10px;" value="${pastDate}" readonly>
+					&nbsp; ~
+					<input type="text" name="currentDate" id="currentDate" style="margin-left:9px;" readonly> &nbsp;
 					<input class="box" id="datepick" name="datepick" value="${page.datepick}" style="display: none;" disabled/>
 					<select class="box" id="date_list" name="date_list">
 						<option value="all_period" <c:if test="${page.date_list == 'all_period'}">selected="selected"</c:if>>전체 기간</option>
@@ -135,8 +141,8 @@ input[type="text"] {
 						<option value="pilates" <c:if test="${page.lecture_list == 'pilates'}">selected="selected"</c:if>>필라테스</option>
 						<option value="aerobics" <c:if test="${page.lecture_list == 'aerobics'}">selected="selected"</c:if>>에어로빅</option>
 						<option value="spinning" <c:if test="${page.lecture_list == 'spinning'}">selected="selected"</c:if>>스피닝</option>
-					</select>
-					<input type="submit" value="검색">
+					</select> &nbsp;
+					<input type="submit" id="reserve_search" value="검색">
 				</form>
 			</div>
 			<div class="selectdate">

@@ -9,24 +9,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="./main_logo.gif" type="image/x-icon">
-<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
-	crossorigin="anonymous"></script>
-<link
-	href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
-	rel="stylesheet" type="text/css" />
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
-	rel="stylesheet" type="text/css" />
+<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
 <title>회원가입</title>
 <link rel="stylesheet" href="${path}/resources/css/styles.css">
-<link rel="stylesheet"
-	href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="</script'>
-	http: //code.jquery.com/jquery-1.10.2.js">
-</script>
-<script src="</script'>
-	http: //code.jquery.com/ui/1.11.4/jquery-ui.js">
-</script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="</script'> http: //code.jquery.com/jquery-1.10.2.js"></script>
+<script src="</script'> http: //code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <link rel="stylesheet" href="/resources/demos/style.css">
 <style type="text/css">
 #d1 {
@@ -53,31 +43,28 @@ textarea {
 	<%@ include file="../include/header.jsp"%>
 	<form action="${path}/user/join_email" method="post" id="form1">
 		<div id="d1">
-			<br> <br> <br> <br> <br> <img
-				src="${path}/resources/img/logo_text.png"
-				style="margin-left: 35%; margin-bottom: 35px;">
-			<h2 align="center" style="font-size: 30px; font-weight: bold;">회원가입을
-				환영합니다.</h2>
+			<br> <br> <br> <br> <br>
+			<img src="${path}/resources/img/logo_text.png" style="margin-left: 35%; margin-bottom: 35px;">
+			<h2 align="center" style="font-size: 30px; font-weight: bold;">회원가입을 환영합니다.</h2>
 			<tr>
 				<br>
 				<label for="all">
-					<td align="left"><font size="2">이용약관, 개인정보 수집 및 이용,
-							위치정보 이용약관(선택), 프로모션 안내 메일 수신(선택)에 모두 동의합니다.</font></td>
+					<td align="left">
+						<font size="2">이용약관, 개인정보 수집 및 이용, 위치정보 이용약관(선택), 프로모션 안내 메일 수신(선택)에 모두 동의합니다.</font>
+					</td>
 					<td><input type="checkbox" name="all" id="all"></td>
 				</label>
-				<br>
-				<br>
-				<hr>
-				<br>
+				<br> <br>
+				<hr> <br>
 			</tr>
 
 			<div id="accordion">
 				<label for="c1">
 					<h3>
-						<font size="2">우리동네 올림픽 이용약관 동의(필수)</font> <input type="checkbox"
-							name="c1" id="c1" />
+						<font size="2">우리동네 올림픽 이용약관 동의(필수)</font>
+						<input type="checkbox" name="c1" id="c1" />
 					</h3>
-				</label><br>
+				</label> <br>
 				<div>
 					<textarea readonly="readonly" rows="10" cols="107">
 제 1 조 (목적)
@@ -95,16 +82,16 @@ textarea {
 ⑤"유료서비스"라 함은 "회사"가 유료로 제공하는 각종 온라인디지털콘텐츠(각종 정보콘텐츠, VOD, 아이템 기타 유료콘텐츠를 포함) 및 제반 서비스를 의미합니다.
 ⑥"포인트"라 함은 서비스의 효율적 이용을 위해 회사가 임의로 책정 또는 지급, 조정할 수 있는 재산적 가치가 없는 "서비스" 상의 가상 데이터를 의미합니다.
 ⑦"게시물"이라 함은 "회원"이 "서비스"를 이용함에 있어 "서비스상"에 게시한 부호ㆍ문자ㆍ음성ㆍ음향ㆍ화상ㆍ동영상 등의 정보 형태의 글, 사진, 동영상 및 각종 파일과 링크 등을 의미합니다. 
-        </textarea>
+        			</textarea>
 					<br> <br> <br>
 				</div>
 
 				<label for="c2">
 					<h3>
-						<font size="2">개인정보 수집 및 이용에 대한 안내(필수)</font> <input
-							type="checkbox" name="c2" id="c2" />
+						<font size="2">개인정보 수집 및 이용에 대한 안내(필수)</font>
+						<input type="checkbox" name="c2" id="c2" />
 					</h3>
-				</label><br>
+				</label> <br>
 				<div>
 					<textarea readonly="readonly" rows="10" cols="107">
 정보통신망법 규정에 따라 네이버에 회원가입 신청하시는 분께 수집하는 개인정보의 항목, 개인정보의 수집 및 이용목적, 개인정보의 보유 및 이용기간을 안내 드리오니 자세히 읽은 후 동의하여 주시기 바랍니다.
@@ -113,14 +100,14 @@ textarea {
 1. 수집하는 개인정보
 
 이용자는 회원가입을 하지 않아도 정보 검색, 뉴스 보기 등 대부분의 네이버 서비스를 회원과 동일하게 이용할 수 있습니다. 이용자가 메일, 예약, 게시판 등과 같이 개인화 혹은 회원제 서비스를 이용하기 위해 회원가입을 할 경우, 우리동네 올림픽은 서비스 이용을 위해 필요한 최소한의 개인정보를 수집합니다.
-        </textarea>
+       				</textarea>
 				</div>
 				<br> <br> <label for="c3">
 					<h3>
-						<font size="2">위치정보 이용약관 동의(선택)</font> <input type="checkbox"
-							name="c3" id="c3" />
+						<font size="2">위치정보 이용약관 동의(선택)</font>
+						<input type="checkbox" name="c3" id="c3" />
 					</h3>
-				</label><br>
+				</label> <br>
 				<div>
 					<textarea readonly="readonly" rows="10" cols="107">
 
@@ -143,27 +130,26 @@ textarea {
 4. 연락처 교환하기: 위치정보를 활용하여 친구와 연락처를 교환할 수 있습니다.
 5. 현재 위치를 활용한 광고정보 제공 서비스: 광고정보 제공 요청 시 개인위치정보주체의 현 위치를 이용하여 광고소재를 제시합니다.
 6. 이용자 보호 및 부정 이용 방지: 개인위치정보주체 또는 이동성 있는 기기의 위치를 이용하여 권한없는 자의 비정상적인 서비스 이용 시도 등을 차단합니다.
-        </textarea>
+					</textarea>
 				</div>
 			</div>
 			<tr>
-				<br>
-				<br>
+				<br> <br>
 				<label for="c4">
 					<td align="left"><font size="2">이벤트 등 프로모션 알림 메일 수신(선택)</font></td>
 					<td><input type="checkbox" name="c4" id="c4"></td>
 				</label>
-				<hr />
+				<hr>
 			</tr>
 
 			<div align="center">
-				<br /> <input type="submit" value="동의">&nbsp;<input
-					type="button" value="비동의" onclick="disagree()">
+				<br>
+				<input type="submit" value="동의">&nbsp;
+				<input type="button" value="비동의" onclick="disagree()">
 			</div>
 		</div>
 	</form>
-	<br>
-	<br>
+	<br> <br>
 	<%@ include file="../include/footer.jsp"%>
 </body>
 <!-- check Box 이벤트처리를 위한 Script -->

@@ -5,20 +5,14 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="./main_logo.gif" type="image/x-icon">
-<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
-	crossorigin="anonymous"></script>
-<link
-	href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
-	rel="stylesheet" type="text/css" />
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
-	rel="stylesheet" type="text/css" />
+<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
 <title>우리동네 올림픽</title>
 <link rel="stylesheet" href="${path}/resources/css/reset.css" />
 <link rel="stylesheet" href="${path}/resources/css/styles.css">
@@ -100,6 +94,7 @@ section {
 	background-color: #eee;
 	border-color: #ddd;
 	color: black;
+	cursor: pointer;
 }
 
 #write_notice .delete_btn {
@@ -116,11 +111,18 @@ section {
 .deleteandwrite_btn {
 	display: flex;
 	justify-content: end;
-	margin-left: -15px;
 }
 
 .deleteandwrite_btn form {
 	margin: 0;
+}
+
+.free_write {
+	width: 66px;
+}
+
+.free_delete {
+	width: 83px;
 }
 
 ul {
@@ -195,8 +197,6 @@ ul.tabs li.current {
 						<li class="tab-link current" data-tab="tab-1">내가 쓴 글</li>
 						<li class="tab-link" data-tab="tab-2" onclick="location.href='${path}/profile/my_free_reply?num=1'">내가 쓴 댓글</li>
 					</ul>
-
-					<!-- 게시글 탭 시작 -->
 					<div id="tab-1" class="tab-content current" style="height: 525px;">
 						<form name="form1" method="post" id="form1">
 							<input type="hidden" name="b_writer" value="${loginUser.userid}">
@@ -225,7 +225,7 @@ ul.tabs li.current {
 										<td class="view">${freelist.view_cnt}</td>
 										<td class="etc">
 											<div class="modify_div">
-												<form method="get" action="${path}/profile/my_free_modify">
+												<form method="get" style="width: 50px;" action="${path}/profile/my_free_modify">
 													<div id="write_notice">
 														<input type="hidden" name="b_num" value="${freelist.b_num}">
 														<input type="hidden" name="num" value="${select}">
@@ -234,7 +234,7 @@ ul.tabs li.current {
 												</form>
 											</div>
 											<div class="delete_div">
-												<form method="post" action="${path}/profile/my_free_delete">
+												<form method="post" style="width: 70px;" action="${path}/profile/my_free_delete">
 													<div id="write_notice">
 														<input type="hidden" name="b_num" value="${freelist.b_num}">
 														<input type="hidden" name="num" value="${select}">
@@ -288,10 +288,6 @@ ul.tabs li.current {
 							</ul>
 						</div>
 					</div>
-					<!-- 게시글 탭 끝 -->
-
-					<!-- 댓글 탭 시작 -->
-					<!-- 댓글 탭 끝 -->
 				</div>
 			</div>
 		</div>

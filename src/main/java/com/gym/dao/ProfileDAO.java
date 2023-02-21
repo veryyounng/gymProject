@@ -42,6 +42,18 @@ public interface ProfileDAO {
 
 //	마이페이지(자게) 게시글 일괄 삭제
 	public void myFreeDeleteAll(String b_writer) throws Exception;
+	
+//	마이페이지(자게) 게시글에서 댓글 작성
+	public void myFreeDetailReplyWrite(ReplyVO vo) throws Exception;
+	
+//	마이페이지(자게) 게시글에서 댓글 삭제
+	public void myFreeDetailReplyDelete(int c_num) throws Exception;
+	
+//	마이페이지(자게) 게시글에서 댓글 수정 뷰
+	public ReplyVO myFreeDetailReplyDetail(int c_num) throws Exception;
+	
+//	마이페이지(자게) 게시글에서 댓글 수정 업데이트
+	public void myFreeDetailReplyModify(ReplyVO vo) throws Exception;
 
 //	마이페이지(자게) 댓글 총 개수
 	public int getMyFreeRepCnt(String c_writer) throws Exception;
@@ -72,6 +84,18 @@ public interface ProfileDAO {
 //	마이페이지(운지공) 게시글 일괄 삭제
 	public void myExDeleteAll(String ex_writer) throws Exception;
 	
+//	마이페이지(운지공) 게시글에서 댓글 작성
+	public void myExDetailReplyWrite(Ex_ReplyVO vo) throws Exception;
+	
+//	마이페이지(운지공) 게시글에서 댓글 삭제
+	public void myExDetailReplyDelete(int exc_num) throws Exception;
+	
+//	마이페이지(운지공) 게시글에서 댓글 수정 뷰
+	public Ex_ReplyVO myExDetailReplyDetail(int exc_num) throws Exception;
+	
+//	마이페이지(운지공) 게시글에서 댓글 수정 업데이트
+	public void myExDetailReplyModify(Ex_ReplyVO vo) throws Exception;
+
 //	마이페이지(운지공) 댓글 총 개수
 	public int getMyExRepCnt(String ex_writer) throws Exception;
 	

@@ -3,7 +3,6 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gym.mappers.profile">
-
 	<!-- 현재 예약 내역 개수 -->
 	<select id="getMyReserveCnt" resultType="_int">
 		select count(a.rv_num) from
@@ -148,6 +147,30 @@
 		delete from f_board
 		where b_writer = #{b_writer}
 	</delete>
+	
+	<!-- 마이페이지(자게) 게시글에서 댓글 작성 -->
+	<insert id="myFreeDetailReplyWrite">
+		insert into f_comment(b_num, c_writer, c_contents, c_date)
+			values(#{b_num}, #{c_writer}, #{c_contents}, now())
+	</insert>
+	
+	<!-- 마이페이지(자게) 게시글에서 댓글 삭제 -->
+	<delete id="myFreeDetailReplyDelete">
+		delete from f_comment
+			where c_num = #{c_num}
+	</delete>
+	
+	<!-- 마이페이지(자게) 게시글에서 댓글 수정 뷰 -->
+	<select id="myFreeDetailReplyDetail" resultType="com.gym.domain.ReplyVO">
+		select * from f_comment
+			where c_num = #{c_num}
+	</select>
+	
+	<!-- 마이페이지(자게) 게시글에서 댓글 수정 업데이트 -->
+	<update id="myFreeDetailReplyModify">
+		update f_comment set c_contents = #{c_contents}
+			where c_num = #{c_num}
+	</update>
 
 	<!-- 마이페이지(자게) 댓글 총 개수 -->
 	<select id="getMyFreeRepCnt" resultType="_int">
@@ -169,13 +192,13 @@
 	<!-- 마이페이지(자게) 댓글 삭제 -->
 	<delete id="myFreeRepDelete">
 		delete from f_comment
-		where c_num = #{c_num}
+			where c_num = #{c_num}
 	</delete>
 
 	<!-- 마이페이지(자게) 댓글 일괄 삭제 -->
 	<delete id="myFreeRepDeleteAll">
 		delete from f_comment
-		where c_writer = #{c_writer}
+			where c_writer = #{c_writer}
 	</delete>
 	
 
@@ -183,7 +206,7 @@
 	<!-- 마이페이지(운지공) 게시글 총 개수 -->
 	<select id="getMyExCnt" resultType="_int">
 		select count(ex_num) from ex_board
-		where ex_writer = #{ex_writer}
+			where ex_writer = #{ex_writer}
 	</select>
 
 	<!-- 마이페이지(운지공) 게시글 목록 -->
@@ -198,20 +221,44 @@
 	<!-- 마이페이지(운지공) 게시글 조회 -->
 	<select id="getMyExDetail" parameterType="_int" resultType="com.gym.ex_board.vo.Ex_BoardVO">
 		select * from ex_board
-		where ex_num = #{ex_num}
+			where ex_num = #{ex_num}
 	</select>
 
 	<!-- 마이페이지(운지공) 게시글 삭제 -->
 	<delete id="myExDelete">
 		delete from ex_board
-		where ex_num = #{ex_num}
+			where ex_num = #{ex_num}
 	</delete>
 
 	<!-- 마이페이지(운지공) 게시글 일괄 삭제 -->
 	<delete id="myExDeleteAll">
 		delete from ex_board
-		where ex_writer = #{ex_writer}
+			where ex_writer = #{ex_writer}
 	</delete>
+	
+	<!-- 마이페이지(운지공) 게시글에서 댓글 작성 -->
+	<insert id="myExDetailReplyWrite">
+		insert into exc_comment(ex_num, exc_writer, exc_contents, exc_date)
+			values(#{ex_num}, #{exc_writer}, #{exc_contents}, now())
+	</insert>
+	
+	<!-- 마이페이지(운지공) 게시글에서 댓글 삭제 -->
+	<delete id="myExDetailReplyDelete">
+		delete from exc_comment
+			where exc_num = #{exc_num}
+	</delete>
+	
+	<!-- 마이페이지(운지공) 게시글에서 댓글 수정 뷰 -->
+	<select id="myExDetailReplyDetail" resultType="com.gym.ex_board.vo.Ex_ReplyVO">
+		select * from exc_comment
+			where exc_num = #{exc_num}
+	</select>
+	
+	<!-- 마이페이지(운지공) 게시글에서 댓글 수정 업데이트 -->
+	<update id="myExDetailReplyModify">
+		update exc_comment set exc_contents = #{exc_contents}
+			where exc_num = #{exc_num}
+	</update>
 
 	<!-- 마이페이지(운지공) 댓글 총 개수 -->
 	<select id="getMyExRepCnt" resultType="_int">
@@ -222,24 +269,23 @@
 	<!-- 마이페이지(운지공) 댓글 목록 -->
 	<select id="getMyExRepList" resultType="com.gym.ex_board.vo.Ex_ReplyVO">
 		select *
-		from ex_board b
+			from ex_board b
 		join exc_comment c
-		on b.ex_num = c.ex_num
+			on b.ex_num = c.ex_num
 		where exc_writer = #{exc_writer}
-		order by exc_date desc
-		limit #{displayPost}, #{postNum}
+			order by exc_date desc
+			limit #{displayPost}, #{postNum}
 	</select>
 
 	<!-- 마이페이지(운지공) 댓글 삭제 -->
 	<delete id="myExRepDelete">
 		delete from exc_comment
-		where exc_num = #{exc_num}
+			where exc_num = #{exc_num}
 	</delete>
 
 	<!-- 마이페이지(운지공) 댓글 일괄 삭제 -->
 	<delete id="myExRepDeleteAll">
 		delete from exc_comment
-		where exc_writer = #{exc_writer}
+			where exc_writer = #{exc_writer}
 	</delete>
-
 </mapper>

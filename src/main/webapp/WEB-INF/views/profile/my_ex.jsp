@@ -5,20 +5,14 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="./main_logo.gif" type="image/x-icon">
-<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
-	crossorigin="anonymous"></script>
-<link
-	href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
-	rel="stylesheet" type="text/css" />
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
-	rel="stylesheet" type="text/css" />
+<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
 <title>우리동네 올림픽</title>
 <link rel="stylesheet" href="${path}/resources/css/reset.css" />
 <link rel="stylesheet" href="${path}/resources/css/styles.css">
@@ -63,27 +57,27 @@ section {
 }
 
 .banana #contents .boardnum {
-	width: 5%;
+	width: 50px;
 }
 
 .banana #contents .title {
-	width: 45%;
+	width: 570px;
 }
 
 .banana #contents .writer_id {
-	width: 20%;
+	width: 100px;
 }
 
-.banana #contents .data {
-	width: 10%;
+.banana #contents .date {
+	width: 100px;
 }
 
 .banana #contents .view {
-	width: 10%;
+	width: 70px;
 }
 
 .banana #contents .etc {
-	width: 10%;
+	width: 150px;
 }
 
 .banana #contents .ul_news {
@@ -96,37 +90,39 @@ section {
 	margin-bottom: 10px;
 }
 
-.banana #contents .ul_news .etc #write_notice button, .banana #contents .ul_news .etc #write_notice input
-	{
-	margin-left: -15px;
-}
-
-.banana #contents .ul_news .etc #write_notice .modify_btn {
+#write_notice .modify_btn {
 	background-color: #eee;
 	border-color: #ddd;
 	color: black;
+	cursor: pointer;
 }
 
-.banana #contents .ul_news .etc #write_notice input {
-	background-color: #333333;
+#write_notice .delete_btn {
+	background-color: #333;
 	color: #eee;
 	cursor: pointer;
 }
 
-.banana #contents .ul_news .reply_contents {
-	width: 90%;
-}
-
-.banana #contents .ul_news .reply_contents span {
-	display: block;
-	margin-left: 5px;
-	margin-bottom: 5px;
+.modify_div, .delete_div {
+	display: inline-block;
+	text-align: center;
 }
 
 .deleteandwrite_btn {
 	display: flex;
 	justify-content: end;
-	margin-left: -15px;
+}
+
+.deleteandwrite_btn form {
+	margin: 0;
+}
+
+.ex_write {
+	width: 66px;
+}
+
+.ex_delete {
+	width: 83px;
 }
 
 ul {
@@ -192,10 +188,7 @@ ul.tabs li.current {
 				</div>
 				<div class="profile_intro">
 					<span style="font-size: 25px; margin-bottom: 10px;">${loginUser.usernick}님</span>
-					<span style="font-size: 15px;">
-						운동지식공유 게시글 수: ${page.count}개 /
-						댓글 수: ${replypage.count}개
-					</span>
+					<span style="font-size: 15px;"> 운동지식공유 게시글 수: ${page.count}개 / 댓글 수: ${replypage.count}개</span>
 				</div>
 			</div>
 			<div class="boardcontents">
@@ -206,79 +199,69 @@ ul.tabs li.current {
 					</ul>
 
 					<!-- 게시글 탭 시작 -->
-					<div id="tab-1" class="tab-content current" style="height: 510px;">
+					<div id="tab-1" class="tab-content current" style="height: 525px;">
 						<form name="form1" method="post" id="form1">
 							<input type="hidden" name="ex_writer" value="${loginUser.userid}">
 							<input type="hidden" name="num" value="${select}">
 							<ul class="ul_news_title">
-								<div class=boardnum>
-									<span class="board_num">번호</span>
-								</div>
-								<div class="title">
-									<a><span>제목</span></a>
-								</div>
-								<div class="writer_id">
-									<span class="">작성자</span>
-								</div>
-								<div class="data">
-									<span class="date">작성일자</span>
-								</div>
-								<div class="view">
-									<span class="view">조회수</span>
-								</div>
-								<div class="etc"></div>
+								<table>
+									<tr>
+										<td class="boardnum">번호</td>
+										<td class="title">제목</td>
+										<td class="writer_id">작성자</td>
+										<td class="date">작성일자</td>
+										<td class="view">조회수</td>
+										<td class="etc">&nbsp;</td>
+									</tr>
+								</table>
 							</ul>
 						</form>
 						<c:forEach items="${list}" var="exlist">
 							<ul class="ul_news">
-								<div class="boardnum">
-									<span class="board_num">${exlist.ex_num}</span>
-								</div>
-								<div class="title">
-									<a href="/profile/my_ex_detail?ex_num=${exlist.ex_num}&reply_num=1"><span>${exlist.ex_title}</span></a>
-								</div>
-								<div class="writer_id">
-									<span class="">${exlist.ex_writer}</span>
-								</div>
-								<div class="data">
-									<span class="date">
-										<fmt:formatDate value="${exlist.ex_date}" pattern="yyyy-MM-dd" />
-										</span>
-								</div>
-								<div class="view">
-									<span class="view" style="display: inline-block; width: 40px !important; text-align: right;">${exlist.view_cnt}</span>
-								</div>
-								<div class="etc">
-								<form method="get" action="${path}/profile/my_ex_modify">
-										<div id="write_notice">
-											<input type="hidden" name="ex_num" value="${exlist.ex_num}">
-											<input type="hidden" name="num" value="${select}">
-											<input type="submit" value="수정">
-										</div>
-									</form>
-									<form method="post" action="${path}/profile/my_ex_delete">
-										<div id="write_notice">
-											<input type="hidden" name="ex_num" value="${exlist.ex_num}">
-											<input type="hidden" name="num" value="${select}">
-											<input type="submit" value="삭제" onclick="return delete_check();">
-										</div>
-									</form>
-								</div>
+								<table>
+									<tr>
+										<td class="boardnum">${exlist.ex_num}</td>
+										<td class="title"><a href="/profile/my_ex_detail?ex_num=${exlist.ex_num}&reply_num=1"><span>${exlist.ex_title}</span></a></td>
+										<td class="writer_id">${exlist.ex_writer}</td>
+										<td class="date"><fmt:formatDate value="${exlist.ex_date}" pattern="yyyy-MM-dd" /></td>
+										<td class="view">${exlist.view_cnt}<td>
+										<td class="etc">
+											<div class="modify_div">
+												<form method="get" style="width: 50px;" action="${path}/profile/my_ex_modify">
+													<div id="write_notice">
+														<input type="hidden" name="ex_num" value="${exlist.ex_num}">
+														<input type="hidden" name="num" value="${select}">
+														<input type="submit" class="modify_btn" value="수정">
+													</div>
+												</form>
+											</div>
+											<div class="delete_div">
+												<form method="post" style="width: 70px;" action="${path}/profile/my_ex_delete">
+													<div id="write_notice">
+														<input type="hidden" name="ex_num" value="${exlist.ex_num}">
+														<input type="hidden" name="num" value="${select}">
+														<input type="submit" class="delete_btn" value="삭제" onclick="return delete_check();">
+													</div>
+												</form>
+											</div>
+										</td>
+									</tr>
+								</table>
 							</ul>
 						</c:forEach>
 						<div class="deleteandwrite_btn">
-							<form method="get" action="${path}/profile/my_ex_write">
+							<form method="get" class="ex_write" action="${path}/profile/my_ex_write">
 								<div id="write_notice">
 									<input type="hidden" name="ex_writer" value="${loginUser.userid}">
 									<input type="hidden" name="num" value="${select}">
-									<input type="submit" value="글쓰기">
+									<input type="submit" class="modify_btn" value="글쓰기">
 								</div>
 							</form>
-							<form method="post" action="${path}/profile/my_ex_delete_all">
+							<form method="post" class="ex_delete" action="${path}/profile/my_ex_delete_all">
 								<div id="write_notice">
 									<input type="hidden" name="ex_writer" value="${loginUser.userid}">
 									<input type="hidden" name="num" value="${select}">
-									<input type="submit" value="전체 삭제" onclick="return delete_check();">
+									<input type="submit" class="delete_btn" value="전체 삭제" onclick="return delete_check();">
 								</div>
 							</form>
 						</div>

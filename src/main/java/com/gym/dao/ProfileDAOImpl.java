@@ -110,6 +110,30 @@ public class ProfileDAOImpl implements ProfileDAO {
 	public void myFreeDeleteAll(String b_writer) throws Exception {
 		sql.delete(namespace + ".myFreeDeleteAll", b_writer);
 	}
+	
+//	마이페이지(자게) 게시글에서 댓글 작성
+	@Override
+	public void myFreeDetailReplyWrite(ReplyVO vo) throws Exception {
+		sql.insert(namespace + ".myFreeDetailReplyWrite", vo);
+	}
+	
+//	마이페이지(자게) 게시글에서 댓글 삭제
+	@Override
+	public void myFreeDetailReplyDelete(int c_num) throws Exception {
+		sql.delete(namespace + ".myFreeDetailReplyDelete", c_num);
+	}
+	
+//	마이페이지(자게) 게시글에서 댓글 수정 뷰
+	@Override
+	public ReplyVO myFreeDetailReplyDetail(int c_num) throws Exception {
+		return sql.selectOne(namespace + ".myFreeDetailReplyDetail", c_num);
+	}
+	
+//	마이페이지(자게) 게시글에서 댓글 수정 업데이트
+	@Override
+	public void myFreeDetailReplyModify(ReplyVO vo) throws Exception {
+		sql.update(namespace + ".myFreeDetailReplyModify", vo);
+	}
 
 //	마이페이지(자게) 댓글 총 개수
 	@Override
@@ -176,6 +200,30 @@ public class ProfileDAOImpl implements ProfileDAO {
 	@Override
 	public void myExDeleteAll(String ex_writer) throws Exception {
 		sql.delete(namespace + ".myExDeleteAll", ex_writer);
+	}
+	
+//	마이페이지(운지공) 게시글에서 댓글 작성
+	@Override
+	public void myExDetailReplyWrite(Ex_ReplyVO vo) throws Exception {
+		sql.insert(namespace + ".myExDetailReplyWrite", vo);
+	}
+	
+//	마이페이지(운지공) 게시글에서 댓글 삭제
+	@Override
+	public void myExDetailReplyDelete(int exc_num) throws Exception {
+		sql.delete(namespace + ".myExDetailReplyDelete", exc_num);
+	}
+	
+//	마이페이지(운지공) 게시글에서 댓글 수정 뷰
+	@Override
+	public Ex_ReplyVO myExDetailReplyDetail(int exc_num) throws Exception {
+		return sql.selectOne(namespace + ".myExDetailReplyDetail", exc_num);
+	}
+	
+//	마이페이지(운지공) 게시글에서 댓글 수정 업데이트
+	@Override
+	public void myExDetailReplyModify(Ex_ReplyVO vo) throws Exception {
+		sql.update(namespace + ".myExDetailReplyModify", vo);
 	}
 	
 //	마이페이지(운지공) 댓글 총 개수

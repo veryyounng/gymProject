@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gym.domain.FreeBoardVO;
@@ -219,6 +220,39 @@ public class ProfileController {
 		profileservice.myFreeDeleteAll(userid);
 		return "redirect:/profile/my_free?num=" + num;
 	}
+	
+//	마이페이지(자게) 게시글에서 댓글 작성
+	@RequestMapping(value = "/my_free_detail_reply_write", method = RequestMethod.POST)
+	public String my_free_detail_reply_write(ReplyVO vo) throws Exception {
+		profileservice.myFreeDetailReplyWrite(vo);
+		int b_num = vo.getB_num();
+		return "redirect:/profile/my_free_detail?b_num=" + b_num + "&reply_num=1";
+	}
+	
+//	마이페이지(자게) 게시글에서 댓글 삭제
+	@RequestMapping(value = "/my_free_detail_reply_delete", method = RequestMethod.POST)
+	public String my_free_detail_reply_delete(int c_num, int b_num, int select) throws Exception {
+		profileservice.myFreeDetailReplyDelete(c_num);
+		int[] number = new int[2];
+		number[0] = b_num;
+		number[1] = select;
+		return "redirect:/profile/my_free_detail?b_num=" + number[0] + "&reply_num=" + number[1];
+	}
+	
+//	마이페이지(자게) 게시글에서 댓글 수정 뷰
+	@RequestMapping(value = "/my_free_detail_reply_detail", method = RequestMethod.POST)
+	public @ResponseBody ReplyVO my_free_detail_reply_detail(@RequestParam("c_num") int c_num) throws Exception {
+		ReplyVO result = profileservice.myFreeDetailReplyDetail(c_num);
+		return result;
+	}
+	
+//	마이페이지(자게) 게시글에서 댓글 수정
+	@RequestMapping(value = "/my_free_detail_reply_modify", method = RequestMethod.POST)
+	public String my_free_detail_reply_modify(ReplyVO vo, int reply_num) throws Exception {
+		profileservice.myFreeDetailReplyModify(vo);
+		int b_num = vo.getB_num();
+		return "redirect:/profile/my_free_detail?b_num=" + b_num + "&reply_num=" + reply_num;
+	}
 
 //	마이페이지(자게) 댓글 목록, 개수
 	@RequestMapping(value = "/my_free_reply", method = RequestMethod.GET)
@@ -331,6 +365,40 @@ public class ProfileController {
 		profileservice.myExDeleteAll(userid);
 		return "redirect:/profile/my_ex?num=" + num;
 	}
+	
+//	마이페이지(운지공) 게시글에서 댓글 작성
+	@RequestMapping(value = "/my_ex_detail_reply_write", method = RequestMethod.POST)
+	public String my_ex_detail_reply_write(Ex_ReplyVO vo) throws Exception {
+		profileservice.myExDetailReplyWrite(vo);
+		int ex_num = vo.getEx_num();
+		return "redirect:/profile/my_ex_detail?ex_num=" + ex_num + "&reply_num=1";
+	}
+	
+//	마이페이지(운지공) 게시글에서 댓글 삭제
+	@RequestMapping(value = "/my_ex_detail_reply_delete", method = RequestMethod.POST)
+	public String my_ex_detail_reply_delete(int exc_num, int ex_num, int select) throws Exception {
+		profileservice.myExDetailReplyDelete(exc_num);
+		int[] number = new int[2];
+		number[0] = ex_num;
+		number[1] = select;
+		return "redirect:/profile/my_ex_detail?ex_num=" + number[0] + "&reply_num=" + number[1];
+	}
+	
+//	마이페이지(운지공) 게시글에서 댓글 수정 뷰
+	@RequestMapping(value = "/my_ex_detail_reply_detail", method = RequestMethod.POST)
+	public @ResponseBody Ex_ReplyVO my_ex_detail_reply_detail(@RequestParam("exc_num") int exc_num) throws Exception {
+		Ex_ReplyVO result = profileservice.myExDetailReplyDetail(exc_num);
+		return result;
+	}
+	
+//	마이페이지(운지공) 게시글에서 댓글 수정
+	@RequestMapping(value = "/my_ex_detail_reply_modify", method = RequestMethod.POST)
+	public String my_ex_detail_reply_modify(Ex_ReplyVO vo, int reply_num) throws Exception {
+		profileservice.myExDetailReplyModify(vo);
+		int ex_num = vo.getEx_num();
+		return "redirect:/profile/my_ex_detail?ex_num=" + ex_num + "&reply_num=" + reply_num;
+	}
+
 	
 //	마이페이지(운지공) 댓글 목록, 개수
 	@RequestMapping(value = "/my_ex_reply", method = RequestMethod.GET)

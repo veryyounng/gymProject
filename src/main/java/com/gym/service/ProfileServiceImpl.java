@@ -87,6 +87,30 @@ public class ProfileServiceImpl implements ProfileService {
 		return pdao.getMyFreeRepCnt(c_writer);
 	}
 	
+//	마이페이지(자게) 게시글에서 댓글 작성
+	@Override
+	public void myFreeDetailReplyWrite(ReplyVO vo) throws Exception {
+		pdao.myFreeDetailReplyWrite(vo);
+	}
+	
+//	마이페이지(자게) 게시글에서 댓글 삭제
+	@Override
+	public void myFreeDetailReplyDelete(int c_num) throws Exception {
+		pdao.myFreeDetailReplyDelete(c_num);
+	}
+	
+//	마이페이지(자게) 게시글에서 댓글 수정 뷰
+	@Override
+	public ReplyVO myFreeDetailReplyDetail(int c_num) throws Exception {
+		return pdao.myFreeDetailReplyDetail(c_num);
+	}
+	
+//	마이페이지(자게) 게시글에서 댓글 수정 업데이트
+	@Override
+	public void myFreeDetailReplyModify(ReplyVO vo) throws Exception {
+		pdao.myFreeDetailReplyModify(vo);
+	}
+	
 //	마이페이지(자게) 댓글 목록
 	@Override
 	public List<ReplyVO> getMyFreeRepList(String c_writer, int displayPost, int postNum) throws Exception {
@@ -136,6 +160,31 @@ public class ProfileServiceImpl implements ProfileService {
 	public void myExDeleteAll(String ex_writer) throws Exception {
 		pdao.myExDeleteAll(ex_writer);
 	}
+	
+//	마이페이지(운지공) 게시글에서 댓글 작성
+	@Override
+	public void myExDetailReplyWrite(Ex_ReplyVO vo) throws Exception {
+		pdao.myExDetailReplyWrite(vo);
+	}
+	
+//	마이페이지(운지공) 게시글에서 댓글 삭제
+	@Override
+	public void myExDetailReplyDelete(int exc_num) throws Exception {
+		pdao.myExDetailReplyDelete(exc_num);
+	}
+	
+//	마이페이지(운지공) 게시글에서 댓글 수정 뷰
+	@Override
+	public Ex_ReplyVO myExDetailReplyDetail(int exc_num) throws Exception {
+		return pdao.myExDetailReplyDetail(exc_num);
+	}
+	
+//	마이페이지(운지공) 게시글에서 댓글 수정 업데이트
+	@Override
+	public void myExDetailReplyModify(Ex_ReplyVO vo) throws Exception {
+		pdao.myExDetailReplyModify(vo);
+	}
+	
 	
 //	마이페이지(운지공) 댓글 총 개수
 	@Override

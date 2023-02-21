@@ -5,20 +5,14 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="./main_logo.gif" type="image/x-icon">
-<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
-	crossorigin="anonymous"></script>
-<link
-	href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
-	rel="stylesheet" type="text/css" />
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
-	rel="stylesheet" type="text/css" />
+<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
 <title>우리동네 올림픽</title>
 <link rel="stylesheet" href="${path}/resources/css/reset.css" />
 <link rel="stylesheet" href="${path}/resources/css/styles.css">
@@ -101,18 +95,6 @@ section {
 	margin-left: -15px;
 }
 
-.banana #contents .ul_news .etc #write_notice .modify_btn {
-	background-color: #eee;
-	border-color: #ddd;
-	color: black;
-}
-
-.banana #contents .ul_news .etc #write_notice input {
-	background-color: #333333;
-	color: #eee;
-	cursor: pointer;
-}
-
 .banana #contents .ul_news .reply_contents {
 	width: 90%;
 }
@@ -126,7 +108,13 @@ section {
 .deleteandwrite_btn {
 	display: flex;
 	justify-content: end;
-	margin-left: -15px;
+	margin-right: 12px;
+}
+
+#write_notice .delete_btn {
+	background-color: #333333;
+	color: #eee;
+	cursor: pointer;
 }
 
 ul {
@@ -192,8 +180,7 @@ ul.tabs li.current {
 				</div>
 				<div class="profile_intro">
 					<span style="font-size: 25px; margin-bottom: 10px;">${loginUser.usernick}님</span>
-					<span style="font-size: 15px;">자유게시판 게시글 수: ${page.count}개 /
-						댓글 수: ${replypage.count}개</span>
+					<span style="font-size: 15px;">자유게시판 게시글 수: ${page.count}개 / 댓글 수: ${replypage.count}개</span>
 				</div>
 			</div>
 			<div class="boardcontents">
@@ -202,13 +189,7 @@ ul.tabs li.current {
 						<li class="tab-link" data-tab="tab-1" onclick="location.href='${path}/profile/my_free?num=1'">내가 쓴 글</li>
 						<li class="tab-link current" data-tab="tab-2">내가 쓴 댓글</li>
 					</ul>
-
-					<!-- 게시글 탭 시작 -->
-					
-					<!-- 게시글 탭 끝 -->
-
-					<!-- 댓글 탭 시작 -->
-					<div id="tab-2" class="tab-content current" style="height: 600px;">
+					<div id="tab-2" class="tab-content current" style="height: 615px;">
 						<form name="form1" method="post" id="form1">
 							<input type="hidden" name="table_name" value="notice_list">
 							<ul class="ul_news_title" style="display: block;">
@@ -220,56 +201,55 @@ ul.tabs li.current {
 						<c:forEach items="${replylist}" var="free_reply">
 							<ul class="ul_news" style="text-align: left; height: 100px;">
 								<div class="reply_contents">
-									<span>${free_reply.c_contents}</span> <span class="date"
-										style="font-size: 10px; color: gray;"><fmt:formatDate
-											value="${free_reply.c_date}" pattern="yyyy.MM.dd HH:mm:ss" /></span>
+									<span>${free_reply.c_contents}</span>
+									<span class="date" style="font-size: 10px; color: gray;">
+										<fmt:formatDate value="${free_reply.c_date}" pattern="yyyy.MM.dd HH:mm:ss" />
+									</span>
 									<span class="view" style="font-size: 12px;">${free_reply.b_title}</span>
 								</div>
 								<form method="post" action="${path}/profile/my_free_reply_delete" name="reply_delete_form">
 									<div id="write_notice">
 										<input type="hidden" name="c_num" value="${free_reply.c_num}">
 										<input type="hidden" name="num" value="${replyselect}">
-										<input type="submit" value="삭제"
-											onclick="return delete_check();">
+										<input type="submit" class="delete_btn" value="삭제" onclick="return delete_check();">
 									</div>
 								</form>
 							</ul>
 						</c:forEach>
-						<form method="post"
-							action="${path}/profile/my_free_reply_delete_all">
+						<form method="post" class="deleteall_btn" action="${path}/profile/my_free_reply_delete_all">
 							<div class="deleteandwrite_btn">
 								<div id="write_notice">
 									<input type="hidden" name="c_writer" value="${loginUser.userid}">
 									<input type="hidden" name="num" value="${replyselect}">
-									<input type="submit" value="전체 삭제" onclick="return delete_check();">
+									<input type="submit" class="delete_btn" value="전체 삭제" onclick="return delete_check();">
 								</div>
 							</div>
 						</form>
 						<div class="btns">
 							<ul class="pagination">
 								<c:if test="${replypage.prev}">
-									<li>[<a
-										href='${path}/profile/my_free_reply?num=${replypage.startPageNum-1}'>이전</a>]
+									<li>
+										[<a href='${path}/profile/my_free_reply?num=${replypage.startPageNum-1}'>이전</a>]
 									</li>
 								</c:if>
-								<c:forEach begin="${replypage.startPageNum}"
-									end="${replypage.endPageNum}" var="reply_num">
-									<li><c:if test="${replyselect != reply_num}">
+								<c:forEach begin="${replypage.startPageNum}" end="${replypage.endPageNum}" var="reply_num">
+									<li>
+										<c:if test="${replyselect != reply_num}">
 											<a href="${path}/profile/my_free_reply?num=${reply_num}">${reply_num}</a>
-										</c:if> <c:if test="${replyselect == reply_num}">
-											<b
-												style="font-weight: 700; color: red; text-decoration: underline;">${reply_num}</b>
-										</c:if></li>
+										</c:if>
+										<c:if test="${replyselect == reply_num}">
+											<b style="font-weight: 700; color: red; text-decoration: underline;">${reply_num}</b>
+										</c:if>
+									</li>
 								</c:forEach>
 								<c:if test="${replypage.next}">
-									<li>[<a
-										href="${path}/profile/my_free_reply?num=${replypage.endPageNum+1}">다음</a>]
+									<li>
+										[<a href="${path}/profile/my_free_reply?num=${replypage.endPageNum+1}">다음</a>]
 									</li>
 								</c:if>
 							</ul>
 						</div>
 					</div>
-					<!-- 댓글 탭 끝 -->
 				</div>
 			</div>
 		</div>

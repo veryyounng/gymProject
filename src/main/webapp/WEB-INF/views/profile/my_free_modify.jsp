@@ -3,11 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-
 <!DOCTYPE html>
-
 <html>
-
 <head>
 <meta charset="UTF-8">
 <!-- ckeditor CDN -->
@@ -20,9 +17,7 @@
 <link rel="stylesheet" href="${path}/resources/css/styles.css" />
 <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons" />
 <link rel="shortcut icon" href="${path}/resources/img/파비콘.png" type="image/x-icon">
-
 <title>자유 게시판</title>
-
 <style>
 #cke_1_contents {
 	height: 600px !important;
@@ -33,6 +28,12 @@
 
 <body>
 	<%@ include file="../include/header.jsp"%>
+	<c:if test="${loginUser == null }">
+		<script>
+			alert("로그인 후 이용하세요!");
+			location.replace('${cp}/user/login');
+		</script>
+	</c:if>
 	<article>
 		<div class="container" role="main">
 			<h2 style="margin-top: 100px">자유 게시판 수정</h2>
@@ -61,7 +62,5 @@
 			ck = CKEDITOR.replace("b_content");
 		};
 	</script>
-
 </body>
-
 </html>

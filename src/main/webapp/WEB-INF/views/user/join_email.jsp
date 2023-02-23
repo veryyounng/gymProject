@@ -16,7 +16,6 @@
 <link rel="stylesheet" href="${path}/resources/css/styles.css">
 <style>
 .banana {
-	border: 1px solid black;
 	height: 600px;
 	margin: 0 auto;
 	display: flex;
@@ -72,6 +71,7 @@
 						</td>
 						<td>
 							<input type="hidden" name="email" id="email">
+							<input type="hidden" name="emailchk" id="emailchk" value="">
 						</td>
 					</tr>
 					<tr>
@@ -191,7 +191,7 @@
 			$("#email").val(useremail_id+'@'+useremail_domain);
 		}
 	};
-  
+	
 	let code = "";
 	var mailid = /^[A-Za-z0-9_\.\-]/;
 	var maildomain = /^[A-Za-z0-9\-]+\.[A-Za-z0-9\-]/;
@@ -227,6 +227,10 @@
 			TIMER();
 		}
 	}); // end send eamil
+	
+	$('#mail-Check-Btn').click(function() {
+		$('#emailchk').val('Y');
+	})
    
 	var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 	// 인증번호 비교 
@@ -239,14 +243,18 @@
 				$('#certification_number').focus();
 				return false;
 			}
-			else if ($('#email_id').val() == "" || $('#domain-txt').val() == "") {
+			if ($('#email_id').val() == "" || $('#domain-txt').val() == "") {
 				alert('이메일을 입력해주세요!');
 				$('#email_id').focus();
 				return false;
 			}
-			else if (!exptext.test(email.value)) {
+			if (!exptext.test(email.value)) {
 				alert('이메일을 확인해주세요!');
 				$('#email_id').focus();
+				return false;
+			}
+			if ($('#emailchk').val() != 'Y') {
+				alert('이메일 인증은 반드시 진행해야 합니다!');
 				return false;
 			}
 			

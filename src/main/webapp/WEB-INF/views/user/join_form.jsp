@@ -16,8 +16,9 @@
 <link rel="stylesheet" href="${path}/resources/css/styles.css">
 <style>
 .banana {
-	border: 1px solid black;
 	margin: 0 auto;
+	margin-top: 50px;
+	margin-bottom: 100px;
 	display: flex;
 	align-items: center;
 }

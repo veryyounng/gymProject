@@ -107,7 +107,7 @@ table.type3 {
 							<td>${reservelist.rv_date}</td>
 							<td>${reservelist.rv_time}</td>
 							<td>${reservelist.rv_headCnt} / ${reservelist.rv_limit}</td>
-							<form method="post" action="${path}/profile/my_reserve_delete">
+							<form method="post" id="reserve_delete" name="reserve_delete" action="${path}/profile/my_reserve_delete">
 								<td>
 									<input type="hidden" name="rv_num" value="${reservelist.rv_num}">
 									<input type="hidden" name="num" value="${select}">
@@ -157,5 +157,14 @@ table.type3 {
 		$(this).toggleClass('current', $(this).attr('href') == url);
 		console.log($(this).attr('href'));
 	});
+	
+	$('#reserve_delete').submit(function() {
+		if (confirm('예약을 취소하시겠습니까?')) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	})
 </script>
 </html>

@@ -9,7 +9,7 @@
 			admin_reservation a
 		join reservation r
 			on a.rv_num = r.rv_num
-		where r.userid = #{userid} and a.rv_date > now()
+		where r.userid = #{userid} and a.rv_date > date_sub(now(), interval 1 day)
 	</select>
 	
 	<!-- 현재 예약 목록 -->
@@ -18,7 +18,7 @@
 			admin_reservation a
 		join reservation r
 			on a.rv_num = r.rv_num
-		where r.userid = #{userid} and a.rv_date > now()
+		where r.userid = #{userid} and a.rv_date > date_sub(now(), interval 1 day)
 			order by rv_date desc
 			limit #{displayPost}, #{postNum}
 	</select>
@@ -35,19 +35,19 @@
 			admin_reservation a
 		join reservation r
 			on a.rv_num = r.rv_num
-		where r.userid = #{userid} and <![CDATA[a.rv_date < now()]]>
+		where r.userid = #{userid} and <![CDATA[a.rv_date < date_sub(now(), interval 1 day)]]>
 			<if test = 'date_list.equals("all_period")'></if>
 			<if test = 'date_list.equals("1_month")'>
-				and a.rv_date > date_sub(now(), interval 1 month)
+				and date_add(a.rv_date, interval 1 day) > date_sub(now(), interval 1 month)
 			</if>
 			<if test = 'date_list.equals("3_months")'>
-				and a.rv_date > date_sub(now(), interval 3 month)
+				and date_add(a.rv_date, interval 1 day) > date_sub(now(), interval 3 month)
 			</if>
 			<if test = 'date_list.equals("6_months")'>
-				and a.rv_date > date_sub(now(), interval 6 month)
+				and date_add(a.rv_date, interval 1 day) > date_sub(now(), interval 6 month)
 			</if>
 			<if test = 'date_list.equals("12_months")'>
-				and a.rv_date > date_sub(now(), interval 12 month)
+				and date_add(a.rv_date, interval 1 day) > date_sub(now(), interval 12 month)
 			</if>
 			<if test = 'lecture_list.equals("all_lecture")'></if>
 			<if test = 'lecture_list.equals("zumba")'>
@@ -76,19 +76,19 @@
 			admin_reservation a
 		join reservation r
 			on a.rv_num = r.rv_num
-		where r.userid = #{userid} and <![CDATA[a.rv_date < now()]]>
+		where r.userid = #{userid} and <![CDATA[a.rv_date < date_sub(now(), interval 1 day)]]>
 			<if test = 'date_list.equals("all_period")'></if>
 			<if test = 'date_list.equals("1_month")'>
-				and a.rv_date > date_sub(now(), interval 1 month)
+				and date_add(a.rv_date, interval 1 day) > date_sub(now(), interval 1 month)
 			</if>
 			<if test = 'date_list.equals("3_months")'>
-				and a.rv_date > date_sub(now(), interval 3 month)
+				and date_add(a.rv_date, interval 1 day) > date_sub(now(), interval 3 month)
 			</if>
 			<if test = 'date_list.equals("6_months")'>
-				and a.rv_date > date_sub(now(), interval 6 month)
+				and date_add(a.rv_date, interval 1 day) > date_sub(now(), interval 6 month)
 			</if>
 			<if test = 'date_list.equals("12_months")'>
-				and a.rv_date > date_sub(now(), interval 12 month)
+				and date_add(a.rv_date, interval 1 day) > date_sub(now(), interval 12 month)
 			</if>
 			<if test = 'lecture_list.equals("all_lecture")'></if>
 			<if test = 'lecture_list.equals("zumba")'>

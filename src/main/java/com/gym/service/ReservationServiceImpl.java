@@ -56,6 +56,6 @@ public class ReservationServiceImpl implements ReservationService {
 
 	@Override
 	public void minusRV(int rv_num) {
-		dao.plusRV(rv_num);
+		dao.minusRV(rv_num);
 	}
 }

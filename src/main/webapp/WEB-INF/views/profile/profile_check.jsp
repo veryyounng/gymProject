@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="ko">
@@ -214,7 +215,7 @@
 									<input type="button" onclick="location.href = '${path}/payment/pay'" value="구매">
 								</c:when>
 								<c:otherwise>
-									<input type="text" name="membershipperiod" id="membershipperiod" value="~ ${loginUser.duedate}" readonly>
+									<input type="text" name="membershipperiod" id="membershipperiod" value="~ <fmt:formatDate value="${loginUser.duedate}" pattern="yyyy년 MM월 dd일"/>" readonly>
 									<input type="button" onclick="location.href = '${path}/payment/pay'" value="갱신">
 								</c:otherwise>
 							</c:choose>

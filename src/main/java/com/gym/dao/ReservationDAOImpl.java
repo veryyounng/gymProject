@@ -65,7 +65,7 @@ public class ReservationDAOImpl implements ReservationDAO {
 
 	@Override
 	public void minusRV(int rv_num) {
-		sql.update(namespace+".plusRV",rv_num);
+		sql.update(namespace+".minusRV",rv_num);
 	}
 	
 }

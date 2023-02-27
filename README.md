@@ -1,6 +1,6 @@
 # 💪🏻 헬스장 웹 페이지 만들기!(팀 프로젝트)  
 헬스장 소개 및 예약, 스케줄 관리, 쪽지기능, 게시판 기능을 포함한 웹 페이지 입니다.  
-[우리동네 올림픽으로 이동!](https://http://ourtownolympic.kro.kr/)
+[우리동네 올림픽으로 이동!](http://ourtownolympic.kro.kr/)
 #### 👩🏻‍💻담당 업무👩🏻‍💻
 - 게시판 CRUD 작업의 전반적인 F/E 업무 수행 (페이지 디자인(HTML5, CSS), JSP, Controller)  
 - 일부 B/E 기능 구현(DAO, Service, Mapper)  

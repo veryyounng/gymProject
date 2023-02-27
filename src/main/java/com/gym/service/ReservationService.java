@@ -12,6 +12,8 @@ public interface ReservationService {
 		public int addRV(String userid, int rv_num);
 		// 예약인원 ++
 		public void plusRV(int rv_num);
+		// 예약인원 --
+		public void minusRV(int rv_num);		
 		// 이미 예약되어있는지 확인
 		public int findOverlap(String userid, int rv_num);
 		// 예약일정 만들기

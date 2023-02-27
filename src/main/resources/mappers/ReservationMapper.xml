@@ -12,6 +12,9 @@
 	<update id="plusRV">
 		update admin_reservation set rv_headCnt = rv_headCnt + 1 where rv_num = #{rv_num}
 	</update>
+	<update id="minusRV">
+		update admin_reservation set rv_headCnt = rv_headCnt - 1 where rv_num = #{rv_num}
+	</update>
 	<select id="findOverlap" resultType="int">
 		select count(*) from reservation where rv_num = #{rv_num} and userid=#{userid}
 	</select>

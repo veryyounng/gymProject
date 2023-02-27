@@ -29,6 +29,7 @@ import com.gym.ex_board.vo.Ex_BoardVO;
 import com.gym.ex_board.vo.Ex_ReplyVO;
 import com.gym.service.FreeBoardService;
 import com.gym.service.ProfileService;
+import com.gym.service.ReservationService;
 import com.gym.service.UserService;
 
 @Controller
@@ -37,7 +38,10 @@ public class ProfileController {
 
 	@Autowired
 	private UserService userservice;
-
+	
+	@Autowired
+	private ReservationService reserservice; 
+	
 	@Autowired
 	private ProfileService profileservice;
 
@@ -117,6 +121,7 @@ public class ProfileController {
 	@RequestMapping(value = "/my_reserve_delete", method = RequestMethod.POST)
 	public String my_reserve_delete(int rv_num, int num) throws Exception {
 		profileservice.my_reserve_delete(rv_num);
+		reserservice.minusRV(rv_num);
 		return "redirect:/profile/my_reserve_now?num=" + num;
 	}
 	

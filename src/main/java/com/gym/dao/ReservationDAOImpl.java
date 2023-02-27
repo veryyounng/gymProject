@@ -62,5 +62,10 @@ public class ReservationDAOImpl implements ReservationDAO {
 	public int deleteReservation(int rv_num) {
 		return sql.delete(namespace+".deleteReservation",rv_num);
 	}
+
+	@Override
+	public void minusRV(int rv_num) {
+		sql.update(namespace+".plusRV",rv_num);
+	}
 	
 }

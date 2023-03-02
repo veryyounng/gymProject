@@ -2,9 +2,12 @@
 헬스장 소개 및 예약, 스케줄 관리, 쪽지기능, 게시판 기능을 포함한 웹 페이지 입니다.  
 [우리동네 올림픽으로 이동!](http://ourtownolympic.kro.kr/)
 #### 👩🏻‍💻담당 업무👩🏻‍💻
-- 게시판 CRUD 작업의 전반적인 F/E 업무 수행 (페이지 디자인(HTML5, CSS), JSP, Controller)  
-- 일부 B/E 기능 구현(DAO, Service, Mapper)  
-- 회원 간 쪽지기능 F/E 업무 수행
+- 자유게시판 CRUD 작업의 전반적인 F/E 업무 수행 (페이지 디자인(HTML5, CSS), JSP, Controller)
+- 자유게시판 댓글 작성, 수정, 삭제, 페이징
+- 로그인, 로그아웃 구현
+- 아이디 찾기
+- 비밀번호 찾기
+
 #### 📚기술스택📚
 <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=HTML5&logoColor=white"/> <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=CSS3&logoColor=white"/> <img src="https://img.shields.io/badge/JavaScript-F7Df1E?style=flat&logo=JavaScript&logoColor=white"/> <img src="https://img.shields.io/badge/jQuery-0769AD?style=flat&logo=jQuery&logoColor=white"/>  
 <img src="https://img.shields.io/badge/Spring-6DB33F?style=flat&logo=Spring&logoColor=white"/> <img src="https://img.shields.io/badge/Visual Studio Code-007ACC?style=flat&logo=Visual Studio Code&logoColor=white"/> <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white"/>

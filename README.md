@@ -1,4 +1,4 @@
-# 💪🏻 헬스장 웹 페이지 만들기!(팀 프로젝트)  
+# 💪🏻 헬스장 웹 페이지 만들기!(팀 프로젝트) 🥇🥈🥉
 헬스장 소개 및 예약, 스케줄 관리, 쪽지기능, 게시판 기능을 포함한 웹 페이지 입니다.  
 [우리동네 올림픽으로 이동!](http://ourtownolympic.kro.kr/)
 #### 👩🏻‍💻담당 업무👩🏻‍💻
@@ -32,3 +32,39 @@
 - 관리자
     - 공지사항 게시판 글쓰기 등록, 삭제 할 수 있다.
     - GX룸 스케줄을 등록, 삭제 및 관리 할 수 있다.
+
+## ERD
+<br><img src = "https://github.com/veryyounng/react_project/assets/121228672/ff40b7de-dc17-4b72-8b13-8411b6111675"/>
+<br><br>
+
+## Home 🏠
+<br><img src = "https://github.com/veryyounng/react_project/assets/121228672/b57cea9c-87ec-4dee-ad9d-f32984db9863"/>
+<br><br>
+
+## 로그인 화면 
+<br><img src = "https://github.com/veryyounng/react_project/assets/121228672/b6bd6da2-4c35-43c6-b1b2-34d722087216"/>
+<br><br>
+
+## 로그아웃 화면
+<br><img src = "https://github.com/veryyounng/react_project/assets/121228672/8bc4bdd8-ca1c-4cdf-ab0f-ffe9a818d5d4"/>
+<br><br>
+
+## 아이디 찾기
+<br><img src = "https://github.com/veryyounng/react_project/assets/121228672/d63405b6-506f-4e8d-9894-d404408baa53"/>
+<br><br>
+
+## 비밀번호 찾기
+<br><img src = "https://github.com/veryyounng/react_project/assets/121228672/2cdd3de4-c96d-4540-912e-8f0edb1a60a5"/>
+<br><br>
+
+## 자유 게시판 기본화면
+<br><img src = "https://github.com/veryyounng/react_project/assets/121228672/ade8e75f-00fd-4bba-a84f-91cca9cfd05c"/>
+<br><br>
+
+## 자유 게시판 글쓰기
+<br><img src = "https://github.com/veryyounng/react_project/assets/121228672/2c7d5124-5364-40c9-a0ab-8ea20c83478f"/>
+<br><br>
+
+## 자유 게시판 상세페이지
+<br><img src = "https://github.com/veryyounng/react_project/assets/121228672/803d4f57-cc44-450e-9c7f-23a1ef98334d"/>
+<br><br>

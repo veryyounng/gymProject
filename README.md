@@ -68,3 +68,139 @@
 ## 자유 게시판 상세페이지
 <br><img src = "https://github.com/veryyounng/react_project/assets/121228672/803d4f57-cc44-450e-9c7f-23a1ef98334d"/>
 <br><br>
+
+## 로그인
+<br>
+
+- controller
+```java
+	@RequestMapping(value = { "/login", "/join", "id_find", "/pw_find" , "/changePw"}, method = RequestMethod.GET)
+	public void replace() {
+	}
+
+//  로그인
+	@PostMapping("/login")
+	public String login(UserVO vo, HttpServletRequest req, RedirectAttributes ra) throws Exception {
+		UserVO loginUser = service.login(vo);
+		if(loginUser == null) {
+		
+			ra.addFlashAttribute("loginfail", "F"); //null값이라면 다시 login 화면으로 이동
+			return "redirect:/user/login";
+		}
+		else {
+			req.getSession().setAttribute("loginUser", loginUser);
+			if(messageService.newMsg(loginUser.getUserid()) == 0) {
+				req.getSession().setAttribute("newMsg", "F");
+			} else {
+				req.getSession().setAttribute("newMsg", "T");
+			}
+			return "redirect:/";
+		}
+	}
+```
+- mapper
+```mysql
+	<!-- 로그인 -->
+	<select id="login" resultType="com.gym.domain.UserVO">
+		select * from user
+		where userid = #{userid} and userpw = #{userpw}
+	</select>
+```
+- jsp
+```javascript
+  function check(){
+		let userid = $("#useridtext");
+		let userpw = $("#userpwtext");
+		if(userid.val() == ""){
+			alert("아이디를 입력하세요.");
+			userid.focus();
+			return false;
+		}
+		if(userpw.val() == ""){
+			alert("비밀번호를 입력하세요.");
+			userpw.focus();
+			return false;
+		}
+			return true;
+	}
+```
+## 로그아웃
+- controller
+```java
+@GetMapping("/logout")
+	public String logout(HttpServletRequest req, RedirectAttributes ra) {
+		HttpSession session = req.getSession();
+		session.invalidate();
+		ra.addFlashAttribute("logout", "T");
+		return "redirect:/";
+	}
+```
+## 아이디 찾기
+- controller
+```java
+@PostMapping("/findedid")
+	public @ResponseBody UserVO postFindId(@RequestParam("username") String username, @RequestParam("email") String email) throws Exception {
+		UserVO result = service.findId(username, email);
+		if(result == null) {
+			return null;
+		}
+		return result;
+	}
+```
+- mapper
+```mysql
+<select id="findId" resultType="com.gym.domain.UserVO">
+		select * from user where username =#{username} and email =#{email}
+	</select>
+```
+- jsp
+```javascript
+$('#submitbutton').on('click',function(){
+		const name = $('#usernametext').val();
+	 	const email = $('#useremailtext').val() + '@' + $('#domain-txt').val();
+		console.log(name);
+		console.log(email);
+		$.ajax({
+	        url:'findedid',
+	        type:'POST',
+	        data: {"username": name,
+	        	   "email": email},
+	        dataType : "json",
+	        success:function(result){
+	        	let addString = $('#idfindtable');
+	        	console.log("에이젝스 성공");
+	        	addString.empty();
+	        	var str = "";
+	        	if(result == null){
+					str += '<div>';
+					str += '아이디를 찾을 수 없습니다.';
+					str += '</div>';
+	        	} else {
+	        		str += '<div>';
+	               	str += '<span style="color:blue; font-weight:700;">"'+name + '"</span> 님의 아이디는 <span style="color:blue; font-weight:700;">"' + result.userid + '"</span> 입니다.';
+	       			str += '</div>';
+	        	}
+				addString.append(str);
+	        },
+	        error: function(request, error){
+	        	alert('정보를 다시 입력해주시길 바랍니다.' );
+	        }
+	    });
+	});
+```
+## 비밀번호 찾기
+- controller
+```java
+//	비밀번호 변경 view 보여주기 post방식
+	@PostMapping("/changePW_view")
+	public String postChangePW_view(@RequestParam("username") String userid, Model model) throws Exception{
+		model.addAttribute("userid", userid);
+		return "/user/changePW";
+	}
+//	비밀번호 변경하기
+	@PostMapping("/changePW")
+	public String postChangePW(String userpw, String userid) throws Exception{
+		service.changePW(userid, userpw);
+		return "redirect:/user/login";
+	}
+```

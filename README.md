@@ -204,3 +204,214 @@ $('#submitbutton').on('click',function(){
 		return "redirect:/user/login";
 	}
 ```
+- DAOImple.java
+```java
+//	비밀번호 찾을 때 회원 정보 찾기
+	@Override
+	public int findpw(String userid, String email) {
+		HashMap<String, String> data = new HashMap<String, String>();
+		data.put("userid", userid);
+		data.put("email", email);
+		return sql.selectOne(namespace + ".findPw", data);
+	}
+//	비밀번호 변경
+	@Override
+	public void changePW(String userid, String userpw) throws Exception {
+		HashMap<String, String> map =  new HashMap<String, String>();
+		map.put("userid", userid);
+		map.put("userpw", userpw);
+		sql.update(namespace + ".changePW", map);
+	}
+```
+## 자유게시판 페이징
+- controller
+```java
+//게시물 목록, 갯수 세기
+      @GetMapping("/freelist")
+      public String getFreelist (String keyword, Model model,int num,String searchType) throws Exception{
+        
+       Page page = new Page();
+       
+       page.setNum(num);
+       page.setCount(service.getSearchCnt(keyword,searchType));
+       
+       List<FreeBoardVO> list = service.getFreelist(keyword,searchType,page.getDisplayPost(), page.getPostNum());
+       
+        model.addAttribute("freelist", list);
+        model.addAttribute("page",page);
+        model.addAttribute("select", num);
+        model.addAttribute("keyword", keyword);
+        
+         return "/board/freeboard_list";
+      }
+```
+## 자유게시판 리스트 조회
+- controller
+```java
+//게시물 조회
+      @GetMapping ("/freedetail")
+      public String getFreeDetail (String keyword, int b_num, Model model,int reply_num) throws Exception{
+         service.freeViewCnt(b_num);
+         //db에 거치면 viewCnt가 +1이 됨-> 메소드 종료시 , 밑줄이 실행됨
+         
+         FreeBoardVO vo = service.getFreeDetail(b_num);
+         model.addAttribute("freedetail", vo);
+         model.addAttribute("keyword", keyword);
+         
+         //댓글 조회
+         ReplyPage page = new ReplyPage();
+           page.setNum(reply_num);
+           page.setCount(service.getReplyCnt(b_num)); // 이거는 b_num에 대한 reply 갯수
+         
+         List<ReplyVO> reply = null;
+         reply = service.freeReplylist(b_num,page.getDisplayPost(), page.getPostNum());
+         model.addAttribute("page",page);
+         model.addAttribute("reply",reply);
+         model.addAttribute("select", reply_num);
+         
+         return "/board/freeboard_detail";
+      }
+      
+```
+- mapper
+```mysql
+ <!-- 게시물 목록 보기 -->
+   <select id="freeList" resultType="com.gym.domain.FreeBoardVO">
+      select 
+         b_num, b_title, b_writer, b_date, b_content, view_cnt
+      from f_board 
+      	<if test='searchType.equals("T")'>
+   			where b_title like ('%${keyword}%') //제목필터분류
+   		</if>
+   		<if test='searchType.equals("C")'>
+   			where b_content like ('%${keyword}%') //내용필터분류
+   		</if>
+   		<if test='searchType.equals("TC")'>
+   			where b_title like ('%${keyword}%') 
+   				or b_content like ('%${keyword}%') //제목+내용필터분류
+   		</if>
+      order by b_num desc limit #{displayPost}, #{postNum}
+   </select>
+```
+## 자유게시판 글쓰기, 수정, 삭제
+- controller
+```java
+//게시물 글쓰기 get 메소드
+      @GetMapping("/freewrite")
+      public String getFreeWrite() throws Exception{
+        
+         return "/board/freeboard_write";
+      }
+
+      //게시물 글작성 post 메소드
+      @PostMapping("/freewrite")
+      public String postFreeWrite(FreeBoardVO vo) throws Exception{
+         service.freeWrite(vo);
+         
+         return "redirect:/free/freelist?searchType=T&keyword=&num=1";
+      }
+      
+      //게시물 수정 get메소드
+      @GetMapping("/freemodify")
+      public String getFreeModify(@RequestParam("b_num") int b_num, Model model) throws Exception{
+         
+         FreeBoardVO vo = service.getFreeDetail(b_num);
+         model.addAttribute("freedetail", vo);
+         
+         return "/board/freeboard_modify";
+      }
+      
+      //게시물 수정 post 메소드
+      @PostMapping("/freemodify")
+      public String postFreeModify(FreeBoardVO vo) throws Exception{
+         service.freeModify(vo);
+         int b_num = vo.getB_num();
+         return "redirect:/free/freedetail?reply_num=1&b_num="+b_num;
+      }
+      
+      //게시물 삭제
+      @PostMapping("/freedelete")
+      public String getDelete(int b_num) throws Exception{
+         service.freeDelete(b_num);
+         return "redirect:/free/freelist?searchType=T&keyword=&num=1";
+      }
+```
+▶️ url로 작성하고 수정하는 일이 발생하지 않게 get, post방식 모두 구현함 <br>
+
+## 자유게시판 댓글 수정
+- controller
+```java
+//댓글 수정 뷰
+      @PostMapping("/result")
+      public @ResponseBody ReplyVO replyModify(@RequestParam("c_num") int c_num) throws Exception{
+//         public @ResponseBody ResponseEntity<ReplyVO> replyModify(@RequestParam("c_num") int c_num) throws Exception{
+         ReplyVO result = service.replyDetail(c_num);
+//        return new ResponseEntity<ReplyVO>(result,HttpStatus.OK);
+         return result; //ajax에 넘겨줄 값
+      }
+     
+      // 댓글 수정 업데이트
+      @PostMapping("/replyModify")
+      public String replyModify(ReplyVO vo, int reply_num) throws Exception {
+         service.replyModify(vo);
+         int b_num = vo.getB_num();//b_num은 그 게시물 번호
+         return "redirect:/free/freedetail?reply_num="+reply_num+"&b_num="+b_num;         
+      }
+      
+```
+- jsp
+```javascript
+$('.free_reply_modify').on("click",updateviewBtn);
+        function updateviewBtn(e){
+    	   e.preventDefault();
+           let c_num = $(this).attr("href");
+           let replyModi = $(".reply"+c_num);
+    	   let b_num = $("#b_num").val();
+    	   let reply_num = ${select};
+           $.ajax({
+        	   url: "result",
+        	   type: "POST",
+        	   data: {"c_num": c_num},
+        	   success : function(result){ //controller에서 반환된 값값
+        		   replyModi.empty();
+        		   var commentsview = "";
+        		   commentsview += '<form action="/free/replyModify" name="replymodiform" id="replymodiform" method="post">'; 
+                   commentsview += '<ul class="reply_textbox">';
+                   commentsview += '<div class="reply_textbox2" style="border:none;">';
+                   commentsview += '<div class="reply_wr">';
+                   commentsview += '<label class="reply_writer">';
+                   commentsview += '<p>'+ result.c_writer;
+                   
+                   commentsview += '</p>';
+                   commentsview += '</div>';
+                   commentsview += '<textarea rows="5" cols="50" class="reply_text2" style="resize:none;" id="reply_modify" name="c_contents">';
+                   commentsview += 	result.c_contents;
+                   commentsview += '</textarea>';
+                   commentsview += '<input type="hidden" value="'+ result.c_num + '" name="c_num" />';
+                   commentsview += '<input type="hidden" value="'+ reply_num + '" name="reply_num" />';
+                   commentsview += '<input type="hidden" value="'+ b_num + '" name="b_num" />';
+                   commentsview += '</div>';
+                   commentsview += '<div>';
+                   commentsview += '<button type="button" class="reply_btn" onclick="replyModiCheck();">';
+                   commentsview += '수정완료';
+                   commentsview += '</button>';
+                   commentsview += '</div>';
+                   commentsview += '</div>';
+                   commentsview += '</form>';
+                   replyModi.append(commentsview);
+        	   },
+        	   error: function(request, error){
+               	console.log("ajax 실패");
+               	console.log("code:"+request.status+"\n"+"message"+request.responseText+"\n"+"error:"+error);
+               }
+        })
+       } 
+        function replyModiCheck(){
+        	if($("#reply_modify").val() == "") {
+        		alert("댓글을 입력해주세요.");
+        		return false;
+        	} 
+        	$("#replymodiform").submit();
+        	
+        }
+```
